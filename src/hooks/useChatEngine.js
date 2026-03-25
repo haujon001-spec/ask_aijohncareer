@@ -14,14 +14,8 @@ export function useChatEngine() {
     setError(null);
 
     try {
-      // Use relative URL in production (works through Caddy reverse proxy)
-      // Use VITE_BACKEND_URL in development (localhost:3000)
-      const isDevelopment = import.meta.env.MODE === 'development';
-      const baseUrl = isDevelopment 
-        ? (import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000')
-        : '';  // Empty string = relative URLs (/api/*)
-      
-      const endpoint = `${baseUrl}/api/${model}`;
+      // Use relative URL - works in both dev and production
+      const endpoint = `/api/${model}`;
       const requestBody = {
         question,
         reasoning: showReasoning,
@@ -31,7 +25,6 @@ export function useChatEngine() {
       console.log('📤 [useChatEngine] Sending request:');
       console.log('   Endpoint:', endpoint);
       console.log('   Model:', model);
-      console.log('   Mode:', isDevelopment ? 'development' : 'production');
       console.log('   Body:', requestBody);
       
       const response = await fetch(endpoint, {
