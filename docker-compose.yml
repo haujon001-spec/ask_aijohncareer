@@ -5,8 +5,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    ports:
-      - "3000:3000"
     environment:
       # Load from .env.local at runtime (never commit this)
       # Docker will use these if .env.local exists at deployment
@@ -21,6 +19,8 @@ services:
       timeout: 10s
       retries: 3
       start_period: 10s
+    networks:
+      - careers
     # Optional: Add resource limits
     # deploy:
     #   resources:
@@ -30,3 +30,29 @@ services:
     #     reservations:
     #       cpus: '0.25'
     #       memory: 256M
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy-data:/data
+      - caddy-config:/config
+    environment:
+      ACME_AGREE: "true"
+    networks:
+      - careers
+    depends_on:
+      - john-career-copilot
+
+networks:
+  careers:
+    driver: bridge
+
+volumes:
+  caddy-data:
+  caddy-config:
