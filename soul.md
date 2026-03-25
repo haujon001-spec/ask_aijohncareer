@@ -1,26 +1,46 @@
 ## 3. Security Policy: API Keys & Secrets
 
-- **NEVER** commit API keys, secrets, or credentials to git.
-- All API keys must be stored in `.env.local` (see template in repo root) or `/secrets/` (both are gitignored).
-- If a key is accidentally committed, immediately:
-  1. Remove it from all files and history.
-  2. Rotate/revoke the exposed key.
-  3. Replace with a placeholder in `.env.local`.
-  4. Add a warning in relevant docs (see `DEPLOYMENT_STATUS_25MAR2026.md`).
-- Reference `.env.local` for all local development/testing keys.
-- The `/secrets/` folder is for production or deployment credentials only (never committed).
+### ⚠️ CRITICAL - Incident on 2026-03-25
+API keys were exposed in documentation files and git history. **All exposed keys have been rotated.**
+- Exposed in: `docs/VPS_DEPLOYMENT.md`, `VPS_DEPLOY_NOW.md`, git history
+- **Action**: New keys must be regenerated on OpenRouter and DeepSeek accounts
+- **Lesson**: Pre-commit hooks now block commits with real keys
 
-**.env.local template:**
+### Policy
+- **🔴 NEVER** commit API keys, secrets, or credentials to git (any file, any branch).
+- **NEVER** expose keys in documentation, markdown files, or deployment guides.
+- All API keys must ONLY be stored in:
+  - `.env.local` (local development - gitignored)
+  - `.env` on production VPS (gitignored, loaded by docker-compose)
+  - Environment variables injected at runtime
+- **Always use placeholders** in ALL committed documentation: `<INSERT_YOUR_KEY_HERE>` or `sk-YOUR-KEY-HERE`
+
+### Incident Response Procedure
+1. **Immediately rotate/revoke** the exposed key on the provider (OpenRouter, DeepSeek, etc.)
+2. **Remove from git history**:
+   - Use `git filter-branch` or push to GitHub settings to revoke
+3. **Generate new key** from provider account
+4. **Update deployment**:
+   - `.env` on VPS
+   - `.env.local` for dev (never commit)
+5. **Restart services** to load new credentials
+
+### Reference `.env.local` Template
 ```
+# TEMPLATE ONLY - NEVER commit real keys
 OPENROUTER_API_KEY=<INSERT_YOUR_KEY_HERE>
 DEEPSEEK_API_KEY=<INSERT_YOUR_KEY_HERE>
 ```
 
-**.gitignore must always include:**
+### gitignore Requirements (Must Always Include)
 ```
 /.env*
 /secrets/
+docs/VPS_DEPLOYMENT.md  
+VPS_DEPLOY_NOW.md
+deploy-vps.sh
 ```
+
 # soul.md — Universal Project Constitution (Memory Management)
 **Author:** John Hau
 **Purpose:** Universal rules, structure, naming conventions, QA requirements, security policies, VS Code templates, and automation scripts for this memory management infrastructure project.
