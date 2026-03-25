@@ -5,8 +5,8 @@
 www.askcareer-ai.com {
     encode gzip
 
-    # Reverse proxy to the backend container
-    reverse_proxy localhost:3000 {
+    # Reverse proxy to the backend container (via Docker network)
+    reverse_proxy app:3000 {
         # Headers for proxying
         header_up X-Forwarded-For {http.request.header.CF-Connecting-IP}
         header_up X-Forwarded-Proto {http.request.proto}
