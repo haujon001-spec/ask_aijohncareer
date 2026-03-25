@@ -22,7 +22,7 @@ function MessageBubble({ message }) {
         {isBot && message.model && message.model !== 'system' && (
           <div className="message-meta">
             <span className={`model-badge ${message.fallbackUsed ? 'fallback' : ''}`}>
-              {message.model}
+              {message.displayModel || message.model}
               {message.fallbackUsed && ' ⚠️'}
             </span>
             {message.latency && <span className="latency">{message.latency}ms</span>}

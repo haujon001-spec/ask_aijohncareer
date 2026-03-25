@@ -6,6 +6,13 @@ import SidebarIntro from './components/SidebarIntro'
 
 function App() {
     const [backendError, setBackendError] = useState(false)
+  
+  // Model name mapping for display
+  const modelNames = {
+    deepseek: 'Liquid LFM 2.26B',
+    nemotron: 'DeepSeek R1'
+  }
+  
   const [messages, setMessages] = useState([
     {
       id: 1,
@@ -22,8 +29,8 @@ function App() {
   useEffect(() => {
     const checkBackend = async () => {
       try {
-        const baseUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
-        const url = `${baseUrl}/api/health`;
+        // Use relative URL - works in both dev and production
+        const url = '/api/health';
         console.log('🔍 [App] Checking backend at:', url);
         const resp = await fetch(url, { method: 'GET' });
         console.log('✅ [App] Backend health check response:', resp.status);
@@ -51,8 +58,8 @@ function App() {
     setIsLoading(true)
 
     try {
-      const baseUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
-      const endpoint = `${baseUrl}/api/${selectedModel}`;
+      // Use relative URL - works in both dev and production
+      const endpoint = `/api/${selectedModel}`;
       const requestPayload = {
         question: userMessage,
         reasoning: showReasoning,
@@ -122,6 +129,7 @@ function App() {
         text: responseText,
         sender: 'bot',
         model: data.model,
+        displayModel: modelNames[selectedModel] || data.model,
         latency: data.latency_ms,
         cost: data.cost_estimate,
         reasoning: data.reasoning_summary,

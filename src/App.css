@@ -1,10 +1,12 @@
 .app {
-  display: block;
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
+  max-height: 100vh;
   background: #0a0e27;
   padding: 0;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .sidebar {
@@ -66,28 +68,33 @@
 
 @media (max-width: 480px) {
   .app {
-    display: block;
+    display: flex;
+    flex-direction: column;
     width: 100%;
-    min-height: 100vh;
-    overflow-x: hidden;
+    height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
   }
   .sidebar {
     width: 100%;
     max-width: 100%;
-    max-height: none;
     padding: 16px 12px;
     font-size: 14px;
     border-radius: 0;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     border-bottom: 1px solid rgba(74, 158, 255, 0.2);
     overflow-x: hidden;
+    flex-shrink: 0;
   }
 
   .chat-window {
-    min-height: auto;
+    flex: 1;
+    min-height: 0;
     max-height: none;
-    padding-bottom: 20px;
-    overflow-x: hidden;
+    padding-bottom: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
   }
 }
 @media (max-height: 600px) {

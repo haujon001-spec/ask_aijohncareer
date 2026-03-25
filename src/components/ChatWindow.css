@@ -4,8 +4,9 @@
   flex-direction: column;
   background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
   position: relative;
-  overflow-x: hidden;
-  min-height: auto;
+  overflow: hidden;
+  flex: 1;
+  min-height: 0;
 }
 
 .chat-window::before {
@@ -31,6 +32,8 @@
   z-index: 1;
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
+  flex: 1;
+  min-height: 0;
 }
 
 .message-form {
@@ -101,10 +104,13 @@
   .messages-container {
     padding: 16px 12px;
     gap: 12px;
+    flex: 1;
+    min-height: 0;
   }
   .message-form {
     padding: 12px;
     gap: 10px;
+    flex-shrink: 0;
   }
   .message-input {
     font-size: 16px;
