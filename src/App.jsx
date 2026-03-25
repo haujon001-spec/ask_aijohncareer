@@ -22,11 +22,15 @@ function App() {
   useEffect(() => {
     const checkBackend = async () => {
       try {
-        const url = `${import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000'}/api/ping`;
+        const baseUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
+        const url = `${baseUrl}/api/health`;
+        console.log('🔍 [App] Checking backend at:', url);
         const resp = await fetch(url, { method: 'GET' });
+        console.log('✅ [App] Backend health check response:', resp.status);
         if (!resp.ok) throw new Error('Backend not reachable');
         setBackendError(false);
       } catch (e) {
+        console.error('❌ [App] Backend health check failed:', e);
         setBackendError(true);
       }
     };
@@ -34,6 +38,9 @@ function App() {
   }, []);
 
   const handleSendMessage = async (userMessage) => {
+    console.log('📝 [App] User message:', userMessage);
+    console.log('📝 [App] Selected model:', selectedModel);
+    
     // Add user message to chat
     const newUserMessage = {
       id: messages.length + 1,
@@ -44,21 +51,43 @@ function App() {
     setIsLoading(true)
 
     try {
-      // Call backend API
-      const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000'}/api/${selectedModel}`,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            question: userMessage,
-            reasoning: showReasoning,
-            max_tokens: 1024
-          })
-        }
-      )
+      const baseUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
+      const endpoint = `${baseUrl}/api/${selectedModel}`;
+      const requestPayload = {
+        question: userMessage,
+        reasoning: showReasoning,
+        max_tokens: 1024
+      };
 
-      const data = await response.json()
+      console.log('🚀 [App] Sending request to backend:');
+      console.log('   Endpoint:', endpoint);
+      console.log('   Payload:', requestPayload);
+
+      // Call backend API
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(requestPayload)
+      });
+
+      console.log('📥 [App] Response received:');
+      console.log('   Status:', response.status, response.statusText);
+      console.log('   Content-Type:', response.headers.get('content-type'));
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('❌ [App] HTTP error response:', errorText);
+        throw new Error(`HTTP ${response.status}: ${errorText.substring(0, 200)}`);
+      }
+
+      const data = await response.json();
+      console.log('✅ [App] Parsed response:', {
+        model: data.model,
+        answerLength: data.answer?.length,
+        latency: data.latency_ms,
+        cost: data.cost_estimate,
+        error: data.error
+      });
 
       // Check if answer is empty or contains "unable to answer" indicators
       let responseText = data.answer
@@ -83,6 +112,7 @@ function App() {
       const hasNoAnswer = cannotAnswerPhrases.some(phrase => answerLower.includes(phrase))
       
       if (!data.answer || data.error || hasNoAnswer) {
+        console.warn('⚠️ [App] No valid answer from LLM. Error:', data.error, 'HasNoAnswer:', hasNoAnswer);
         responseText = "I don't have information to answer that question.\n\nPlease contact John directly:\n📧 Email: haujon001@gmail.com\n\nJohn will be happy to discuss your questions in detail!"
       }
 
@@ -99,10 +129,15 @@ function App() {
         fallbackReason: data.fallbackReason
       }
       setMessages(prev => [...prev, botMessage])
+      console.log('✅ [App] Message added to chat');
     } catch (error) {
+      console.error('❌ [App] Error in handleSendMessage:', error);
+      console.error('   Error message:', error.message);
+      console.error('   Error stack:', error.stack);
+      
       const errorMessage = {
         id: messages.length + 2,
-        text: "I encountered an issue processing your question.\n\nPlease contact John directly:\n📧 Email: haujon001@gmail.com",
+        text: `I encountered an issue processing your question: ${error.message}\n\nPlease contact John directly:\n📧 Email: haujon001@gmail.com`,
         sender: 'bot',
         model: 'error'
       }

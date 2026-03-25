@@ -31,7 +31,32 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors());
-app.use(express.json());
+
+// Custom JSON parser with logging verify callback
+app.use(express.json({
+  verify: (req, res, buf, encoding) => {
+    const rawBody = buf.toString('utf8');
+    req.rawBody = rawBody;
+    console.log(`📨 ${req.method} ${req.path}`);
+    console.log(`   Content-Type: ${req.get('content-type')}`);
+    console.log(`   Content-Length: ${req.get('content-length')}`);
+    console.log(`   Raw bytes received: ${buf.length}`);
+    console.log(`   Raw body: ${rawBody.substring(0, 300)}`);
+    console.log(`   First 20 bytes hex: ${buf.toString('hex').substring(0, 40)}`);
+  }
+}));
+app.use(express.urlencoded({ extended: true }));
+
+// Error handler for parsing errors
+app.use((err, req, res, next) => {
+  if (err instanceof SyntaxError && 'body' in err) {
+    console.error('❌ JSON Parse Error:', err.message, 'on', req.method, req.path);
+    console.error('   Raw body was:', req.rawBody);
+    console.error('   Raw request headers:', req.headers);
+    return res.status(400).json({ error: 'Invalid JSON received' });
+  }
+  next(err);
+});
 
 // Serve static frontend files (built by Vite into /dist)
 const distPath = path.join(projectRoot, 'dist');
