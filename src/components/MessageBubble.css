@@ -24,7 +24,7 @@
 }
 
 .message-content {
-  max-width: 75%;
+  max-width: 90%;
   padding: 14px 16px;
   border-radius: 14px;
   word-wrap: break-word;
@@ -50,7 +50,15 @@
 .message-content p {
   margin: 0 0 8px 0;
   line-height: 1.5;
-  font-size: 14px;
+  font-size: 13px;
+}
+
+@media (max-width: 480px) {
+  .message-content {
+    max-width: 98vw;
+    font-size: 12px;
+    padding: 8px 6px;
+  }
 }
 
 .message-content p:last-child {

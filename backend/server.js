@@ -59,16 +59,16 @@ Resume Context:
 ${JSON.stringify(johnProfile, null, 2)}`;
 }
 
-// LLM Provider Configs - 2 MODELS: Liquid LFM + DeepSeek R1
+// LLM Provider Configs - 2 MODELS ONLY: Liquid LFM + DeepSeek R1
 // Optimized for best results
-// Status: Liquid LFM ✅ (2-7s), DeepSeek R1 ✅ (reasoning enabled)
+// Status: Liquid LFM ✅ (2-7s, cost-effective), DeepSeek R1 ✅ (advanced reasoning)
 const llmConfigs = {
   deepseek: {
-    name: 'Liquid LFM 2.2 6B',
+    name: 'Liquid LFM 2.5 1.2B (Free)',
     apiKey: process.env.OPENROUTER_API_KEY,
     provider: 'openrouter',
     endpoint: 'https://openrouter.ai/api/v1/chat/completions',
-    model: 'liquid/lfm-2.2-6b',
+    model: 'liquid/lfm-2.5-1.2b-thinking:free',
     costPerToken: { input: 0, output: 0 },
     supportsReasoning: false,
     status: 'working'
@@ -81,26 +81,6 @@ const llmConfigs = {
     model: 'deepseek-reasoner',
     costPerToken: { input: 0, output: 0 },
     supportsReasoning: true,
-    status: 'working'
-  },
-  minimax: {
-    name: 'Liquid LFM 2.2 6B',
-    apiKey: process.env.OPENROUTER_API_KEY,
-    provider: 'openrouter',
-    endpoint: 'https://openrouter.ai/api/v1/chat/completions',
-    model: 'liquid/lfm-2.2-6b',
-    costPerToken: { input: 0, output: 0 },
-    supportsReasoning: false,
-    status: 'working'
-  },
-  qwen: {
-    name: 'DeepSeek R1',
-    apiKey: process.env.DEEPSEEK_API_KEY,
-    provider: 'deepseek',
-    endpoint: 'https://api.deepseek.com/chat/completions',
-    model: 'deepseek-reasoner',
-    costPerToken: { input: 0, output: 0 },
-    supportsReasoning: false,
     status: 'working'
   }
 };

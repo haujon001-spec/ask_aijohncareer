@@ -90,11 +90,14 @@ Model Verification: All 4 models report correct names
 
 ### Environment Variables (.env.local)
 ```bash
-# OpenRouter API (for Nemotron, Liquid LFM)
-OPENROUTER_API_KEY=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 ✅
+# ⚠️ SECURITY: Never commit actual API keys!
+# Use .env.local or config/secrets/ directory only (gitignored)
+
+# OpenRouter API (for Liquid LFM models)
+OPENROUTER_API_KEY=<REGENERATE - Key was exposed> 
 
 # DeepSeek API (for R1)
-DEEPSEEK_API_KEY=sk-42b6b71d9eb4477a89c97bfc5709e488 ✅
+DEEPSEEK_API_KEY=<REGENERATE - Key was exposed>
 ```
 
 ### Backend Models (server.js)

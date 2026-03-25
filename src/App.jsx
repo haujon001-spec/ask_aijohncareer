@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './App.css'
 import ChatWindow from './components/ChatWindow'
 import ModelSelector from './components/ModelSelector'
 import SidebarIntro from './components/SidebarIntro'
 
 function App() {
+    const [backendError, setBackendError] = useState(false)
   const [messages, setMessages] = useState([
     {
       id: 1,
@@ -16,6 +17,21 @@ function App() {
   const [selectedModel, setSelectedModel] = useState('deepseek')
   const [isLoading, setIsLoading] = useState(false)
   const [showReasoning, setShowReasoning] = useState(false)
+
+  // Check backend connectivity on mount (for mobile warning)
+  useEffect(() => {
+    const checkBackend = async () => {
+      try {
+        const url = `${import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000'}/api/ping`;
+        const resp = await fetch(url, { method: 'GET' });
+        if (!resp.ok) throw new Error('Backend not reachable');
+        setBackendError(false);
+      } catch (e) {
+        setBackendError(true);
+      }
+    };
+    checkBackend();
+  }, []);
 
   const handleSendMessage = async (userMessage) => {
     // Add user message to chat
@@ -113,6 +129,13 @@ function App() {
           />
           <span>Show reasoning</span>
         </label>
+        {backendError && (
+          <div style={{color: '#ffb3b3', background: '#2a1a1a', padding: 8, borderRadius: 8, marginTop: 12, fontSize: 13}}>
+            <b>Warning:</b> Unable to connect to backend.<br/>
+            If you are on mobile, make sure the backend is deployed and reachable from your device.<br/>
+            <span style={{fontSize: 12, opacity: 0.8}}>Localhost will not work on mobile. Use a public or LAN URL.</span>
+          </div>
+        )}
       </div>
       <ChatWindow 
         messages={messages} 
