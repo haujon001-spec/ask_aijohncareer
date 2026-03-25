@@ -23,8 +23,8 @@ git clone https://github.com/yourusername/ask_aijohncareer.git .
 ### Step 3: Create Environment File
 ```bash
 cat > .env.vps << 'EOF'
-OPENROUTER_API_KEY=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
-DEEPSEEK_API_KEY=sk-42b6b71d9eb4477a89c97bfc5709e488
+OPENROUTER_API_KEY=<INSERT_YOUR_OPENROUTER_KEY_HERE>
+DEEPSEEK_API_KEY=<INSERT_YOUR_DEEPSEEK_KEY_HERE>
 PORT=3000
 NODE_ENV=production
 EOF
