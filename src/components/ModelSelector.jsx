@@ -3,8 +3,8 @@ import './ModelSelector.css'
 
 function ModelSelector({ selectedModel, onModelChange }) {
   const models = [
-    { id: 'deepseek', name: 'Liquid LFM 2.2 6B', icon: '⚡', desc: 'FASTEST (2-7s)' },
-    { id: 'nemotron', name: 'DeepSeek R1', icon: '🧠', desc: 'REASONING ENABLED' }
+    { id: 'deepseek', name: 'Liquid LFM 2.26B', icon: '⚡', desc: 'FASTEST' },
+    { id: 'nemotron', name: 'DeepSeek R1', icon: '🧠', desc: 'BEST REASONING' }
   ]
 
   return (

@@ -96,7 +96,7 @@ ${JSON.stringify(johnProfile, null, 2)}`;
 // Status: Liquid LFM ✅ (2-7s, cost-effective), DeepSeek R1 ✅ (advanced reasoning)
 const llmConfigs = {
   deepseek: {
-    name: 'Liquid LFM 2.5 1.2B (Free)',
+    name: 'Liquid LFM 2.26B (Free)',
     apiKey: process.env.OPENROUTER_API_KEY,
     provider: 'openrouter',
     endpoint: 'https://openrouter.ai/api/v1/chat/completions',
