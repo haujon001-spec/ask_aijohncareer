@@ -1,0 +1,35 @@
+Education & Certifications
+
+•	St Joseph College Mauritius – A level Major in Science 
+•	2020 IT Security Foundations: Network Security and Cryptography and Network Security
+•	2019 MIT Machine learning from Data to Decisions
+•	2019 Deep Learning: Face Recognition, DevOps Foundation, Integrating Tableau and R for Data Science, Learning Splunk, Wireshark Advanced Tools and Techniques, 
+•	2011 Citrix Certified Enterprise Engineer for Virtualization which includes (Citrix Certified for Citrix XenDesktop 5 Administration, Citrix Certified for Citrix XenApp 6 Administration, Citrix Certified for Citrix XenServer 5.6 Administration & Citrix Certified for Citrix XenApp5 Advanced Administration)
+
+Soft Skills
+Business email writing
+Conducting effective meetings
+Resolving Conflict
+Growth mindset
+Providing constructive feedback
+Presentation skills
+DISC
+7 habits of highly effective people
+Effective communications
+
+
+Technical Skills
+
+•	Ticketing systems: ConnectWise and ServiceNow  
+•	Agile and DevOps for SDLC and ITIL foundation
+•	Virtualization: Citrix XenDesktop 6.5 – 7.13, Citrix NetScaler, Citrix Command Center 9.x – 11.x, AppSense (Environment Manager, Performance Manager), Microsoft App-V, VMWare ESXi V-sphere, VSAN), LoginVSI Enterprise
+•	Remote Access and collaboration: Pulse Secure, Exchange 2016, Mimecast, 
+•	Cloud: O365, Azure, AWS
+•	Network: Cisco 2960x, 9600, ASA FW, Palo Alto, Syslog-ng SSB, eSentire
+•	BigData, Performance monitoring and Capacity management: Splunk, EgInnovation, Power Query, VBA macro and Tableau
+•	Wintel: Windows Server 2012R2, 2016r2 , 2019, ADFS, Networking, Web Services, File and print services and database services, Clustering, Hyper-V, Windows 10
+•	Troubleshooting: Microsoft resource kit, Sysinternals, PowerShell, Microsoft and Citrix debugger tools, Wireshark, Web native debugging tools and Fiddler tools 
+•	Hardware: HPE Moonshots, Synergy, Blades, Rack servers, Dell Rack mount servers and Nutanix hyper-convergence, HPE StoreOnce 3640, 
+•	Storage: (SAN / NAS) & Datacenter: Cooling and cable management 
+
+Languages: English, French, Creole – Fluent and speaks Cantonese

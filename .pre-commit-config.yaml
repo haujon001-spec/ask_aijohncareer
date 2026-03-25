@@ -1,0 +1,148 @@
+# pre-commit configuration
+# Version: 1.0 (Date: 25 MAR 2026)
+# Governance: soul.md §6 (Pre-Commit Enforcement)
+#
+# Purpose: Enforce code quality, prevent secrets from being committed,
+# validate folder structure, and run QA checks before commits.
+#
+# Installation:
+#   pip install pre-commit
+#   pre-commit install
+#
+# Manual run (before commit):
+#   pre-commit run --all-files
+
+repos:
+  # Secret scanning with gitleaks
+  # Prevents API keys, passwords, tokens from being committed
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.18.0
+    hooks:
+      - id: gitleaks
+        name: Detect secrets with gitleaks
+        description: Scans for API keys, tokens, passwords, and credentials
+        entry: gitleaks detect --source . --verbose --exit-code 1
+        language: system
+        stages: [commit]
+        pass_filenames: false
+
+  # YAML validation
+  # Ensures all .yaml/.yml files are syntactically correct
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: check-yaml
+        name: Validate YAML files
+        description: Checks YAML syntax
+        args: ['--unsafe']
+      
+      - id: check-json
+        name: Validate JSON files
+        description: Checks JSON syntax
+
+      - id: check-merge-conflict
+        name: Check for merge conflicts
+        description: Prevents committed merge conflict markers
+
+      - id: end-of-file-fixer
+        name: Fix end of file
+        description: Ensures files end with newline
+
+      - id: trailing-whitespace
+        name: Trim trailing whitespace
+        description: Removes trailing whitespace
+
+      - id: mixed-line-ending
+        name: Fix mixed line endings
+        description: Normalizes line endings to LF
+
+      - id: check-added-large-files
+        name: Check for large files
+        description: Prevents large files from being committed
+        args: ['--maxkb=10000']
+
+  # Python syntax and formatting
+  # Ensures Python files follow code style standards
+  - repo: https://github.com/psf/black
+    rev: 23.12.0
+    hooks:
+      - id: black
+        name: Format Python code with Black
+        description: Enforces consistent Python code formatting
+        language_version: python3
+
+  # Python linting with Pylint
+  - repo: https://github.com/pylint-dev/pylint
+    rev: pylint-3.0.1
+    hooks:
+      - id: pylint
+        name: Lint Python code with Pylint
+        description: Checks Python code for errors and style issues
+        language: system
+        types: [python]
+        require_serial: true
+
+  # Markdown linting
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: check-markdown
+        name: Validate Markdown files
+        description: Checks Markdown syntax (basic)
+        pass_filenames: true
+
+  # Folder structure validation
+  # Custom script to enforce soul.md folder structure
+  - repo: local
+    hooks:
+      - id: validate-folder-structure
+        name: Validate folder structure
+        description: Ensures project follows soul.md folder structure
+        entry: python scripts/validate_structure.py
+        language: system
+        pass_filenames: false
+        stages: [commit]
+
+      - id: check-no-secrets-in-docs
+        name: Check no secrets in documentation
+        description: Ensures .env files are not in documentation
+        entry: bash -c 'grep -r "DEEPSEEK_API_KEY\|TOGETHER_API_KEY\|OPENROUTER_API_KEY" docs/ --include="*.md" && exit 1 || exit 0'
+        language: system
+        pass_filenames: false
+        stages: [commit]
+
+      - id: check-gitignore
+        name: Verify .gitignore
+        description: Ensures secrets and logs are gitignored
+        entry: bash -c 'grep -E "^secrets/|^\.env|^/logs/" .gitignore'
+        language: system
+        pass_filenames: false
+        stages: [commit]
+
+# Configuration
+default_language_version:
+  python: python3
+
+default_stages: [commit]
+
+# Exclude patterns
+exclude: |
+  (?x)^(
+    node_modules/|
+    venv/|
+    \.venv/|
+    __pycache__/|
+    \.pytest_cache/|
+    \.mypy_cache/|
+    dist/|
+    build/|
+    \.vscode/|
+    secrets/|
+    logs/
+  )
+
+# Fail fast on first error
+fail_fast: false
+
+# Verbose output
+verbose: true

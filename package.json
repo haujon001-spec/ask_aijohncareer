@@ -1,0 +1,30 @@
+{
+  "name": "john-hau-career-copilot",
+  "version": "1.0.0",
+  "description": "AI-powered career chatbot for John Hau's professional experience",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:backend": "node backend/server.js",
+    "dev:all": "concurrently \"npm run dev\" \"npm run dev:backend\"",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint src --ext .js,.jsx"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "concurrently": "^9.2.1",
+    "cors": "^2.8.6",
+    "dotenv": "^16.6.1",
+    "express": "^4.22.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.2.0",
+    "eslint": "^8.55.0",
+    "eslint-plugin-react": "^7.33.0",
+    "terser": "^5.46.1",
+    "vite": "^5.0.0"
+  }
+}

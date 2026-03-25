@@ -1,0 +1,119 @@
+.sidebar-intro h1 {
+  font-size: 22px;
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, #4a9eff 0%, #357abd 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.sidebar-intro p {
+  font-size: 13px;
+  line-height: 1.5;
+  opacity: 0.85;
+  margin-bottom: 24px;
+  color: #b0b0b0;
+}
+
+.quick-prompts {
+  margin-bottom: 24px;
+}
+
+.quick-label {
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  opacity: 0.7;
+  letter-spacing: 1px;
+  color: #4a9eff;
+}
+
+.quick-prompt {
+  display: block;
+  width: 100%;
+  padding: 11px 12px;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, rgba(74, 158, 255, 0.08) 0%, rgba(53, 122, 189, 0.04) 100%);
+  border: 1px solid rgba(74, 158, 255, 0.25);
+  border-radius: 8px;
+  color: #e0e0e0;
+  font-size: 12px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+}
+
+.quick-prompt::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(74, 158, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+  pointer-events: none;
+}
+
+.quick-prompt:hover {
+  background: linear-gradient(135deg, rgba(74, 158, 255, 0.15) 0%, rgba(53, 122, 189, 0.08) 100%);
+  border-color: rgba(74, 158, 255, 0.4);
+  box-shadow: 0 0 12px rgba(74, 158, 255, 0.2), inset 0 0 8px rgba(74, 158, 255, 0.1);
+  transform: translateX(4px);
+}
+
+.quick-prompt:active {
+  transform: translateX(2px);
+  box-shadow: 0 0 8px rgba(74, 158, 255, 0.3), inset 0 0 12px rgba(74, 158, 255, 0.15);
+}
+
+.sidebar-footer {
+  display: flex;
+  gap: 10px;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(74, 158, 255, 0.2);
+}
+
+.sidebar-footer a {
+  flex: 1;
+  padding: 11px 12px;
+  background: linear-gradient(135deg, rgba(74, 158, 255, 0.08) 0%, rgba(53, 122, 189, 0.04) 100%);
+  border: 1px solid rgba(74, 158, 255, 0.25);
+  border-radius: 8px;
+  color: #4a9eff;
+  text-align: center;
+  text-decoration: none;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 600;
+}
+
+.sidebar-footer a:hover {
+  background: linear-gradient(135deg, rgba(74, 158, 255, 0.15) 0%, rgba(53, 122, 189, 0.08) 100%);
+  border-color: rgba(74, 158, 255, 0.4);
+  box-shadow: 0 0 12px rgba(74, 158, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .sidebar-intro h1 {
+    font-size: 18px;
+  }
+
+  .sidebar-intro p {
+    font-size: 12px;
+  }
+
+  .quick-prompts {
+    max-height: 120px;
+    overflow-y: auto;
+  }
+}
