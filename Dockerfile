@@ -12,9 +12,6 @@ RUN npm run build
 FROM node:18-alpine
 WORKDIR /app
 
-# Install dumb-init for proper signal handling
-RUN apk add --no-cache dumb-init
-
 # Copy package.json from root
 COPY package*.json ./
 
@@ -43,9 +40,6 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
 
 # Expose port
 EXPOSE 3000
-
-# Use dumb-init to handle signals properly
-ENTRYPOINT ["/sbin/dumb-init", "--"]
 
 # Start backend (which also serves static frontend)
 CMD ["node", "backend/server.js"]
