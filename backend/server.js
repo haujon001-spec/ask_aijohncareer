@@ -33,6 +33,13 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
+// Serve static frontend files (built by Vite into /dist)
+const distPath = path.join(projectRoot, 'dist');
+if (fs.existsSync(distPath)) {
+  app.use(express.static(distPath));
+  console.log(`📁 Serving static frontend from: ${distPath}`);
+}
+
 // Load John's profile
 const profilePath = path.join(projectRoot, 'src/data/john_profile.json');
 let johnProfile;
@@ -256,6 +263,17 @@ app.get('/api/health', (req, res) => {
     models: Object.keys(llmConfigs),
     timestamp: new Date().toISOString()
   });
+});
+
+// SPA fallback: Serve index.html for any non-API routes
+// This allows React Router to handle client-side routing
+app.get('*', (req, res) => {
+  const indexPath = path.join(distPath, 'index.html');
+  if (fs.existsSync(indexPath)) {
+    res.sendFile(indexPath);
+  } else {
+    res.status(404).json({ error: 'Frontend not found. Run: npm run build' });
+  }
 });
 
 // Start server

@@ -92,12 +92,11 @@ Model Verification: All 4 models report correct names
 ```bash
 # ⚠️ SECURITY: Never commit actual API keys!
 # Use .env.local or config/secrets/ directory only (gitignored)
-
-# OpenRouter API (for Liquid LFM models)
-OPENROUTER_API_KEY=<REGENERATE - Key was exposed> 
-
-# DeepSeek API (for R1)
-DEEPSEEK_API_KEY=<REGENERATE - Key was exposed>
+#
+# All API keys must be placed in .env.local (see template in repo). Never commit real keys to git.
+# Example:
+# OPENROUTER_API_KEY=<INSERT_YOUR_KEY_HERE>
+# DEEPSEEK_API_KEY=<INSERT_YOUR_KEY_HERE>
 ```
 
 ### Backend Models (server.js)

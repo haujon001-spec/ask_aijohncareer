@@ -1,3 +1,26 @@
+## 3. Security Policy: API Keys & Secrets
+
+- **NEVER** commit API keys, secrets, or credentials to git.
+- All API keys must be stored in `.env.local` (see template in repo root) or `/secrets/` (both are gitignored).
+- If a key is accidentally committed, immediately:
+  1. Remove it from all files and history.
+  2. Rotate/revoke the exposed key.
+  3. Replace with a placeholder in `.env.local`.
+  4. Add a warning in relevant docs (see `DEPLOYMENT_STATUS_25MAR2026.md`).
+- Reference `.env.local` for all local development/testing keys.
+- The `/secrets/` folder is for production or deployment credentials only (never committed).
+
+**.env.local template:**
+```
+OPENROUTER_API_KEY=<INSERT_YOUR_KEY_HERE>
+DEEPSEEK_API_KEY=<INSERT_YOUR_KEY_HERE>
+```
+
+**.gitignore must always include:**
+```
+/.env*
+/secrets/
+```
 # soul.md — Universal Project Constitution (Memory Management)
 **Author:** John Hau
 **Purpose:** Universal rules, structure, naming conventions, QA requirements, security policies, VS Code templates, and automation scripts for this memory management infrastructure project.

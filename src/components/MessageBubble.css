@@ -55,9 +55,12 @@
 
 @media (max-width: 480px) {
   .message-content {
-    max-width: 98vw;
-    font-size: 12px;
-    padding: 8px 6px;
+    max-width: 95%;
+    font-size: 13px;
+    padding: 10px 10px;
+  }
+  .message-bubble {
+    margin-bottom: 12px;
   }
 }
 

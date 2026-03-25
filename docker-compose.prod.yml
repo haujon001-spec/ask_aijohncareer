@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  # Main application (backend + frontend)
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: john-career-copilot-app
+    ports:
+      - "3000:3000"  # Only exposed to Caddy, not publicly
+    environment:
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY}
+      DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY}
+      PORT: 3000
+      NODE_ENV: production
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+      - careers
+    # Optional resource limits
+    # deploy:
+    #   resources:
+    #     limits:
+    #       cpus: '0.5'
+    #       memory: 512M
+
+  # Caddy reverse proxy with automatic HTTPS
+  caddy:
+    image: caddy:2-alpine
+    container_name: john-career-copilot-caddy
+    ports:
+      - "80:80"   # HTTP (auto-redirects to HTTPS)
+      - "443:443" # HTTPS
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data     # Persist Let's Encrypt certificates
+      - caddy_config:/config
+    environment:
+      ACME_AGREE: "true"
+    restart: unless-stopped
+    depends_on:
+      - app
+    networks:
+      - careers
+    # Optional: custom logging
+    # logging:
+    #   driver: "json-file"
+    #   options:
+    #     max-size: "10m"
+    #     max-file: "3"
+
+networks:
+  careers:
+    driver: bridge
+
+volumes:
+  caddy_data:
+  caddy_config:

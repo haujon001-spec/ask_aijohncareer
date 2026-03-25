@@ -1,10 +1,22 @@
 #!/usr/bin/env python3
-import requests
 
-# Direct OpenRouter call to StepFun (bypass backend)
+import requests
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env.local or .env if present
+load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '.env.local'), override=True)
+load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '.env'), override=True)
+
+
+# Get API key from environment variable
+OPENROUTER_API_KEY = os.getenv('OPENROUTER_API_KEY')
+if not OPENROUTER_API_KEY:
+    raise RuntimeError('OPENROUTER_API_KEY not set. Please add it to .env.local or your environment.')
+
 resp = requests.post('https://openrouter.ai/api/v1/chat/completions',
     headers={
-        'Authorization': 'Bearer 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',
+        'Authorization': f'Bearer {OPENROUTER_API_KEY}',
         'HTTP-Referer': 'http://localhost:3000'
     },
     json={
