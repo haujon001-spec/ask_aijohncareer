@@ -17,7 +17,7 @@ function SidebarIntro({ onQuickPrompt }) {
     "What people say about John based on his LinkedIn recommendations?",
     "Tell me about John's AI work?",
     "How much did John save in cost?",
-    "What did John innovation?"
+    "What innovation did John do?"
   ]
 
   const [isOpen, setIsOpen] = React.useState(false)
