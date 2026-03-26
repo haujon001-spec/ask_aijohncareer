@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from pathlib import Path
 
 # Load .env.local
-env_path = Path("c:\\Users\\haujo\\projects\\DEV\\ask_aijohncareer\\.env.local")
+env_path = Path(__file__).parent.parent / ".env.local"
 load_dotenv(env_path, override=True)
 
 print("=" * 70)

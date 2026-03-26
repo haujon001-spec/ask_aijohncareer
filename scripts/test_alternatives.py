@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 import os
 
 # Load env
-load_dotenv('.env.local', override=True)
+load_dotenv('../.env.local', override=True)
 
 OPENROUTER_API_KEY = os.getenv('OPENROUTER_API_KEY')
 DEEPSEEK_API_KEY = os.getenv('DEEPSEEK_API_KEY')
@@ -22,6 +22,8 @@ print("="*90)
 or_models = [
     ('qwen/qwen3-embedding-8b', 'Qwen3 Embedding 8B'),
     ('liquid/lfm-2.2-6b', 'Liquid LFM 2.2 6B'),
+    ('google/gemini-3.1-flash-lite-preview:free', 'Google Gemini 3.1 Flash Lite (Free)'),
+    ('google/gemini-3.1-flash-lite-preview', 'Google Gemini 3.1 Flash Lite'),
 ]
 
 print("\n" + "-"*90)

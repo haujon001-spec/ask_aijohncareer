@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 import os
 
 # Load env
-load_dotenv('.env.local', override=True)
+load_dotenv('../.env.local', override=True)
 
 OPENROUTER_API_KEY = os.getenv('OPENROUTER_API_KEY')
 
@@ -29,6 +29,8 @@ models = [
     ('nvidia/nemotron-3-super-120b-a12b:free', 'NVIDIA Nemotron 3 Super 120B (Free)'),
     ('minimax/minimax-m2.5:free', 'Minimax M2.5 (Free)'),
     ('qwen/qwen3-next-80b-a3b-instruct:free', 'Qwen3 Next 80B (Free)'),
+    ('google/gemini-3.1-flash-lite-preview:free', 'Google Gemini 3.1 Flash Lite (Free)'),
+    ('google/gemini-3.1-flash-lite-preview', 'Google Gemini 3.1 Flash Lite'),
 ]
 
 print("\n" + "-"*90)

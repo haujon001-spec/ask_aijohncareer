@@ -1,0 +1,197 @@
+John Hau
+Vice President – Head of Workspace Virtualization Engineering team for Asia
+Phone: 98661344 | Email: haujon@netvigator.com
+
+Nationality	Mauritian (No Visa is required since I am a permanent resident in H.K)
+Languages	English , French , Cantonese and creole – fluent 
+Working Experience	Over 22 years in Information Technology Infrastructure team with 19 years of experience in the Financial industry. Delivery of VDI solutions globally for +90K of virtual machines and over +3K of concurrent Citrix XenApp users. 
+Company /Position	Morgan Stanley – VP – Head of Workspace Virt. Eng. Team for Asia (Jan 2015 –Current)
+Morgan Stanley – Associate – Team deputy of Windows Virt. Eng. Team for Asia (Jul 2009 –Dec 2014)
+Morgan Stanley – Associate –Enterprise Windows Operations Team  (Sep 2007 –Jun 2009)
+Merrill Lynch – AVP - HK team Deputy for Windows Server team (Jan 2007 – Aug 2007)
+Merrill Lynch – Senior Specialist  - Windows Server team (Mar 2001 – Dec 2006)
+Merrill Lynch –Specialist  - Desktop Team supporting 11 non-trading floor Departments  (May 1998 – Feb 2001)
+Siemens H.K LTD. –IT support Officer , MIS department supporting (Apr 1997 – Apr 1998)
+Alco Plastic Products LTD – PC support Engineer, EDP team (Feb 1995 – Mar 1997
+
+Notice Period	3 months
+Professional Profile 
+Results-oriented IT leader and engineering principal, pioneering and managing complex IT solution designs including virtual-based applications and virtual desktops. Leverage 22 years of requirements and infrastructure analysis expertise to drive business enablement and being client focuses success.
+•	Foster virtual team collaboration using relationship building and communication improvement
+•	Spearhead project deliverables within tight timeframes and using cutting-edge virtualization technologies
+•	Build and lead high-performance virtualization engineering team to engineer and streamline complex IT designs 
+Core Competencies
+•	Management: Strategic planning with innovative forward thinking mind set and people management  -Needs analysis – Recommendation Proposal Delivery – Staff Utilization
+•	IT solutions : Cloud computing integration (Desktops and Apps virtualization strategy) – Integration and Optimization – Product engineering for large enterprise environment and Product roadmaps 
+•	Security: Security Control – Risk Assessments
+•	Highly organized person and attention to details with the ability to self-start complex IT solutions and break down in tasks and provide effective communications to various teams and set timeline and priorities to deliver solutions to the business in a timely and systematic manner.
+•	Client Focus: Customer Relationship management and business enablement with improvement in EUX
+Technology Leadership
+Morgan Stanley (Global financial and banking firm) 
+VP – Head of Workspace Virt. Eng. Team for Asia (Jan 2015 –Current)
+Manage a global virtual team of 8 people to engineering of global virtualization solutions, capacity, IT governance, Logical thinker, strong problem solver and strong communicator and client focus on business enablement, stability of virtual environment and improvement on end user experiences
+Achievements:
+1.	People management: mentoring, coaching of staffs to help them improving their global visibility and to recognize for their contributions, recruiting, performance evaluations, identify potential leaders within our division, staff mobility program, promotion processes, recognize process award involvement, teamwork, collaboration across silos.
+2.	Cost optimization Strategy: 
+•	Virtualization using Citrix XenDesktop. Analysis on resource utilization of the Virtual App and Virtual Desktops (vms) environment and provided short and long term recommendations to reduce OPEX by 20% and helped the business to save us$ 2.5M in terms of annual TCO.
+•	Us$ 8M+  of cost avoidance in TCO on virtual desktops by identifying waste 16% ~ 9.8k of unassigned , spare and reclaims virtual desktops to be reused.
+3.	Business enablement: Spearheaded and engineered global solutions for several large global projects to increase the business efficiencies.
+•	Cutting-Edge Client facing - Electronic trading system facilitating us$1M first year revenue which was highly regarded by the Equity business and lead to integration of trading apps. 
+•	Desktop Transformation Strategy (Flex Desk and modernized EUX office blueprint) with 4K of users as the first provided guidance and leadership to my directs to synergy /collaborate with various silos to come up with a white paper to validate the users’ density of VDI (virtual desktop infrastructure solution) vs. HDI (hosted desktop infrastructure) solution. Additionally to understand the power & cooling and server density per rack in data centre. 
+•	Speed up the Business Merging & acquisition of the Wealth management 16k financial advisers with 600+ of branch offices across the globe by engineering virtual desktop solution using Citrix and VMware technologies.
+•	Identified and addressed stability of Virtual desktops issues used by vendors 8K users to support our global businesses which data analysis of users’ workload and write up and presenting various stakeholders
+4.	Forward and Strategic thinker where John is part of the Asia Innovation team that contributed in the future technology to improve performance \system stability and business enablement.
+•	Improved Operation stability and reduces Man hours with proactive monitoring tool to provide a holistic view by reducing users’ calls by 40% and integration with existing systems such as SCOM monitoring tool and automation of ticketing systems through ServiceNow APIs and export to SPLUNK for dashboard monitoring. 
+•	End User experience tool to measure the end user experience from the Apps 24 x 7 rather than solely rely only on system monitoring tools and morning applications checkouts that could greatly reduce the support team MAN hours and improve customers’ satisfactions 
+•	Exploring high performance hyper convergence computing technology to help Storage and virtualization teams to move away from costly traditional NAS / SAN storages for desktops and server virtualization use cases.
+5.	Strong analytical background: Published 8 white papers about the effect of AppSense Performance Manager on Citrix XenApp environment for stability play and reducing 15% of the servers’ cost , the Analysis of Citrix Policy on Session bandwidth restriction to address the End User Experience(EUX) for Wealth Management Business , Load testing of the global VDI infrastructure to validate the consolidation ratio of VMs per ESX host based on Business users workloads , Effect of Citrix HDX technology for Branch offices  , User density on XenApp 6.5 including cost analysis running of Virtual servers versus physical hardware , Trading App load test on XenApp 6.5 analysis on bandwidth usage and user density and recent one about Citrix Storefront servers’ capacity and cost analysis to support over 80K users globally.
+6.	Capacity management: introduced a load test tool and is globally used to assess the capacity of a given plant / workload prior to production deployment and provided guidance to my direct to train up and extended the knowledge to Operations global team so that they can own capacity management.
+7.	Risk Management: Ensuring our global team are proactively to identify and address risk areas on product we are engineering and reporting to the risk team as required.
+8.	Vendor Management: With both software and hardware to improve the usability of software and drive new features that are unavailable in the market and champion ideas on how to incorporate into business use cases to improve EUX. Arrange vendor workshops to come onsite to talk about their product roadmap so as to ensure that the respective groups and silos being kept abreast of the latest technologies and trending. 
+Morgan Stanley (Global financial and banking firm) 
+Associate – Team deputy of Windows Virt. Eng. Team for Asia (Jul 2009 –Dec 2014)
+Job Responsibilities
+•	Architect design, engineer and automate Citrix XenDesktop 5(CXD) ,Citrix XenApp 6.5 (CXA) Farms so that the operation team can easily build out and support the plants globally ;engineering of Citrix Command Center 5.1 
+•	Performance analysis and load testing of Virtual Desktop and Virtual Apps Environment to identify potential bottlenecks and issues prior production deployment.
+•	Troubleshoot difficult issues related with Virtualization that Winops L3 or senior management team would escalate and would provide the resolution to the necessary team
+•	Weekly and monthly report updates to senior managers for the overall progress on the virtualization space.  Work with Product Management team and  various teams such as Telco , WinOps, UnixOps , StorageOps, VirtEng and Floor Support in providing technical guidance in deploying Virtual Desktops to remote offices with limited network bandwidth and high latency network
+•	Global lead for the design and engineering of AppSense Performance Manager to increase Citrix XenApp Farm stability and user’s density by successfully working the Windows operations team to deploy it the production environment. 
+•	Subject Matter Expert for Citrix XenApp and being the global lead streams for New Features , personalization and policy management & performance reporting , Citrix XenDesktop global lead of HDX technologies .
+•	Train up and mentor a Shanghai team member and together Winops Server team so that he can reduce the workload from the team
+•	Ensure stability and increase performance on the VDI stack and Virtual apps wherever is required 
+•	Attend regular globally meeting to provide updates on tasks , issues , risks and project updates and receive useful appropriate information to pass on to the require team and silos 
+•	Documents updates and roadmaps on technical for related projects and tasks  
+Achievements
+•	Introduced to the Windows global team about an active monitoring tool for the virtualization products which is critical for large enterprise environment  in reducing the troubleshooting time by 90% and having full visibility into the VDI stacks
+•	Assisted the Winops server and desktops level 3 teams to successfully deploy and support the Citrix XenDesktop for our first 600 Business production users to use virtual desktops as their default PC for Australia and now globally with +60,000 virtual desktops globally.
+•	Optimized the user experience in running the flash and media content video by leveraging the Citrix HDX technology for remote offices, addressed printing issue and bad screen redraws over multi monitors. 
+•	Globally presented to the Engineer team and senior managers about the WM-AU Virtual Desktops optimizations so that they can avoid the similar issues when deploying the Virtual in NA and EU.
+•	Globally lead and introduced Login Virtual Session Indexer performance load test tool to effectively load test our VDI and SBC environment. Presented the product to other silos and senior managers and the software is now being purchased and used globally 
+•	Globally lead and introduce AppSense Performance Manager and globally deployed to 50% of our CXA farm to reduce the server hardware footprint by 15% 
+•	Successfully trained up Asia Application Team as 1ST line of Support and Windows Server team as 2nd Line of support  to fully support Citrix External Trading and provided valuable advises to the Windows Virtualization team  to offload the Asia support model by reducing up to 40% of the daily tasks and so that our peers can put more focus onto the engineering space
+•	Successfully trained up the Asia Winops Server team to support 70% of the virtualization problem cases of which in supporting over 30K desktops and over 400 of published apps globally some those are streamed via Apps-V. 
+•	Lead Winops Server team to successfully deploy the Citrix XenDesktop and Citrix XenApp Servers in Asia.
+•	Proactively resolved and provided solution to global team in resolving the Memory leakage of the SQL reporting tool apps running as Citrix XenApp by leveraging AppSense Performance Manager.
+•	Resolved several slow Citrix Apps run issues for India users and reduce the load time from 25 mins down to 1.5 mins 
+•	Helped to resolve several VDI  outages in H.K , AU and NA by identifying the failures were related to network switch failure ,Net filer head hardware failure  and improper patch from the XenDesktop infrastructure side and ensure the appropriate teams and silos were addressing the issues together provided necessary escalation and reporting to the concerned teams
+•	Wrote PowerShell script to perform ready of Business reports checkout on Virtual Desktops availability to ease the support for Winops team
+
+Morgan Stanley (Global financial and banking firm) 
+Associate –Enterprise Windows Operations Team (Sep 2007 –Jun 2009)
+Job Responsibility 
+•	Support day to day operations by leveraging follow the sun model with proper escalation to global team and ensure stability of the windows server environment 
+•	Align Asia team with Global that relates with Windows Virtualization technologies
+•	Train up the Winops team in areas where I was assigned as Subject Matter Expert
+•	Support the Windows printer services throughout Asia
+•	Provide technical guidance to the Winops Server L2 team 
+•	Build out , train, update and document all technical information on supported Windows products such as Citrix Xen Desktop 3 and 4 ,Citrix XenApp , 
+•	Windows servers refresh project 
+•	Primary Support for the Citrix XenApp plant for both Internal and External
+Achievements
+•	Build out of Japan External Citrix XenApp Trading plant including os build , apps installation , configuration and liaised apps testing with application owners 
+•	Lead the Hong Kong and JAPAN WAR Project and successfully deployed over 1,000 virtual desktops for BCP users
+•	Lead several  Asia datacenter power down and BCP testing events for countries like H.K ,JP, KR, AU and IN
+•	Proactively delivered knowledge sharing session  on the Virtualization space and area that I was subject matter expect such as print services , SCOM and MS clustering to my team members
+•	Lead several projects related with POC and Pilot testing on Virtual desktops including global initiatives on Remote Trading workstations by FX IT teams , China Application Developers team , India, Singapore, Taiwan and Australia remote branch office users
+•	Initiated and lead the deployment of Citrix XenDesktop 3 and 4 farms for Asia and trained up the Winops team members for build out the rest of the Farm in Asia
+•	Drove the deployment of  the first generation of the ESX3.5 Farms in Asia and deployed the Vcenter for Asia
+•	Trained up the Floor support team in Asia to support Virtual Desktops and worked with different silos and service managers to develop the support model 
+•	Introduced IGEL thin client and setup the backend RM infrastructure for Asia and initiated replacement of  all the normal desktops from all the Video Conference rooms for Hong Kong
+•	Successfully migrated the Citrix XenApp and Softgrid infrastructure to a new datacenter 
+•	Increased the Stability of the XenApp Plant by co-locating the Citrix database together with Citrix Infrastructure Servers and Apps servers within the same country. Increased the server build success rate from 50% up to 99% 
+Merrill Lynch - Infrastructure &Data Services global financial and banking firm
+AVP - HK team Deputy for Windows Server team (Jan 2007 – Aug 2007) 
+Act as the deputy head of windows server operation team and driving operation standards and ensure high availability of the system applications and servers’ infrastructure. Throughout the 9.5 yrs. tenure in the firm John started from Desktop support 3 yrs. and move to windows server operations team 6.5yrs.
+Achievements:
+1.	Analyzed \streamlined daily operational work and enforced documentation process that helped to decrease the team’s workload by 20%  
+2.	Managed \oversaw \ Implemented  on site projects in the following countries 
+•	Regionalized \ Standardized Print Services for PacRIM – Japan – 2006 
+•	Global Private Client  office Datacenter Servers Refreshed – Singapore – 2005 
+•	New office Development Global Center Server infrastructure setup  and trained vendors on DC cable management– India – 2005 
+•	SAN EMC Hardware Refresh – Taiwan – 2004 
+•	File and Print Servers migration – Beijing and Shanghai - 2003
+3.	Drove Servers virtualizations which equates to 26% of the overall servers’ inventory
+4.	Managed Data Centres Relocation\ Power Down\ BCP drills for systems & apps testing 
+5.	Implemented Servers Hardware Refreshes\Servers Application migrations 
+6.	Server OS \ Software upgrades and collaborated across various silos with application remediation and migration to new platforms 
+7.	Servers architecture redesigns to increase resiliency and achieve high availability services
+
+Merrill Lynch
+Senior Specialist, Windows Server Team – Infrastructure &Data Services 	March 2001 to December 2006 
+Job responsibilities
+•	Level 2 & 3 Server Support for APR Region
+•	Represented APR Key persons for C&R , GRAS , Hardware Expert , Autosys, ML Automation OS Build, Antivirus, Print and Web Services 
+•	WIN2K file and print server migrations; Servers setup for Hong Kong , Taiwan, Korea, Beijing and Shanghai
+•	Project oversaw \ implemented for Equity Trade performance, Research using clustering solution on Cognos application for increase high availability of service. Operation application – Recon scheduler + terminal server solution to serve users outside H.K. IBK Itrack, Eforms, GPS and Ilink cluster servers implementations   
+•	Web application support \rollout for Weblogic, Cold Fusion and Siteminder 
+•	Provided daily NT administration support and server housekeeping  
+•	Responsible for the core-build server installation and standardizing on the server setup for Both HPand Dell hardware. Provide technical guidance to other team member from regional countries.
+•	Designed \Implemented \supported for child proxy server .The objective was to save the bandwidth over the WAN link
+•	BCP invocation  architecture \ servers built and configurations
+•	Daily operational tasks  (backup, restore ,morning checks, case assignments, case work and documentations)
+Merrill Lynch
+Specialist (Contractor Position), Desktop Team - Infrastructure & Data Services		 May 1998 to Feb 2001  
+Job responsibilities
+•	Served as desktop engineer providing technical support for 1,000 users in Hong Kong office  - supported 11 departments from Non-Trade Floor 
+•	Consistently delivered rapid , outstanding service and support with follow actions resulting in a high level of customer satisfaction; kept users updated on resolutions 
+•	Installed / Migrated 200+ NT 4.0 Workstations to Windows 2000 and Assisted in Y2k Project such as desktop integration Testing / Rolled out applications using SMS packages 
+•	Supported Client applications running on NT Servers / UNIX / Mainframes / AS 400 , SNA Gateways , Sql / Sybase / oracle db , Internet / INTRANET applications / Market data applications reuters /infocast / SmartCat and Internal built in trading application
+•	Took Initiatives to learn company internal organizational structure to optimize problem-resolution efficiency (users supported starting from small departments to bigger departments )
+•	Built strong customer relationships by putting extra efforts in resolving technical issues 
+•	Logged incoming calls and email into remedy system and Escalated trouble tickets to teammates for resolution and gave detailed instructions of the issues to minimize duplication of efforts and saving clients 
+
+
+Siemens H.K Ltd. Global powerhouse business
+IT support Officer, MIS department supporting (Apr 1997 – Apr 1998)
+Hired to support servers and desktops that require direct interactions with business users and resolve user problems. 
+Job responsibilities
+•	Supported applications running on Windows NT Workstation and Novell File Services and Upgraded +150 Workstations from Windows 3.51 / 95 to Windows NT 4.0 
+•	Assisted in the daily operation 
+•	Resolved desktop issues in relation with Network Services , Client applications , ccMail , Lotus notes , File and print 
+•	Provided training to internal IT staff & end users and prepared documentations & technical manuals
+•	Managed Hardware and software products provisioning and Maintained Software and Hardware inventory
+•	Worked  on security projects such as internet firewalls and anti-virus software; Installed of MS BackOffice systems; SQL Server & MS Exchange
+•	Maintain the systems: login scripts, domain security and backup; Co-ordinated with different vendors to relocate computer peripherals.
+•	Designed & implemented  computer room & facilitate network systems, hubs & other devices
+
+Alco Plastic Products Ltd Manufacturing industry
+PC support Engineer, EDP team (Feb 1995 – Mar 1997
+Job responsibilities
+•	Maintained File and print service on Novell NetWare 3.12 
+•	Supported internal built in accounting, invoicing, billing and warehousing systems Supported / installed 40+ workstations running dos 6.11 , windows 3.11 and windows 95 
+•	Managed general systems backup and administration of user accounts.
+•	Worked as the helpdesk to provide first level online support on PC LAN functions & queries
+
+Academic Education: 
+St Joseph College Mauritius – A level Major in Science 
+
+Certifications 
+2011 Citrix Certified Enterprise Engineer for Virtualization which includes (Citrix Certified for Citrix XenDesktop 5 Administration, Citrix Certified for Citrix XenApp 6 Administration, Citrix Certified for Citrix XenServer 5.6 Administration & Citrix Certified for Citrix XenApp5 Advanced Administration)
+
+Relevant Skill Sets
+Technical Skills:
+•	Virtualization: Citrix XenDesktop 6.5 – 7.13, Citrix NetScaler , Citrix Command Center 9.x – 11.x  , AppSense Environment Manager , AppSense Performance Manager, Microsoft App-V , VMWare V-sphere 6.0, VSAN , LoginVSI , Login PI
+•	Performance monitoring and Capacity management: Splunk, EgInnovation
+•	Wintel: Windows Server 2008R2, 2012r2 ADFS, Networking , Web Services , File and print services and database services , Clustering Hyper-V, Windows 7 and 10
+•	Troubleshooting: Microsoft resource kit , Sysinternals , Powershell , Microsoft and Citrix debugger tools , WireShark and Fiddler tools 
+•	Hardware: HP Moonshots, Synergy, Blades, Rack servers , Dell Rack mount servers and Nutanix hyper-convergence
+•	Storage: (SAN / NAS) &Datacenter: Cooling and cable management 
+Soft Skills: 
+•	Leadership management skill, Personal Impact, Presentation skills
+•	Self-leadership program , ITIL foundation
+•	Habits of highly effective people ,Innovative Thinking program , Mental Toughness , Influencing skill, Leadership through people skills
+•	Manage your Day through Outlook, Time Management , Effective meeting Skills workshop
+
+Trainings: 
+2017- 2014: Team work and collaboration, presentation skills, Influencing and Negotiation , Diversity and Inclusion
+2010- 2013: Citrix NetScaler 9.3 Advance administration, Citrix XenApp 6.5 Advance Administration, Microsoft SCOM 2007 Administration, Microsoft SQL 2008 Administration, Citrix XenDesktop 5.0 Administration, LVSI
+2006-2009: Microsoft Win2K3 AD , EMC Product Overview on SAN, NAS and CAS products and Networker Admin 7.0 , VMWare Infrastructure 3 administration.
+
+Leisure: 
+Swimming at least 2 to 3 times per week and workout in the gym at least once a week and occasional cycling as well.
+Enjoy reading technology articles to keep abreast of new technologies
+Would participate volunteering work on a yearly basis 
+
+
+
+

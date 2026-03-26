@@ -1,0 +1,117 @@
+John Hau
+M: 852-98661344   E: haujon@netvigator.com
+LinkedIn: https://www.linkedin.com/in/john-hau/
+Career Objectives
+Head up IT infrastructure team within MNC or financial services industry. 
+Experience Highlight 
++23 years of solid IT infrastructure & end users’ experiences on regional and global scales mainly gained in Edge Technology Group, Morgan Stanley, Merrill Lynch and Siemens AG. Focus has been in maximising systems efficiencies, desktops and apps performances with 60% run the business and 40% change the business through Cloud and Workspace technologies. Well-verse with People management, Operational processes and client engagement with proven track records in identifying flaws within IT ecosystems and improving them through Agile, DevOps and ITIL models. Successfully led several global business transformation & initiatives such as delivered a global remote access portal (~70K users) using Citrix Storefront technology, revamped Morgan Stanley’s no.1 global trading apps (US$ multi-billions daily trading volume) using Citrix XenApp.
+
+Strategic, innovative, a strong problem solver and team builder.  Effective executor with strong technical background. Well recognized for the capability in understanding Client requirements and translate them into IT enterprise solutions to enabling business.
+
+Professional Experience
+EDGE TECHNOLOGY GROUP (Managed Service Provider for Financial Services) 	(Oct 2019 – Current)
+Centralized services manager 
+Manage 3 teams with 12 subordinates (systems, network engineering and Service delivery management teams)
+Responsible for IT  governance by improving systems stability, IT ops processes refinement, providing innovative solutions for Financial services clients, mitigate risks as part IT audit and Infrastructure penetration tests. Management participation of IS0 27001 certification and SFC External Electronic Data Storage (EDSP) requirements. Spearhead the quality of IT infrastructure services and handle direct clients’ engagement with CTOs and technical staffs. Responsible in improving the overall KPIs for Centralized services team. Other tasks include people, vendors, operations, incident and problem managements and managed IT operations through ticketing systems. Charing Change Advisory Board, management meetings and governance on RCA reporting as part of the ITIL process.
+Major Achievements and Projects: 
+1.	Successfully identified the backup failures and deployed a backup solution that addressed their daily success rates from 40% up to 99% while bringing more revenue to our firm.
+2.	Successfully reduced daily problem tickets’ reoccurrences by 70% through capacity management. 
+3.	Raised several security risks and introduced new solutions to address IT Audit risk related to SFC EDSP and ISO 27001 requirements
+4.	Proposed mitigation plans for clients and provided options in terms of costing Opex and risk assessments
+5.	Empowered my subordinates to deliver more through delegations, documentations and training within region. Engaged other staffs from other regions by increasing productivity | efficiencies and improved work life balance by 33% through resources allocation and tasks prioritization
+6.	Facilitated the local team members to work with global team in the view to align for 24 x 7 global support model. 
+7.	Improved the overall (internal and external) communications flows by ensuring the global standards and best practices through interactive meetings and defined RACI model on deliverables.
+8.	Successfully engaged with vendors to provide technical roadmaps to other teams and senior management on new technologies related with on premise and public Cloud backup solutions Veeam/ CommVault to meet IT Audit requirements, LoginVSI as part of the availability test tool and Citrix Workspace as remote access solution.  
+9.	Successfully presented, our team’s goal and deliverables to senior management team including COO and CEO for year 2020 with MoSCoW priorities .Q1 20 deliverables 80% targets were achieved. 
+Professional Experience
+MORGAN STANLEY (Global investment bank and financial services firm) 		    (Sep 2007 – Jun 2019)
+•	VP – Asia manager for Workspace Virtualization Engineering Team	    (Jan 2015 –Current)
+•	Associate – Windows Virtualization Engineering Team			    (Jul 2009 –Dec 2014)
+•	Associate –Enterprise Windows Operations Team				    (Sep 2007 –Jun 2009)
+VP – Asia manager for Workspace Virtualization Engineering Team	       	    (Jan 2015 –Current)
+Since 2015, also as member of the virtual management committee, managed a global virtual team of 8 people (with 2 directs in region) to engineer global cloud solutions to assist on various Business initiatives related with Merge & Acquisitions, Business selling and vendors strategies. Develop the team through mentoring, coaching, promotion process. Control stability. As an IT security officer manage risks and improve UX (user experiences) with our infrastructure products. 
+Major Achievements and Projects:
+1.	Cost optimization in supporting global initiatives: 
+•	Reduced waste of 16% ~ 9.8k (US$ 5M):  re-used unassigned, spare and reclaims virtual desktops.
+•	Reduced OPEX by 20% (US$ 1.4M) through optimization of the Virtual App and Virtual Desktops environment.
+•	Generated US$ 1M of additional monthly trade volume in China by improving the stability (low latency) for Citrix XenApp trading apps for external clients. 
+2.	Business enablement: Spearheaded and engineered global solutions for several large global projects to increase the business efficiencies.
+•	Managed a global team of 8 and successfully delivered a highly critical project, replaced a legacy remote access web portal consumed by 70k users globally before its end of life in Jan 2020.
+•	Successfully safe-guarded the stability issues of virtual desktops used by offshore vendors involving 10k users, and avoided potential critical business impact.  Solutions used were then adopted as a part of the IT infrastructure strategy UX improvement.
+•	Successfully laid down the virtual desktops and hosted desktop blue print which was adopted applied globally (120K desktops)
+3.	Initiated and resolved in key existence issues and shortened hosted desktops and applications load time for China developers’ (800 users) who supported global Institutional business users. 
+4.	Initiated 8 white papers (saved US$ 640K) to address IT infrastructure management strategies such as right-sized the servers’ compute resources and improved systems and apps stability.  
+5.	Risk Management: 100% protected the bank and constantly remained in compliance while acted as IT risk officer with provided risks governance to the engineering & operations teams. 
+6.	Vendor Management: successfully managed Citrix and took measure in addressing an overlook issue & uncovered to a security flaw while up kept the bank’s reputation. 
+Associate – Windows Virtualization Engineering Team			   (Jul 2009 –Dec 2014)
+•	Managed Architect design, engineer and automate Citrix XenDesktop 5(XD), Citrix XenApp 6.5 (XA) Farms so that the operation team can easily build out and support the plants globally; engineering of Citrix Command Center 5.1. 
+•	Ensure stability and improve performance on the VDI stack and Virtual apps. 
+Major Achievements and projects
+1.	Successfully engineered and saved us$ multi-millions YoY for Offshore vendors (10k users globally) through usage of secure cloud solutions and replaced traditional local desktops in branch offices 
+2.	Successfully built up a support team in Asia to support our first critical 600 Wealth Management financial advisors in Australia running on virtual desktops brokered through Citrix XenDesktop.
+3.	Offloaded 70% of the virtualization problem cases to Asia Winops Server team through trainings and documentations signed off to support over 30K desktops and over 400 of published apps globally 
+
+Associate –Enterprise Windows Operations Team 				    (Sep 2007 –Jun 2009)
+•	Support day to day operations and leverage follow the sun model with proper escalation to global team and ensure stability of the windows server environment 
+•	Implement, train, update and document all technical information on supported Windows products such as Citrix Xen Desktop 3 and 4, Citrix XenApp, 
+•	Primary Support for the Citrix XenApp plant for both Internal and External
+Major Achievements and projects
+1.	Revamped Morgan Stanley’s no.1 global trading apps (US$ multi-billions daily trading volume) using Citrix XenApp.
+2.	Successfully led the deployment of +1K virtual desktops for BCP (business contingency plan).
+3.	Managed Asia datacenter power down and BCP testing events for countries like H.K, JP, KR, AU and IN
+4.	Improved stability from 70% to 99% of the XenApp plant by co-locating the Citrix database together with Citrix Infrastructure Servers and Apps servers
+MERRILL LYNCH (Global investment bank and financial services firm)     		    May 1998 - Aug 2007 
+•	AVP - HK team & Deputy for Windows Server				(Jan 2007 – Aug 2007)
+•	Senior Specialist - Windows Server					(Mar 2001 – Dec 2006)
+•	Specialist - Desktop Team supporting 11 Departments			(May 1998 – Feb 2001)
+AVP - HK team & Deputy for Windows Server - Infrastructure &Data Services	 (Jan – Aug 2007) 
+Major responsibilities and Achievements & projects
+1.	Focus on ensuring high availability & resilience of the system applications and servers’ infrastructure
+2.	Led on-site projects including data center refreshes , apps migration and hardware and software refreshes projects the following countries Japan , Singapore , India , Taiwan and China
+3.	Managed Data Centres Relocation\ Power Down\ BCP drills for systems & apps migrations \testing
+4.	Reduced the team’s workload by 20%: Analyzed \streamlined daily operational work while enforcing documentation process
+5.	Virtualized 26% of servers as part of cost saving strategy 
+6.	Award: 2006 won the Merrill Lynch - individual special award achievement in recognition of outstanding achievements in delivering innovative business results and creating sustained value above and beyond day to day duties
+Senior Specialist, Windows Server Team – Infrastructure &Data Services 	(Mar 2001 - Dec 2006)
+1.	Level 3 (most complicated issues) Server Support for APR 
+2.	Asia SME  for Remote Access Service , Hardware Expert, Autosys, Automation of OS Build, Antivirus, Print and Web Services 
+3.	Successfully migrated WIN2K file and print servers for Hong Kong, Taiwan, Korea, Beijing and Shanghai
+4.	Successfully led improved stability of Equity- Trade, Operations and Research apps through MS clustering solution ,IIS 5.X , WebLogic, Cold Fusion and SiteMinder in Asia
+
+Specialist, Desktop Team - Infrastructure & Data Services			(May 1998 - Feb 2001)
+1.	Desktop Support SME for +2K users in Hong Kong office - supported 11 departments from Non-Trade Floor (users supported starting from small departments to bigger departments)
+2.	Delivered outstanding service with fast resolution in respond to business client requirements and escalated issues 
+3.	Supported client applications running on NT Servers / UNIX / Mainframes / AS 400, SNA Gateways, Sql / Sybase / oracle dB, Internet / INTRANET applications / Market data applications Reuters /InfoCast / SmartCat and Internal built-in trading application
+
+SIEMENS H.K LTD. (Global powerhouse business) 				(Apr 1997 – Apr 1998)
+IT support Officer, MIS department supporting 
+Supported servers and desktops that require direct interactions with business users and resolve users’ problems. 
+1.	Upgraded +150 Workstations from Windows 3.51 / 95 to Windows NT 4.0 
+2.	Assisted in the daily operation and Resolved desktop issues in relation with Network Services, Client applications, email systems and File & print services
+3.	Provided training to internal IT staff & end users and prepared documentations & technical manuals
+4.	Worked on security projects such as internet firewalls and anti-virus software; Installed of MS BackOffice systems; SQL Server & MS Exchange
+
+ALCO PLASTIC PRODUCTS LTD (Manufacturing industry) 			(Feb 1995 – Mar 1997)
+PC support Engineer, EDP team 
+1.	Maintained File & print services on Novell NetWare 3.12 
+2.	Supported internal built in accounting, invoicing, billing and warehousing systems Supported / installed +40 workstations running dos 6.11, windows 3.11 and windows 95
+3.	Managed general systems backup and administration of user accounts.
+Education & Certifications
+•	St Joseph College Mauritius – A level Major in Science 
+•	2020 IT Security Foundations : Network Security and Cryptography and Network Security
+•	2019  MIT Machine learning from Data to Decisions
+•	2019 Deep Learning: Face Recognition, DevOps Foundation, Integrating Tableau and R for Data Science, Learning Splunk, Wireshark Advanced Tools and Techniques, 
+•	2011 Citrix Certified Enterprise Engineer for Virtualization which includes (Citrix Certified for Citrix XenDesktop 5 Administration, Citrix Certified for Citrix XenApp 6 Administration, Citrix Certified for Citrix XenServer 5.6 Administration & Citrix Certified for Citrix XenApp5 Advanced Administration)
+Technical Skills
+•	Ticketing systems: ConnectWise and ServiceNow  
+•	Agile and DevOps for SDLC and ITIL foundation
+•	Virtualization: Citrix XenDesktop 6.5 – 7.13, Citrix NetScaler, Citrix Command Center 9.x – 11.x, AppSense (Environment Manager, Performance Manager), Microsoft App-V, VMWare ESXi V-sphere, VSAN), LoginVSI Enterprise
+•	Remote Access and collaboration : Pulse Secure , Exchange 2016, Mimecast , 
+•	Cloud: O365 , Azure , AWS
+•	Network: Cisco 2960x, 9600 , ASA FW , Palo Alto, Syslog-ng SSB, eSentire
+•	BigData ,Performance monitoring and Capacity management: Splunk, EgInnovation and Tableau
+•	Wintel: Windows Server 2012R2, 2016r2 ADFS, Networking, Web Services, File and print services and database services, Clustering ,Hyper-V, Windows 10
+•	Troubleshooting: Microsoft resource kit, Sysinternals , PowerShell , Microsoft and Citrix debugger tools , Wireshark , Web native debugging tools and Fiddler tools 
+•	Hardware: HPE Moonshots, Synergy, Blades, Rack servers, Dell Rack mount servers and Nutanix hyper-convergence, HPE StoreOnce 3640 , 
+•	Storage: (SAN / NAS) & Datacenter: Cooling and cable management 
+Languages: English, French, Creole – Fluent and speaks Cantonese

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Test specific OpenRouter models with new API key
+Test StepFun Step 3.5 Flash model
 """
 import requests
 import json
@@ -9,12 +9,12 @@ from dotenv import load_dotenv
 import os
 
 # Load env
-load_dotenv('.env.local', override=True)
+load_dotenv('../.env.local', override=True)
 
 OPENROUTER_API_KEY = os.getenv('OPENROUTER_API_KEY')
 
 print("\n" + "="*90)
-print("TESTING NEW OPENROUTER MODELS")
+print("TESTING STEPFUN STEP 3.5 FLASH")
 print("="*90)
 
 if not OPENROUTER_API_KEY:
@@ -23,21 +23,27 @@ if not OPENROUTER_API_KEY:
 
 print(f"✅ API Key: {OPENROUTER_API_KEY[:30]}...")
 
-# Test specific models
-test_models = [
-    ('minimax/minimax-m2.5:free', 'Minimax M2.5 (Free)'),
-    ('mistralai/mistral-small-3.1-24b-instruct:free', 'Mistral Small 3.1 24B (Free)'),
+# Test StepFun model
+model_id = 'stepfun/step-3.5-flash:free'
+model_name = 'StepFun Step 3.5 Flash (Free)'
+
+print(f"\n📡 Model: {model_name}")
+print(f"   ID: {model_id}")
+print(f"   Testing with 3 different questions...\n")
+
+test_questions = [
+    "What are John's key achievements?",
+    "Tell me about John's role at Morgan Stanley",
+    "What is John's favorite food?"
 ]
 
-print("\n" + "-"*90)
-print("Testing models...")
-print("-"*90)
-
-for model_id, model_name in test_models:
-    print(f"\n📡 Model: {model_name}")
-    print(f"   ID: {model_id}")
+for i, question in enumerate(test_questions, 1):
+    print(f"   Test {i}: {question[:50]}...")
     
     try:
+        import time
+        start = time.time()
+        
         response = requests.post(
             'https://openrouter.ai/api/v1/chat/completions',
             headers={
@@ -49,34 +55,34 @@ for model_id, model_name in test_models:
             json={
                 'model': model_id,
                 'messages': [
-                    {'role': 'user', 'content': 'John has expertise in infrastructure. Say hello.'}
+                    {'role': 'user', 'content': question}
                 ],
-                'max_tokens': 100
+                'max_tokens': 150
             },
             timeout=30
         )
         
+        elapsed = time.time() - start
         status = response.status_code
-        print(f"   Status: {status}")
         
         if status == 200:
             data = response.json()
             answer = data.get('choices', [{}])[0].get('message', {}).get('content', '')
             tokens = data.get('usage', {})
-            print(f"   ✅ SUCCESS")
-            print(f"   Response: {answer[:80]}")
-            print(f"   Tokens: {tokens}")
+            print(f"      ✅ SUCCESS ({elapsed:.1f}s)")
+            print(f"      Response: {answer[:60]}...")
+            print(f"      Tokens: {tokens.get('prompt_tokens', 0)} input, {tokens.get('completion_tokens', 0)} output")
         else:
             try:
                 error_data = response.json()
-                print(f"   ❌ ERROR {status}")
                 error_msg = error_data.get('error', {}).get('message', 'Unknown error')
-                print(f"   Message: {error_msg}")
+                print(f"      ❌ HTTP {status}: {error_msg[:80]}")
             except:
-                print(f"   ❌ ERROR {status}")
-                print(f"   Response: {response.text[:150]}")
+                print(f"      ❌ HTTP {status}: {response.text[:80]}")
                 
     except Exception as e:
-        print(f"   ❌ EXCEPTION: {str(e)[:100]}")
+        print(f"      ❌ EXCEPTION: {str(e)[:80]}")
+    
+    print()
 
-print("\n" + "="*90)
+print("="*90)

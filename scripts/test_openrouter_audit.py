@@ -10,7 +10,7 @@ import os
 from dotenv import load_dotenv
 
 # Load environment variables
-load_dotenv('.env.local', override=True)
+load_dotenv('../.env.local', override=True)
 OPENROUTER_KEY = os.getenv('OPENROUTER_API_KEY', 'NOT_SET')
 
 print("=" * 80)
