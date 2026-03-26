@@ -3,7 +3,7 @@
 
 param(
     [string]$SSHHost = "root@askcareer-ai.com",
-    [string]$ProjectPath = "/var/www/ask_aijohncareer"
+    [string]$ProjectPath = "/root/ask_aijohncareer"
 )
 
 Write-Host "================================================" -ForegroundColor Cyan
