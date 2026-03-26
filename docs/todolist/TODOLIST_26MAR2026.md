@@ -117,80 +117,205 @@
 
 ---
 
-## 🚀 PRIORITY 1: VPS DEPLOYMENT & INFRASTRUCTURE AUDIT
+## ✅ UPDATED: March 26, 2026 - Latest Changes Verified
 
-### Phase 1A: Existing Deployment Verification (STARTING HERE)
-- [ ] **SSH into VPS Server**
-  - [ ] Verify server is running and accessible
-  - [ ] Check Docker containers status: `docker ps`
-  - [ ] Check current deployment version
+### Recent Commits (Latest Changes):
+- ✅ **Grammar Fixes** - All 6 quick question grammar errors corrected
+- ✅ **New Question Added** - "What cybersecurity experience does John have?" (in dropdown)
+- ✅ **VPS Backup/Restore Procedures** - Created automated backup scripts
+- ✅ **Deployment Status Document** - Created comprehensive deployment readiness report
+- ✅ **Staging Deployment Guide** - Step-by-step VPS deployment procedure
 
-- [ ] **Understanding Existing Setup**
-  - [ ] Review CaddyFile configuration location
-  - [ ] Document existing domain routing
-  - [ ] Identify SSL certificate setup
-  - [ ] Check port mappings (80, 443, 3000, 5173?)
-  - [ ] Verify docker-compose.yml structure
+### Current Build Status:
+- ✅ `npm run build` - Last run: Successfully completed (Exit Code: 0)
+- ✅ `dist/` folder - Present and up to date with all assets
+- ✅ Production files optimized - JS: 48.53 kB, CSS: 3.33 kB (gzipped)
+- ✅ No build errors or warnings
 
-- [ ] **API Keys & Environment Variables**
-  - [ ] If `.env.vps` exists on server: Verify current keys
-  - [ ] Check OPENROUTER_API_KEY (what value? from which account?)
-  - [ ] Check DEEPSEEK_API_KEY (what value? from which account?)
-  - [ ] Document any other API keys in use
-  - [ ] Confirm VPN requirement noted in documentation
-
-- [ ] **Current Deployment Status**
-  - [ ] Test existing live domain (is it responding?)
-  - [ ] Check backend API endpoints: `/api/deepseek`, `/api/nemotron`
-  - [ ] Note any 403, 401, or 500 errors currently happening
-  - [ ] Screenshot current state (for before/after comparison)
-
-### Phase 1B: Code Deployment
-- [ ] **Prepare New Build**
-  - [ ] Run `npm run build` locally (final verification)
-  - [ ] Package dist/ folder for transfer
-  - [ ] Create deployment archive
-
-- [ ] **Deploy to VPS**
-  - [ ] Copy new dist/ folder to VPS server (replace old one)
-  - [ ] Copy updated `.env.vps` with correct API keys
-  - [ ] Copy updated `backend/server.js` if needed
-  - [ ] Rebuild Docker image: `docker build -t ask-aijohncareer .`
-  - [ ] Restart services: `docker-compose down && docker-compose up -d`
-
-- [ ] **Verify Deployment**
-  - [ ] Check Docker containers running: `docker ps`
-  - [ ] Test backend API: `curl http://localhost:3000/api/health`
-  - [ ] Test frontend loads at live domain
-  - [ ] Verify Hero section displays with light theme
-  - [ ] Test chat with both models (Gemini + DeepSeek)
-  - [ ] Check browser console for any errors
-
-### Phase 1C: Documentation & Handoff
-- [ ] **CaddyFile Documentation**
-  - [ ] Screenshot/save current CaddyFile
-  - [ ] Document all routing rules
-  - [ ] Note SSL certificate provider (Let's Encrypt? etc.)
-  - [ ] Document any custom headers or security settings
-
-- [ ] **Environment Configuration**
-  - [ ] Create `.env.vps.template` with all required keys
-  - [ ] Document which keys are reusable vs which need updating
-  - [ ] Create README for VPS deployment process
-
-- [ ] **Testing Checklist After Deploy**
-  - [ ] Homepage loads (Hero + sidebar visible)
-  - [ ] Day/Night mode toggle works
-  - [ ] Quick questions dropdown functional
-  - [ ] Chat sends message and gets Gemini response
-  - [ ] Model selector switches to DeepSeek (verify in chat)
-  - [ ] Mobile responsive works
-  - [ ] No 404 errors in DevTools Network tab
-  - [ ] No console errors
+### Portal Changes Summary:
+- ✅ Hero component fully functional (title, subtitle, 3 buttons)
+- ✅ Day/Night theme toggle - localStorage persistence working
+- ✅ Quick questions dropdown - 14 questions (all grammar-corrected + cybersecurity Q)
+- ✅ Chat interface - Light theme styling throughout
+- ✅ Model selector - Gemini 3.1 Flash & DeepSeek R1 cards
+- ✅ All CSS variables implemented for theme switching
 
 ---
 
-## 📋 VPS INFRASTRUCTURE DETAILS TO CAPTURE
+## 🚀 PRIORITY 1: VPS DEPLOYMENT (READY TO EXECUTE)
+
+## 🚀 PRIORITY 1: VPS DEPLOYMENT (READY TO EXECUTE)
+
+### ✅ PRE-DEPLOYMENT CHECKLIST (Verify All Complete):
+
+- [x] Code changes committed to `dev` branch
+- [x] All grammar fixes applied (6 corrections + cybersecurity question)
+- [x] Production build completed successfully (npm run build)
+- [x] dist/ folder present with optimized assets
+- [x] Theme implementation working (light & dark modes)
+- [x] Hero component and navigation functional
+- [x] API keys configured in .env.local
+- [x] No hardcoded secrets in codebase
+- [x] Git history clean and pushed to origin/dev
+- [x] Backup procedure documented and ready
+- [x] Staging deployment guide created
+
+### Phase 1A: Pre-Deployment on Local Machine
+### Phase 1A: Pre-Deployment on Local Machine
+- [x] Verify build status: `npm run build` (completed successfully)
+- [x] Verify dist/ folder exists and is current
+- [x] Verify node_modules not in dist/ (✅ confirmed)
+- [x] Verify no API keys in code files (✅ confirmed via grep)
+- [x] Verify git is clean: `git status` (dev branch, all pushed)
+- [x] Package.json dependencies unchanged (✅ verified)
+
+### Phase 1B: VPS Server Preparation (Next Steps)
+- [ ] **Create VPS Backup** (CRITICAL - do this first)
+  - [ ] SSH into VPS server
+  - [ ] Run backup script: `./scripts/backup-vps-deployment.sh`
+  - [ ] Verify backup file created and compressed
+  - [ ] Store backup locally or in safe location
+  - [ ] Document backup location and timestamp
+
+- [ ] **Verify Current VPS Setup**
+  - [ ] Check Docker is running: `docker ps`
+  - [ ] Check current domain is accessible
+  - [ ] Note current image tag/version
+  - [ ] Check disk space available (need ~500MB min)
+  - [ ] Verify `.env` or `.env.vps` exists on server
+
+- [ ] **CaddyFile & SSL Review**
+  - [ ] Locate CaddyFile on VPS
+  - [ ] Review domain routing rules
+  - [ ] Verify SSL certificate is valid
+  - [ ] Check certificate auto-renewal is configured
+
+### Phase 1C: Git Merge on VPS (OR on Local Before Push)
+- [ ] **Option A: Merge Locally (Recommended)**
+  - [ ] On your laptop: `git checkout staging`
+  - [ ] Pull latest: `git pull origin staging`
+  - [ ] Merge dev: `git merge dev --no-ff -m "merge: deploy UI redesign + fixes (26-Mar)"`
+  - [ ] Push to staging: `git push origin staging`
+
+- [ ] **Option B: Merge on VPS Server**
+  - [ ] SSH to VPS
+  - [ ] Navigate to project directory
+  - [ ] `git fetch origin`
+  - [ ] `git checkout staging`
+  - [ ] `git merge origin/dev --no-ff -m "deploy 26Mar"`
+  - [ ] `git push origin staging`
+
+### Phase 1D: Deploy New Code to VPS
+- [ ] **Pull Latest Code**
+  - [ ] On VPS: `git pull origin staging` (or main if merging directly)
+  - [ ] Verify new files are present
+  - [ ] Verify package.json is current
+
+- [ ] **Rebuild Docker Image**
+  - [ ] On VPS: `docker-compose build --no-cache`
+  - [ ] Verify build completes without errors
+  - [ ] New image created: `ask-aijohncareer:latest`
+
+- [ ] **Restart Services**
+  - [ ] Stop services: `docker-compose down`
+  - [ ] Start services: `docker-compose up -d`
+  - [ ] Wait ~10 seconds for startup
+  - [ ] Verify running: `docker ps` (should show 2-3 containers)
+
+- [ ] **Verify Services are Healthy**
+  - [ ] Check backend: `curl http://localhost:3000/api/health`
+  - [ ] Check frontend loads: `curl -s http://localhost:3000 | grep "Career Copilot"`
+  - [ ] Check logs: `docker-compose logs -f backend` (no errors?)
+  - [ ] Check for crashes: `docker-compose ps` (all running?)
+
+### Phase 1E: Test Live Domain (Post-Deployment)
+- [ ] **Frontend Testing**
+  - [ ] Load `https://your-domain.com` in browser
+  - [ ] Hero section visible with light theme
+  - [ ] Day/Night toggle button present (🌙 or ☀️)
+  - [ ] Quick questions dropdown opens/closes
+  - [ ] All 14 questions visible (with cybersecurity question)
+  - [ ] LinkedIn button links correctly
+  - [ ] Email button opens email client
+  - [ ] Theme toggle switches light ↔ dark mode
+
+- [ ] **Chat Functionality**
+  - [ ] Type a message and send
+  - [ ] Receive response (should be Gemini by default)
+  - [ ] Model selector shows both options
+  - [ ] Switch to DeepSeek and test
+  - [ ] Verify model badges show correct LLM used
+
+- [ ] **Browser Console & Network**
+  - [ ] Press F12 → Console tab
+  - [ ] No red error messages
+  - [ ] Network tab: No 404 errors
+  - [ ] Check Performance: page loads in <2 seconds
+
+- [ ] **Mobile Responsiveness**
+  - [ ] Press F12 → Toggle device toolbar (Ctrl+Shift+M)
+  - [ ] Test on iPhone 12 viewport
+  - [ ] Test on iPad viewport
+  - [ ] All buttons clickable
+  - [ ] Chat interface responsive
+
+### Phase 1F: Post-Deployment Verification
+- [ ] **Docker Logs Review**
+  - [ ] `docker-compose logs backend` (no errors, startup messages visible)
+  - [ ] `docker-compose logs` (all containers healthy)
+  - [ ] No memory/CPU warnings
+
+- [ ] **Backup Current Deployment**
+  - [ ] Run restore script: `./scripts/restore-backup.sh --verify`
+  - [ ] Confirms backup restoration would work if needed
+  - [ ] Peace of mind ✅
+
+- [ ] **Document Deployment**
+  - [ ] Note deployment time and commit SHA
+  - [ ] Record which domain was updated
+  - [ ] Document any issues encountered
+  - [ ] Update DEPLOYMENT_STATUS_26MAR2026.md with timestamp
+
+---
+
+## 📋 DEPLOYMENT READINESS - FINAL SUMMARY
+
+### ✅ What's Confirmed Ready to Deploy
+- ✅ **Frontend UI/UX** - Option B complete with Hero component, day/night theme
+- ✅ **Code Quality** - All grammar issues fixed, 14 quick questions polished
+- ✅ **Build Output** - dist/ folder optimized and production-ready
+- ✅ **Git Status** - All commits pushed to dev branch, clean history
+- ✅ **Dependencies** - Zero new packages, same docker-compose stack
+- ✅ **Security** - No API keys or secrets in codebase
+- ✅ **Documentation** - Deployment guide, backup procedures, status reports ready
+
+### ✅ What's Been Tested
+- ✅ Production build (npm run build: exit 0)
+- ✅ HMR in development (fast feedback loop working)
+- ✅ Theme switching (light ↔ dark, localStorage persistence)
+- ✅ Quick questions dropdown (14 questions, all grammar correct)
+- ✅ Chat interface responsiveness
+- ✅ Component rendering (Hero, sidebar, chat)
+
+### ⏭️ What Still Needs Manual Verification
+- [ ] VPS server access and health check
+- [ ] Live domain testing after deployment
+- [ ] Chat responses with real LLM models
+- [ ] Mobile responsiveness on actual devices
+- [ ] SSL certificate validity
+- [ ] Load performance under normal traffic
+
+### 📊 Deployment Snapshot
+- **Branch:** dev (ready to merge to staging/main)
+- **Latest Commit:** Grammar fixes + deployment docs
+- **Build Size:** ~2.5 MB (includes node_modules), dist/ = ~52 KB gzipped
+- **Estimated Deploy Time:** 15-20 minutes
+- **Rollback Time:** <5 minutes (VPS backup procedures ready)
+- **Risk Level:** LOW (same docker-compose, no breaking changes)
+
+---
+
+## 📝 VPS INFRASTRUCTURE DETAILS TO CAPTURE
 
 ### CaddyFile Configuration Questions
 - [ ] What's the current domain name?

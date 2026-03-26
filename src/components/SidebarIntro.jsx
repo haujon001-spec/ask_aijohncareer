@@ -6,18 +6,19 @@ function SidebarIntro({ onQuickPrompt }) {
   
   const quickPrompts = [
     "Tell me about John's leadership?",
-    "How much experience John has with IT infrastructure?",
-    "What technical skills and soft skills John has?",
-    "What is John's experience on cloud?",
+    "How much experience does John have with IT infrastructure?",
+    "What technical and soft skills does John have?",
+    "What is John's experience with cloud?",
     "What is John's key strength?",
     "What are John's key achievements?",
     "What's John's career background?",
-    "What John is good at?",
-    "What new Technology John has been exploring?",
+    "What is John good at?",
+    "What new technologies has John been exploring?",
     "What people say about John based on his LinkedIn recommendations?",
     "Tell me about John's AI work?",
-    "How much did John save in cost?",
-    "What did John innovation?"
+    "How much cost did John save?",
+    "What innovation did John do?",
+    "How much cybersecurity experience does John have?"
   ]
 
   const [isOpen, setIsOpen] = React.useState(false)
