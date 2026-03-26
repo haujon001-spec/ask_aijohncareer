@@ -35,7 +35,7 @@
 }
 
 /* Mobile marquee effect for subtitle */
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .hero-subtitle {
     max-width: 100%;
     font-size: 14px;
@@ -128,6 +128,40 @@
   background: #1e40af;
   border-color: #3b82f6;
   color: #dbeafe;
+}
+
+/* Tablet and mobile responsive */
+@media (max-width: 1024px) {
+  .hero-header {
+    padding: 24px 16px;
+  }
+
+  .hero-top {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  .hero-header h1 {
+    font-size: 28px;
+  }
+
+  .hero-subtitle {
+    font-size: 15px;
+    max-width: 100%;
+  }
+
+  .hero-links {
+    flex-wrap: wrap;
+  }
+
+  .hero-link {
+    padding: 8px 14px;
+    font-size: 13px;
+    flex: 1;
+    min-width: 80px;
+    text-align: center;
+  }
 }
 
 /* Mobile responsive */

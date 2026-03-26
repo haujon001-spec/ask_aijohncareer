@@ -8,16 +8,16 @@ function SidebarIntro({ onQuickPrompt }) {
     "Tell me about John's leadership?",
     "How much experience does John have with IT infrastructure?",
     "What technical and soft skills does John have?",
-    "What is John's experience with cloud?",
-    "What is John's key strength?",
+    "What is John's experience with cloud computing?",
+    "What are John's key strengths?",
     "What are John's key achievements?",
     "What's John's career background?",
     "What is John good at?",
     "What new technologies has John been exploring?",
-    "What people say about John based on his LinkedIn recommendations?",
+    "What do people say about John based on his LinkedIn recommendations?",
     "Tell me about John's AI work?",
-    "How much cost did John save?",
-    "What innovation did John do?",
+    "What cost savings has John achieved?",
+    "What innovations has John achieved?",
     "How much cybersecurity experience does John have?"
   ]
 

@@ -23,13 +23,17 @@ import json
 from pathlib import Path
 
 def run_ssh_command(host, command):
-    """Execute command on remote VPS via SSH"""
+    """Execute command on remote VPS via SSH (key-based auth, no password)"""
     try:
+        # Ensure host has proper format
+        if not host.startswith("root@"):
+            host = f"root@{host}"
         result = subprocess.run(
-            ['ssh', f'root@{host}', command],
+            ['ssh', '-o', 'BatchMode=yes', '-o', 'StrictHostKeyChecking=no', host, command],
             capture_output=True,
             text=True,
-            timeout=30
+            timeout=60,
+            stdin=subprocess.DEVNULL  # Disable stdin to prevent password prompts
         )
         return result.returncode, result.stdout, result.stderr
     except Exception as e:
@@ -41,8 +45,8 @@ def main():
     print("="*70 + "\n")
     
     # Configuration
-    vps_host = "www.askcareer-ai.com"
-    project_dir = "/opt/john-career-copilot"
+    vps_host = "askcareer-ai.com"
+    project_dir = "/root/ask_aijohncareer"
     
     print("⚠️  IMPORTANT SECURITY NOTICES:")
     print("  • Keys are transmitted over SSH (encrypted)")
@@ -88,8 +92,8 @@ NODE_ENV=production
     print(f"\n📡 Connecting to {vps_host}...")
     
     # Write .env file
-    cat_command = f"cat > {project_dir}/.env << 'EOF'\n{env_content}EOF\nchmod 600 {project_dir}/.env"
-    code, stdout, stderr = run_ssh_command(vps_host, f"echo 'Updating .env...' && cd {project_dir} && {cat_command}")
+    cat_command = f"cat > {project_dir}/.env << 'ENVEOF'\n{env_content}ENVEOF\nchmod 600 {project_dir}/.env"
+    code, stdout, stderr = run_ssh_command(f"root@{vps_host}", f"cd {project_dir} && {cat_command}")
     
     if code != 0:
         print(f"❌ Failed to update .env: {stderr}")
@@ -100,8 +104,8 @@ NODE_ENV=production
     # Restart containers
     print("\n📡 Restarting Docker containers...")
     code, stdout, stderr = run_ssh_command(
-        vps_host, 
-        f"cd {project_dir} && docker-compose -f docker-compose.prod.yml restart app 2>&1 | grep -E 'Restarting|Started'"
+        f"root@{vps_host}", 
+        f"cd {project_dir} && docker-compose restart john-career-copilot"
     )
     
     if code != 0:
@@ -119,8 +123,8 @@ NODE_ENV=production
     print("-" * 70)
     
     code, stdout, stderr = run_ssh_command(
-        vps_host,
-        f"curl -s https://www.askcareer-ai.com/api/health | head -c 300"
+        f"root@{vps_host}",
+        f"curl -s https://www.askcareer-ai.com/api/health 2>/dev/null | head -c 300"
     )
     
     if code == 0 and '"status":"ok"' in stdout:
