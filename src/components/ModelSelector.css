@@ -116,3 +116,46 @@
     font-size: 24px;
   }
 }
+
+/* Extra compact mobile view for phones */
+@media (max-width: 480px) {
+  .model-selector {
+    margin: 8px 0;
+  }
+
+  .model-selector label {
+    font-size: 11px;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+  }
+
+  .models-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+
+  .model-button {
+    padding: 6px 4px;
+    font-size: 10px;
+    min-height: 50px;
+    min-width: auto;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .model-button:hover {
+    transform: translateY(-2px);
+  }
+
+  .model-icon {
+    font-size: 20px;
+    line-height: 1;
+  }
+
+  .model-name {
+    font-size: 9px;
+    line-height: 1.2;
+    margin-top: 2px;
+  }
+}
