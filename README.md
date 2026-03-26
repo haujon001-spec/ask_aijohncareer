@@ -37,6 +37,16 @@ John's Career Copilot is a **next-generation professional portfolio** that combi
 ✅ **Grammar Corrections** – All 14 questions professionally polished  
 ✅ **New Cybersecurity Question** – Added relevant security expertise showcase  
 ✅ **Optimized Build** – 48.82 kB gzipped for lightning-fast loads  
+✅ **Mobile Optimization** – Responsive design with marquee animations and compact layouts  
+✅ **CSP Security Headers** – Fixed Content Security Policy for modern browsers  
+
+### Planned Features (Q2 2026)
+🚀 **Job Description Comparison Portal** – Upload any job description (PDF, DOCX, TXT)  
+   - AI-powered resume matching scorecard
+   - Skills, leadership, technical, and domain alignment analysis
+   - Strengths/gaps identification with actionable recommendations  
+   - Estimated implementation: 2 development days
+   - Reference: `/docs/JD_Comparison_portal.md`
 
 ---
 
