@@ -1,0 +1,139 @@
+.hero-header {
+  width: 100%;
+  background: linear-gradient(135deg, #ffffff 0%, #f5f7fa 100%);
+  border-bottom: 1px solid #e5e7eb;
+  padding: 32px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.hero-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+.hero-header h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.5px;
+}
+
+.hero-subtitle {
+  font-size: 16px;
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.6;
+  max-width: 500px;
+}
+
+.hero-links {
+  display: flex;
+  gap: 12px;
+}
+
+.hero-link {
+  padding: 10px 16px;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  color: #2563eb;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.hero-link:hover {
+  background: #e5e7eb;
+  border-color: #d1d5db;
+  color: #1d4ed8;
+}
+
+.theme-toggle {
+  background: #dbeafe;
+  border: 1px solid #bfdbfe;
+  color: #1e40af;
+}
+
+.theme-toggle:hover {
+  background: #bfdbfe;
+  border-color: #93c5fd;
+  color: #1e3a8a;
+}
+
+/* Dark mode theme */
+:root[data-theme="dark"] .hero-header {
+  background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+  border-bottom-color: #374151;
+}
+
+:root[data-theme="dark"] .hero-header h1 {
+  color: #f3f4f6;
+}
+
+:root[data-theme="dark"] .hero-subtitle {
+  color: #d1d5db;
+}
+
+:root[data-theme="dark"] .hero-link {
+  background: #374151;
+  border-color: #4b5563;
+  color: #93c5fd;
+}
+
+:root[data-theme="dark"] .hero-link:hover {
+  background: #4b5563;
+  border-color: #6b7280;
+  color: #bfdbfe;
+}
+
+:root[data-theme="dark"] .theme-toggle {
+  background: #1e3a8a;
+  border-color: #1e40af;
+  color: #bfdbfe;
+}
+
+:root[data-theme="dark"] .theme-toggle:hover {
+  background: #1e40af;
+  border-color: #3b82f6;
+  color: #dbeafe;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .hero-header {
+    padding: 20px 16px;
+  }
+
+  .hero-top {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .hero-header h1 {
+    font-size: 24px;
+  }
+
+  .hero-subtitle {
+    font-size: 14px;
+  }
+
+  .hero-links {
+    width: 100%;
+  }
+
+  .hero-link {
+    flex: 1;
+    text-align: center;
+  }
+}

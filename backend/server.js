@@ -26,6 +26,13 @@ for (const envPath of envPaths) {
   }
 }
 
+// Verify API keys are loaded
+const openrouterKey = process.env.OPENROUTER_API_KEY;
+const deepseekKey = process.env.DEEPSEEK_API_KEY;
+console.log('✅ API Keys loaded:');
+console.log(`   OpenRouter: ${openrouterKey ? openrouterKey.substring(0, 30) + '...' : 'NOT SET'}`);
+console.log(`   DeepSeek: ${deepseekKey ? deepseekKey.substring(0, 30) + '...' : 'NOT SET'}`);
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -80,16 +87,16 @@ Resume Context:
 ${JSON.stringify(johnProfile, null, 2)}`;
 }
 
-// LLM Provider Configs - 2 MODELS ONLY: Liquid LFM + DeepSeek R1
-// Optimized for best results
-// Status: Liquid LFM ✅ (2-7s, cost-effective), DeepSeek R1 ✅ (advanced reasoning)
+// LLM Provider Configs - 2 MODELS ONLY: Google Gemini 3.1 Flash + DeepSeek R1
+// Optimized for best results (tested & confirmed working March 26, 2026)
+// Status: Google Gemini ✅ (fast, free, tested), DeepSeek R1 ✅ (advanced reasoning, tested)
 const llmConfigs = {
   deepseek: {
-    name: 'Liquid LFM 2.26B (Free)',
+    name: 'Google Gemini 3.1 Flash Lite',
     apiKey: process.env.OPENROUTER_API_KEY,
     provider: 'openrouter',
     endpoint: 'https://openrouter.ai/api/v1/chat/completions',
-    model: 'liquid/lfm-2.5-1.2b-thinking:free',
+    model: 'google/gemini-3.1-flash-lite-preview',
     costPerToken: { input: 0, output: 0 },
     supportsReasoning: false,
     status: 'working'

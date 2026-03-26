@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './App.css'
+import Hero from './components/Hero'
 import ChatWindow from './components/ChatWindow'
 import ModelSelector from './components/ModelSelector'
 import SidebarIntro from './components/SidebarIntro'
@@ -9,7 +10,7 @@ function App() {
   
   // Model name mapping for display
   const modelNames = {
-    deepseek: 'Liquid LFM 2.26B',
+    deepseek: 'Mistral 7B Instruct',
     nemotron: 'DeepSeek R1'
   }
   
@@ -160,31 +161,34 @@ function App() {
   }
 
   return (
-    <div className="app">
-      <div className="sidebar">
-        <SidebarIntro onQuickPrompt={handleQuickPrompt} />
-        <ModelSelector selectedModel={selectedModel} onModelChange={setSelectedModel} />
-        <label className="reasoning-toggle">
-          <input
-            type="checkbox"
-            checked={showReasoning}
-            onChange={(e) => setShowReasoning(e.target.checked)}
-          />
-          <span>Show reasoning</span>
-        </label>
-        {backendError && (
-          <div style={{color: '#ffb3b3', background: '#2a1a1a', padding: 8, borderRadius: 8, marginTop: 12, fontSize: 13}}>
-            <b>Warning:</b> Unable to connect to backend.<br/>
-            If you are on mobile, make sure the backend is deployed and reachable from your device.<br/>
-            <span style={{fontSize: 12, opacity: 0.8}}>Localhost will not work on mobile. Use a public or LAN URL.</span>
-          </div>
-        )}
+    <div className="app-container">
+      <Hero />
+      <div className="app">
+        <div className="sidebar">
+          <SidebarIntro onQuickPrompt={handleQuickPrompt} />
+          <ModelSelector selectedModel={selectedModel} onModelChange={setSelectedModel} />
+          <label className="reasoning-toggle">
+            <input
+              type="checkbox"
+              checked={showReasoning}
+              onChange={(e) => setShowReasoning(e.target.checked)}
+            />
+            <span>Show reasoning</span>
+          </label>
+          {backendError && (
+            <div style={{color: '#b91c1c', background: '#fee2e2', padding: 8, borderRadius: 8, marginTop: 12, fontSize: 13}}>
+              <b>Warning:</b> Unable to connect to backend.<br/>
+              If you are on mobile, make sure the backend is deployed and reachable from your device.<br/>
+              <span style={{fontSize: 12, opacity: 0.8}}>Localhost will not work on mobile. Use a public or LAN URL.</span>
+            </div>
+          )}
+        </div>
+        <ChatWindow 
+          messages={messages} 
+          onSendMessage={handleSendMessage}
+          isLoading={isLoading}
+        />
       </div>
-      <ChatWindow 
-        messages={messages} 
-        onSendMessage={handleSendMessage}
-        isLoading={isLoading}
-      />
     </div>
   )
 }

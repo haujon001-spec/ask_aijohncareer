@@ -2,43 +2,62 @@ import React from 'react'
 import './SidebarIntro.css'
 
 function SidebarIntro({ onQuickPrompt }) {
+  const [selectedPrompt, setSelectedPrompt] = React.useState('')
+  
   const quickPrompts = [
-    "Tell me about John's AI work",
-    "How much did John save in costs?",
-    "What's John's leadership style?",
-    "Explain John's VDI expertise",
+    "Tell me about John's leadership?",
+    "How much experience John has with IT infrastructure?",
+    "What technical skills and soft skills John has?",
+    "What is John's experience on cloud?",
+    "What is John's key strength?",
     "What are John's key achievements?",
-    "Tell me about John's technical expertise",
-    "What's John's career background?"
+    "What's John's career background?",
+    "What John is good at?",
+    "What new Technology John has been exploring?",
+    "What people say about John based on his LinkedIn recommendations?",
+    "Tell me about John's AI work?",
+    "How much did John save in cost?",
+    "What did John innovation?"
   ]
 
-  const handleQuickPrompt = (prompt) => {
+  const [isOpen, setIsOpen] = React.useState(false)
+
+  const handleDropdownChange = (prompt) => {
+    setSelectedPrompt(prompt)
+    setIsOpen(false)
     if (onQuickPrompt) {
       onQuickPrompt(prompt)
     }
   }
 
   return (
-    <div className="sidebar-intro">
-      <h1>🤖 John's Career Copilot</h1>
-      <p>Ask anything about John Hau's professional experience, AI projects, and leadership achievements.</p>
+    <div className="quick-questions-section">
+      <label className="quick-label">✨ Quick Questions</label>
       
-      <div className="quick-prompts">
-        <p className="quick-label">✨ Quick Questions:</p>
-        {quickPrompts.map((prompt, idx) => (
-          <button key={idx} className="quick-prompt" onClick={() => handleQuickPrompt(prompt)}>
-            {prompt}
-          </button>
-        ))}
-      </div>
+      <div className="dropdown-wrapper">
+        <button 
+          className="dropdown-toggle"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          <span className="dropdown-text">
+            {selectedPrompt || "Choose a question..."}
+          </span>
+          <span className={`dropdown-arrow ${isOpen ? 'open' : ''}`}>▼</span>
+        </button>
 
-      <div className="sidebar-footer">
-        <a href="https://linkedin.com/in/johnhau" target="_blank" rel="noopener noreferrer">
-          💼 LinkedIn
-        </a>
-        <a href="mailto:haujon001@gmail.com">
-          📧 Email
-        </a>
+        {isOpen && (
+          <div className="dropdown-menu">
+            {quickPrompts.map((prompt, idx) => (
+              <button
+                key={idx}
+                className="dropdown-item"
+                onClick={() => handleDropdownChange(prompt)}
+              >
+                {prompt}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   )
