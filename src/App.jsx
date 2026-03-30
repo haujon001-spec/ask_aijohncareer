@@ -10,7 +10,7 @@ function App() {
   
   // Model name mapping for display
   const modelNames = {
-    deepseek: 'Mistral 7B Instruct',
+    deepseek: 'Gemini 3.1 Flash Lite',
     nemotron: 'DeepSeek R1'
   }
   
@@ -167,13 +167,14 @@ function App() {
         <div className="sidebar">
           <SidebarIntro onQuickPrompt={handleQuickPrompt} />
           <ModelSelector selectedModel={selectedModel} onModelChange={setSelectedModel} />
-          <label className="reasoning-toggle">
+          <label className="reasoning-toggle" title={selectedModel === 'nemotron' ? 'Show extended reasoning' : 'Only available with DeepSeek R1'}>
             <input
               type="checkbox"
               checked={showReasoning}
               onChange={(e) => setShowReasoning(e.target.checked)}
+              disabled={selectedModel !== 'nemotron'}
             />
-            <span>Show reasoning</span>
+            <span>Show reasoning {selectedModel !== 'nemotron' ? '(DeepSeek only)' : ''}</span>
           </label>
           {backendError && (
             <div style={{color: '#b91c1c', background: '#fee2e2', padding: 8, borderRadius: 8, marginTop: 12, fontSize: 13}}>
