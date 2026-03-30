@@ -202,11 +202,24 @@ Configure in `.vscode/settings.json`:
 - No hallucinated success — only verified success
 
 ---
+## 10. Checkout and true validations
 
-## 10. Amendments
+Checkout procedures
+- whenever codes changes are impplemented - don't mention that it is working without proper test
+- When new requirement are being captured , please confirm what your the steps and measure you will take.
+- An audit should always be done that is new requirement and test whether they meed the requirement . Don't just mark as green with proper audit
+- If you are working on a portal changes , it is a must that you load the page and confirm the page is up and running the UI/UX fonts , scroll bar , LLMs are working as expected
+- when implementing a new LLM you have to confirm the LLM API keys are correct , a simple test of the LLM query is working
+
+
+
+
+
+## 11. Amendments
 
 Changes to this soul.md must be versioned with a date comment and committed.
 
 | Date | Change |
 |------|--------|
 | 2026-03-17 | Initial soul.md created — applied Universal Project Constitution to memory_management project |
+| 2026-03-26 | soul.md updated — added  - Checkout and true validations |

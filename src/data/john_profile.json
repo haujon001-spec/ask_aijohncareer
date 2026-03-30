@@ -1,858 +1,884 @@
 {
-  "metadata": {
-    "name": "John Hau",
-    "title": "Senior Technology Leader, VP Workspace Virtualization Engineering",
-    "location": "Yuen Long District, Hong Kong SAR",
-    "email": "haujon001@gmail.com",
-    "phone": "+852 5722 2007",
-    "linkedin": "linkedin.com/in/johnhau",
-    "availability": "Immediate",
-    "resume_source": "JohnHauResume2026_MorganStanley.txt",
-    "years_experience": 27.33,
-    "experience_timeline": {
-      "started": 1995,
-      "career_break_start": "August 2020",
-      "career_break_end": "November 2023",
-      "ended": "July 2025",
-      "total_span_years": 30.58,
-      "career_break_years": 3.25,
-      "actual_work_experience_years": 27.33,
-      "notes": "Calculator: (1995-July 2025: 30 years 7 months) minus (Aug 2020-Nov 2023: 3 years 3 months) = 27 years 4 months"
-    }
-  },
-  "summary": "Senior technology leader with 27+ years of IT infrastructure experience across Virtual Desktop Infrastructure (VDI), Desktop in Data Center (DiDC), End User Computing (EUC), lifecycle management, performance engineering, and global escalation leadership across major financial institutions: Morgan Stanley, Bank of America, AIA, Edge Technology Group, and Merrill Lynch. Former VP & Asia Manager for Workspace Virtualization Engineering at Morgan Stanley, serving as the primary APAC escalation lead for VDI issues across APAC, EMEA, and NA. Architected global VDI blueprints supporting 120,000 desktops and authored 8 global white papers. Hands-on innovator with proven ability to build AI-powered automation tools, dashboards, and agentic systems.",
-  "ai_projects": [
-    {
-      "title": "Production Next.js AI Portal with Multilingual LLM Chatbot",
-      "description": "Built aibreeds-demo.com with multilingual LLM chatbot and translation engine",
-      "tech_stack": ["Next.js", "LLM", "Translation Engine"],
-      "impact": "Production deployment, multi-language support"
+  "timestamp": "2026-03-30T06:02:48.406Z",
+  "sourceFile": "C:\\Users\\haujo\\projects\\DEV\\ask_aijohncareer\\src\\data\\john_profile.json",
+  "fileSize": 49224,
+  "profile": {
+    "metadata": {
+      "name": "John Hau",
+      "title": "Senior Technology Leader, VP Workspace Virtualization Engineering",
+      "location": "Yuen Long District, Hong Kong SAR",
+      "email": "haujon001@gmail.com",
+      "phone": "+852 5722 2007",
+      "linkedin": "linkedin.com/in/johnhau",
+      "availability": "Immediate",
+      "resume_source": "JohnHauResume2026_MorganStanley.txt",
+      "years_experience": 27.33,
+      "experience_timeline": {
+        "started": 1995,
+        "career_break_start": "August 2020",
+        "career_break_end": "November 2023",
+        "ended": "July 2025",
+        "total_span_years": 30.58,
+        "career_break_years": 3.25,
+        "actual_work_experience_years": 27.33,
+        "notes": "Calculator: (1995-July 2025: 30 years 7 months) minus (Aug 2020-Nov 2023: 3 years 3 months) = 27 years 4 months"
+      }
     },
-    {
-      "title": "Agentic AI Trading Prototype",
-      "description": "Multi-LLM ensemble for autonomous decision workflows",
-      "tech_stack": ["Multi-LLM Ensembles", "Trading Logic", "Agentic Framework"],
-      "impact": "Autonomous trading decisions, LLM orchestration"
-    },
-    {
-      "title": "Global Economic Visualization Dashboard",
-      "description": "Plotly.js + Python dashboard with AI-verified insights for GDP, Population, Debt analysis",
-      "url": "https://sleek-ravine-jfj9.here.now/",
-      "tech_stack": ["Plotly.js", "Python", "AI Validation"],
-      "impact": "Published dashboard, data-driven insights"
-    },
-    {
-      "title": "AI-Augmented Dashboards with Explainability",
-      "description": "Built dashboards with explainability panels, unified controls, and automated QA validation",
-      "tech_stack": ["PowerBI", "Python", "QA Automation"],
-      "impact": "Enhanced operational intelligence, transparency"
-    },
-    {
-      "title": "Linux-Based LLM Inference Pipelines",
-      "description": "Personal R&D: GPU-accelerated model testing and containerized AI workflows",
-      "tech_stack": ["Linux", "GPU", "LLM", "Docker"],
-      "impact": "Advanced ML ops, containerized inference"
-    }
-  ],
-  "linkedin_recommendations": [
-    {
-      "rank": 1,
-      "recommender_name": "Tony Kwan",
-      "recommender_title": "Vice President",
-      "recommender_company": "JPMorgan Chase & Co.",
-      "location": "Hong Kong",
-      "relationship": "Colleague - Winops Team",
-      "date": "August 16, 2019",
-      "recommendation": "John is a result-oriented and client-focused technologist. I have worked with him on the performance load test of virtual desktop running on VMware ESX cluster. John came up with a white paper that answered the consolidation ratio of virtual desktops which was critical for global cost allocation and capacity management. I have also worked with John on a major project in Singapore to move users from physical machines to VMs in 2015. He is dedicated and very detailed-mind. John would be a perfect candidate for MNCs who are looking for strong technical leader that is attention to details and highly engaged with his clients and key stakeholders."
-    },
-    {
-      "rank": 2,
-      "recommender_name": "Thai Khaou",
-      "recommender_title": "Executive Director",
-      "recommender_company": "Morgan Stanley",
-      "location": "Hong Kong",
-      "relationship": "Colleague - Web Team, worked closely on other projects",
-      "date": "May 4, 2019",
-      "recommendation": "I had the pleasure of working with John. John had always been putting client first. John had an exception working style where he was never afraid to seek answers even through senior managers as his objective was to ensure our IT solutions met business requirements. John had shown dedications in successfully managing several large complex IT infrastructure projects and among those were related with critical trading applications and providing end to and innovative global solution (through Cloud offering technologies) of multi-vendor support to the business. John was an excellent communicator with high engagement level and possessed the leadership skills to fast track delivery of IT solutions across teams' collaborations. I would recommend John for employer(s) looking for a strong technology leader who is innovative and passionate in solving or improving the business."
-    },
-    {
-      "rank": 3,
-      "recommender_name": "Jos Dikhoff",
-      "recommender_title": "Board member - Sales Fanatic and Sales Coach",
-      "recommender_company": "LoginVSI",
-      "location": "Europe",
-      "relationship": "Vendor/Client relationship",
-      "date": "May 3, 2019",
-      "recommendation": "When we first met with John back in 2011, he immediately understood the value of Login VSI for the virtual desktop infrastructure at Morgan Stanley. As an early adopter he proved to be able to spot a new technology and translate that into long term assets for the company. Over the years we have worked together, John showed continuous interest in proposing new functionalities and areas of improvements based on both vision and hands on experience. He assessed new offerings quickly by translating functions to business needs and business values for the company. And last but definitely not least, John was always smiling, to the point but open in the past and communicated and accessible in case we needed him."
-    },
-    {
-      "rank": 4,
-      "recommender_name": "Bishwaranjan Sandhu",
-      "recommender_title": "NET 10 | C# Angular AI/Bot | RAG | Agile | Scrum | DevOps | Full Stack Developer",
-      "recommender_company": "Morgan Stanley (Byggieneste)",
-      "location": "London",
-      "relationship": "Team Member - Developer, Global Virtual Team",
-      "date": "May 3, 2019",
-      "recommendation": "John and I worked for Storefront product for a while at Morgan Stanley and he acted as a technical advisor and manager to our for the product. John is a strategic leader, strong in risk management and client focus. He acted like a product owner to bring to the success and deliver of the overall product and more importantly to the success of the team. I must say he is very articulate in providing the features and design implementations of Store Front where he was the evangelist in leveraging Agile Scrum. We solved many challenges like authentication issues, health checks and also environment set up for efficient development. I really enjoyed working with John and looking forward to work in future too. I would highly recommend John for any enterprise firm in leading an IT infrastructure or product management role."
-    },
-    {
-      "rank": 5,
-      "recommender_name": "Ali Choubandi",
-      "recommender_title": "Vice President DevEx Platform Enablement Lead & SDLC Optimisation | Global Programme Management | Transformational Change",
-      "recommender_company": "Morgan Stanley",
-      "location": "Canada",
-      "relationship": "Colleague - Project Manager (XenApp Trading Plant), Global Virtual Team",
-      "date": "April 26, 2019",
-      "recommendation": "John is a fantastic person to have on the team in the fact that he's strong technical lead who has the unique ability to be an excellent problem solver, great at technical documentation and is always willing to learn from others and take one challenges. With this in mind, John has always taken the time to consider the needs of the business/clients during the programs I have worked with him on. I worked with John when leading a global program for business revenue generation, where John was the Stream Lead of Application Remediation (Citrix XenApp External trading Plant). Some of the program challenges were that the application itself had little documentation and written processes, and roles and responsibilities across different global teams were either undocumented or unclear. John took on the huge and complex challenge to reverse engineer the trading application that involved substantial integration with others systems including our low latency plant. In turn John designed the overall architecture for the solution working diligently with various teams to uncover the document the processes, trained the necessary teams and came up with a foundation of Roles and Responsibilities model to improve the overall support processes. John is well suited in leading complex enterprise technology solutions and I would highly recommend John to any team for a for a leadership role as he has extensive experiences both from both a technical and soft skills perspective."
-    },
-    {
-      "rank": 6,
-      "recommender_name": "Sheeba Khadeer",
-      "recommender_title": "Digital Leader | Driving Revenue Growth and Customer Experience across Global Financial Institutions",
-      "recommender_company": "Global Financial Institution Client",
-      "location": "Hong Kong",
-      "relationship": "Client/Stakeholder",
-      "date": "April 22, 2019",
-      "recommendation": "John Hau was a pleasure to work with. He worked with our team to recommend solutions for performance optimization and virtualization projects. His technical expertise and relationship management have created a huge impact in the areas we worked together. I highly recommend him and he will be a great value add with his leadership and technical skills in any field he chooses to."
-    },
-    {
-      "rank": 7,
-      "recommender_name": "Alex Cheung",
-      "recommender_title": "Technical Engineer",
-      "recommender_company": "Morgan Stanley",
-      "location": "Hong Kong",
-      "relationship": "Direct report - Virtualization Engineering Team",
-      "date": "April 16, 2019",
-      "recommendation": "John is a detail-minded person who is enthusiastic in solving technology problems. I've known John for over 10 years where we've worked together at Merrill Lynch and most recently at Morgan Stanley where he was the Asia lead of the Workspace Virtualization Engineering team, as well as the lead engineer for the Storefront project. He was responsible to deliver a remote access portal for firm-wide employees at a global scale. His strong execution skills together with the ability to collaborate with various groups had played a key role in the success of the project."
-    },
-    {
-      "rank": 8,
-      "recommender_name": "Abderrahman NADIR",
-      "recommender_title": "Senior Project/Program Manager | Cybersecurity | Cloud Computing | IT OT Telecom",
-      "recommender_company": "Morgan Stanley",
-      "credentials": "PMP, PMI-ACP, ITIL, CompTIA Cloud Essentials",
-      "location": "Canada",
-      "relationship": "Colleague - Project Manager, you led the team",
-      "date": "April 9, 2019",
-      "recommendation": "As a project manager, I had the chance to work with John at Morgan Stanley. John was leading the workspace virtualization engineering team. We worked on the new employees' remote access web portal developement and deployment across North America, Europe and Asia. John is detailed, honest and above all result oriented. John always helped to address the project risks and the encountered technical issues and made sure the operation teams get all the documentation and architecture diagrams. Support model 'Ready For Business' scripts and so on, to ensure smooth transition and excellent support to the Business Units. This was one of the key success factors to implement the new remote access web portal into production. Also, John Helped implement a project management methodology combining Agile Scrum/Kanban and Waterfall with the goal of delivering several releases per year. I strongly recommend John for a work-space virtualization engineering lead role in a large enterprise."
-    },
-    {
-      "rank": 9,
-      "recommender_name": "Alexandre Cing-Mars",
-      "recommender_title": "Director | DevOps, SE, Champion | Desktop & SCCM OSD Engineer",
-      "recommender_company": "Morgan Stanley - Endpoint Platform Squad",
-      "location": "Tokyo",
-      "relationship": "Colleague - Desktop Engineer, VDI Performance Lead",
-      "date": "April 7, 2019",
-      "recommendation": "I worked closely with John for the Workspace Evolution Project in Shanghai. John was the lead engineer in the project and he went above and beyond for our internal clients. Providing deep analysis and high level troubleshooting, his knowledge and expertise helped us understand one of the most challenging issues we had seen. He also provided expertise and guidance from a performance point of view for our research users and one of their application. John knowledge is not limited to engineering but he understands desktops and networking so it's really easy and pleasant to work with a John knowledge."
-    },
-    {
-      "rank": 10,
-      "recommender_name": "Monica Wong",
-      "recommender_title": "Project Manager, Independent Contractor",
-      "recommender_company": "KPMG LLP",
-      "credentials": "PMP",
-      "location": "Canada",
-      "relationship": "Colleague - Project Manager, Global Virtual Team",
-      "date": "April 2, 2019",
-      "recommendation": "I had the pleasure of working with John and his team on a virtualization project where he was the lead engineer in delivering the global solution. His technical expertises, attention to details and dedication made the project a success. I recommend John if are looking for a highly competent engineer with the ability to be creativity enough to think outside of the box and device ways and means to improve existing systems and innovate new ones."
-    },
-    {
-      "rank": 11,
-      "recommender_name": "Noel Gorrell",
-      "recommender_title": "Vice President, Business Technology Risk Asia",
-      "recommender_company": "Morgan Stanley",
-      "credentials": "CISSP, CRISC",
-      "location": "Australia",
-      "relationship": "Colleague - EUS Team",
-      "date": "April 2, 2019",
-      "recommendation": "John was an invaluable resource to our organisation for supporting the engineering, deployment and ongoing troubleshooting required to ensure a positive client experience. Knowledgeable and personable, a pleasure to work with."
-    },
-    {
-      "rank": 12,
-      "recommender_name": "Froyo Yao",
-      "recommender_title": "Technical Account Manager",
-      "recommender_company": "Amazon Web Services (AWS)",
-      "location": "Shanghai",
-      "relationship": "Direct report - Virtualization Engineering Team",
-      "date": "April 1, 2019",
-      "recommendation": "I'm so proud to have John as my manager who is a great mentor that his advices help me a lot in both daily work and life. John is passionate, client focused, that he led the engineering team and driven multiple functional group people to deliver the amazing product effectively with strong execution capability."
-    },
-    {
-      "rank": 13,
-      "recommender_name": "Owen Reynolds",
-      "recommender_title": "World of EUC Leader Montreal | Citrix CTA (RIP) | vExpert",
-      "recommender_company": "Citrix Community",
-      "location": "Canada",
-      "relationship": "Colleague - Virtualization Engineering Team Member, Global Virtual Team",
-      "date": "March 30, 2019",
-      "recommendation": "I worked with John from Aug 2017 to present-day on a global roll-out strategy for a vital Citrix component. The project involved technical experts and developers in all three major time-zones (NA, EU and Asia) and involved a great deal of coordination. John was an invaluable resource to coordinate the various groups to work towards the wider goal of rolling out the product into production. One of the ways this collaboration was successful was John's ability to facilitate and coordinate the various groups."
-    },
-    {
-      "rank": 14,
-      "recommender_name": "Simon Wong",
-      "recommender_title": "Vice President",
-      "recommender_company": "Morgan Stanley",
-      "location": "Hong Kong",
-      "relationship": "Mentor/Peer - IT Security Team",
-      "date": "March 29, 2019",
-      "recommendation": "John is team driven and technical in nature. Wanting to do what's right for the firm and collaborating with teams from multidisciplinary fields to work together to come up with solutions to improve stability and efficiency. In addition, John wrote multiple white papers to conclude technical analysis whether certain designs were capable to handle loads from a scalable perspective."
-    },
-    {
-      "rank": 15,
-      "recommender_name": "Da Deng",
-      "recommender_title": "MTS (Member of Technical Staff)",
-      "recommender_company": "VMware",
-      "location": "Shanghai",
-      "relationship": "Colleague - Developer",
-      "date": "March 29, 2019",
-      "recommendation": "John is the Citrix Storefront Lead responsible to deliver to remote access myDesk global web portal used by Firmwide employees. John has been instrumental in applying Agile Scrum and DevOps model throughout the delivery of the SDLC of product. Besides, John being technically strong, he has excellent communication skills and ensure that the product requirements are well understood amongst the key stakeholders so that technically dev, engineering, operations, product management, quality assurance and project management teams are all on the same page. John would run the extra mileage to raise risks and escalate issues to senior management to ensure timely mitigation."
-    },
-    {
-      "rank": 16,
-      "recommender_name": "Gábor Sz.",
-      "recommender_title": "Freelance DevOps Engineer",
-      "recommender_company": "Independent",
-      "location": "Budapest",
-      "relationship": "Colleague - Developer, Virtualization Engineering Team",
-      "date": "March 28, 2019",
-      "recommendation": "John was an experienced, valuable contributor and a skilled engineer in our team prior to me joining it. After a well deserved promotion he became the engineering lead in a critical infrastructure project where I was a contributing engineer. He was great at taking ownership of a project and running with it, while carefully managing the various stakeholders' requirements, and all the communication and politics that it entails. I would recommend John for an employer who is looking for an accomplished engineer and leader who can take on complex technical projects and see them through their execution."
-    }
-  ],
-  "major_achievements": [
-    {
-      "achievement": "Architected Global VDI Blueprints",
-      "company": "Morgan Stanley",
-      "scale": "120,000 desktops",
-      "impact": "$1.4M OPEX reduction, $640K vendor cost avoidance"
-    },
-    {
-      "achievement": "Resolved Multi-Year Patching Backlog",
-      "company": "AIA International Ltd",
-      "metric": "58% → 100% patch compliance",
-      "duration": "2-year backlog",
-      "impact": "Zero critical vulnerabilities"
-    },
-    {
-      "achievement": "Windows 11 Migration at Scale",
-      "company": "AIA International Ltd",
-      "scale": "3,400 devices",
-      "cost_savings": "HK$3.5M",
-      "impact": "Performance & security improvements"
-    },
-    {
-      "achievement": "ITSM/ETL Workflow Automation",
-      "company": "Bank of America + AIA",
-      "fte_saved": "7 FTE (BoA), 144 man-days/year (AIA)",
-      "hours_saved": "14,390 hours annually",
-      "impact": "70% processing efficiency gain"
-    },
-    {
-      "achievement": "3-Tier Backup Architecture Redesign",
-      "company": "Edge Technology Group",
-      "improvement": "40–68% → 99% success rate",
-      "impact": "Eliminated data loss incidents"
-    },
-    {
-      "achievement": "VDI Performance Optimization",
-      "company": "Morgan Stanley",
-      "improvement": "40% latency reduction for China developers (800+ users)",
-      "tech": "LoginVSI benchmarking, performance analysis"
-    },
-    {
-      "achievement": "Citrix Remote Access Portal",
-      "company": "Morgan Stanley",
-      "scale": "70,000 users",
-      "security": "Secure StoreFront implementation"
-    },
-    {
-      "achievement": "Global White Papers & Standards",
-      "company": "Morgan Stanley",
-      "count": "8 white papers",
-      "impact": "AppSense Performance Manager optimization (15% server cost reduction), Citrix Policy analysis for bandwidth restriction, VDI infrastructure load testing, HDX technology analysis, XenApp user density optimization, Trading app performance analysis, Citrix Storefront capacity analysis",
-      "adoption": "Firm-wide VDI blueprints"
-    },
-    {
-      "achievement": "Cutting-Edge Trading System Implementation",
-      "company": "Morgan Stanley",
-      "metric": "US$1M first year revenue",
-      "impact": "High-regarded electronic trading system, led to integration of additional trading apps"
-    },
-    {
-      "achievement": "Desktop Transformation Strategy",
-      "company": "Morgan Stanley",
-      "scale": "4,000 users (Flex Desk blueprint)",
-      "impact": "Modernized End User eXperience office blueprint with white paper validation of VDI vs HDI density"
-    },
-    {
-      "achievement": "M&A Business Acceleration",
-      "company": "Morgan Stanley",
-      "scale": "16,000 wealth management financial advisers, 600+ branch offices globally",
-      "impact": "Engineered virtual desktop solution using Citrix and VMware technologies"
-    },
-    {
-      "achievement": "Vendor Stability Management",
-      "company": "Morgan Stanley",
-      "scale": "8,000 vendor users globally",
-      "impact": "Identified and resolved VDI stability issues through workload analysis and stakeholder engagement"
-    },
-    {
-      "achievement": "24/7 End User Experience Monitoring",
-      "company": "Morgan Stanley",
-      "impact": "Implemented tools to measure app performance across 24x7 operations, reducing support team man-hours and improving customer satisfaction"
-    },
-    {
-      "achievement": "Server Build Success Rate Improvement",
-      "company": "Morgan Stanley",
-      "improvement": "50% → 99% build success rate",
-      "method": "Co-located Citrix database with infrastructure servers within same country"
-    },
-    {
-      "achievement": "Monitoring & Observability Implementation",
-      "company": "Morgan Stanley",
-      "metric": "40% reduction in user calls",
-      "tech": "SCOM integration, ServiceNow API automation, SPLUNK dashboards",
-      "impact": "Proactive monitoring with holistic view of infrastructure"
-    },
-    {
-      "achievement": "Hyperconvergence Technology Exploration",
-      "company": "Morgan Stanley",
-      "impact": "Evaluated high-performance hyper-convergence computing to move away from costly traditional NAS/SAN storage"
-    },
-    {
-      "achievement": "Virtual Desktop Deployment Acceleration",
-      "company": "Morgan Stanley",
-      "scale": "1,000+ virtual desktops for BCP (Hong Kong and Japan WAR Project)",
-      "impact": "Deployed globally with +60,000 virtual desktops"
-    },
-    {
-      "achievement": "LoginVSI Performance Load Test Tool Introduction",
-      "company": "Morgan Stanley",
-      "impact": "Globally introduced and deployed for effective VDI and SBC environment load testing; now purchased and used globally"
-    },
-    {
-      "achievement": "AppSense Performance Manager Deployment",
-      "company": "Morgan Stanley",
-      "scale": "50% of Citrix XenApp farm",
-      "impact": "Reduced server hardware footprint by 15%"
-    },
-    {
-      "achievement": "Remote Office VDI Optimization",
-      "company": "Morgan Stanley",
-      "impact": "Optimized user experience for remote offices using Citrix HDX technology; resolved flash/media, printing, and multi-monitor issues"
-    },
-    {
-      "achievement": "India Slow App Performance Resolution",
-      "company": "Morgan Stanley",
-      "improvement": "Reduced Citrix app load time from 25 mins → 1.5 mins for India users"
-    },
-    {
-      "achievement": "IGEL Thin Client Infrastructure",
-      "company": "Morgan Stanley",
-      "impact": "Introduced IGEL thin client and setup backend RM infrastructure for Asia; initiated replacement in all video conference rooms"
-    },
-    {
-      "achievement": "Code Generation Assistance",
-      "company": "Morgan Stanley",
-      "impact": "Wrote PowerShell scripts for automated business reports checkout and Virtual Desktops availability monitoring"
-    },
-    {
-      "achievement": "Server Virtualization Program",
-      "company": "Merrill Lynch",
-      "coverage": "26% of servers virtualized",
-      "savings": "HK$2M annually"
-    },
-    {
-      "achievement": "99% Audit Pass Rate",
-      "company": "Bank of America",
-      "metric": "Across all patch cycles",
-      "sla_compliance": "99%"
-    },
-    {
-      "achievement": "Multi-Region Data Center Refresh",
-      "company": "Merrill Lynch",
-      "scale": "Hong Kong, Taiwan, Korea, Beijing, Shanghai, India, Singapore, Japan",
-      "impact": "Standardized print services, server infrastructure, and hardware refreshes across PacRIM"
-    },
-    {
-      "achievement": "Japan External Trading Plant Build",
-      "company": "Morgan Stanley",
-      "impact": "Built complete Citrix XenApp trading infrastructure including OS build, apps installation, configuration, and testing coordination"
-    },
-    {
-      "achievement": "Knowledge Transfer & Team Development",
-      "company": "Morgan Stanley",
-      "impact": "Successfully trained Asia Application Team, Windows Server team, and Winops team; offloaded 70% of virtualization problem cases"
-    },
-    {
-      "achievement": "Initial VDI Deployment Leadership",
-      "company": "Morgan Stanley",
-      "scale": "600 users in Australia (first critical production VDI)",
-      "impact": "Successfully deployed and supported Citrix XenDesktop for default PC usage; expanded globally to 60,000 desktops"
-    }
-  ],
-  "professional_experience": [
-    {
-      "company": "AIA International Ltd",
-      "title": "Associate Director, Infrastructure Services",
-      "period": "Dec 2023 – Jul 2025",
-      "scope": "Head of EUS/EUC, Service Desk, ITDR, Production Control | 50+ staff, APAC region",
-      "highlights": [
-        "Led End User Services operations for 50+ staff across APAC, ensuring stable endpoint and virtual desktop services",
-        "Strengthened patch compliance from 58% → 100%, resolving a critical 2-year backlog through governance and automation",
-        "Delivered Windows 11 migration for 3,400 devices, saving HK$3.5M while improving performance and security",
-        "Automated ITSM workflows using Power Query + PowerShell, saving 144 man-days annually",
-        "Implemented ETL automation tools improving operational efficiency by ~30%",
-        "Built PowerBI dashboards for SLA, KPI, and operational performance monitoring across APAC",
-        "Standardized SOPs, escalation flows, and communication guidelines, improving service quality by one full grade",
-        "Executed HKMA-aligned DR drills ensuring full regulatory compliance",
-        "Led 1,700-user office relocation with zero downtime and seamless service continuity",
-        "Improved operational productivity by ~30% through automation and process optimization",
-        "Strengthened cross-team collaboration across APAC regions and global support model alignment"
+    "summary": "Senior technology leader with 27+ years of IT infrastructure experience across Virtual Desktop Infrastructure (VDI), Desktop in Data Center (DiDC), End User Computing (EUC), lifecycle management, performance engineering, and global escalation leadership across major financial institutions: Morgan Stanley, Bank of America, AIA, Edge Technology Group, and Merrill Lynch. Former VP & Asia Manager for Workspace Virtualization Engineering at Morgan Stanley, serving as the primary APAC escalation lead for VDI issues across APAC, EMEA, and NA. Architected global VDI blueprints supporting 120,000 desktops and authored 8 global white papers. Hands-on innovator with proven ability to build AI-powered automation tools, dashboards, and agentic systems.",
+    "ai_projects": [
+      {
+        "title": "Production Next.js AI Portal with Multilingual LLM Chatbot",
+        "description": "Built aibreeds-demo.com with multilingual LLM chatbot and translation engine",
+        "tech_stack": [
+          "Next.js",
+          "LLM",
+          "Translation Engine"
+        ],
+        "impact": "Production deployment, multi-language support"
+      },
+      {
+        "title": "Agentic AI Trading Prototype",
+        "description": "Multi-LLM ensemble for autonomous decision workflows",
+        "tech_stack": [
+          "Multi-LLM Ensembles",
+          "Trading Logic",
+          "Agentic Framework"
+        ],
+        "impact": "Autonomous trading decisions, LLM orchestration"
+      },
+      {
+        "title": "Global Economic Visualization Dashboard",
+        "description": "Plotly.js + Python dashboard with AI-verified insights for GDP, Population, Debt analysis",
+        "url": "https://sleek-ravine-jfj9.here.now/",
+        "tech_stack": [
+          "Plotly.js",
+          "Python",
+          "AI Validation"
+        ],
+        "impact": "Published dashboard, data-driven insights"
+      },
+      {
+        "title": "AI-Augmented Dashboards with Explainability",
+        "description": "Built dashboards with explainability panels, unified controls, and automated QA validation",
+        "tech_stack": [
+          "PowerBI",
+          "Python",
+          "QA Automation"
+        ],
+        "impact": "Enhanced operational intelligence, transparency"
+      },
+      {
+        "title": "Linux-Based LLM Inference Pipelines",
+        "description": "Personal R&D: GPU-accelerated model testing and containerized AI workflows",
+        "tech_stack": [
+          "Linux",
+          "GPU",
+          "LLM",
+          "Docker"
+        ],
+        "impact": "Advanced ML ops, containerized inference"
+      }
+    ],
+    "linkedin_recommendations": [
+      {
+        "rank": 1,
+        "recommender_name": "Tony Kwan",
+        "recommender_title": "Vice President",
+        "recommender_company": "JPMorgan Chase & Co.",
+        "location": "Hong Kong",
+        "relationship": "Colleague - Winops Team",
+        "date": "August 16, 2019",
+        "recommendation": "John is a result-oriented and client-focused technologist. I have worked with him on the performance load test of virtual desktop running on VMware ESX cluster. John came up with a white paper that answered the consolidation ratio of virtual desktops which was critical for global cost allocation and capacity management. I have also worked with John on a major project in Singapore to move users from physical machines to VMs in 2015. He is dedicated and very detailed-mind. John would be a perfect candidate for MNCs who are looking for strong technical leader that is attention to details and highly engaged with his clients and key stakeholders."
+      },
+      {
+        "rank": 2,
+        "recommender_name": "Thai Khaou",
+        "recommender_title": "Executive Director",
+        "recommender_company": "Morgan Stanley",
+        "location": "Hong Kong",
+        "relationship": "Colleague - Web Team, worked closely on other projects",
+        "date": "May 4, 2019",
+        "recommendation": "I had the pleasure of working with John. John had always been putting client first. John had an exception working style where he was never afraid to seek answers even through senior managers as his objective was to ensure our IT solutions met business requirements. John had shown dedications in successfully managing several large complex IT infrastructure projects and among those were related with critical trading applications and providing end to and innovative global solution (through Cloud offering technologies) of multi-vendor support to the business. John was an excellent communicator with high engagement level and possessed the leadership skills to fast track delivery of IT solutions across teams' collaborations. I would recommend John for employer(s) looking for a strong technology leader who is innovative and passionate in solving or improving the business."
+      },
+      {
+        "rank": 3,
+        "recommender_name": "Jos Dikhoff",
+        "recommender_title": "Board member - Sales Fanatic and Sales Coach",
+        "recommender_company": "LoginVSI",
+        "location": "Europe",
+        "relationship": "Vendor/Client relationship",
+        "date": "May 3, 2019",
+        "recommendation": "When we first met with John back in 2011, he immediately understood the value of Login VSI for the virtual desktop infrastructure at Morgan Stanley. As an early adopter he proved to be able to spot a new technology and translate that into long term assets for the company. Over the years we have worked together, John showed continuous interest in proposing new functionalities and areas of improvements based on both vision and hands on experience. He assessed new offerings quickly by translating functions to business needs and business values for the company. And last but definitely not least, John was always smiling, to the point but open in the past and communicated and accessible in case we needed him."
+      },
+      {
+        "rank": 4,
+        "recommender_name": "Bishwaranjan Sandhu",
+        "recommender_title": "NET 10 | C# Angular AI/Bot | RAG | Agile | Scrum | DevOps | Full Stack Developer",
+        "recommender_company": "Morgan Stanley (Byggieneste)",
+        "location": "London",
+        "relationship": "Team Member - Developer, Global Virtual Team",
+        "date": "May 3, 2019",
+        "recommendation": "John and I worked for Storefront product for a while at Morgan Stanley and he acted as a technical advisor and manager to our for the product. John is a strategic leader, strong in risk management and client focus. He acted like a product owner to bring to the success and deliver of the overall product and more importantly to the success of the team. I must say he is very articulate in providing the features and design implementations of Store Front where he was the evangelist in leveraging Agile Scrum. We solved many challenges like authentication issues, health checks and also environment set up for efficient development. I really enjoyed working with John and looking forward to work in future too. I would highly recommend John for any enterprise firm in leading an IT infrastructure or product management role."
+      },
+      {
+        "rank": 5,
+        "recommender_name": "Ali Choubandi",
+        "recommender_title": "Vice President DevEx Platform Enablement Lead & SDLC Optimisation | Global Programme Management | Transformational Change",
+        "recommender_company": "Morgan Stanley",
+        "location": "Canada",
+        "relationship": "Colleague - Project Manager (XenApp Trading Plant), Global Virtual Team",
+        "date": "April 26, 2019",
+        "recommendation": "John is a fantastic person to have on the team in the fact that he's strong technical lead who has the unique ability to be an excellent problem solver, great at technical documentation and is always willing to learn from others and take one challenges. With this in mind, John has always taken the time to consider the needs of the business/clients during the programs I have worked with him on. I worked with John when leading a global program for business revenue generation, where John was the Stream Lead of Application Remediation (Citrix XenApp External trading Plant). Some of the program challenges were that the application itself had little documentation and written processes, and roles and responsibilities across different global teams were either undocumented or unclear. John took on the huge and complex challenge to reverse engineer the trading application that involved substantial integration with others systems including our low latency plant. In turn John designed the overall architecture for the solution working diligently with various teams to uncover the document the processes, trained the necessary teams and came up with a foundation of Roles and Responsibilities model to improve the overall support processes. John is well suited in leading complex enterprise technology solutions and I would highly recommend John to any team for a for a leadership role as he has extensive experiences both from both a technical and soft skills perspective."
+      },
+      {
+        "rank": 6,
+        "recommender_name": "Sheeba Khadeer",
+        "recommender_title": "Digital Leader | Driving Revenue Growth and Customer Experience across Global Financial Institutions",
+        "recommender_company": "Global Financial Institution Client",
+        "location": "Hong Kong",
+        "relationship": "Client/Stakeholder",
+        "date": "April 22, 2019",
+        "recommendation": "John Hau was a pleasure to work with. He worked with our team to recommend solutions for performance optimization and virtualization projects. His technical expertise and relationship management have created a huge impact in the areas we worked together. I highly recommend him and he will be a great value add with his leadership and technical skills in any field he chooses to."
+      },
+      {
+        "rank": 7,
+        "recommender_name": "Alex Cheung",
+        "recommender_title": "Technical Engineer",
+        "recommender_company": "Morgan Stanley",
+        "location": "Hong Kong",
+        "relationship": "Direct report - Virtualization Engineering Team",
+        "date": "April 16, 2019",
+        "recommendation": "John is a detail-minded person who is enthusiastic in solving technology problems. I've known John for over 10 years where we've worked together at Merrill Lynch and most recently at Morgan Stanley where he was the Asia lead of the Workspace Virtualization Engineering team, as well as the lead engineer for the Storefront project. He was responsible to deliver a remote access portal for firm-wide employees at a global scale. His strong execution skills together with the ability to collaborate with various groups had played a key role in the success of the project."
+      },
+      {
+        "rank": 8,
+        "recommender_name": "Abderrahman NADIR",
+        "recommender_title": "Senior Project/Program Manager | Cybersecurity | Cloud Computing | IT OT Telecom",
+        "recommender_company": "Morgan Stanley",
+        "credentials": "PMP, PMI-ACP, ITIL, CompTIA Cloud Essentials",
+        "location": "Canada",
+        "relationship": "Colleague - Project Manager, you led the team",
+        "date": "April 9, 2019",
+        "recommendation": "As a project manager, I had the chance to work with John at Morgan Stanley. John was leading the workspace virtualization engineering team. We worked on the new employees' remote access web portal developement and deployment across North America, Europe and Asia. John is detailed, honest and above all result oriented. John always helped to address the project risks and the encountered technical issues and made sure the operation teams get all the documentation and architecture diagrams. Support model 'Ready For Business' scripts and so on, to ensure smooth transition and excellent support to the Business Units. This was one of the key success factors to implement the new remote access web portal into production. Also, John Helped implement a project management methodology combining Agile Scrum/Kanban and Waterfall with the goal of delivering several releases per year. I strongly recommend John for a work-space virtualization engineering lead role in a large enterprise."
+      },
+      {
+        "rank": 9,
+        "recommender_name": "Alexandre Cing-Mars",
+        "recommender_title": "Director | DevOps, SE, Champion | Desktop & SCCM OSD Engineer",
+        "recommender_company": "Morgan Stanley - Endpoint Platform Squad",
+        "location": "Tokyo",
+        "relationship": "Colleague - Desktop Engineer, VDI Performance Lead",
+        "date": "April 7, 2019",
+        "recommendation": "I worked closely with John for the Workspace Evolution Project in Shanghai. John was the lead engineer in the project and he went above and beyond for our internal clients. Providing deep analysis and high level troubleshooting, his knowledge and expertise helped us understand one of the most challenging issues we had seen. He also provided expertise and guidance from a performance point of view for our research users and one of their application. John knowledge is not limited to engineering but he understands desktops and networking so it's really easy and pleasant to work with a John knowledge."
+      },
+      {
+        "rank": 10,
+        "recommender_name": "Monica Wong",
+        "recommender_title": "Project Manager, Independent Contractor",
+        "recommender_company": "KPMG LLP",
+        "credentials": "PMP",
+        "location": "Canada",
+        "relationship": "Colleague - Project Manager, Global Virtual Team",
+        "date": "April 2, 2019",
+        "recommendation": "I had the pleasure of working with John and his team on a virtualization project where he was the lead engineer in delivering the global solution. His technical expertises, attention to details and dedication made the project a success. I recommend John if are looking for a highly competent engineer with the ability to be creativity enough to think outside of the box and device ways and means to improve existing systems and innovate new ones."
+      },
+      {
+        "rank": 11,
+        "recommender_name": "Noel Gorrell",
+        "recommender_title": "Vice President, Business Technology Risk Asia",
+        "recommender_company": "Morgan Stanley",
+        "credentials": "CISSP, CRISC",
+        "location": "Australia",
+        "relationship": "Colleague - EUS Team",
+        "date": "April 2, 2019",
+        "recommendation": "John was an invaluable resource to our organisation for supporting the engineering, deployment and ongoing troubleshooting required to ensure a positive client experience. Knowledgeable and personable, a pleasure to work with."
+      },
+      {
+        "rank": 12,
+        "recommender_name": "Froyo Yao",
+        "recommender_title": "Technical Account Manager",
+        "recommender_company": "Amazon Web Services (AWS)",
+        "location": "Shanghai",
+        "relationship": "Direct report - Virtualization Engineering Team",
+        "date": "April 1, 2019",
+        "recommendation": "I'm so proud to have John as my manager who is a great mentor that his advices help me a lot in both daily work and life. John is passionate, client focused, that he led the engineering team and driven multiple functional group people to deliver the amazing product effectively with strong execution capability."
+      },
+      {
+        "rank": 13,
+        "recommender_name": "Owen Reynolds",
+        "recommender_title": "World of EUC Leader Montreal | Citrix CTA (RIP) | vExpert",
+        "recommender_company": "Citrix Community",
+        "location": "Canada",
+        "relationship": "Colleague - Virtualization Engineering Team Member, Global Virtual Team",
+        "date": "March 30, 2019",
+        "recommendation": "I worked with John from Aug 2017 to present-day on a global roll-out strategy for a vital Citrix component. The project involved technical experts and developers in all three major time-zones (NA, EU and Asia) and involved a great deal of coordination. John was an invaluable resource to coordinate the various groups to work towards the wider goal of rolling out the product into production. One of the ways this collaboration was successful was John's ability to facilitate and coordinate the various groups."
+      },
+      {
+        "rank": 14,
+        "recommender_name": "Simon Wong",
+        "recommender_title": "Vice President",
+        "recommender_company": "Morgan Stanley",
+        "location": "Hong Kong",
+        "relationship": "Mentor/Peer - IT Security Team",
+        "date": "March 29, 2019",
+        "recommendation": "John is team driven and technical in nature. Wanting to do what's right for the firm and collaborating with teams from multidisciplinary fields to work together to come up with solutions to improve stability and efficiency. In addition, John wrote multiple white papers to conclude technical analysis whether certain designs were capable to handle loads from a scalable perspective."
+      },
+      {
+        "rank": 15,
+        "recommender_name": "Da Deng",
+        "recommender_title": "MTS (Member of Technical Staff)",
+        "recommender_company": "VMware",
+        "location": "Shanghai",
+        "relationship": "Colleague - Developer",
+        "date": "March 29, 2019",
+        "recommendation": "John is the Citrix Storefront Lead responsible to deliver to remote access myDesk global web portal used by Firmwide employees. John has been instrumental in applying Agile Scrum and DevOps model throughout the delivery of the SDLC of product. Besides, John being technically strong, he has excellent communication skills and ensure that the product requirements are well understood amongst the key stakeholders so that technically dev, engineering, operations, product management, quality assurance and project management teams are all on the same page. John would run the extra mileage to raise risks and escalate issues to senior management to ensure timely mitigation."
+      },
+      {
+        "rank": 16,
+        "recommender_name": "Gábor Sz.",
+        "recommender_title": "Freelance DevOps Engineer",
+        "recommender_company": "Independent",
+        "location": "Budapest",
+        "relationship": "Colleague - Developer, Virtualization Engineering Team",
+        "date": "March 28, 2019",
+        "recommendation": "John was an experienced, valuable contributor and a skilled engineer in our team prior to me joining it. After a well deserved promotion he became the engineering lead in a critical infrastructure project where I was a contributing engineer. He was great at taking ownership of a project and running with it, while carefully managing the various stakeholders' requirements, and all the communication and politics that it entails. I would recommend John for an employer who is looking for an accomplished engineer and leader who can take on complex technical projects and see them through their execution."
+      }
+    ],
+    "major_achievements": [
+      {
+        "achievement": "Architected Global VDI Blueprints",
+        "company": "Morgan Stanley",
+        "scale": "120,000 desktops",
+        "impact": "$1.4M OPEX reduction, $640K vendor cost avoidance"
+      },
+      {
+        "achievement": "Resolved Multi-Year Patching Backlog",
+        "company": "AIA International Ltd",
+        "metric": "58% → 100% patch compliance",
+        "duration": "2-year backlog",
+        "impact": "Zero critical vulnerabilities"
+      },
+      {
+        "achievement": "Windows 11 Migration at Scale",
+        "company": "AIA International Ltd",
+        "scale": "3,400 devices",
+        "cost_savings": "HK$3.5M",
+        "impact": "Performance & security improvements"
+      },
+      {
+        "achievement": "ITSM/ETL Workflow Automation",
+        "company": "Bank of America + AIA",
+        "fte_saved": "7 FTE (BoA), 144 man-days/year (AIA)",
+        "hours_saved": "14,390 hours annually",
+        "impact": "70% processing efficiency gain"
+      },
+      {
+        "achievement": "3-Tier Backup Architecture Redesign",
+        "company": "Edge Technology Group",
+        "improvement": "40–68% → 99% success rate",
+        "impact": "Eliminated data loss incidents"
+      },
+      {
+        "achievement": "VDI Performance Optimization",
+        "company": "Morgan Stanley",
+        "improvement": "40% latency reduction for China developers (800+ users)",
+        "tech": "LoginVSI benchmarking, performance analysis"
+      },
+      {
+        "achievement": "Citrix Remote Access Portal",
+        "company": "Morgan Stanley",
+        "scale": "70,000 users",
+        "security": "Secure StoreFront implementation"
+      },
+      {
+        "achievement": "Global White Papers & Standards",
+        "company": "Morgan Stanley",
+        "count": "8 white papers",
+        "impact": "AppSense Performance Manager optimization (15% server cost reduction), Citrix Policy analysis for bandwidth restriction, VDI infrastructure load testing, HDX technology analysis, XenApp user density optimization, Trading app performance analysis, Citrix Storefront capacity analysis",
+        "adoption": "Firm-wide VDI blueprints"
+      },
+      {
+        "achievement": "Cutting-Edge Trading System Implementation",
+        "company": "Morgan Stanley",
+        "metric": "US$1M first year revenue",
+        "impact": "High-regarded electronic trading system, led to integration of additional trading apps"
+      },
+      {
+        "achievement": "Desktop Transformation Strategy",
+        "company": "Morgan Stanley",
+        "scale": "4,000 users (Flex Desk blueprint)",
+        "impact": "Modernized End User eXperience office blueprint with white paper validation of VDI vs HDI density"
+      },
+      {
+        "achievement": "M&A Business Acceleration",
+        "company": "Morgan Stanley",
+        "scale": "16,000 wealth management financial advisers, 600+ branch offices globally",
+        "impact": "Engineered virtual desktop solution using Citrix and VMware technologies"
+      },
+      {
+        "achievement": "Vendor Stability Management",
+        "company": "Morgan Stanley",
+        "scale": "8,000 vendor users globally",
+        "impact": "Identified and resolved VDI stability issues through workload analysis and stakeholder engagement"
+      },
+      {
+        "achievement": "24/7 End User Experience Monitoring",
+        "company": "Morgan Stanley",
+        "impact": "Implemented tools to measure app performance across 24x7 operations, reducing support team man-hours and improving customer satisfaction"
+      },
+      {
+        "achievement": "Server Build Success Rate Improvement",
+        "company": "Morgan Stanley",
+        "improvement": "50% → 99% build success rate",
+        "method": "Co-located Citrix database with infrastructure servers within same country"
+      },
+      {
+        "achievement": "Monitoring & Observability Implementation",
+        "company": "Morgan Stanley",
+        "metric": "40% reduction in user calls",
+        "tech": "SCOM integration, ServiceNow API automation, SPLUNK dashboards",
+        "impact": "Proactive monitoring with holistic view of infrastructure"
+      },
+      {
+        "achievement": "Hyperconvergence Technology Exploration",
+        "company": "Morgan Stanley",
+        "impact": "Evaluated high-performance hyper-convergence computing to move away from costly traditional NAS/SAN storage"
+      },
+      {
+        "achievement": "Virtual Desktop Deployment Acceleration",
+        "company": "Morgan Stanley",
+        "scale": "1,000+ virtual desktops for BCP (Hong Kong and Japan WAR Project)",
+        "impact": "Deployed globally with +60,000 virtual desktops"
+      },
+      {
+        "achievement": "LoginVSI Performance Load Test Tool Introduction",
+        "company": "Morgan Stanley",
+        "impact": "Globally introduced and deployed for effective VDI and SBC environment load testing; now purchased and used globally"
+      },
+      {
+        "achievement": "AppSense Performance Manager Deployment",
+        "company": "Morgan Stanley",
+        "scale": "50% of Citrix XenApp farm",
+        "impact": "Reduced server hardware footprint by 15%"
+      },
+      {
+        "achievement": "Remote Office VDI Optimization",
+        "company": "Morgan Stanley",
+        "impact": "Optimized user experience for remote offices using Citrix HDX technology; resolved flash/media, printing, and multi-monitor issues"
+      },
+      {
+        "achievement": "India Slow App Performance Resolution",
+        "company": "Morgan Stanley",
+        "improvement": "Reduced Citrix app load time from 25 mins → 1.5 mins for India users"
+      },
+      {
+        "achievement": "IGEL Thin Client Infrastructure",
+        "company": "Morgan Stanley",
+        "impact": "Introduced IGEL thin client and setup backend RM infrastructure for Asia; initiated replacement in all video conference rooms"
+      },
+      {
+        "achievement": "Code Generation Assistance",
+        "company": "Morgan Stanley",
+        "impact": "Wrote PowerShell scripts for automated business reports checkout and Virtual Desktops availability monitoring"
+      },
+      {
+        "achievement": "Server Virtualization Program",
+        "company": "Merrill Lynch",
+        "coverage": "26% of servers virtualized",
+        "savings": "HK$2M annually"
+      },
+      {
+        "achievement": "99% Audit Pass Rate",
+        "company": "Bank of America",
+        "metric": "Across all patch cycles",
+        "sla_compliance": "99%"
+      },
+      {
+        "achievement": "Multi-Region Data Center Refresh",
+        "company": "Merrill Lynch",
+        "scale": "Hong Kong, Taiwan, Korea, Beijing, Shanghai, India, Singapore, Japan",
+        "impact": "Standardized print services, server infrastructure, and hardware refreshes across PacRIM"
+      },
+      {
+        "achievement": "Japan External Trading Plant Build",
+        "company": "Morgan Stanley",
+        "impact": "Built complete Citrix XenApp trading infrastructure including OS build, apps installation, configuration, and testing coordination"
+      },
+      {
+        "achievement": "Knowledge Transfer & Team Development",
+        "company": "Morgan Stanley",
+        "impact": "Successfully trained Asia Application Team, Windows Server team, and Winops team; offloaded 70% of virtualization problem cases"
+      },
+      {
+        "achievement": "Initial VDI Deployment Leadership",
+        "company": "Morgan Stanley",
+        "scale": "600 users in Australia (first critical production VDI)",
+        "impact": "Successfully deployed and supported Citrix XenDesktop for default PC usage; expanded globally to 60,000 desktops"
+      }
+    ],
+    "professional_experience": [
+      {
+        "company": "AIA International Ltd",
+        "title": "Associate Director, Infrastructure Services",
+        "period": "Dec 2023 – Jul 2025",
+        "scope": "Head of EUS/EUC, Service Desk, ITDR, Production Control | 50+ staff, APAC region",
+        "highlights": [
+          "Led End User Services operations for 50+ staff across APAC, ensuring stable endpoint and virtual desktop services",
+          "Strengthened patch compliance from 58% → 100%, resolving a critical 2-year backlog through governance and automation",
+          "Delivered Windows 11 migration for 3,400 devices, saving HK$3.5M while improving performance and security",
+          "Automated ITSM workflows using Power Query + PowerShell, saving 144 man-days annually",
+          "Implemented ETL automation tools improving operational efficiency by ~30%",
+          "Built PowerBI dashboards for SLA, KPI, and operational performance monitoring across APAC",
+          "Standardized SOPs, escalation flows, and communication guidelines, improving service quality by one full grade",
+          "Executed HKMA-aligned DR drills ensuring full regulatory compliance",
+          "Led 1,700-user office relocation with zero downtime and seamless service continuity",
+          "Improved operational productivity by ~30% through automation and process optimization",
+          "Strengthened cross-team collaboration across APAC regions and global support model alignment"
+        ]
+      },
+      {
+        "company": "Bank of America",
+        "title": "APAC Security Patching / SME VDI Team Lead",
+        "period": "Nov 2022 – Nov 2023",
+        "scope": "Primary escalation lead for VDI/desktop issues, APAC region | 80,000 users on stateless VDI",
+        "highlights": [
+          "Served as primary escalation lead for VDI and desktop issues for MDs, traders, VVIP, and end-users across APAC",
+          "Supported ~80,000 users on next-gen stateless VDI; conducted deep performance analysis and remediation",
+          "Achieved 99% audit pass rate and 99% SLA compliance across all patch cycles",
+          "Automated ETL and ITSM workflows using Power Query + PowerShell, saving 14,390 hours annually (70% efficiency gain)",
+          "Saved 7 FTE through process automation and workflow optimization",
+          "Delivered comprehensive VDI troubleshooting and PowerShell training across 10 APAC countries",
+          "Standardized patching communications, reducing user complaints by 40%",
+          "Presented restructuring recommendations to global leadership; 2 were adopted globally",
+          "Improved data processing efficiency by ~70% through automation of manual workflows",
+          "Deep dive analysis of India ODC 10K users VPC performance issues"
+        ]
+      },
+      {
+        "company": "Edge Technology Group",
+        "title": "Centralized Services Manager (Systems & Network Engineering)",
+        "period": "Oct 2019 – Aug 2020",
+        "scope": "Systems and network engineering leadership, HK/SG/AU region",
+        "highlights": [
+          "Managed 3 teams with 12 subordinates (systems, network engineering, and service delivery management)",
+          "Responsible for IT governance, systems stability, and IT ops process refinement for Financial Services clients",
+          "Designed 3-tier backup architecture improving success rate from 40–68% → 99%",
+          "Led ISO 27001 and SFC EDSP (External Electronic Data Storage) compliance efforts",
+          "Successfully identified backup failures and deployed solutions bringing revenue to the firm",
+          "Reduced daily problem tickets by 70% through capacity management and proactive identification",
+          "Proposed mitigation plans and Opex/risk assessment options for clients",
+          "Chaired Change Advisory Board (CAB), reducing change-related incidents by 20%",
+          "Implemented monitoring and observability tools, reducing MTTR by ~20%",
+          "Engaged with vendors on technical roadmaps for Veeam, CommVault, LoginVSI, and Citrix Workspace",
+          "Built vendor governance cadence with SLA scorecards and quarterly reviews",
+          "Empowered subordinates through delegations, documentations, and training; improved work-life balance by 33%",
+          "Facilitated local teams to align with global 24x7 support model",
+          "Improved internal and external communications through RACI model and interactive meetings",
+          "Successfully presented team goals and deliverables to COO and CEO; achieved 80% Q1 2020 targets"
+        ]
+      },
+      {
+        "company": "Morgan Stanley",
+        "title": "VP, Asia Manager, Workspace Virtualization Engineering",
+        "period": "Sep 2007 – Jun 2019",
+        "scope": "APAC escalation lead for VDI across APAC/EMEA/NA | 120,000 desktops, global team",
+        "highlights": [
+          "APAC escalation lead for VDI and Virtual App issues (APAC/EMEA/NA coverage)",
+          "Managed global virtual team of 8 people with 2 directs in region",
+          "Authored 8 global white papers on AppSense, Citrix policy, load testing, HDX technology, user density, trading performance, and Storefront capacity analysis (became firm-wide VDI blueprints)",
+          "Led global engineering team supporting 120,000 desktops with blueprint adoption globally",
+          "Introduced LoginVSI for global performance benchmarking and load testing of VDI/SBC environments",
+          "Reduced OPEX by US$1.4M through VM environment optimization and resource utilization analysis",
+          "Avoided US$640K in vendor costs by identifying 9,800 unassigned/spare/reclaimed virtual desktops for reuse",
+          "Generated US$1M additional monthly trade volume in China by improving stability (low latency) for Citrix XenApp trading apps",
+          "Engineered secure Citrix StoreFront remote access portal for 70,000 users globally",
+          "Improved latency for 800+ China developers by 40% and reduced hosted desktop load time from issues to optimal performance",
+          "Implemented cutting-edge electronic trading system facilitating US$1M first year revenue",
+          "Designed Desktop Transformation Strategy (Flex Desk) with 4,000 users, created white paper validating VDI vs HDI user density",
+          "Accelerated M&A for Wealth Management division (16,000 financial advisers, 600+ branch offices) through virtual desktop solutions",
+          "Identified and resolved VDI stability issues for 8,000 vendor users through deep workload analysis and stakeholder engagement",
+          "Implemented 24/7 End User Experience monitoring tool (separate from system monitoring) to reduce support man-hours and improve customer satisfaction",
+          "Explored hyper-convergence computing technology to move away from costly traditional NAS/SAN storage",
+          "Improved operational stability reducing user calls by 40% through proactive monitoring integration (SCOM, ServiceNow APIs, SPLUNK dashboards)",
+          "Introduced capacity management load test tool adopted globally across operations teams",
+          "Deployed AppSense Performance Manager to 50% of Citrix XenApp farm, reducing server hardware footprint by 15%",
+          "Deployed Japan External Citrix XenApp Trading plant (complete build: OS, apps, configuration, coordination)",
+          "Led Hong Kong and Japan WAR Project deploying 1,000+ virtual desktops for BCP users",
+          "Optimized user experience for remote offices using Citrix HDX technology (flash/media, printing, multi-monitor issues)",
+          "Reduced India user Citrix app load time from 25 minutes to 1.5 minutes through troubleshooting and optimization",
+          "Introduced IGEL thin client infrastructure for Asia, replaced desktops in all video conference rooms",
+          "Wrote PowerShell scripts for business report checkout automation and Virtual Desktop availability monitoring",
+          "Managed reclaim programs and lifecycle operations across global infrastructure",
+          "Built global runbooks, RCA frameworks, and lifecycle processes",
+          "Ensured 100% compliance as IT Risk Officer for virtualization domain",
+          "Engaged vendors on product roadmaps and arranged workshops for organization-wide technology awareness"
+        ]
+      },
+      {
+        "company": "Merrill Lynch",
+        "title": "AVP, Windows End User Computing",
+        "period": "1998 – 2007",
+        "scope": "Regional leadership for data center refreshes across HK, Taiwan, Korea, Beijing, Shanghai, India",
+        "highlights": [
+          "Led regional data center refreshes across HK, Taiwan, Korea, Beijing, Shanghai, India, Singapore, and Japan",
+          "Improved trading application stability by 40% through infrastructure optimization and clustering solutions",
+          "Virtualized 26% of servers, saving HK$2M annually as part of cost-saving strategy",
+          "Delivered BCP and power-down drills with zero data loss across multiple regions",
+          "Supported 2,000+ users with 95% SLA compliance",
+          "Executed WIN2K migrations across Hong Kong, Taiwan, Korea, Beijing, and Shanghai",
+          "Reduced downtime by 25% through infrastructure modernization initiatives",
+          "Improved team efficiency by 25% through comprehensive documentation and training programs",
+          "Implemented regional Print Services standardization for PacRIM",
+          "Executed Global Private Client office datacenter server refresh (Singapore)",
+          "Set up New office Development Global Center server infrastructure (India)",
+          "Managed SAN EMC hardware refresh across region",
+          "Led File and Print Servers migration for Beijing and Shanghai datacenters",
+          "Managed Data Centre Relocations with proper BCP testing and systems migration",
+          "Implemented server hardware refreshes and application migrations",
+          "Managed server OS and software upgrades with cross-silo application remediation",
+          "Redesigned server architecture to increase resiliency and achieve high availability",
+          "Analyzed and streamlined operational work, reducing team workload by 20%",
+          "Enforced documentation processes improving operational efficiency",
+          "Served as Level 3 support (most complicated issues) for APR Region",
+          "Was Asia SME for Remote Access Service, Hardware, Autosys, OS Build Automation, Antivirus, Print, and Web Services",
+          "Implemented core-build server standardization for HP and Dell hardware",
+          "Designed and implemented child proxy server for WAN bandwidth optimization",
+          "Managed BCP invocation architecture, server builds, and configurations",
+          "Served as senior advisor on enterprise Windows infrastructure",
+          "Awarded 2006 Merrill Lynch Individual Special Achievement Award for outstanding innovative business results"
+        ]
+      }
+    ],
+    "core_competencies": {
+      "leadership": [
+        "Escalation Management (APAC/EMEA/NA)",
+        "Global Team Leadership (8+ person teams)",
+        "Vendor & Stakeholder Engagement",
+        "Process Development & Documentation",
+        "Risk Management & Compliance",
+        "Change Management & CAB leadership"
+      ],
+      "infrastructure": [
+        "VDI / DiDC Engineering & Operations",
+        "Windows Desktop/Server (25+ years, from NT 4.0 to Windows 11)",
+        "Citrix Architecture & Administration (XenDesktop, XenApp, StoreFront)",
+        "VMware Platforms (ESXi, vSphere, Horizon, DEM/UEM)",
+        "Backup Architecture & Disaster Recovery (3-tier design)",
+        "Performance Analysis & Benchmarking (LoginVSI)",
+        "Capacity Planning & Management",
+        "Data Center Infrastructure (cooling, cable management, BCP)",
+        "Cloud Infrastructure (Azure, O365, AWS)"
+      ],
+      "automation_ai": [
+        "PowerShell scripting & automation",
+        "Power Query ETL workflows",
+        "Python for infrastructure automation",
+        "VBA macro development",
+        "ServiceNow API automation",
+        "LLM Orchestration",
+        "Agentic AI Systems"
+      ],
+      "analytics": [
+        "PowerBI dashboard development",
+        "Splunk monitoring & dashboards",
+        "Tableau visualization",
+        "Advanced Excel capabilities",
+        "Data analysis & reporting"
+      ],
+      "cloud": [
+        "Azure infrastructure",
+        "O365 management",
+        "AWS services"
+      ],
+      "it_service_management": [
+        "ServiceNow implementation & optimization",
+        "Remedy ticketing system",
+        "ConnectWise service management",
+        "ITSM Automation",
+        "SOP documentation & development",
+        "Process improvement & optimization"
+      ],
+      "specialist_domains": [
+        "VDI Performance tuning",
+        "Remote Access Solutions",
+        "End User eXperience (EUX) optimization",
+        "Security & Compliance (ISO 27001, SFC EDSP, HKMA)",
+        "Capacity management & load testing",
+        "Server virtualization",
+        "Print services architecture",
+        "BCP and disaster recovery",
+        "SCOM monitoring integration"
+      ],
+      "emerging_tech": [
+        "Generative AI",
+        "LLMOps",
+        "Linux LLM Inference",
+        "GPU-Accelerated ML",
+        "Containerized AI (Docker)"
       ]
     },
-    {
-      "company": "Bank of America",
-      "title": "APAC Security Patching / SME VDI Team Lead",
-      "period": "Nov 2022 – Nov 2023",
-      "scope": "Primary escalation lead for VDI/desktop issues, APAC region | 80,000 users on stateless VDI",
-      "highlights": [
-        "Served as primary escalation lead for VDI and desktop issues for MDs, traders, VVIP, and end-users across APAC",
-        "Supported ~80,000 users on next-gen stateless VDI; conducted deep performance analysis and remediation",
-        "Achieved 99% audit pass rate and 99% SLA compliance across all patch cycles",
-        "Automated ETL and ITSM workflows using Power Query + PowerShell, saving 14,390 hours annually (70% efficiency gain)",
-        "Saved 7 FTE through process automation and workflow optimization",
-        "Delivered comprehensive VDI troubleshooting and PowerShell training across 10 APAC countries",
-        "Standardized patching communications, reducing user complaints by 40%",
-        "Presented restructuring recommendations to global leadership; 2 were adopted globally",
-        "Improved data processing efficiency by ~70% through automation of manual workflows",
-        "Deep dive analysis of India ODC 10K users VPC performance issues"
-      ]
-    },
-    {
-      "company": "Edge Technology Group",
-      "title": "Centralized Services Manager (Systems & Network Engineering)",
-      "period": "Oct 2019 – Aug 2020",
-      "scope": "Systems and network engineering leadership, HK/SG/AU region",
-      "highlights": [
-        "Managed 3 teams with 12 subordinates (systems, network engineering, and service delivery management)",
-        "Responsible for IT governance, systems stability, and IT ops process refinement for Financial Services clients",
-        "Designed 3-tier backup architecture improving success rate from 40–68% → 99%",
-        "Led ISO 27001 and SFC EDSP (External Electronic Data Storage) compliance efforts",
-        "Successfully identified backup failures and deployed solutions bringing revenue to the firm",
-        "Reduced daily problem tickets by 70% through capacity management and proactive identification",
-        "Proposed mitigation plans and Opex/risk assessment options for clients",
-        "Chaired Change Advisory Board (CAB), reducing change-related incidents by 20%",
-        "Implemented monitoring and observability tools, reducing MTTR by ~20%",
-        "Engaged with vendors on technical roadmaps for Veeam, CommVault, LoginVSI, and Citrix Workspace",
-        "Built vendor governance cadence with SLA scorecards and quarterly reviews",
-        "Empowered subordinates through delegations, documentations, and training; improved work-life balance by 33%",
-        "Facilitated local teams to align with global 24x7 support model",
-        "Improved internal and external communications through RACI model and interactive meetings",
-        "Successfully presented team goals and deliverables to COO and CEO; achieved 80% Q1 2020 targets"
-      ]
-    },
-    {
-      "company": "Morgan Stanley",
-      "title": "VP, Asia Manager, Workspace Virtualization Engineering",
-      "period": "Sep 2007 – Jun 2019",
-      "scope": "APAC escalation lead for VDI across APAC/EMEA/NA | 120,000 desktops, global team",
-      "highlights": [
-        "APAC escalation lead for VDI and Virtual App issues (APAC/EMEA/NA coverage)",
-        "Managed global virtual team of 8 people with 2 directs in region",
-        "Authored 8 global white papers on AppSense, Citrix policy, load testing, HDX technology, user density, trading performance, and Storefront capacity analysis (became firm-wide VDI blueprints)",
-        "Led global engineering team supporting 120,000 desktops with blueprint adoption globally",
-        "Introduced LoginVSI for global performance benchmarking and load testing of VDI/SBC environments",
-        "Reduced OPEX by US$1.4M through VM environment optimization and resource utilization analysis",
-        "Avoided US$640K in vendor costs by identifying 9,800 unassigned/spare/reclaimed virtual desktops for reuse",
-        "Generated US$1M additional monthly trade volume in China by improving stability (low latency) for Citrix XenApp trading apps",
-        "Engineered secure Citrix StoreFront remote access portal for 70,000 users globally",
-        "Improved latency for 800+ China developers by 40% and reduced hosted desktop load time from issues to optimal performance",
-        "Implemented cutting-edge electronic trading system facilitating US$1M first year revenue",
-        "Designed Desktop Transformation Strategy (Flex Desk) with 4,000 users, created white paper validating VDI vs HDI user density",
-        "Accelerated M&A for Wealth Management division (16,000 financial advisers, 600+ branch offices) through virtual desktop solutions",
-        "Identified and resolved VDI stability issues for 8,000 vendor users through deep workload analysis and stakeholder engagement",
-        "Implemented 24/7 End User Experience monitoring tool (separate from system monitoring) to reduce support man-hours and improve customer satisfaction",
-        "Explored hyper-convergence computing technology to move away from costly traditional NAS/SAN storage",
-        "Improved operational stability reducing user calls by 40% through proactive monitoring integration (SCOM, ServiceNow APIs, SPLUNK dashboards)",
-        "Introduced capacity management load test tool adopted globally across operations teams",
-        "Deployed AppSense Performance Manager to 50% of Citrix XenApp farm, reducing server hardware footprint by 15%",
-        "Deployed Japan External Citrix XenApp Trading plant (complete build: OS, apps, configuration, coordination)",
-        "Led Hong Kong and Japan WAR Project deploying 1,000+ virtual desktops for BCP users",
-        "Optimized user experience for remote offices using Citrix HDX technology (flash/media, printing, multi-monitor issues)",
-        "Reduced India user Citrix app load time from 25 minutes to 1.5 minutes through troubleshooting and optimization",
-        "Introduced IGEL thin client infrastructure for Asia, replaced desktops in all video conference rooms",
-        "Wrote PowerShell scripts for business report checkout automation and Virtual Desktop availability monitoring",
-        "Managed reclaim programs and lifecycle operations across global infrastructure",
-        "Built global runbooks, RCA frameworks, and lifecycle processes",
-        "Ensured 100% compliance as IT Risk Officer for virtualization domain",
-        "Engaged vendors on product roadmaps and arranged workshops for organization-wide technology awareness"
-      ]
-    },
-    {
-      "company": "Merrill Lynch",
-      "title": "AVP, Windows End User Computing",
-      "period": "1998 – 2007",
-      "scope": "Regional leadership for data center refreshes across HK, Taiwan, Korea, Beijing, Shanghai, India",
-      "highlights": [
-        "Led regional data center refreshes across HK, Taiwan, Korea, Beijing, Shanghai, India, Singapore, and Japan",
-        "Improved trading application stability by 40% through infrastructure optimization and clustering solutions",
-        "Virtualized 26% of servers, saving HK$2M annually as part of cost-saving strategy",
-        "Delivered BCP and power-down drills with zero data loss across multiple regions",
-        "Supported 2,000+ users with 95% SLA compliance",
-        "Executed WIN2K migrations across Hong Kong, Taiwan, Korea, Beijing, and Shanghai",
-        "Reduced downtime by 25% through infrastructure modernization initiatives",
-        "Improved team efficiency by 25% through comprehensive documentation and training programs",
-        "Implemented regional Print Services standardization for PacRIM",
-        "Executed Global Private Client office datacenter server refresh (Singapore)",
-        "Set up New office Development Global Center server infrastructure (India)",
-        "Managed SAN EMC hardware refresh across region",
-        "Led File and Print Servers migration for Beijing and Shanghai datacenters",
-        "Managed Data Centre Relocations with proper BCP testing and systems migration",
-        "Implemented server hardware refreshes and application migrations",
-        "Managed server OS and software upgrades with cross-silo application remediation",
-        "Redesigned server architecture to increase resiliency and achieve high availability",
-        "Analyzed and streamlined operational work, reducing team workload by 20%",
-        "Enforced documentation processes improving operational efficiency",
-        "Served as Level 3 support (most complicated issues) for APR Region",
-        "Was Asia SME for Remote Access Service, Hardware, Autosys, OS Build Automation, Antivirus, Print, and Web Services",
-        "Implemented core-build server standardization for HP and Dell hardware",
-        "Designed and implemented child proxy server for WAN bandwidth optimization",
-        "Managed BCP invocation architecture, server builds, and configurations",
-        "Served as senior advisor on enterprise Windows infrastructure",
-        "Awarded 2006 Merrill Lynch Individual Special Achievement Award for outstanding innovative business results"
-      ]
-    }
-  ],
-  "core_competencies": {
-    "leadership": [
-      "Escalation Management (APAC/EMEA/NA)",
-      "Global Team Leadership (8+ person teams)",
-      "Vendor & Stakeholder Engagement",
-      "Process Development & Documentation",
-      "Risk Management & Compliance",
-      "Change Management & CAB leadership"
+    "technical_skills": [
+      "VDI & Virtualization: Citrix XenDesktop/XenApp (3.0-7.13), Citrix NetScaler (9.3+), Citrix Command Center (9.x-11.x), AppSense Environment Manager, AppSense Performance Manager, Microsoft App-V, VMware ESXi/vSphere (3.5-6.0), VMware Horizon, VSAN, LoginVSI, Login PI",
+      "Ticketing & Service Management: ConnectWise, ServiceNow, Remedy",
+      "Agile & DevOps: Agile methodology, DevOps for SDLC, ITIL Foundation, ITSM process development",
+      "Remote Access & Collaboration: Pulse Secure, Exchange 2016, Mimecast, Citrix StoreFront",
+      "Cloud: O365, Azure, AWS",
+      "Networking: Cisco (2960x, 9600, ASA FW), Palo Alto FW, Syslog-ng, eSentire",
+      "BigData & Monitoring: Splunk, EgInnovation, Power Query, VBA, Tableau, SCOM 2007+",
+      "Windows Server: 2003, 2008R2, 2012R2, 2016R2, 2019, ADFS, Clustering, Hyper-V, Windows 7, 10, 11",
+      "Database: SQL Server 2008+, Sybase, Oracle",
+      "Legacy Systems: Novell NetWare 3.12, Windows NT 4.0, DOS 6.11, Windows 95/3.11",
+      "Troubleshooting Tools: Microsoft Resource Kit, Sysinternals, PowerShell, Wireshark, Fiddler",
+      "Hardware Platforms: HPE Moonshots, Synergy, Blades, Rack servers, Dell Rack mounts, Nutanix hyper-convergence, HPE StoreOnce 3640",
+      "Storage & Datacenter: SAN/NAS (EMC, NetFiler), Cooling management, Cable management",
+      "Automation & Scripting: PowerShell, Power Query, VBA, Python, SMS packages",
+      "Analytics & Reporting: PowerBI, Power Query, Excel (advanced), Tableau",
+      "Backup Solutions: Veeam, CommVault",
+      "Emerging Tech: Generative AI, LLMOps, Linux LLM Inference, GPU-Accelerated ML, Docker containerization",
+      "Thin Client: IGEL thin client infrastructure and setup",
+      "Web Services: IIS 5.X, WebLogic, Cold Fusion, SiteMinder, Proxy servers"
     ],
-    "infrastructure": [
-      "VDI / DiDC Engineering & Operations",
-      "Windows Desktop/Server (25+ years, from NT 4.0 to Windows 11)",
-      "Citrix Architecture & Administration (XenDesktop, XenApp, StoreFront)",
-      "VMware Platforms (ESXi, vSphere, Horizon, DEM/UEM)",
-      "Backup Architecture & Disaster Recovery (3-tier design)",
-      "Performance Analysis & Benchmarking (LoginVSI)",
-      "Capacity Planning & Management",
-      "Data Center Infrastructure (cooling, cable management, BCP)",
-      "Cloud Infrastructure (Azure, O365, AWS)"
+    "languages_spoken": [
+      "English (Fluent)",
+      "French (Fluent)",
+      "Creole (Fluent)",
+      "Cantonese (Conversational)"
     ],
-    "automation_ai": [
-      "PowerShell scripting & automation",
-      "Power Query ETL workflows",
-      "Python for infrastructure automation",
-      "VBA macro development",
-      "ServiceNow API automation",
-      "LLM Orchestration",
-      "Agentic AI Systems"
+    "education_certifications": [
+      {
+        "credential": "A Level Science",
+        "issuer": "St Joseph College Mauritius",
+        "type": "Academic"
+      },
+      {
+        "credential": "Citrix Certified Enterprise Engineer for Virtualization",
+        "issuer": "Citrix",
+        "year": 2011,
+        "type": "Professional Certification",
+        "details": "Includes XenDesktop 5 Administration, XenApp 6 Administration, XenServer 5.6 Administration, XenApp 5 Advanced Administration"
+      },
+      {
+        "credential": "Citrix NetScaler 9.3 Advanced Administration",
+        "issuer": "Citrix",
+        "year": 2010,
+        "type": "Training"
+      },
+      {
+        "credential": "Citrix XenApp 6.5 Advanced Administration",
+        "issuer": "Citrix",
+        "year": 2011,
+        "type": "Training"
+      },
+      {
+        "credential": "Microsoft SCOM 2007 Administration",
+        "issuer": "Microsoft",
+        "year": 2011,
+        "type": "Training"
+      },
+      {
+        "credential": "Microsoft SQL 2008 Administration",
+        "issuer": "Microsoft",
+        "year": 2011,
+        "type": "Training"
+      },
+      {
+        "credential": "Citrix XenDesktop 5.0 Administration",
+        "issuer": "Citrix",
+        "year": 2010,
+        "type": "Training"
+      },
+      {
+        "credential": "LoginVSI (LVSI) Enterprise Training",
+        "issuer": "LoginVSI",
+        "year": 2010,
+        "type": "Training"
+      },
+      {
+        "credential": "Microsoft Win2K3 Active Directory",
+        "issuer": "Microsoft",
+        "year": 2006,
+        "type": "Training"
+      },
+      {
+        "credential": "EMC Product Overview (SAN, NAS, CAS)",
+        "issuer": "EMC",
+        "year": 2007,
+        "type": "Training"
+      },
+      {
+        "credential": "Networker Admin 7.0",
+        "issuer": "EMC/Legato",
+        "year": 2008,
+        "type": "Training"
+      },
+      {
+        "credential": "VMware Infrastructure 3 Administration",
+        "issuer": "VMware",
+        "year": 2009,
+        "type": "Training"
+      },
+      {
+        "credential": "2020 IT Security Foundations: Network Security and Cryptography",
+        "issuer": "Industry Standard",
+        "year": 2020,
+        "type": "Training"
+      },
+      {
+        "credential": "MIT Machine Learning: From Data to Decisions",
+        "issuer": "MIT",
+        "year": 2019,
+        "type": "Training"
+      },
+      {
+        "credential": "Deep Learning: Face Recognition",
+        "issuer": "Industry Standard",
+        "year": 2019,
+        "type": "Training"
+      },
+      {
+        "credential": "DevOps Foundation",
+        "issuer": "Industry Standard",
+        "year": 2019,
+        "type": "Training"
+      },
+      {
+        "credential": "Integrating Tableau and R for Data Science",
+        "issuer": "Industry Standard",
+        "year": 2019,
+        "type": "Training"
+      },
+      {
+        "credential": "Learning Splunk",
+        "issuer": "Splunk",
+        "year": 2019,
+        "type": "Training"
+      },
+      {
+        "credential": "Wireshark Advanced Tools and Techniques",
+        "issuer": "Industry Standard",
+        "year": 2019,
+        "type": "Training"
+      },
+      {
+        "credential": "Generative AI Training",
+        "issuer": "Industry Standard",
+        "type": "Training"
+      },
+      {
+        "credential": "LLMOps Training",
+        "issuer": "Industry Standard",
+        "type": "Training"
+      },
+      {
+        "credential": "Copilot for Windows",
+        "issuer": "Microsoft",
+        "type": "Training"
+      },
+      {
+        "credential": "ITIL Foundation",
+        "issuer": "Industry Standard",
+        "type": "Certification"
+      },
+      {
+        "credential": "Team Work and Collaboration",
+        "issuer": "Industry Standard",
+        "year": "2014-2017",
+        "type": "Leadership Training"
+      },
+      {
+        "credential": "Presentation Skills",
+        "issuer": "Industry Standard",
+        "year": "2014-2017",
+        "type": "Leadership Training"
+      },
+      {
+        "credential": "Influencing and Negotiation",
+        "issuer": "Industry Standard",
+        "year": "2014-2017",
+        "type": "Leadership Training"
+      },
+      {
+        "credential": "Diversity and Inclusion",
+        "issuer": "Industry Standard",
+        "year": "2014-2017",
+        "type": "Leadership Training"
+      }
     ],
-    "analytics": [
-      "PowerBI dashboard development",
-      "Splunk monitoring & dashboards",
-      "Tableau visualization",
-      "Advanced Excel capabilities",
-      "Data analysis & reporting"
+    "soft_skills": [
+      "Business Email Writing",
+      "Conducting Effective Meetings",
+      "Resolving Conflict",
+      "Growth Mindset",
+      "Providing Constructive Feedback",
+      "Presentation Skills",
+      "DISC Assessment",
+      "7 Habits of Highly Effective People",
+      "Effective Communications",
+      "Strategic Escalation Management",
+      "Vendor Management",
+      "Stakeholder Engagement",
+      "Innovation & Innovative Thinking",
+      "Mental Toughness",
+      "Influencing & Negotiation Skills",
+      "Leadership Through People Skills",
+      "Diversity & Inclusion",
+      "Self-Leadership",
+      "Team Collaboration & Teamwork",
+      "Cross-Silo Collaboration",
+      "Time Management & Outlook Mastery",
+      "Problem-Solving & Logical Thinking",
+      "Client Focus & Customer Relationship Management",
+      "Business Enablement & Vision",
+      "Attention to Detail",
+      "Personal Impact & Executive Presence"
     ],
-    "cloud": [
-      "Azure infrastructure",
-      "O365 management",
-      "AWS services"
+    "languages": [
+      {
+        "language": "English",
+        "proficiency": "Fluent"
+      },
+      {
+        "language": "French",
+        "proficiency": "Professional"
+      },
+      {
+        "language": "Cantonese",
+        "proficiency": "Professional"
+      },
+      {
+        "language": "Creole",
+        "proficiency": "Fluent"
+      }
     ],
-    "it_service_management": [
-      "ServiceNow implementation & optimization",
-      "Remedy ticketing system",
-      "ConnectWise service management",
-      "ITSM Automation",
-      "SOP documentation & development",
-      "Process improvement & optimization"
-    ],
-    "specialist_domains": [
-      "VDI Performance tuning",
-      "Remote Access Solutions",
+    "key_topics_for_qa": [
+      "VDI troubleshooting and escalation (APAC/EMEA/NA)",
+      "Infrastructure optimization and cost savings",
+      "Citrix architecture, administration, and performance tuning",
+      "LoginVSI performance benchmarking and load testing",
+      "AI and automation tool development",
+      "Global team leadership and documentation",
+      "Performance benchmarking and analysis",
+      "Disaster recovery and compliance (ISO 27001, SFC EDSP, HKMA)",
+      "Multi-LLM orchestration",
+      "Project delivery at scale",
+      "Windows Server infrastructure (NT 4.0 through Windows 11)",
+      "Backup architecture and 3-tier design patterns",
       "End User eXperience (EUX) optimization",
-      "Security & Compliance (ISO 27001, SFC EDSP, HKMA)",
-      "Capacity management & load testing",
-      "Server virtualization",
-      "Print services architecture",
-      "BCP and disaster recovery",
-      "SCOM monitoring integration"
-    ],
-    "emerging_tech": [
-      "Generative AI",
-      "LLMOps",
-      "Linux LLM Inference",
-      "GPU-Accelerated ML",
-      "Containerized AI (Docker)"
+      "Capacity management and resource planning",
+      "ITSM workflow automation and ETL processes",
+      "Data center management and BCP",
+      "Vendor management and technology roadmaps",
+      "ServiceNow and Remedy integration",
+      "PowerShell scripting and PowerBI dashboards",
+      "Server virtualization and consolidation strategies",
+      "Remote access solutions (StoreFront, Pulse Secure)",
+      "Patch compliance and security governance",
+      "Remote team leadership and 24x7 support models",
+      "Process standardization and documentation",
+      "Change advisory board (CAB) management",
+      "Citrix StoreFront and multi-user remote access",
+      "AppSense Performance Manager implementation",
+      "Trading application performance optimization"
     ]
-  },
-  "technical_skills": [
-    "VDI & Virtualization: Citrix XenDesktop/XenApp (3.0-7.13), Citrix NetScaler (9.3+), Citrix Command Center (9.x-11.x), AppSense Environment Manager, AppSense Performance Manager, Microsoft App-V, VMware ESXi/vSphere (3.5-6.0), VMware Horizon, VSAN, LoginVSI, Login PI",
-    "Ticketing & Service Management: ConnectWise, ServiceNow, Remedy",
-    "Agile & DevOps: Agile methodology, DevOps for SDLC, ITIL Foundation, ITSM process development",
-    "Remote Access & Collaboration: Pulse Secure, Exchange 2016, Mimecast, Citrix StoreFront",
-    "Cloud: O365, Azure, AWS",
-    "Networking: Cisco (2960x, 9600, ASA FW), Palo Alto FW, Syslog-ng, eSentire",
-    "BigData & Monitoring: Splunk, EgInnovation, Power Query, VBA, Tableau, SCOM 2007+",
-    "Windows Server: 2003, 2008R2, 2012R2, 2016R2, 2019, ADFS, Clustering, Hyper-V, Windows 7, 10, 11",
-    "Database: SQL Server 2008+, Sybase, Oracle",
-    "Legacy Systems: Novell NetWare 3.12, Windows NT 4.0, DOS 6.11, Windows 95/3.11",
-    "Troubleshooting Tools: Microsoft Resource Kit, Sysinternals, PowerShell, Wireshark, Fiddler",
-    "Hardware Platforms: HPE Moonshots, Synergy, Blades, Rack servers, Dell Rack mounts, Nutanix hyper-convergence, HPE StoreOnce 3640",
-    "Storage & Datacenter: SAN/NAS (EMC, NetFiler), Cooling management, Cable management",
-    "Automation & Scripting: PowerShell, Power Query, VBA, Python, SMS packages",
-    "Analytics & Reporting: PowerBI, Power Query, Excel (advanced), Tableau",
-    "Backup Solutions: Veeam, CommVault",
-    "Emerging Tech: Generative AI, LLMOps, Linux LLM Inference, GPU-Accelerated ML, Docker containerization",
-    "Thin Client: IGEL thin client infrastructure and setup",
-    "Web Services: IIS 5.X, WebLogic, Cold Fusion, SiteMinder, Proxy servers"
-  ],
-  "languages_spoken": [
-    "English (Fluent)",
-    "French (Fluent)",
-    "Creole (Fluent)",
-    "Cantonese (Conversational)"
-  ],
-  "education_certifications": [
-    {
-      "credential": "A Level Science",
-      "issuer": "St Joseph College Mauritius",
-      "type": "Academic"
-    },
-    {
-      "credential": "Citrix Certified Enterprise Engineer for Virtualization",
-      "issuer": "Citrix",
-      "year": 2011,
-      "type": "Professional Certification",
-      "details": "Includes XenDesktop 5 Administration, XenApp 6 Administration, XenServer 5.6 Administration, XenApp 5 Advanced Administration"
-    },
-    {
-      "credential": "Citrix NetScaler 9.3 Advanced Administration",
-      "issuer": "Citrix",
-      "year": 2010,
-      "type": "Training"
-    },
-    {
-      "credential": "Citrix XenApp 6.5 Advanced Administration",
-      "issuer": "Citrix",
-      "year": 2011,
-      "type": "Training"
-    },
-    {
-      "credential": "Microsoft SCOM 2007 Administration",
-      "issuer": "Microsoft",
-      "year": 2011,
-      "type": "Training"
-    },
-    {
-      "credential": "Microsoft SQL 2008 Administration",
-      "issuer": "Microsoft",
-      "year": 2011,
-      "type": "Training"
-    },
-    {
-      "credential": "Citrix XenDesktop 5.0 Administration",
-      "issuer": "Citrix",
-      "year": 2010,
-      "type": "Training"
-    },
-    {
-      "credential": "LoginVSI (LVSI) Enterprise Training",
-      "issuer": "LoginVSI",
-      "year": 2010,
-      "type": "Training"
-    },
-    {
-      "credential": "Microsoft Win2K3 Active Directory",
-      "issuer": "Microsoft",
-      "year": 2006,
-      "type": "Training"
-    },
-    {
-      "credential": "EMC Product Overview (SAN, NAS, CAS)",
-      "issuer": "EMC",
-      "year": 2007,
-      "type": "Training"
-    },
-    {
-      "credential": "Networker Admin 7.0",
-      "issuer": "EMC/Legato",
-      "year": 2008,
-      "type": "Training"
-    },
-    {
-      "credential": "VMware Infrastructure 3 Administration",
-      "issuer": "VMware",
-      "year": 2009,
-      "type": "Training"
-    },
-    {
-      "credential": "2020 IT Security Foundations: Network Security and Cryptography",
-      "issuer": "Industry Standard",
-      "year": 2020,
-      "type": "Training"
-    },
-    {
-      "credential": "MIT Machine Learning: From Data to Decisions",
-      "issuer": "MIT",
-      "year": 2019,
-      "type": "Training"
-    },
-    {
-      "credential": "Deep Learning: Face Recognition",
-      "issuer": "Industry Standard",
-      "year": 2019,
-      "type": "Training"
-    },
-    {
-      "credential": "DevOps Foundation",
-      "issuer": "Industry Standard",
-      "year": 2019,
-      "type": "Training"
-    },
-    {
-      "credential": "Integrating Tableau and R for Data Science",
-      "issuer": "Industry Standard",
-      "year": 2019,
-      "type": "Training"
-    },
-    {
-      "credential": "Learning Splunk",
-      "issuer": "Splunk",
-      "year": 2019,
-      "type": "Training"
-    },
-    {
-      "credential": "Wireshark Advanced Tools and Techniques",
-      "issuer": "Industry Standard",
-      "year": 2019,
-      "type": "Training"
-    },
-    {
-      "credential": "Generative AI Training",
-      "issuer": "Industry Standard",
-      "type": "Training"
-    },
-    {
-      "credential": "LLMOps Training",
-      "issuer": "Industry Standard",
-      "type": "Training"
-    },
-    {
-      "credential": "Copilot for Windows",
-      "issuer": "Microsoft",
-      "type": "Training"
-    },
-    {
-      "credential": "ITIL Foundation",
-      "issuer": "Industry Standard",
-      "type": "Certification"
-    },
-    {
-      "credential": "Team Work and Collaboration",
-      "issuer": "Industry Standard",
-      "year": "2014-2017",
-      "type": "Leadership Training"
-    },
-    {
-      "credential": "Presentation Skills",
-      "issuer": "Industry Standard",
-      "year": "2014-2017",
-      "type": "Leadership Training"
-    },
-    {
-      "credential": "Influencing and Negotiation",
-      "issuer": "Industry Standard",
-      "year": "2014-2017",
-      "type": "Leadership Training"
-    },
-    {
-      "credential": "Diversity and Inclusion",
-      "issuer": "Industry Standard",
-      "year": "2014-2017",
-      "type": "Leadership Training"
-    }
-  ],
-  "soft_skills": [
-    "Business Email Writing",
-    "Conducting Effective Meetings",
-    "Resolving Conflict",
-    "Growth Mindset",
-    "Providing Constructive Feedback",
-    "Presentation Skills",
-    "DISC Assessment",
-    "7 Habits of Highly Effective People",
-    "Effective Communications",
-    "Strategic Escalation Management",
-    "Vendor Management",
-    "Stakeholder Engagement",
-    "Innovation & Innovative Thinking",
-    "Mental Toughness",
-    "Influencing & Negotiation Skills",
-    "Leadership Through People Skills",
-    "Diversity & Inclusion",
-    "Self-Leadership",
-    "Team Collaboration & Teamwork",
-    "Cross-Silo Collaboration",
-    "Time Management & Outlook Mastery",
-    "Problem-Solving & Logical Thinking",
-    "Client Focus & Customer Relationship Management",
-    "Business Enablement & Vision",
-    "Attention to Detail",
-    "Personal Impact & Executive Presence"
-  ],
-  "languages": [
-    {
-      "language": "English",
-      "proficiency": "Fluent"
-    },
-    {
-      "language": "French",
-      "proficiency": "Professional"
-    },
-    {
-      "language": "Cantonese",
-      "proficiency": "Professional"
-    },
-    {
-      "language": "Creole",
-      "proficiency": "Fluent"
-    }
-  ],
-  "key_topics_for_qa": [
-    "VDI troubleshooting and escalation (APAC/EMEA/NA)",
-    "Infrastructure optimization and cost savings",
-    "Citrix architecture, administration, and performance tuning",
-    "LoginVSI performance benchmarking and load testing",
-    "AI and automation tool development",
-    "Global team leadership and documentation",
-    "Performance benchmarking and analysis",
-    "Disaster recovery and compliance (ISO 27001, SFC EDSP, HKMA)",
-    "Multi-LLM orchestration",
-    "Project delivery at scale",
-    "Windows Server infrastructure (NT 4.0 through Windows 11)",
-    "Backup architecture and 3-tier design patterns",
-    "End User eXperience (EUX) optimization",
-    "Capacity management and resource planning",
-    "ITSM workflow automation and ETL processes",
-    "Data center management and BCP",
-    "Vendor management and technology roadmaps",
-    "ServiceNow and Remedy integration",
-    "PowerShell scripting and PowerBI dashboards",
-    "Server virtualization and consolidation strategies",
-    "Remote access solutions (StoreFront, Pulse Secure)",
-    "Patch compliance and security governance",
-    "Remote team leadership and 24x7 support models",
-    "Process standardization and documentation",
-    "Change advisory board (CAB) management",
-    "Citrix StoreFront and multi-user remote access",
-    "AppSense Performance Manager implementation",
-    "Trading application performance optimization"
-  ]
+  }
 }

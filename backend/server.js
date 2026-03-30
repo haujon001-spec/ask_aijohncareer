@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { consolidateResume } from './consolidation.js';
 
 // Setup paths (backend is in /backend dir, need to go up one level)
 const __filename = fileURLToPath(import.meta.url);
@@ -284,6 +285,43 @@ app.get('/api/health', (req, res) => {
     models: Object.keys(llmConfigs),
     timestamp: new Date().toISOString()
   });
+});
+
+// Resume Consolidation Endpoint
+// Processes resume files from data_raw/resume/ and updates john_profile.json
+app.post('/api/consolidate', async (req, res) => {
+  try {
+    const { sourceFile } = req.body;
+    
+    console.log('\n🔄 Consolidation endpoint called...');
+    const result = await consolidateResume(sourceFile);
+    
+    if (result) {
+      // Reload profile after consolidation
+      try {
+        johnProfile = JSON.parse(fs.readFileSync(profilePath, 'utf-8'));
+      } catch (err) {
+        console.error('❌ Failed to reload profile after consolidation:', err.message);
+      }
+      
+      res.json({
+        success: true,
+        message: 'Resume consolidated successfully',
+        profile: result
+      });
+    } else {
+      res.status(400).json({
+        success: false,
+        message: 'Failed to consolidate resume'
+      });
+    }
+  } catch (error) {
+    console.error('❌ Consolidation error:', error.message);
+    res.status(500).json({
+      success: false,
+      message: error.message
+    });
+  }
 });
 
 // SPA fallback: Serve index.html for any non-API routes
