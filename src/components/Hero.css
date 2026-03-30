@@ -34,13 +34,25 @@
   max-width: 500px;
 }
 
-/* Mobile responsive subtitle */
+/* Mobile responsive subtitle with marquee animation */
 @media (max-width: 768px) {
   .hero-subtitle {
     max-width: 100%;
     font-size: 14px;
     padding: 0;
     line-height: 1.5;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: marquee 20s linear infinite;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
   }
 }
 
