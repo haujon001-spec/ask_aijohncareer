@@ -27,6 +27,34 @@
     "summary": "Senior technology leader with 27+ years of IT infrastructure experience across Virtual Desktop Infrastructure (VDI), Desktop in Data Center (DiDC), End User Computing (EUC), lifecycle management, performance engineering, and global escalation leadership across major financial institutions: Morgan Stanley, Bank of America, AIA, Edge Technology Group, and Merrill Lynch. Former VP & Asia Manager for Workspace Virtualization Engineering at Morgan Stanley, serving as the primary APAC escalation lead for VDI issues across APAC, EMEA, and NA. Architected global VDI blueprints supporting 120,000 desktops and authored 8 global white papers. Hands-on innovator with proven ability to build AI-powered automation tools, dashboards, and agentic systems.",
     "ai_projects": [
       {
+        "title": "John's Career Copilot - Full-Stack AI Interactive Resume Platform",
+        "url": "https://www.askcareer-ai.com",
+        "description": "Built a production AI-powered interactive resume platform that enables real conversations about career experience instead of traditional resume scrolling. Dual LLM integration with intelligent conversational interface, responsive design, and production VPS deployment.",
+        "tech_stack": [
+          "React 18",
+          "Vite",
+          "Express.js",
+          "Node.js",
+          "Google Gemini 3.1 Flash Lite",
+          "DeepSeek R1",
+          "OpenRouter API",
+          "Docker",
+          "Docker Compose",
+          "Caddy",
+          "Let's Encrypt",
+          "Linux",
+          "HTTPS"
+        ],
+        "key_features": [
+          "Real-time streaming responses from dual LLM models",
+          "14 pre-built intelligent queries (cloud infrastructure, leadership, AI projects, cybersecurity, etc.)",
+          "Responsive dark/light theme toggle with localStorage persistence",
+          "Context-aware AI reasoning for accurate career narrative vs keyword-matching",
+          "Mobile-optimized UI with marquee animations"
+        ],
+        "impact": "Production deployment on VPS with 48.82 kB gzipped frontend, <2 second page load. Demonstrates full-stack modern web development, LLM integration, DevOps containerization, and production-grade deployment with auto HTTPS via Let's Encrypt."
+      },
+      {
         "title": "Production Next.js AI Portal with Multilingual LLM Chatbot",
         "description": "Built aibreeds-demo.com with multilingual LLM chatbot and translation engine",
         "tech_stack": [
