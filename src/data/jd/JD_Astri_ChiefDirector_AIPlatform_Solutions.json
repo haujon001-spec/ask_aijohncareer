@@ -1,0 +1,166 @@
+{
+  "jd_file": "astri-tech-division-lead-ai-agentic",
+  "company": "Hong Kong Applied Science and Technology Research Institute",
+  "company_slug": "astri",
+  "job_title": "Technology Division Lead (AI & Agentic Systems)",
+  "role_slug": "tech-division-lead-ai",
+  "industry": "Applied Research & Development",
+  "role_summary": "Strategic leadership role responsible for defining the research roadmap for Agentic AI, Generative AI, and LLM platforms, while overseeing Digital Health, Intelligent Manufacturing, FinTech, and Trusted Technology solution domains.",
+  "must_have_requirements": [
+    "15+ years experience in technology research and R&D",
+    "8+ years in senior leadership managing large, multidisciplinary teams",
+    "Proven track record in LLM, LVLM, Agentic AI, and Generative AI development",
+    "Experience commercializing technology from lab to market (0-to-1 to 1-to-10)",
+    "Strong background in Trusted Tech (cybersecurity/privacy) or FinTech",
+    "Experience with cloud architectures, containerization, and modern MLOps pipelines",
+    "Proven ability to interface with government funding bodies and C-level stakeholders"
+  ],
+  "nice_to_have_requirements": [
+    "Domain expertise in Digital Health",
+    "Experience in Intelligent Manufacturing sector",
+    "History within publicly funded or highly regulated research environments"
+  ],
+  "soft_skills_priority": [
+    "Strategic Visioning",
+    "Stakeholder Management",
+    "Crisis Communication",
+    "Operational Excellence",
+    "Cross-functional Collaboration"
+  ],
+  "semantic_match_guidance": {
+    "AI_Leadership": [
+      "Principal Architect",
+      "Head of AI",
+      "Director of Research",
+      "CTO",
+      "AI Engineering Manager"
+    ],
+    "Commercialization": [
+      "Technology Transfer",
+      "Productization",
+      "Go-to-Market",
+      "IP Licensing",
+      "Pilot Deployment"
+    ],
+    "Technical_Infrastructure": [
+      "MLOps",
+      "CI/CD",
+      "Distributed Computing",
+      "Kubernetes",
+      "Cloud-native AI"
+    ],
+    "Stakeholder_Management": [
+      "Government Liaison",
+      "Grant Writing",
+      "Board Presentation",
+      "Strategic Partnership Development"
+    ]
+  },
+  "scoring_criteria": [
+    {
+      "name": "AI/Agentic R&D Leadership",
+      "weight": 20,
+      "why_it_matters": "Must drive the foundational Agentic AI platform strategy.",
+      "evidence_type_to_look_for": [
+        "GenAI Roadmap",
+        "LLM Integration",
+        "Agentic Framework implementation"
+      ],
+      "gap_expected": "Candidates without hands-on LLM strategy experience."
+    },
+    {
+      "name": "Commercialization Success",
+      "weight": 15,
+      "why_it_matters": "ASTRI requires turning research into tangible industrial impact.",
+      "evidence_type_to_look_for": [
+        "Tech transfer metrics",
+        "Patents granted",
+        "Product launches"
+      ],
+      "gap_expected": "Purely academic researchers without industry product experience."
+    },
+    {
+      "name": "Senior Management Scale",
+      "weight": 15,
+      "why_it_matters": "Must manage a large, multidisciplinary team.",
+      "evidence_type_to_look_for": [
+        "Team size documentation",
+        "P&amp;L responsibility",
+        "Management of diverse engineering squads"
+      ],
+      "gap_expected": "Individual contributors or functional team leads of small units."
+    },
+    {
+      "name": "Trusted Tech/FinTech Domain",
+      "weight": 10,
+      "why_it_matters": "Domain alignment with critical solution areas.",
+      "evidence_type_to_look_for": [
+        "Cybersecurity projects",
+        "Privacy-preserving compute",
+        "FinTech deployments"
+      ],
+      "gap_expected": "Generalist AI managers."
+    },
+    {
+      "name": "System Deployment Acumen",
+      "weight": 10,
+      "why_it_matters": "Ensures research is architecturally sound for real-world piloting.",
+      "evidence_type_to_look_for": [
+        "System architecture design",
+        "MLOps workflows",
+        "Cloud scalability proofs"
+      ],
+      "gap_expected": "Candidates strictly from theoretical research backgrounds."
+    },
+    {
+      "name": "Stakeholder & Grant Management",
+      "weight": 10,
+      "why_it_matters": "Funding is tied to ability to justify technology impact to officials.",
+      "evidence_type_to_look_for": [
+        "Funding proposals",
+        "Government relations",
+        "White papers"
+      ]
+    },
+    {
+      "name": "Strategic Visioning",
+      "weight": 10,
+      "why_it_matters": "Ability to set 3-5 year roadmaps.",
+      "evidence_type_to_look_for": [
+        "Strategy documents",
+        "Technology roadmap publications"
+      ]
+    },
+    {
+      "name": "Communication & Ambiguity Handling",
+      "weight": 10,
+      "why_it_matters": "High-profile role requiring diplomatic navigation of complex stakeholder environments.",
+      "evidence_type_to_look_for": [
+        "Board reporting",
+        "Public speaking",
+        "Transformation efforts"
+      ]
+    }
+  ],
+  "resume_tailoring_guidance": {
+    "mandatory_sections": [
+      "PROFESSIONAL SUMMARY",
+      "AI & AUTOMATION HIGHLIGHTS",
+      "CORE COMPETENCIES",
+      "SOFT SKILLS"
+    ],
+    "summary_focus": [
+      "Focus on the intersection of deep AI research and industrial commercialization."
+    ],
+    "do_not_overclaim": [
+      "Avoid claiming 'lead' status if you managed individual tasks rather than large R&D teams."
+    ]
+  },
+  "cover_letter_guidance": {
+    "tone": "Authoritative, strategic, and innovative.",
+    "positioning": "Emphasize yourself as a 'Bridge-Builder' who connects academic R&D to economic industrial impact.",
+    "bridge_gaps_honestly": [
+      "If domain experience in FinTech is light, emphasize transferable architectural frameworks used in high-security environments."
+    ]
+  }
+}
