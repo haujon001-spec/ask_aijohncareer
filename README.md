@@ -40,13 +40,17 @@ John's Career Copilot is a **next-generation professional portfolio** that combi
 ✅ **Mobile Optimization** – Responsive design with marquee animations and compact layouts  
 ✅ **CSP Security Headers** – Fixed Content Security Policy for modern browsers  
 
-### Planned Features (Q2 2026)
-🚀 **Job Description Comparison Portal** – Upload any job description (PDF, DOCX, TXT)  
-   - AI-powered resume matching scorecard
-   - Skills, leadership, technical, and domain alignment analysis
-   - Strengths/gaps identification with actionable recommendations  
-   - Estimated implementation: 2 development days
-   - Reference: `/docs/JD_Comparison_portal.md`
+### JD Application Generator (Now Available)
+✅ **All-in-One JD Generator** – Compare a JD against `john_profile.json` and generate:
+   - JD Match Scorecard
+   - Tailored Resume
+   - Cover Letter
+   - `.docx` versions of all outputs
+   - Auto-generated JD blueprint JSON for each new JD
+   - Batch mode for all JD `.txt` files in `data_raw/jd/txt/`
+
+**Main script:** `scripts/jd_scorecard_resume.py`  
+**Guide:** `scripts/guides/JD_SCORECARD_RESUME_GUIDE_01APR2026.md`
 
 ---
 
@@ -65,9 +69,10 @@ John's Career Copilot is a **next-generation professional portfolio** that combi
 - **Health Checks:** Built-in container health monitoring
 
 ### AI Models
-- **Primary:** Google Gemini 3.1 Flash Lite (fast, reliable)
-- **Secondary:** DeepSeek R1 (advanced reasoning)
-- **Provider:** OpenRouter API
+- **Primary (smartest):** Claude Sonnet 4.6
+- **Lower-cost default:** Google Gemini 3.1 Flash Lite
+- **Reasoning alternative:** DeepSeek R1
+- **Providers:** OpenRouter API + DeepSeek API
 
 ### Deployment
 - **Containerization:** Docker + Docker Compose
@@ -129,6 +134,30 @@ docker-compose up -d
 # Access at: https://www.askcareer-ai.com
 ```
 
+### JD Generator Quick Start
+
+```bash
+# Single JD with lower-cost model
+python scripts/jd_scorecard_resume.py "data_raw/jd/txt/JD_MandarinOriental_ClusterDirectorOfIT.txt" --llm=gemini
+
+# Rebuild the JD blueprint JSON for one JD
+python scripts/jd_scorecard_resume.py "data_raw/jd/txt/JD_MandarinOriental_ClusterDirectorOfIT.txt" --llm=gemini --refresh-blueprint
+
+# Batch process all JD text files, skipping existing outputs
+python scripts/jd_scorecard_resume.py --batch --llm=gemini
+
+# Force re-run all JDs in batch mode
+python scripts/jd_scorecard_resume.py --batch --llm=gemini --force
+```
+
+Outputs are written under:
+- `data_processed/<Employer>/ScoreCard/txt|docx/`
+- `data_processed/<Employer>/resume/txt|docx/`
+- `data_processed/<Employer>/CoverLetter/txt|docx/`
+
+JD blueprints are stored at:
+- `src/data/jd/<JD_STEM>.json`
+
 ---
 
 ## 📁 Project Structure
@@ -153,6 +182,12 @@ ask_aijohncareer/
 │   └── main.jsx                # Entry point
 ├── backend/
 │   └── server.js               # Express server
+├── scripts/
+│   ├── jd_scorecard_resume.py  # JD → scorecard, resume, cover letter, blueprint, docx
+│   ├── convert_txt_to_docx.py  # Standalone txt → docx conversion helper
+│   └── guides/
+│       └── JD_SCORECARD_RESUME_GUIDE_01APR2026.md
+├── src/data/jd/                # Auto-generated JD blueprint JSON files
 ├── dist/                       # Production build (generated)
 ├── docker-compose.yml          # Container orchestration
 ├── Dockerfile                  # Multi-stage Node build

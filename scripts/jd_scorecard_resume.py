@@ -61,26 +61,19 @@ except ImportError:
 ROOT = Path(__file__).resolve().parent.parent
 
 # ── Fixed paths ────────────────────────────────────────────────────────────────
-PROFILE_PATH      = ROOT / "src/data/john_profile.json"
-DEFAULT_JD_DIR    = ROOT / "data_raw/jd/txt"
-JD_BLUEPRINT_DIR  = ROOT / "src/data/jd"
-TEMPLATE_CANDIDATES = [
-    ROOT / "data_raw/resume/txt/JohnHauResume2026_MorganStanley.md",
-    ROOT / "data_raw/resume/txt/JohnHauResume2026_MorganStanley.txt",
-]
+PROFILE_PATH       = ROOT / "src/data/john_profile.json"
+DEFAULT_JD_DIR     = ROOT / "data_raw/jd/txt"
+JD_BLUEPRINT_DIR   = ROOT / "src/data/jd"
+TEMPLATE_PATH      = ROOT / "data_raw/resume/txt/JohnHauResume2026_MorganStanley.md"
 
 DATE_STAMP    = datetime.now().strftime("%d%b%Y").upper()   # e.g. 31MAR2026
 RESUME_YEAR   = datetime.now().strftime("%Y")               # e.g. 2026
 
 def resolve_resume_template():
-    """Prefer the new Markdown master resume template, with txt as fallback."""
-    for candidate in TEMPLATE_CANDIDATES:
-        if candidate.exists():
-            return candidate
-    sys.exit(
-        "ERROR: Resume template not found. Expected one of: "
-        + ", ".join(str(p) for p in TEMPLATE_CANDIDATES)
-    )
+    """Use the Markdown master resume template as the single authoritative source."""
+    if TEMPLATE_PATH.exists():
+        return TEMPLATE_PATH
+    sys.exit(f"ERROR: Resume template not found: {TEMPLATE_PATH}")
 
 TEMPLATE_PATH = resolve_resume_template()
 
@@ -247,22 +240,44 @@ if batch_mode:
     processed = 0
     skipped = 0
     failed = 0
+    batch_results = []
     forwarded_flags = [f for f in flags if f not in {"--batch", "--force"}]
 
     for batch_jd in jd_files:
         print(f"\n▶ Processing {batch_jd.name}")
+        targets = build_output_targets(batch_jd)
+        blueprint_exists = targets["blueprint"].exists()
+
         if not force_run and requested_outputs_exist(batch_jd, run_scorecard, run_resume, run_coverletter):
             print("  ↷ Skipped — requested outputs already exist")
             skipped += 1
+            batch_results.append({
+                "jd": batch_jd.name,
+                "status": "SKIPPED",
+                "blueprint": "EXISTS" if blueprint_exists else "MISSING",
+                "note": "Outputs already existed",
+            })
             continue
 
         cmd = [sys.executable, str(Path(__file__).resolve()), str(batch_jd)] + forwarded_flags
         result = subprocess.run(cmd, cwd=str(ROOT))
         if result.returncode == 0:
             processed += 1
+            batch_results.append({
+                "jd": batch_jd.name,
+                "status": "DONE",
+                "blueprint": "READY",
+                "note": f"Output -> data_processed/{derive_jd_metadata(batch_jd)[1]}/",
+            })
         else:
             failed += 1
             print(f"  ✗ Failed — exit code {result.returncode}")
+            batch_results.append({
+                "jd": batch_jd.name,
+                "status": "FAILED",
+                "blueprint": "CHECK",
+                "note": f"Exit code {result.returncode}",
+            })
 
     print(f"\n{'='*60}")
     print("  BATCH SUMMARY")
@@ -270,6 +285,15 @@ if batch_mode:
     print(f"  Processed : {processed}")
     print(f"  Skipped   : {skipped}")
     print(f"  Failed    : {failed}")
+
+    print(f"\n{'-'*112}")
+    print(f"  {'JD FILE':48} {'STATUS':10} {'BLUEPRINT':10} NOTE")
+    print(f"{'-'*112}")
+    for item in batch_results:
+        jd_name = (item['jd'][:45] + '...') if len(item['jd']) > 48 else item['jd']
+        print(f"  {jd_name:48} {item['status']:10} {item['blueprint']:10} {item['note']}")
+    print(f"{'-'*112}")
+
     sys.exit(0 if failed == 0 else 1)
 
 # ── Read source files ──────────────────────────────────────────────────────────
@@ -318,7 +342,7 @@ def build_blueprint_context(blueprint):
 jd_blueprint_context = build_blueprint_context(jd_blueprint)
 
 # ── LLM call helper ────────────────────────────────────────────────────────────
-def call_llm(system_prompt, user_prompt, max_tokens=6000, label=""):
+def call_llm(system_prompt, user_prompt, max_tokens=6000, label="", response_format=None):
     if label:
         print(f"  ↳ Calling OpenRouter ({MODEL}) — {label}")
     payload = {
@@ -329,6 +353,8 @@ def call_llm(system_prompt, user_prompt, max_tokens=6000, label=""):
             {"role": "user",   "content": user_prompt},
         ],
     }
+    if response_format:
+        payload["response_format"] = response_format
     resp = requests.post(
         LLM_ENDPOINT,
         headers=HEADERS,
@@ -339,7 +365,7 @@ def call_llm(system_prompt, user_prompt, max_tokens=6000, label=""):
     return resp.json()["choices"][0]["message"]["content"]
 
 def extract_json_object(raw_text):
-    """Extract a JSON object from an LLM response, allowing for code fences."""
+    """Extract a JSON object from an LLM response, allowing for code fences and minor cleanup."""
     cleaned = raw_text.strip()
     if cleaned.startswith("```"):
         cleaned = re.sub(r"^```(?:json)?\s*", "", cleaned)
@@ -350,7 +376,52 @@ def extract_json_object(raw_text):
     if start == -1 or end == -1 or end <= start:
         raise ValueError("LLM response did not contain a valid JSON object")
 
-    return json.loads(cleaned[start:end + 1])
+    candidate = cleaned[start:end + 1]
+    candidate = (
+        candidate
+        .replace("\u201c", '"')
+        .replace("\u201d", '"')
+        .replace("\u2018", "'")
+        .replace("\u2019", "'")
+    )
+
+    attempts = [
+        candidate,
+        re.sub(r",\s*([}\]])", r"\1", candidate),
+    ]
+
+    last_error = None
+    for attempt in attempts:
+        try:
+            return json.loads(attempt)
+        except json.JSONDecodeError as exc:
+            last_error = exc
+
+    raise last_error
+
+
+def repair_json_with_llm(raw_text, label="JSON Repair"):
+    """Ask the model to repair malformed JSON and return valid JSON only."""
+    REPAIR_SYS = (
+        "You repair malformed JSON for production automation. "
+        "Return VALID JSON ONLY. Do not add commentary, markdown, or explanations."
+    )
+    REPAIR_USER = f"""
+Repair the following malformed JSON so it parses successfully.
+Preserve the original meaning and keys as closely as possible.
+Return only valid JSON.
+
+=== MALFORMED JSON ===
+{raw_text}
+"""
+    repaired = call_llm(
+        REPAIR_SYS,
+        REPAIR_USER,
+        max_tokens=3000,
+        label=label,
+        response_format={"type": "json_object"},
+    )
+    return extract_json_object(repaired)
 
 
 def style_docx_document(doc):
@@ -415,8 +486,14 @@ def convert_text_file_to_docx(txt_path):
     target_dir = txt_path.parent.parent / "docx"
     target_dir.mkdir(parents=True, exist_ok=True)
     out_path = target_dir / f"{txt_path.stem}.docx"
-    doc.save(out_path)
-    return out_path
+    try:
+        doc.save(out_path)
+        return out_path, False
+    except PermissionError:
+        fallback_name = f"{txt_path.stem}_{datetime.now().strftime('%H%M%S')}.docx"
+        fallback_path = target_dir / fallback_name
+        doc.save(fallback_path)
+        return fallback_path, True
 
 
 def maybe_convert_to_docx(txt_path, label):
@@ -426,8 +503,11 @@ def maybe_convert_to_docx(txt_path, label):
         print(f"  ⚠️  {label} DOCX skipped — python-docx not installed")
         return None
     try:
-        out_path = convert_text_file_to_docx(txt_path)
-        print(f"  ✅  {label} DOCX → {out_path.relative_to(ROOT)}")
+        out_path, used_fallback = convert_text_file_to_docx(txt_path)
+        if used_fallback:
+            print(f"  ⚠️  {label} DOCX original file was locked; wrote fallback → {out_path.relative_to(ROOT)}")
+        else:
+            print(f"  ✅  {label} DOCX → {out_path.relative_to(ROOT)}")
         return out_path
     except Exception as exc:
         print(f"  ⚠️  {label} DOCX conversion failed: {exc}")
@@ -495,8 +575,18 @@ Rules:
 - Include semantic matching hints so adjacent evidence can be matched truthfully without hallucination
 """
 
-    raw = call_llm(BLUEPRINT_SYS, BLUEPRINT_USER, max_tokens=2600, label="JD Blueprint")
-    blueprint = extract_json_object(raw)
+    raw = call_llm(
+        BLUEPRINT_SYS,
+        BLUEPRINT_USER,
+        max_tokens=2600,
+        label="JD Blueprint",
+        response_format={"type": "json_object"},
+    )
+    try:
+        blueprint = extract_json_object(raw)
+    except Exception as exc:
+        print(f"  ↳ Repairing malformed JD blueprint JSON ({exc})")
+        blueprint = repair_json_with_llm(raw, label="JD Blueprint Repair")
 
     blueprint.setdefault("jd_file", str(jd_path.relative_to(ROOT)).replace("\\", "/"))
     blueprint.setdefault("company", employer)
