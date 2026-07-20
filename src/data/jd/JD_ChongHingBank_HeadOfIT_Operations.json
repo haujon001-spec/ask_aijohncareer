@@ -1,0 +1,253 @@
+{
+  "jd_file": "chong_hing_bank_it_infrastructure_security_head",
+  "company": "Chong Hing Bank Limited",
+  "company_slug": "chong-hing-bank",
+  "job_title": "Head of IT Infrastructure & Security (VP / SVP level inferred)",
+  "role_slug": "head-it-infrastructure-security-banking",
+  "industry": "Banking & Financial Services",
+  "role_summary": "Senior IT leadership role responsible for end-to-end management of banking IT infrastructure, data center operations, network, system security, and access management. The incumbent must align IT strategy with regulatory requirements, lead a sizable team, and ensure stable, secure, and compliant IT operations across Hong Kong, Macau, and Mainland China branches.",
+  "must_have_requirements": [
+    "Bachelor degree or above in Information Technology, Computer Science, or equivalent discipline",
+    "Minimum 15 years of relevant IT experience, including at least 10 years in a managerial capacity",
+    "Hands-on expertise in IT infrastructure, data center operations, network architecture, and system security within the banking or financial services industry",
+    "Proven experience managing IT security policies, access management, and compliance with banking regulatory requirements (e.g., HKMA, HKSAR supervisory guidelines)",
+    "Demonstrated experience leading and motivating a large IT team across multiple functions",
+    "Experience in incident management and service delivery governance aligned to internal policies and regulatory standards",
+    "Proficiency in written and spoken English and Chinese (Cantonese and Mandarin)"
+  ],
+  "nice_to_have_requirements": [
+    "Professional certifications such as CISSP, CISM, CISA, ITIL, or equivalent",
+    "Experience with multi-region or cross-border IT operations (Hong Kong, Macau, Mainland China)",
+    "Familiarity with cloud infrastructure or hybrid data center environments in a banking context",
+    "Experience with mandatory provident fund, wealth management, or securities IT platforms",
+    "Exposure to PBOC or Mainland China banking regulatory IT requirements in addition to HKMA guidelines",
+    "Track record of IT infrastructure modernisation or transformation projects in banking"
+  ],
+  "soft_skills_priority": [
+    "Strong leadership and team motivation — must inspire and develop a sizable multi-disciplinary IT team",
+    "Problem-solving under pressure — incident management requires decisive, calm action under tight deadlines",
+    "Client-centricity and sense of urgency — internal stakeholders treated as clients, fast incident resolution expected",
+    "Risk awareness and security culture building — cultivate team mindset around stable and secure operations",
+    "Strategic thinking — ability to develop and execute multi-year IT infrastructure roadmaps",
+    "Communication and stakeholder management — bridge technical and non-technical audiences in English and Chinese"
+  ],
+  "semantic_match_guidance": {
+    "IT Infrastructure Management": [
+      "server administration",
+      "data center management",
+      "network operations",
+      "hardware lifecycle management",
+      "storage administration",
+      "virtualisation",
+      "VMware",
+      "Hyper-V",
+      "blade servers",
+      "SAN/NAS",
+      "infrastructure roadmap"
+    ],
+    "Banking IT & Regulatory Compliance": [
+      "HKMA guidelines",
+      "banking regulatory compliance",
+      "IT governance in banking",
+      "PBOC requirements",
+      "MAS TRM",
+      "supervisory policy compliance",
+      "audit remediation",
+      "regulatory IT risk",
+      "banking IT controls"
+    ],
+    "Cybersecurity & IT Security Policy": [
+      "information security policy",
+      "security framework",
+      "ISO 27001",
+      "NIST",
+      "vulnerability management",
+      "penetration testing",
+      "security awareness training",
+      "SOC operations",
+      "firewall management",
+      "endpoint security",
+      "DLP",
+      "SIEM"
+    ],
+    "Identity & Access Management": [
+      "IAM",
+      "privileged access management",
+      "PAM",
+      "Active Directory",
+      "LDAP",
+      "SSO",
+      "access control policy",
+      "role-based access control",
+      "RBAC",
+      "user provisioning",
+      "access governance"
+    ],
+    "Data Center & Operations": [
+      "data center operations",
+      "NOC",
+      "disaster recovery",
+      "business continuity",
+      "BCP/DR",
+      "ITIL service management",
+      "incident management",
+      "change management",
+      "SLA management",
+      "capacity planning"
+    ],
+    "Network Infrastructure": [
+      "LAN/WAN",
+      "network architecture",
+      "SD-WAN",
+      "MPLS",
+      "routing and switching",
+      "network security",
+      "firewall",
+      "load balancing",
+      "network monitoring",
+      "Cisco",
+      "Juniper"
+    ],
+    "Leadership & Team Management": [
+      "team leadership",
+      "people management",
+      "staff development",
+      "performance management",
+      "cross-functional team",
+      "department head",
+      "IT director",
+      "VP IT",
+      "sizable team",
+      "talent development"
+    ],
+    "Strategic IT Planning": [
+      "IT strategy",
+      "technology roadmap",
+      "IT budget management",
+      "capital expenditure planning",
+      "vendor management",
+      "RFP",
+      "procurement governance",
+      "IT transformation",
+      "infrastructure investment planning"
+    ]
+  },
+  "scoring_criteria": [
+    {
+      "name": "Years of Relevant IT Experience & Seniority",
+      "weight": 15,
+      "why_it_matters": "JD explicitly requires 15+ years total IT experience; seniority signals capacity to own a complex, regulated environment",
+      "evidence_type_to_look_for": [
+        "Total years of IT career explicitly stated",
+        "Progressive seniority from engineer to manager to director/VP",
+        "Scope of roles: team size, budget, geography"
+      ],
+      "gap_expected": "Candidates with under 12 years total experience are likely underqualified"
+    },
+    {
+      "name": "Managerial Experience in IT Infrastructure / Operations",
+      "weight": 18,
+      "why_it_matters": "10 years of managerial experience is a hard threshold; the role leads a sizable multi-function IT team",
+      "evidence_type_to_look_for": [
+        "Direct reports count and team structure described",
+        "Titles such as IT Manager, Senior IT Manager, Head of IT, VP IT, IT Director",
+        "Evidence of managing cross-functional teams: network, security, operations, helpdesk"
+      ],
+      "gap_expected": "Candidates from individual contributor or specialist-only backgrounds will score low"
+    },
+    {
+      "name": "Banking Industry IT Experience",
+      "weight": 15,
+      "why_it_matters": "Banking has unique regulatory, compliance, and risk requirements; industry-specific knowledge is essential for day-one effectiveness",
+      "evidence_type_to_look_for": [
+        "Named banking or financial services employers",
+        "References to HKMA, MAS, or equivalent banking regulatory compliance",
+        "Experience with core banking systems, payment infrastructure, or financial system security"
+      ],
+      "gap_expected": "Non-banking IT candidates would face a steep learning curve on regulatory requirements"
+    },
+    {
+      "name": "IT Security Policy & Regulatory Compliance",
+      "weight": 14,
+      "why_it_matters": "Developing and deploying IT security policy in accordance with regulatory requirements is a core deliverable of this role",
+      "evidence_type_to_look_for": [
+        "Authored or reviewed IT security policies",
+        "Experience with ISO 27001, NIST, or banking-specific security frameworks",
+        "Audit, regulatory inspection, or compliance remediation track record",
+        "Security awareness program development"
+      ]
+    },
+    {
+      "name": "Data Center Operations & Incident Management",
+      "weight": 10,
+      "why_it_matters": "Managing data center operations and incident response is a named responsibility; stability of banking services depends on this competency",
+      "evidence_type_to_look_for": [
+        "Data center management experience stated",
+        "ITIL or equivalent service management framework usage",
+        "Incident commander or major incident management experience",
+        "BCP/DR planning and testing"
+      ]
+    },
+    {
+      "name": "Network & IT Infrastructure Technical Depth",
+      "weight": 9,
+      "why_it_matters": "The role requires sound technical knowledge to make credible decisions on infrastructure acquisition, deployment, and security",
+      "evidence_type_to_look_for": [
+        "Network architecture design or oversight",
+        "Server, storage, virtualisation platform management",
+        "Infrastructure refresh or transformation projects",
+        "Specific vendor or technology mentions relevant to enterprise banking environments"
+      ]
+    },
+    {
+      "name": "Identity & Access Management",
+      "weight": 7,
+      "why_it_matters": "Centralised and secure access management is explicitly called out as a key responsibility",
+      "evidence_type_to_look_for": [
+        "IAM or PAM programme ownership",
+        "Active Directory, LDAP, or SSO administration at scale",
+        "Access governance or user lifecycle management experience",
+        "Role-based access control implementation"
+      ]
+    },
+    {
+      "name": "Strategic IT Planning & Vendor Management",
+      "weight": 6,
+      "why_it_matters": "Role requires developing strategic acquisition and installation schedules for IT infrastructure aligned to bank growth",
+      "evidence_type_to_look_for": [
+        "Multi-year IT roadmap development",
+        "IT budget or capex responsibility",
+        "Vendor evaluation, RFP, and contract management",
+        "Board or EXCO-level IT reporting or presentation"
+      ]
+    },
+    {
+      "name": "Leadership, Team Development & Risk Culture",
+      "weight": 4,
+      "why_it_matters": "Cultivating risk awareness and developing team members is explicitly stated; cultural leadership is as important as technical leadership",
+      "evidence_type_to_look_for": [
+        "Staff coaching, mentoring, or succession planning mentioned",
+        "Risk awareness training or cultural initiatives led",
+        "Examples of team performance improvement or capability uplift",
+        "Low attrition or team stability achievements"
+      ]
+    },
+    {
+      "name": "Language Proficiency (English & Chinese incl. Mandarin)",
+      "weight": 2,
+      "why_it_matters": "Operations span Hong Kong, Macau, and Mainland China; Mandarin is required for Mainland branch coordination and regulatory interaction",
+      "evidence_type_to_look_for": [
+        "Explicit language skills section listing English, Cantonese, Mandarin",
+        "Experience working across HK and Mainland China teams",
+        "Education or certifications obtained in both English and Chinese mediums"
+      ],
+      "gap_expected": "Candidates without Mandarin may struggle with Mainland China branch responsibilities"
+    }
+  ],
+  "resume_tailoring_guidance": {
+    "mandatory_sections": [
+      "PROFESSIONAL SUMMARY",
+      "CORE COMPETENCIES"
+    ]
+  }
+}

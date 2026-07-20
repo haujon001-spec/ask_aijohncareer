@@ -1,0 +1,164 @@
+{
+  "jd_file": "Assistant General Manager – Information Technology",
+  "company": "Not Stated",
+  "company_slug": "not-stated",
+  "job_title": "Assistant General Manager – Information Technology",
+  "role_slug": "agm-it",
+  "industry": "Real Estate / Development / Property Management",
+  "role_summary": "Strategic leadership role overseeing IT infrastructure, hybrid/multi-cloud operations, and digital transformation. Responsible for aligning IT services with business growth, cybersecurity integration, and leading high-performing technical teams in a fast-paced environment.",
+  "must_have_requirements": [
+    "15+ years of experience in IT infrastructure, operations, or cloud management",
+    "5+ years in a senior leadership role leading IT teams",
+    "Proven experience in managing hybrid or multi-cloud environments (AWS, Azure, Ali Cloud)",
+    "Degree in Computer Science or related fields",
+    "Track record in cloud migration or infrastructure modernization projects",
+    "Proficiency in cybersecurity integration within infrastructure operations"
+  ],
+  "nice_to_have_requirements": [
+    "Experience operating in Mainland China markets",
+    "Multicultural team management experience",
+    "Specific certifications in Cloud (AWS/Azure) or ITIL frameworks"
+  ],
+  "soft_skills_priority": [
+    "Strategic Mindset",
+    "Business Acumen",
+    "Cultivates Innovation",
+    "Builds Effective Teams",
+    "Situational Adaptability"
+  ],
+  "semantic_match_guidance": {
+    "Infrastructure Leadership": [
+      "Infrastructure Modernization",
+      "IaaS/PaaS",
+      "Disaster Recovery",
+      "System Reliability"
+    ],
+    "Cloud Management": [
+      "Hybrid Cloud",
+      "Multi-cloud",
+      "Cloud Spend Optimization",
+      "AWS",
+      "Azure",
+      "Ali Cloud"
+    ],
+    "Team Leadership": [
+      "Mentorship",
+      "Talent Development",
+      "Competency Frameworks",
+      "Stakeholder Management"
+    ],
+    "Digital Transformation": [
+      "Process Automation",
+      "System Integration",
+      "AI Adoption",
+      "Efficiency Optimization"
+    ]
+  },
+  "scoring_criteria": [
+    {
+      "name": "Senior IT Leadership Experience",
+      "weight": 20,
+      "why_it_matters": "Determines the candidate's ability to manage senior-level stakeholders and high-scale operations.",
+      "evidence_type_to_look_for": [
+        "AGM/Director/Head of IT titles",
+        "Budget management accountability"
+      ],
+      "gap_expected": "Less than 5 years in senior leadership"
+    },
+    {
+      "name": "Hybrid/Multi-Cloud Maturity",
+      "weight": 20,
+      "why_it_matters": "Essential for modernized IT service delivery and infrastructure cost optimization.",
+      "evidence_type_to_look_for": [
+        "Cloud migration project descriptions",
+        "Cost optimization metrics"
+      ],
+      "gap_expected": "Limited experience in large-scale migrations"
+    },
+    {
+      "name": "Infrastructure Operations & Reliability",
+      "weight": 15,
+      "why_it_matters": "Ensures the candidate understands business continuity and uptime mandates.",
+      "evidence_type_to_look_for": [
+        "Disaster recovery implementation",
+        "SLA management"
+      ],
+      "gap_expected": null
+    },
+    {
+      "name": "Business Alignment & Strategy",
+      "weight": 10,
+      "why_it_matters": "The role requires translating business goals into IT roadmaps.",
+      "evidence_type_to_look_for": [
+        "Strategy formulation",
+        "Business case development"
+      ],
+      "gap_expected": null
+    },
+    {
+      "name": "Cybersecurity Integration",
+      "weight": 10,
+      "why_it_matters": "Ensures security-by-design, a critical requirement of the JD.",
+      "evidence_type_to_look_for": [
+        "Compliance frameworks",
+        "Security controls implementation"
+      ],
+      "gap_expected": null
+    },
+    {
+      "name": "Team Development Expertise",
+      "weight": 10,
+      "why_it_matters": "Must be able to foster a collaborative culture and clear career paths.",
+      "evidence_type_to_look_for": [
+        "Mentorship history",
+        "Team growth metrics"
+      ],
+      "gap_expected": null
+    },
+    {
+      "name": "Cultural Fit & Change Management",
+      "weight": 10,
+      "why_it_matters": "Requirement for navigating complex, multifaceted organizations.",
+      "evidence_type_to_look_for": [
+        "Multicultural background",
+        "Leading digital transformation"
+      ],
+      "gap_expected": null
+    },
+    {
+      "name": "Mainland China Exposure",
+      "weight": 5,
+      "why_it_matters": "Preferred skill set due to geographical scope.",
+      "evidence_type_to_look_for": [
+        "Operations in China",
+        "Regional project management"
+      ],
+      "gap_expected": "Not mandatory"
+    }
+  ],
+  "resume_tailoring_guidance": {
+    "mandatory_sections": [
+      "PROFESSIONAL SUMMARY",
+      "AI & AUTOMATION HIGHLIGHTS",
+      "CORE COMPETENCIES",
+      "SOFT SKILLS"
+    ],
+    "summary_focus": [
+      "Years of infrastructure leadership",
+      "Proven cloud migration success",
+      "Ability to align technology with corporate revenue goals"
+    ],
+    "do_not_overclaim": [
+      "Infrastructure management without direct team leadership experience",
+      "Sole responsibility for security without collaborative experience"
+    ]
+  },
+  "cover_letter_guidance": {
+    "tone": "Professional, strategic, and collaborative",
+    "positioning": "Emphasize yourself as a bridge between technical operations and business value creation.",
+    "bridge_gaps_honestly": [
+      "Highlight transferable transformation experience if specific legacy systems mentioned are missing",
+      "Explain how management style fosters innovation in challenging markets"
+    ]
+  }
+}

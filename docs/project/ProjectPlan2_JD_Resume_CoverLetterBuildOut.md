@@ -26,6 +26,7 @@ Directory of C:\Users\haujo\projects\DEV\ask_aijohncareer\data_processed\Mandari
 3. The folders like data, data_processed , data_raw  , should be excluded to GitHub
 4. Input: To include in the next Todolist\Todolist_[Today_date].md  and to develop a separate web portal both Mobile and desktop friendly using a modernized look with the flexibility
 	a. To specify the Input of JD to txt or docx file format - to be saved under the respective file format folder C:\Users\haujo\projects\DEV\ask_aijohncareer\data_raw\jd
+	b. The ability to input direct text data copy and paste to the portal for the JD information . Example I can copy the JD information from LinkedIn directly to the web portal
 5. Output: To have the abililty to generate the Output
 	a. Scorecard
 	b. Resume
@@ -36,3 +37,4 @@ Directory of C:\Users\haujo\projects\DEV\ask_aijohncareer\data_processed\Mandari
 	b. DeepSeek R1 -DeepSeek API key
 	c. xyz another cheaper LLM model.- OpenRouter API key
 
+7. The output of the files can be download from the webportal into docx format. 

@@ -1,0 +1,258 @@
+{
+  "jd_file": "mandarin_oriental_director_it_data_governance.txt",
+  "company": "Mandarin Oriental Hotel Group",
+  "company_slug": "mandarin-oriental",
+  "job_title": "Director, IT & Data Governance",
+  "role_slug": "director-it-data-governance",
+  "industry": "Luxury Hospitality / Corporate IT Governance",
+  "role_summary": "Senior director role at Mandarin Oriental's Hong Kong corporate office responsible for owning the IT governance framework across the global IT department and leading enterprise data governance in collaboration with the Data, Analytics & AI team. Reports to VP, IT Programs & Governance and chairs the Data Governance Council.",
+  "must_have_requirements": [
+    "Minimum 8 years in IT governance, risk management, and compliance, including leadership roles",
+    "Bachelor's degree in Information Systems, Computer Science, Business Administration, or related field",
+    "Strong knowledge of IT governance frameworks: COBIT, ITIL, DMBOK",
+    "Knowledge of information security standards: ISO 27001, NIST",
+    "Knowledge of data protection laws: GDPR and PIPL",
+    "Experience designing and implementing IT governance frameworks including policy development and stage-gate reviews",
+    "Experience establishing and maintaining IT risk management frameworks and risk registers",
+    "Experience managing regulatory compliance, audits, and audit findings",
+    "Ability to chair or lead governance councils and engage diverse cross-functional stakeholders",
+    "Exceptional analytical, written, and verbal communication skills"
+  ],
+  "nice_to_have_requirements": [
+    "Master's degree in Information Systems, Computer Science, or Business Administration",
+    "Professional certifications: CGEIT, COBIT 5/2019, ITIL, CRISC, CISSP, or DAMA CDMP",
+    "Experience in luxury hospitality, hotel, or multinational corporate environments",
+    "Experience collaborating with Data, Analytics, and AI teams on enterprise data governance",
+    "Familiarity with PIPL (China's Personal Information Protection Law) specifically",
+    "Experience leading a Center of Excellence (CoE) for data governance",
+    "Exposure to emerging technologies and proactive governance strategy development"
+  ],
+  "soft_skills_priority": [
+    "Leadership through influence (no direct line authority over all stakeholders implied)",
+    "Executive communication and stakeholder engagement across diverse functions and geographies",
+    "Strategic thinking with proactive anticipation of governance and technology trends",
+    "Integrity and accountability in enforcing policies and standards",
+    "Collaborative mindset for cross-functional council facilitation",
+    "Growth mindset and continuous improvement orientation",
+    "Organized and detail-oriented for audit management and policy documentation"
+  ],
+  "semantic_match_guidance": {
+    "IT Governance Frameworks": [
+      "COBIT",
+      "ITIL",
+      "governance policy development",
+      "stage-gate review",
+      "IT quality assurance",
+      "governance framework design",
+      "IT controls",
+      "policy enforcement",
+      "IT governance council"
+    ],
+    "Data Governance": [
+      "data governance framework",
+      "data stewardship",
+      "data standards",
+      "data policies",
+      "DMBOK",
+      "Data Governance Council",
+      "data quality",
+      "data accountability",
+      "master data management",
+      "data catalog",
+      "data lineage",
+      "DAMA"
+    ],
+    "Risk Management": [
+      "IT risk register",
+      "risk assessment",
+      "risk identification",
+      "risk mitigation",
+      "CRISC",
+      "risk review",
+      "enterprise risk management",
+      "IT risk framework",
+      "NIST",
+      "ISO 27001"
+    ],
+    "Regulatory Compliance & Audit": [
+      "GDPR",
+      "PIPL",
+      "data privacy compliance",
+      "cybersecurity compliance",
+      "audit management",
+      "audit findings remediation",
+      "regulatory requirements",
+      "compliance program",
+      "information security audit"
+    ],
+    "Stakeholder & Council Leadership": [
+      "council facilitation",
+      "briefing materials",
+      "cross-functional stakeholder engagement",
+      "executive communication",
+      "governance committee",
+      "steering committee",
+      "influence without authority"
+    ],
+    "Strategic Planning": [
+      "IT strategy",
+      "data governance strategy",
+      "continuous improvement",
+      "best practices",
+      "framework refinement",
+      "emerging technology",
+      "roadmap development"
+    ],
+    "Certifications & Credentials": [
+      "CGEIT",
+      "COBIT certified",
+      "ITIL certified",
+      "CRISC",
+      "CISSP",
+      "CDMP",
+      "PMP",
+      "CISM",
+      "ISO 27001 lead auditor"
+    ],
+    "Hospitality / Global Corporate Context": [
+      "multinational",
+      "global IT",
+      "corporate office",
+      "hotel group",
+      "luxury brand",
+      "property management systems",
+      "multi-property",
+      "Asia-Pacific"
+    ]
+  },
+  "scoring_criteria": [
+    {
+      "name": "IT Governance Framework Experience",
+      "weight": 22,
+      "why_it_matters": "Core responsibility of the role is owning and enforcing the IT governance framework across the entire IT department; this is the primary deliverable.",
+      "evidence_type_to_look_for": [
+        "Designed or implemented COBIT/ITIL-based governance frameworks",
+        "Developed IT policies, standards, and procedures",
+        "Led stage-gate review or quality assurance processes",
+        "Managed IT governance councils or steering committees",
+        "Years of experience in IT governance and compliance (target 8+)"
+      ],
+      "gap_expected": "Candidates from pure IT operations or project management without explicit governance ownership may score lower"
+    },
+    {
+      "name": "Data Governance Leadership",
+      "weight": 18,
+      "why_it_matters": "Role co-leads enterprise data governance with the Data & AI team and chairs the Data Governance Council; data governance depth is a key differentiator.",
+      "evidence_type_to_look_for": [
+        "Led or established a Data Governance Council or committee",
+        "Developed data policies, standards, and stewardship programs",
+        "Experience with DMBOK or DAMA frameworks",
+        "Led data standardization and data accountability initiatives",
+        "DAMA CDMP certification or equivalent"
+      ],
+      "gap_expected": "Data governance experience is less common than IT governance; partial credit for adjacent data quality or MDM work"
+    },
+    {
+      "name": "IT Risk Management",
+      "weight": 14,
+      "why_it_matters": "Establishing and maintaining a comprehensive risk framework and risk register is a defined responsibility with ongoing operational impact.",
+      "evidence_type_to_look_for": [
+        "Built or maintained an IT risk register",
+        "Conducted IT risk assessments and facilitated risk review meetings",
+        "Applied NIST or ISO 27001 risk frameworks",
+        "CRISC certification",
+        "Identified and implemented risk mitigation strategies"
+      ]
+    },
+    {
+      "name": "Regulatory Compliance & Audit Management",
+      "weight": 12,
+      "why_it_matters": "Must ensure compliance with data privacy laws (GDPR, PIPL) and manage audit cycles; non-compliance creates significant legal and reputational risk for a global luxury brand.",
+      "evidence_type_to_look_for": [
+        "Managed GDPR or PIPL compliance programs",
+        "Led internal or external IT audits",
+        "Remediated audit findings and reported to executive stakeholders",
+        "Cybersecurity regulatory compliance experience",
+        "Worked with legal or DPO teams on data privacy obligations"
+      ]
+    },
+    {
+      "name": "Relevant Certifications",
+      "weight": 8,
+      "why_it_matters": "Certifications like CGEIT, COBIT, CRISC, CISSP, ITIL, or CDMP signal validated expertise and are listed as highly desirable in the JD.",
+      "evidence_type_to_look_for": [
+        "CGEIT certification",
+        "COBIT 5 or 2019 certification",
+        "CRISC certification",
+        "CISSP certification",
+        "ITIL certification (v3 or v4)",
+        "DAMA CDMP certification"
+      ],
+      "gap_expected": "Many qualified candidates will hold only one or two certifications; absence of all is a soft gap only"
+    },
+    {
+      "name": "Stakeholder Engagement & Council Facilitation",
+      "weight": 8,
+      "why_it_matters": "The role chairs the Data Governance Council, facilitates the IT Governance Council, and must communicate decisions to diverse teams — influence without authority is critical.",
+      "evidence_type_to_look_for": [
+        "Chaired or facilitated governance committees or councils",
+        "Prepared executive briefing materials or board packs",
+        "Engaged C-suite, business unit heads, or cross-regional stakeholders",
+        "Demonstrated leadership through influence rather than direct authority",
+        "Coordinated across IT, legal, compliance, and business functions"
+      ]
+    },
+    {
+      "name": "Knowledge of Information Security Standards",
+      "weight": 7,
+      "why_it_matters": "ISO 27001 and NIST are explicitly required; security standards underpin the compliance and risk responsibilities of the role.",
+      "evidence_type_to_look_for": [
+        "ISO 27001 implementation or auditing experience",
+        "Applied NIST Cybersecurity Framework",
+        "CISSP or CISM certification",
+        "Information security policy development",
+        "Cybersecurity governance or compliance program management"
+      ]
+    },
+    {
+      "name": "Strategic Planning & Continuous Improvement",
+      "weight": 5,
+      "why_it_matters": "The role contributes to IT and data governance strategy and leads framework refinement initiatives; strategic mindset differentiates senior directors from managers.",
+      "evidence_type_to_look_for": [
+        "Developed multi-year IT or data governance roadmaps",
+        "Led continuous improvement or best practice programs",
+        "Anticipated emerging technology or regulatory trends",
+        "Contributed to corporate IT strategy at senior level"
+      ]
+    },
+    {
+      "name": "Leadership Experience & Seniority",
+      "weight": 4,
+      "why_it_matters": "Director-level role requiring demonstrated leadership; must have held leadership roles within the 8+ year experience window.",
+      "evidence_type_to_look_for": [
+        "Director, Senior Manager, or equivalent title in IT governance",
+        "Team leadership or people management",
+        "Cross-functional program leadership",
+        "Reported to or partnered with VP or C-suite level"
+      ]
+    },
+    {
+      "name": "Industry or Global Corporate Context",
+      "weight": 2,
+      "why_it_matters": "Hospitality or multinational corporate experience demonstrates familiarity with multi-property, cross-regional IT governance complexity.",
+      "evidence_type_to_look_for": [
+        "Worked in hospitality, hotel, or luxury brand environment",
+        "Global or Asia-Pacific corporate IT experience",
+        "Governed IT across multiple properties or business units"
+      ]
+    }
+  ],
+  "resume_tailoring_guidance": {
+    "mandatory_sections": [
+      "PROFESSIONAL SUMMARY",
+      "AI & AUTOMATION HIGHLIGHTS",
+      "CORE COMPETENCIES",
+      "SOFT SKILLS"
+    ]
+  }
+}

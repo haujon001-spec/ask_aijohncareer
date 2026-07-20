@@ -1,7 +1,6 @@
 {
   "timestamp": "2026-03-30T06:02:48.406Z",
   "sourceFile": "C:\\Users\\haujo\\projects\\DEV\\ask_aijohncareer\\src\\data\\john_profile.json",
-  "fileSize": 49224,
   "profile": {
     "metadata": {
       "name": "John Hau",
@@ -24,7 +23,7 @@
         "notes": "Calculator: (1995-July 2025: 30 years 7 months) minus (Aug 2020-Nov 2023: 3 years 3 months) = 27 years 4 months"
       }
     },
-    "summary": "Senior technology leader with 27+ years of IT infrastructure experience across Virtual Desktop Infrastructure (VDI), Desktop in Data Center (DiDC), End User Computing (EUC), lifecycle management, performance engineering, and global escalation leadership across major financial institutions: Morgan Stanley, Bank of America, AIA, Edge Technology Group, and Merrill Lynch. Former VP & Asia Manager for Workspace Virtualization Engineering at Morgan Stanley, serving as the primary APAC escalation lead for VDI issues across APAC, EMEA, and NA. Architected global VDI blueprints supporting 120,000 desktops and authored 8 global white papers. Hands-on innovator with proven ability to build AI-powered automation tools, dashboards, and agentic systems.",
+    "summary": "Senior technology leader with 27+ years of IT infrastructure experience across Virtual Desktop Infrastructure (VDI), Desktop in Data Center (DiDC), End User Computing (EUC), lifecycle management, performance engineering, and global escalation leadership across major financial institutions: Morgan Stanley, Bank of America, AIA, Edge Technology Group, and Merrill Lynch. Former VP & Asia Manager for Workspace Virtualization Engineering at Morgan Stanley, serving as the primary APAC escalation lead for VDI issues across APAC, EMEA, and NA. Architected global VDI blueprints supporting 120,000 desktops and authored 8 global white papers. Hands-on innovator with proven ability to build AI-powered automation tools, dashboards, and agentic systems, including an independently built production-grade algorithmic trading platform combining quantitative modeling, machine learning, multi-agent LLM orchestration, and live risk-managed exchange execution.",
     "ai_projects": [
       {
         "title": "John's Career Copilot - Full-Stack AI Interactive Resume Platform",
@@ -65,14 +64,64 @@
         "impact": "Production deployment, multi-language support"
       },
       {
-        "title": "Agentic AI Trading Prototype",
-        "description": "Multi-LLM ensemble for autonomous decision workflows",
+        "title": "Production Multi-Strategy Algorithmic Trading System",
+        "description": "Architected and operate a live, multi-strategy crypto trading system (200+ commits since Jan 2026): a custom Python backtesting engine used to test dozens of strategy variants (regime-detection, hybrid, directional, funding-rate arbitrage), Hidden Markov / Hidden Semi-Markov Model (HMM/HSMM) market-regime classification, and LightGBM machine learning models for entry/exit signal generation.",
         "tech_stack": [
-          "Multi-LLM Ensembles",
-          "Trading Logic",
-          "Agentic Framework"
+          "Python",
+          "Hidden Markov Models (HMM/HSMM)",
+          "LightGBM",
+          "pandas / NumPy",
+          "Custom Backtesting Engine"
         ],
-        "impact": "Autonomous trading decisions, LLM orchestration"
+        "impact": "Independent quant R&D system combining statistical regime modeling, ML, and systematic strategy design/backtesting across dozens of tested variants."
+      },
+      {
+        "title": "Live Risk-Managed Multi-Account Execution Engine",
+        "description": "Built a dedicated risk engine (position sizing, stop-loss/take-profit, trailing stops, volatility-based rules) wired to a live order-execution and position-management layer across multiple exchange accounts (Binance, Bitunix), deployed as a systemd-managed production service on a VPS with on-exchange safety-net orders and pre/post-deployment position audits.",
+        "tech_stack": [
+          "Binance API",
+          "Bitunix API",
+          "systemd",
+          "Python",
+          "Risk Engine",
+          "Order Execution"
+        ],
+        "impact": "Applies enterprise-grade stop-loss and position-sizing discipline to a self-built, live, multi-account automated trading system with on-exchange safety nets."
+      },
+      {
+        "title": "Multi-Agent LLM Framework for Trading Research & QA",
+        "description": "Designed a multi-agent architecture (Claude + DeepSeek ensemble) with specialized agents for market/news research, chart pattern recognition, technical analysis, backtest evaluation/grading, and automated QA/data-validation agents that gate deployment of dashboards and strategy changes.",
+        "tech_stack": [
+          "Anthropic Claude",
+          "DeepSeek R1",
+          "Multi-LLM Ensemble",
+          "Agentic Orchestration",
+          "Python"
+        ],
+        "impact": "Automates research, evaluation, and QA steps with agents that produce PASS/FAIL validation before any output is treated as production-ready — mirrors enterprise governance discipline applied to a personal AI system."
+      },
+      {
+        "title": "Tavily Real-Time Search Integration for LLM Agents",
+        "description": "Integrated the Tavily search API with the Anthropic SDK to give trading agents real-time web search for market news, crypto trends, and technical analysis context, using tool-calling to ground LLM outputs in current information.",
+        "tech_stack": [
+          "Tavily API",
+          "Anthropic SDK",
+          "Python",
+          "Tool-calling / Function-calling"
+        ],
+        "impact": "Grounds LLM agent research outputs in live market information rather than static training data."
+      },
+      {
+        "title": "Full-Stack Trading Web Portal & Dashboards",
+        "description": "Built a Python web portal for live/paper account monitoring, backtest comparison, and investor-facing reporting, deployed with systemd + Caddy and Telegram-based alerting/watchdog integration.",
+        "tech_stack": [
+          "Python",
+          "Flask",
+          "systemd",
+          "Caddy",
+          "Telegram Bot API"
+        ],
+        "impact": "Production-deployed operational dashboard supporting live trading oversight and reporting across multiple accounts."
       },
       {
         "title": "Global Economic Visualization Dashboard",
@@ -604,7 +653,13 @@
         "VBA macro development",
         "ServiceNow API automation",
         "LLM Orchestration",
-        "Agentic AI Systems"
+        "Agentic AI Systems",
+        "Multi-agent LLM orchestration (Claude + DeepSeek ensembles)",
+        "Regime-detection modeling (Hidden Markov / Hidden Semi-Markov Models)",
+        "ML signal generation (LightGBM)",
+        "Live exchange API integration (Binance, Bitunix)",
+        "Real-time search / tool-calling integration (Tavily API + Anthropic SDK)",
+        "Systemd / VPS production deployment for always-on AI and trading services"
       ],
       "analytics": [
         "PowerBI dashboard development",
@@ -642,7 +697,10 @@
         "LLMOps",
         "Linux LLM Inference",
         "GPU-Accelerated ML",
-        "Containerized AI (Docker)"
+        "Containerized AI (Docker)",
+        "Algorithmic / Quantitative Trading Systems",
+        "Regime-Detection Models (HMM/HSMM)",
+        "Multi-Agent LLM Orchestration"
       ]
     },
     "technical_skills": [
@@ -664,7 +722,8 @@
       "Backup Solutions: Veeam, CommVault",
       "Emerging Tech: Generative AI, LLMOps, Linux LLM Inference, GPU-Accelerated ML, Docker containerization",
       "Thin Client: IGEL thin client infrastructure and setup",
-      "Web Services: IIS 5.X, WebLogic, Cold Fusion, SiteMinder, Proxy servers"
+      "Web Services: IIS 5.X, WebLogic, Cold Fusion, SiteMinder, Proxy servers",
+      "AI / Quant Trading: Hidden Markov/Hidden Semi-Markov regime detection, LightGBM ML signal models, custom Python backtesting engine, Binance/Bitunix live API execution, risk engine (position sizing, stop-loss, trailing stops), multi-agent LLM orchestration (Claude, DeepSeek), Tavily real-time search API + Anthropic SDK tool-calling, systemd/VPS production deployment, Telegram bot alerting"
     ],
     "languages_spoken": [
       "English (Fluent)",
@@ -906,7 +965,10 @@
       "Change advisory board (CAB) management",
       "Citrix StoreFront and multi-user remote access",
       "AppSense Performance Manager implementation",
-      "Trading application performance optimization"
+      "Trading application performance optimization",
+      "Algorithmic trading system design (backtesting, regime detection, ML signals)",
+      "Live risk-managed exchange execution and multi-account trading operations",
+      "Multi-agent LLM orchestration for research, evaluation, and QA"
     ]
   }
 }

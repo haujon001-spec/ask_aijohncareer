@@ -43,6 +43,7 @@ lerna-debug.log*
 # IDE & Editor
 .vscode/
 .idea/
+.claude/
 *.swp
 *.swo
 *~
@@ -73,7 +74,11 @@ ehthumbs.db
 *.tmp
 *.temp
 *.bak
+*.bak_*.md
 ~*
+
+# Generated backup snapshots (backend/backup.js profile snapshots)
+/backup/
 
 # Pre-commit
 .pre-commit

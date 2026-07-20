@@ -23,7 +23,9 @@ Build a modern, mobile + desktop responsive web portal that wraps the JD Applica
 
 - [ ] **JD Upload Endpoint** `POST /api/jd/upload`
   - Accept `.txt` and `.docx` file formats
+  - Accept paste text into the chat as jd 
   - Save to `data_raw/jd/txt/` (txt) or `data_raw/jd/docx/` (docx) depending on format
+  - Save a blueprint of the jd as JSON file to be used for LLM scorecard rating
   - Return: saved file path, extracted text preview
   - Input validation: max file size 2MB, allowed types only
   - Estimated effort: 2h
