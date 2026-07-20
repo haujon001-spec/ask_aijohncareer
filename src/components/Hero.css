@@ -34,6 +34,28 @@
   max-width: 500px;
 }
 
+/* Mobile responsive subtitle with marquee animation */
+@media (max-width: 768px) {
+  .hero-subtitle {
+    min-width: max-content;
+    font-size: 14px;
+    padding: 0;
+    line-height: 1.5;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: marquee 35s linear infinite;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(calc(-100% - 50px));
+    }
+  }
+}
+
 .hero-links {
   display: flex;
   gap: 12px;
@@ -107,6 +129,40 @@
   background: #1e40af;
   border-color: #3b82f6;
   color: #dbeafe;
+}
+
+/* Tablet and mobile responsive */
+@media (max-width: 1024px) {
+  .hero-header {
+    padding: 24px 16px;
+  }
+
+  .hero-top {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  .hero-header h1 {
+    font-size: 28px;
+  }
+
+  .hero-subtitle {
+    font-size: 15px;
+    max-width: 100%;
+  }
+
+  .hero-links {
+    flex-wrap: wrap;
+  }
+
+  .hero-link {
+    padding: 8px 14px;
+    font-size: 13px;
+    flex: 1;
+    min-width: 80px;
+    text-align: center;
+  }
 }
 
 /* Mobile responsive */

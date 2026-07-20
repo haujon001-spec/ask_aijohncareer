@@ -2,7 +2,7 @@
 
 AI-powered chatbot showcasing John's professional experience, career achievements, and expertise. Deployed at **www.askcareer-ai.com**.
 
-## ✅ Deployment Status (March 25, 2026)
+## ✅ Deployment Status (March 30, 2026)
 
 ### Live Features
 - **Backend**: Node.js Express server with dual LLM support
@@ -11,21 +11,23 @@ AI-powered chatbot showcasing John's professional experience, career achievement
 - **SSL/HTTPS**: Let's Encrypt (automatic renewal)
 
 ### LLM Models (Working)
-1. **Liquid LFM 2.26B** (OpenRouter)
-   - Ultra-fast responses (~3.6s)
+1. **Google Gemini 3.1 Flash Lite** (OpenRouter)
+   - Ultra-fast responses (~2-3s)
    - FREE tier
    - Best for quick answers
+   - Multimodal capable
    
 2. **DeepSeek R1** (Native API)
-   - Detailed reasoning
-   - ~4.4s latency
+   - Advanced reasoning with explanations
+   - ~4-5s latency with reasoning enabled
    - Best for complex questions
+   - Supports reasoning mode for deeper analysis
 
-### Recent Fixes (March 25)
-✅ Mobile scrolling layout (flexbox viewport fixes)  
-✅ Model display names in chat UI  
-✅ Frontend relative URLs (production-ready)  
+### Recent Updates (March 30)
+✅ Upgraded to Google Gemini 3.1 Flash Lite (more reliable than Liquid LFM)  
+✅ DeepSeek R1 with reasoning mode support  
 ✅ Both LLM APIs responding correctly  
+✅ Consolidated multi-model testing framework  
 
 ## 🚀 Architecture
 
@@ -36,7 +38,7 @@ Caddy Reverse Proxy (Port 80/443)
     ↓
 Docker Container (Node.js + React)
     ├── Backend: Express server (Port 3000)
-    │   ├── /api/deepseek → Liquid LFM 2.26B
+    │   ├── /api/deepseek → Google Gemini 3.1 Flash Lite
     │   └── /api/nemotron → DeepSeek R1
     └── Frontend: Static React app (Vite-built dist/)
         └── Relative URLs (/api/...) for API calls
@@ -95,7 +97,7 @@ docker-compose up -d --build
 
 ### Testing APIs
 ```bash
-# Liquid LFM (deepseek endpoint)
+# Google Gemini 3.1 Flash Lite (deepseek endpoint)
 curl -X POST https://www.askcareer-ai.com/api/deepseek \
   -H 'Content-Type: application/json' \
   -d '{"question":"Tell me about Johns achievements"}'
@@ -142,6 +144,6 @@ curl -X POST https://www.askcareer-ai.com/api/nemotron \
 
 ---
 
-**Last Updated**: March 25, 2026 13:10 UTC  
+**Last Updated**: March 30, 2026  
 **Deployed**: www.askcareer-ai.com ✅  
-**Next Target**: Mobile UX optimization (dropdown menu)
+**LLMs**: Google Gemini 3.1 Flash Lite + DeepSeek R1

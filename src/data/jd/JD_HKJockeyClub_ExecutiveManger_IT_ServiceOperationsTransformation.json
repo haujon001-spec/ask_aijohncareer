@@ -1,0 +1,152 @@
+{
+  "jd_file": "The Hong Kong Jockey Club IT Operations Leadership",
+  "company": "The Hong Kong Jockey Club",
+  "company_slug": "hkjc",
+  "job_title": "Head of IT Service Operations",
+  "role_slug": "head-of-it-service-operations",
+  "industry": "Gaming / Wagering / Fintech",
+  "role_summary": "Lead the transformation of IT Service Operations by adopting SRE principles, automating manual processes, and fostering a DevOps culture within a 24/7 high-availability wagering environment.",
+  "must_have_requirements": [
+    "15+ years experience in IT Operations with 8+ years in leadership positions",
+    "Proven track record managing high-availability, high-transaction systems",
+    "Deep expertise in SRE (Site Reliability Engineering) and DevOps methodology",
+    "Experience in incident response management for mission-critical IT platforms",
+    "Strong background in cloud-native architecture and containerization",
+    "Experience managing distributed support teams (L1-L2) and stakeholder engagement"
+  ],
+  "nice_to_have_requirements": [
+    "Experience in wagering, gaming, or large-scale fintech industry",
+    "Hands-on experience with CI/CD pipeline integration",
+    "Expertise in modern observability and monitoring tools",
+    "Professional certification in ITIL or SRE methodologies"
+  ],
+  "soft_skills_priority": [
+    "Transformation Leadership",
+    "Change Management",
+    "Executive Communication",
+    "Stakeholder Management",
+    "Adaptability"
+  ],
+  "semantic_match_guidance": {
+    "SRE_DevOps": [
+      "Site Reliability Engineering",
+      "Error Budgets",
+      "CI/CD Pipelines",
+      "Automation",
+      "Service Level Objectives (SLOs)",
+      "Incident Response"
+    ],
+    "High_Availability": [
+      "Mission-critical",
+      "Zero-downtime",
+      "High-transaction",
+      "24/7 operations",
+      "Disaster recovery"
+    ],
+    "Leadership": [
+      "IT Transformation",
+      "Team restructuring",
+      "Mentorship",
+      "Executive reporting",
+      "Culture change"
+    ]
+  },
+  "scoring_criteria": [
+    {
+      "name": "Experience Level",
+      "weight": 20,
+      "why_it_matters": "Requires senior-level maturity to handle high-stakes racing/wagering infrastructure.",
+      "evidence_type_to_look_for": [
+        "15+ years total IT",
+        "8+ years leadership"
+      ]
+    },
+    {
+      "name": "SRE/DevOps Transformation",
+      "weight": 15,
+      "why_it_matters": "Core mission is converting manual operations to SRE/DevOps models.",
+      "evidence_type_to_look_for": [
+        "Infrastructure as Code",
+        "Pipeline automation",
+        "Observability tooling implementation"
+      ]
+    },
+    {
+      "name": "High Availability Infrastructure",
+      "weight": 15,
+      "why_it_matters": "Platform uptime is critical for the Club's revenue and regulatory compliance.",
+      "evidence_type_to_look_for": [
+        "Fintech or gambling industry",
+        "99.99%+ uptime metrics",
+        "Incident management success"
+      ]
+    },
+    {
+      "name": "Incident & Release Management",
+      "weight": 10,
+      "why_it_matters": "Must maintain stability while improving release velocity.",
+      "evidence_type_to_look_for": [
+        "Major incident resolution",
+        "Change control optimization"
+      ]
+    },
+    {
+      "name": "Cloud/Containerization Competency",
+      "weight": 10,
+      "why_it_matters": "Necessary for modern scalable wagering operations.",
+      "evidence_type_to_look_for": [
+        "AWS/Azure/GCP",
+        "Kubernetes",
+        "Cloud-native migrations"
+      ]
+    },
+    {
+      "name": "Stakeholder & Change Management",
+      "weight": 10,
+      "why_it_matters": "The role bridges Business Lines, IT, and external vendors.",
+      "evidence_type_to_look_for": [
+        "Managing multiple cross-functional teams",
+        "Executive presentation experience"
+      ]
+    },
+    {
+      "name": "Operational Efficiency/Automation",
+      "weight": 10,
+      "why_it_matters": "Target is to replace manual routine upkeep with automated scripts.",
+      "evidence_type_to_look_for": [
+        "SDLC standards",
+        "Automated OAT activities"
+      ]
+    },
+    {
+      "name": "Leadership Style & Culture",
+      "weight": 10,
+      "why_it_matters": "Must align with the Club's Ignition culture and foster accountability.",
+      "evidence_type_to_look_for": [
+        "Mentorship",
+        "Team culture improvement metrics"
+      ]
+    }
+  ],
+  "resume_tailoring_guidance": {
+    "mandatory_sections": [
+      "PROFESSIONAL SUMMARY",
+      "AI & AUTOMATION HIGHLIGHTS",
+      "CORE COMPETENCIES",
+      "SOFT SKILLS"
+    ],
+    "summary_focus": [
+      "Emphasize long-term leadership in high-availability environments and successful IT transformation programs."
+    ],
+    "do_not_overclaim": [
+      "Ensure tool-specific expertise (e.g., Kubernetes, Observability) is framed through operational impact rather than just list accumulation."
+    ]
+  },
+  "cover_letter_guidance": {
+    "tone": "Professional, authoritative, and mission-focused.",
+    "positioning": "Align as a proven change agent who balances high-stakes technical rigor with empathy for the human element of IT teams.",
+    "bridge_gaps_honestly": [
+      "If lacking specific wagering sector experience, focus on the scale of your transaction-heavy environments in fintech or e-commerce."
+    ]
+  }
+}

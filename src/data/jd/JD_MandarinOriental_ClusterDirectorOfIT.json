@@ -1,0 +1,159 @@
+{
+  "jd_file": "Cluster Director of IT - Mandarin Oriental, Hong Kong",
+  "company": "Mandarin Oriental Hotel Group",
+  "company_slug": "mandarin-oriental-hk",
+  "job_title": "Cluster Director of IT",
+  "role_slug": "cluster-director-it-hospitality",
+  "industry": "Luxury Hospitality",
+  "role_summary": "Oversees IT operations, cybersecurity, and digital infrastructure for two flagship properties, driving technology strategy and guest-facing digital innovation while managing budgets, compliance, and team leadership.",
+  "must_have_requirements": [
+    "Minimum 5 years of senior IT management experience within luxury hospitality",
+    "Degree in Information Technology, Computer Science or equivalent",
+    "Proven proficiency in hotel-specific systems (PMS, POS, CRM)",
+    "Significant experience in budget management and CapEx planning",
+    "Strong technical background in network infrastructure and Wi-Fi performance",
+    "Demonstrable track record in cybersecurity strategy and PCI compliance",
+    "Advanced vendor management and contract negotiation experience"
+  ],
+  "nice_to_have_requirements": [
+    "Experience managing multiple properties/cluster environments",
+    "Digital transformation project leadership in F&B or large-scale event spaces",
+    "Expertise in Audio Visual (AV) systems management for luxury events"
+  ],
+  "soft_skills_priority": [
+    "Stakeholder management",
+    "Executive-level communication",
+    "Service-oriented mindset",
+    "People development and mentorship",
+    "Change leadership"
+  ],
+  "semantic_match_guidance": {
+    "technologies": [
+      "PMS",
+      "POS",
+      "CRM",
+      "Property Management Systems",
+      "Point of Sale",
+      "Network Infrastructure",
+      "Wi-Fi performance"
+    ],
+    "leadership": [
+      "IT Direction",
+      "Project Management",
+      "Budgeting",
+      "CapEx planning",
+      "Cybersecurity Strategy",
+      "Vendor Management",
+      "Business Continuity"
+    ],
+    "hospitality": [
+      "Luxury Hotel",
+      "Guest Experience",
+      "Operational Excellence",
+      "Event AV",
+      "PCI Compliance"
+    ]
+  },
+  "scoring_criteria": [
+    {
+      "name": "Luxury Hospitality IT Leadership",
+      "weight": 20,
+      "why_it_matters": "The role requires navigation of the specific high-standard expectations of the luxury hotel sector.",
+      "evidence_type_to_look_for": [
+        "Director of IT titles",
+        "Hotel cluster management experience",
+        "Luxury brand tenure"
+      ],
+      "gap_expected": "Candidates from non-hospitality sectors require deep enterprise-scale infrastructure experience."
+    },
+    {
+      "name": "Technical Proficiency (PMS/POS/Network)",
+      "weight": 15,
+      "why_it_matters": "Daily operations rely on stable core hospitality systems and robust network infrastructure.",
+      "evidence_type_to_look_for": [
+        "Opera PMS",
+        "Micros POS",
+        "Wi-Fi lifecycle management",
+        "network topology optimization"
+      ]
+    },
+    {
+      "name": "Cybersecurity & PCI Compliance",
+      "weight": 15,
+      "why_it_matters": "Mandarin Oriental is a high-profile target; maintaining data integrity and compliance is non-negotiable.",
+      "evidence_type_to_look_for": [
+        "PCI-DSS compliance track record",
+        "Risk assessments",
+        "Incident response planning"
+      ]
+    },
+    {
+      "name": "Strategic Budget & Project Management",
+      "weight": 12,
+      "why_it_matters": "Responsible for life-cycle management and 5-year capital planning.",
+      "evidence_type_to_look_for": [
+        "CapEx budget ownership",
+        "Project lifecycle delivery (Initiation to completion)"
+      ]
+    },
+    {
+      "name": "Stakeholder & Vendor Management",
+      "weight": 10,
+      "why_it_matters": "Success depends on influencing GMs and managing high-value external partners.",
+      "evidence_type_to_look_for": [
+        "Contract negotiation outcomes",
+        "Vendor SLA management",
+        "Liaison with C-suite/GMs"
+      ]
+    },
+    {
+      "name": "Team Leadership & Development",
+      "weight": 10,
+      "why_it_matters": "Needs to build and nurture a high-performing service-focused technical team.",
+      "evidence_type_to_look_for": [
+        "Team mentorship",
+        "Performance management",
+        "Hiring and training experience"
+      ]
+    },
+    {
+      "name": "Digital Transformation & Innovation",
+      "weight": 8,
+      "why_it_matters": "The group values cutting-edge innovation for guest experiences.",
+      "evidence_type_to_look_for": [
+        "Digital transformation projects",
+        "Guest-facing technology implementations"
+      ]
+    },
+    {
+      "name": "Audio Visual Support Strategy",
+      "weight": 10,
+      "why_it_matters": "Essential for high-end events and hotel operations performance.",
+      "evidence_type_to_look_for": [
+        "Managed AV contractors",
+        "Event technology infrastructure oversight"
+      ]
+    }
+  ],
+  "resume_tailoring_guidance": {
+    "mandatory_sections": [
+      "PROFESSIONAL SUMMARY",
+      "CORE COMPETENCIES",
+      "OPERATIONAL IMPACT",
+      "SOFT SKILLS"
+    ],
+    "summary_focus": [
+      "High-end hospitality IT background, technical strategic oversight, and commitment to service excellence."
+    ],
+    "do_not_overclaim": [
+      "Avoid claiming 'software engineering' skills; focus on 'system integration' and 'operations management' instead."
+    ]
+  },
+  "cover_letter_guidance": {
+    "tone": "Professional, refined, and service-oriented.",
+    "positioning": "Emphasize your role as a 'business partner' to hotel GMs, not just a technician.",
+    "bridge_gaps_honestly": [
+      "Focus on transferable technical governance skills if moving from a high-security industry like Finance or Banking into Luxury Hotels."
+    ]
+  }
+}

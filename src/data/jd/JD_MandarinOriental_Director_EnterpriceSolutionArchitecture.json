@@ -1,0 +1,169 @@
+{
+  "jd_file": "Mandarin_Oriental_Enterprise_Solutions_Architect_Director",
+  "company": "Mandarin Oriental Hotel Group",
+  "company_slug": "mandarin-oriental",
+  "job_title": "Enterprise Solutions Architect",
+  "role_slug": "enterprise-solutions-architect",
+  "industry": "Luxury Hospitality",
+  "role_summary": "Director-level strategic role responsible for defining enterprise architecture, governing technology roadmaps, and leading hands-on solution design and systems integration to support global luxury operations.",
+  "must_have_requirements": [
+    "Experience in Enterprise Architecture frameworks (TOGAF or equivalent)",
+    "Proven track record in end-to-end solution design involving cloud and on-premises hybrid environments",
+    "Deep expertise in systems integration and data architecture",
+    "Director-level experience in stakeholder management and organizational alignment",
+    "Background in building scalable, secure, and resilient technology ecosystems"
+  ],
+  "nice_to_have_requirements": [
+    "Hands-on experience implementing AI-driven enterprise technologies",
+    "Direct experience in the hospitality or luxury retail industries",
+    "Expertise in digital transformation initiatives",
+    "Management of technical and business solution lead teams"
+  ],
+  "soft_skills_priority": [
+    "Strategic Visioning",
+    "Collaborative Leadership",
+    "Problem Solving",
+    "Communication with C-suite/Business Leads",
+    "Growth Mindset"
+  ],
+  "semantic_match_guidance": {
+    "Architecture": [
+      "TOGAF",
+      "Enterprise Architecture",
+      "Solution Architecture",
+      "Systems Design",
+      "Reference Architectures"
+    ],
+    "Infrastructure": [
+      "Hybrid Cloud",
+      "On-premises",
+      "Integration",
+      "APIs",
+      "Data Strategy",
+      "Scalability"
+    ],
+    "Leadership": [
+      "Director",
+      "Global Strategy",
+      "Stakeholder Governance",
+      "Business-IT Alignment"
+    ],
+    "Innovation": [
+      "AI",
+      "Automation",
+      "Future-proofing",
+      "Digital Transformation"
+    ]
+  },
+  "scoring_criteria": [
+    {
+      "name": "Enterprise Architecture Governance",
+      "weight": 15,
+      "why_it_matters": "The role defines the architectural standards for a multi-national luxury group.",
+      "evidence_type_to_look_for": [
+        "TOGAF certification",
+        "EA roadmap development",
+        "Architecture review board experience"
+      ],
+      "gap_expected": "Exposure to small-scale environments only"
+    },
+    {
+      "name": "Hybrid Architecture & Integration",
+      "weight": 15,
+      "why_it_matters": "Essential for managing complex hospitalities systems spanning cloud and on-prem.",
+      "evidence_type_to_look_for": [
+        "Hybrid cloud migration projects",
+        "API management",
+        "Enterprise Integration Patterns"
+      ],
+      "gap_expected": "SaaS-only background"
+    },
+    {
+      "name": "Strategic Stakeholder Engagement",
+      "weight": 15,
+      "why_it_matters": "Must bridge the gap between business leads and technical teams effectively.",
+      "evidence_type_to_look_for": [
+        "Business Technology partnership",
+        "Strategy presentations",
+        "Cross-departmental project leads"
+      ],
+      "gap_expected": "Purely technical individual contributor roles"
+    },
+    {
+      "name": "Luxury/Hospitality Domain Knowledge",
+      "weight": 10,
+      "why_it_matters": "Understanding high-touch service requirements ensures technology fits the brand promise.",
+      "evidence_type_to_look_for": [
+        "Hotel PMS experience",
+        "Customer experience (CX) platforms",
+        "Global property management systems"
+      ],
+      "gap_expected": "Experience in unrelated industries (Manufacturing, etc.)"
+    },
+    {
+      "name": "Hands-on Delivery & Technical Acumen",
+      "weight": 10,
+      "why_it_matters": "This is a working-architect role, not just governance.",
+      "evidence_type_to_look_for": [
+        "System design documents",
+        "Tech stack selection",
+        "Hand-on development oversight"
+      ],
+      "gap_expected": "Management-only roles with no design responsibility"
+    },
+    {
+      "name": "AI & Innovation Implementation",
+      "weight": 10,
+      "why_it_matters": "The JD specifically mandates advanced AI technology readiness.",
+      "evidence_type_to_look_for": [
+        "AI/ML integration use cases",
+        "Emerging tech roadmap",
+        "Automation outcomes"
+      ],
+      "gap_expected": "Static infrastructure background"
+    },
+    {
+      "name": "Director-Level Leadership",
+      "weight": 15,
+      "why_it_matters": "Authority to lead internal IT counterparts and business solution leads.",
+      "evidence_type_to_look_for": [
+        "Mentorship of senior staff",
+        "Budget responsibility",
+        "Direct reports (IT/Tech)"
+      ],
+      "gap_expected": "Lack of leadership experience"
+    },
+    {
+      "name": "Values Alignment (Cultural Fit)",
+      "weight": 10,
+      "why_it_matters": "High-luxury demands integrity, responsibility, and a guest-centric mindset.",
+      "evidence_type_to_look_for": [
+        "Cultural awards",
+        "Leadership philosophies",
+        "Reference to 'customer success'"
+      ],
+      "gap_expected": "None"
+    }
+  ],
+  "resume_tailoring_guidance": {
+    "mandatory_sections": [
+      "PROFESSIONAL SUMMARY",
+      "AI & AUTOMATION HIGHLIGHTS",
+      "CORE COMPETENCIES",
+      "SOFT SKILLS"
+    ],
+    "summary_focus": [
+      "High-level impact on global architectural strategy in the hospitality or premium service sector."
+    ],
+    "do_not_overclaim": [
+      "Avoid claiming 'hands-on coding' if the role is purely managerial; balance the two as requested by the 'rare blend' requirement."
+    ]
+  },
+  "cover_letter_guidance": {
+    "tone": "Sophisticated, professional, and composed.",
+    "positioning": "Emphasize how your architectural vision scales service delivery without compromising the 'human' element of luxury.",
+    "bridge_gaps_honestly": [
+      "If moving from a different industry, connect your deep expertise in complex, mission-critical systems to the needs of the luxury hospitality industry."
+    ]
+  }
+}

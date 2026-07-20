@@ -3,7 +3,7 @@ import './ModelSelector.css'
 
 function ModelSelector({ selectedModel, onModelChange }) {
   const models = [
-    { id: 'deepseek', name: 'Mistral 7B Instruct', icon: '⚡', desc: 'FASTEST' },
+    { id: 'deepseek', name: 'Gemini 3.1 Flash Lite', icon: '⚡', desc: 'FASTEST' },
     { id: 'nemotron', name: 'DeepSeek R1', icon: '🧠', desc: 'BEST REASONING' }
   ]
 

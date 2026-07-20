@@ -1,0 +1,311 @@
+JD MATCH SCORECARD — MANDARINORIENTAL | CLUSTERDIRECTOROFIT
+Generated : 2026-03-31 17:46  |  Model: anthropic/claude-sonnet-4.6
+Source JD : JD_MandarinOriental_ClusterDirectorOfIT.txt
+Profile   : src/data/john_profile.json
+Candidate : John Hau
+========================================================================
+
+# JD MATCH SCORECARD
+## John Hau vs. Cluster Director of IT — Mandarin Oriental, Hong Kong
+
+---
+
+## 1. ROLE & COMPANY SUMMARY
+
+Mandarin Oriental, Hong Kong is seeking a Cluster Director of IT to lead technology operations across two flagship luxury properties (Mandarin Oriental Hong Kong and Mandarin Oriental The Landmark). The role spans strategic technology leadership, daily IT operations, cybersecurity and PCI compliance, infrastructure management, audio visual oversight, vendor governance, and team leadership. The position reports to two General Managers simultaneously, indicating high executive visibility and expectation for sophisticated stakeholder management. The ideal candidate blends deep technical credibility with luxury hospitality sector experience, service-oriented culture alignment, and the strategic maturity to drive five-year capital planning and digital transformation.
+
+---
+
+## 2. OVERALL MATCH SCORE
+
+**62/100 — PARTIAL MATCH**
+
+John Hau is a technically accomplished and experienced technology leader whose credentials in infrastructure, VDI, end user computing, automation, compliance, and team leadership are genuinely impressive. His 27+ years of IT experience — primarily in major financial institutions — demonstrate enterprise-grade capability well above the minimum requirements in several technical domains. However, the role is explicitly positioned within the luxury hospitality sector, and the candidate has no discernible hotel or hospitality technology experience. Critical hospitality-specific competencies — hotel PMS/POS/CRM systems, guest-facing technology management, hotel digital transformation, PCI DSS compliance in a hospitality context, and audio visual event technology — are absent from his profile. His financial services background is prestigious but culturally and operationally distant from a luxury hotel environment. He is a technically credible candidate who would require significant sector onboarding, and faces direct competition from candidates with hotel IT management experience.
+
+---
+
+## 3. SCORING CRITERIA
+
+---
+
+### a) Technology Leadership & Strategy
+**Score: 7/10**
+
+**Evidence:**
+- Served as VP and Asia Manager, Workspace Virtualization Engineering at Morgan Stanley, leading global engineering strategy for 120,000 desktops across APAC, EMEA, and NA
+- Authored 8 global white papers that became firm-wide VDI blueprints — demonstrating thought leadership and standards-setting capability
+- At AIA, led End User Services strategy across APAC for 50+ staff, driving automation and governance transformation
+- Built PowerBI dashboards for strategic KPI and SLA monitoring
+- Demonstrated ability to present technology strategy to C-suite (COO/CEO at Edge Technology Group)
+- Described as having a "growth mindset" orientation with AI-powered tooling and agentic systems development
+
+**Gaps:**
+- No evidence of shaping hotel-specific technology vision or guest-facing digital strategy
+- No documented experience contributing to property-level technology roadmaps or five-year capital plans in a hospitality context
+- Leadership has been primarily within large, centralized enterprise environments rather than distributed property-level operations
+
+---
+
+### b) IT Operations Management (Budget, Governance, Standards)
+**Score: 7/10**
+
+**Evidence:**
+- At AIA, managed departmental operations for 50+ staff including ITSM workflows, escalation flows, SOPs, SLA governance, and KPI dashboards across APAC
+- At Edge Technology Group, responsible for IT governance, process refinement, and financial services client operations; engaged in Opex/risk assessment and cost analysis
+- At Morgan Stanley, managed lifecycle operations, runbooks, RCA frameworks, and compliance across global virtualization estate
+- Demonstrated budget consciousness: HK$3.5M saved on Windows 11 migration, US$1.4M OPEX reduction at Morgan Stanley, US$640K vendor cost avoidance
+- Experience with capex planning implied through lifecycle management and infrastructure refresh programs
+
+**Gaps:**
+- No explicit mention of owning a formal departmental IT budget, headcount planning, or capex submission process in a hotel or property context
+- Operational management has been within matrix-structured financial institutions — not as a standalone IT director with full P&L-style accountability
+- No evidence of manpower planning or staffing budget ownership at director level
+
+---
+
+### c) Infrastructure & Network Management
+**Score: 7.5/10**
+
+**Evidence:**
+- 27+ years of deep infrastructure experience spanning server architecture, virtualization, networking, data center operations, SAN/NAS, hyper-convergence, and backup systems
+- At Edge Technology Group, directly managed systems and network engineering teams across HK, SG, and AU; designed 3-tier backup architecture (40–68% → 99% success rate); implemented monitoring tools reducing MTTR by 20%
+- At Morgan Stanley, managed lifecycle operations for 120,000-desktop global environment including thin client infrastructure (IGEL), WAR/BCP deployments, and performance benchmarking
+- At Merrill Lynch, led regional data center refreshes across 8 APAC countries with server virtualization (26% of servers), SAN refresh, and infrastructure resilience design
+- Experience with preventative maintenance, capacity management, and proactive monitoring (SCOM, SPLUNK, ServiceNow)
+
+**Gaps:**
+- No specific evidence of managing hotel-grade network infrastructure (guest Wi-Fi, HSIA, property-wide LAN/WAN in hospitality context)
+- Hotel networks have unique requirements (guest Wi-Fi density, IoT integration, in-room technology) not evidenced in profile
+- No documented experience with hospitality-specific infrastructure vendors (RUCKUS, Cisco hospitality, etc.)
+
+---
+
+### d) Cybersecurity & Compliance (PCI DSS, Audits, Risk Management)
+**Score: 6/10**
+
+**Evidence:**
+- Served as IT Risk Officer for the virtualization domain at Morgan Stanley, ensuring 100% compliance
+- At AIA, executed HKMA-aligned DR drills ensuring full regulatory compliance
+- At Edge Technology Group, led ISO 27001 and SFC EDSP compliance efforts; chaired Change Advisory Board (CAB); proposed risk mitigation plans
+- At Bank of America, achieved 99% audit pass rate across all patch cycles
+- Demonstrated risk management, incident response awareness, and business continuity planning across multiple roles
+
+**Gaps:**
+- No evidence of PCI DSS compliance experience, which is explicitly required in a hospitality/hotel payments environment
+- Cybersecurity leadership has been in a support/engineering capacity rather than as an accountable director-level owner of enterprise cybersecurity strategy
+- No evidence of leading internal/external audit processes as the accountable IT leader
+- HKMA and financial services regulatory experience does not directly translate to hotel-specific data protection and PCI requirements
+
+---
+
+### e) Industry Experience (Hospitality / Hotel Sector)
+**Score: 1/10**
+
+**Evidence:**
+- No hospitality, hotel, or leisure sector experience identified anywhere in the profile
+- All experience is concentrated in financial services (Morgan Stanley, Bank of America, Merrill Lynch, AIA) and one IT services firm (Edge Technology Group)
+
+**Gaps:**
+- Zero exposure to hotel PMS (Property Management Systems, e.g., Opera), POS (Point of Sale), CRM, or revenue management systems — all explicitly listed as required knowledge in the JD
+- No understanding of hotel operational workflows (front desk, F&B, housekeeping, concierge, reservations) from a technology support perspective
+- No experience with guest-facing technology delivery (in-room entertainment, digital key, guest Wi-Fi portals, guest app integrations)
+- No familiarity with hotel group IT governance structures or MOHG-style corporate technology standards
+- This is the single most significant gap relative to the JD requirements
+
+---
+
+### f) Vendor & Contract Management
+**Score: 7/10**
+
+**Evidence:**
+- At Edge Technology Group, built vendor governance cadence with SLA scorecards and quarterly reviews; engaged vendors on technical roadmaps for Veeam, CommVault, LoginVSI, and Citrix Workspace
+- At Morgan Stanley, engaged vendors on product roadmaps, arranged organization-wide technology awareness workshops; managed global vendor relationships for virtualization stack
+- Contract and relationship management with major technology vendors (Citrix, VMware/Horizon, IGEL, Cisco implied) over 12+ years
+- Experience proposing vendor restructuring recommendations that were adopted globally
+
+**Gaps:**
+- No evidence of formal contract negotiation or procurement leadership (signing contracts, RFP management, commercial negotiations)
+- Hotel vendor ecosystem (OPERA, Agilysys, Infor, Amadeus, audio visual vendors, HSIA providers) is entirely different from financial services vendors — no crossover demonstrated
+- Vendor management has been in a technical advisory capacity rather than as the contractual owner
+
+---
+
+### g) Team Leadership & People Development
+**Score: 7.5/10**
+
+**Evidence:**
+- At AIA, led 50+ staff across APAC including End User Services, Service Desk, ITDR, and Production Control
+- At Morgan Stanley, managed global virtual team of 8 people with 2 direct reports in region over 12 years
+- At Edge Technology Group, managed 3 teams with 12 subordinates; improved work-life balance by 33% through empowerment and delegation
+- Delivered VDI troubleshooting and PowerShell training across 10 APAC countries (Bank of America)
+- Experience with standardizing SOPs, escalation flows, and improving service quality by one full grade (AIA)
+- Awarded 2006 Merrill Lynch Individual Special Achievement Award
+
+**Gaps:**
+- Leadership experience spans infrastructure and EUC-focused teams — no experience leading a hotel IT department with its unique multi-disciplinary service model
+- No evidence of managing hotel IT desk staff who handle guest-facing technical interactions with high-touch luxury service expectations
+- Team sizes managed (max 50+ indirect) are within scope but the hotel IT team size and structure is not stated in the JD for direct comparison
+
+---
+
+### h) Project & Programme Management (IT Transformations, Capital Planning)
+**Score: 7/10**
+
+**Evidence:**
+- Windows 11 migration for 3,400 devices at AIA — delivered on time with HK$3.5M savings
+- 1,700-user office relocation at AIA with zero downtime
+- Led global StoreFront portal deployment for 70,000 users at Morgan Stanley
+- Japan External Citrix XenApp Trading plant — complete build (OS, apps, configuration, coordination)
+- Hong Kong and Japan WAR Project deploying 1,000+ virtual desktops for BCP users
+- M&A acceleration for Wealth Management division (16,000 financial advisers, 600+ branch offices)
+- Accelerated M&A technology integration; managed regional data center refreshes across 8 countries (Merrill Lynch)
+- Demonstrated ability to manage multi-stakeholder, multi-geography technology programs
+
+**Gaps:**
+- No experience with hotel-specific digital transformation projects (PMS migration, guest app rollout, smart room technology, F&B technology)
+- No evidence of formal five-year capital planning or property technology lifecycle planning processes
+- Project management has been largely within corporate enterprise contexts rather than hospitality property-level implementations
+
+---
+
+### i) Audio Visual Technology
+**Score: 2/10**
+
+**Evidence:**
+- Introduced IGEL thin client infrastructure for Asia and replaced desktops in all video conference rooms at Morgan Stanley (tangentially related to AV in meeting room environments)
+- General technology infrastructure experience that could support AV troubleshooting at a basic level
+
+**Gaps:**
+- No dedicated audio visual management experience evidenced — no AV systems lifecycle management, AV vendor management, or events technology oversight
+- Hotel AV is a specialist domain covering ballroom systems, conference room AV, banquet event support, digital signage, and high-end presentation technology — none evidenced
+- The JD explicitly calls this out as a discrete responsibility; this is a meaningful gap
+
+---
+
+### j) Years of Experience vs. Minimum Required
+**Score: 10/10**
+
+**Evidence:**
+- JD requires minimum 5 years of IT management experience
+- John Hau has 27+ years of IT experience with progressive leadership roles from AVP (Merrill Lynch, 1998–2007) through VP/Asia Manager (Morgan Stanley, 2007–2019) through Director-level (AIA, 2023–2025)
+- Has held manager or above titles continuously across his career
+- Experience spans multiple continents and disciplines
+
+**Gaps:**
+- None in terms of years of experience — he significantly exceeds the minimum requirement
+- The career break (August 2020 – November 2023, approximately 3.25 years) may draw scrutiny from interviewers and should be addressed proactively
+
+---
+
+### k) Education & Certifications
+**Score: 5/10**
+
+**Evidence:**
+- Profile title references senior technical expertise consistent with degree-level education, though no specific degree is stated in the provided profile data
+- Deep technical knowledge across infrastructure, VDI, networking, and compliance suggests formal technical education
+- Career achievements at VP level in tier-1 financial institutions imply meeting institutional educational requirements
+
+**Gaps:**
+- No degree or educational qualifications are explicitly listed in the provided candidate profile — the JD requires a degree in IT, Computer Science, or related discipline and this cannot be confirmed from available data
+- No certifications are listed in the profile (e.g., CISSP, ITIL, PMP, CompTIA, MCSE, Cisco) — the JD does not mandate specific certifications but they are strongly expected at director level in a luxury hotel group
+- Absence of hospitality technology certifications (e.g., CHTP — Certified Hospitality Technology Professional) is a notable gap for this sector
+
+---
+
+### l) Communication & Interpersonal Skills
+**Score: 7/10**
+
+**Evidence:**
+- Presented restructuring recommendations to global leadership at Bank of America — 2 adopted globally
+- Presented team goals and deliverables to COO and CEO at Edge Technology Group, achieving 80% Q1 targets
+- Standardized communications at multiple organizations (AIA, Bank of America), reducing user complaints by 40%
+- Delivered training across 10 APAC countries; authored 8 global white papers
+- Managed virtual global teams across time zones and cultures (APAC, EMEA, NA)
+- Engaged external vendors and internal stakeholders at senior levels
+
+**Gaps:**
+- No evidence of communicating with hotel guests or luxury hospitality clientele — the role requires sensitivity to high-net-worth guest expectations
+- No evidence of executive partnership with hotel General Managers or Deputy General Managers in a property-level context
+- Financial services stakeholder communication style may differ significantly from the service-oriented, guest-first culture of luxury hospitality
+
+---
+
+## 4. KEY STRENGTHS
+
+- **Exceptional Technical Depth:** 27+ years of hands-on infrastructure expertise across virtualization, EUC, networking, data center, lifecycle management, and automation far exceeds the JD's minimum requirements
+- **Proven Large-Scale Operations Leadership:** Managed IT operations for organizations with 80,000–120,000+ users; the hotel environment will be significantly smaller in scale, suggesting strong capacity to handle complexity
+- **Track Record of Measurable Impact:** Quantified achievements are strong — HK$3.5M cost savings, US$1.4M OPEX reduction, 70% efficiency gains, 99% compliance rates — demonstrates business-outcomes thinking
+- **Regulatory Compliance Credibility:** ISO 27001, HKMA, SFC EDSP, and financial-grade audit experience demonstrates rigorous compliance awareness, relevant to PCI and MOHG security standards
+- **Vendor Governance Capability:** Built SLA scorecards, vendor cadence, and multi-vendor relationship management across global organizations
+- **Automation and Innovation Mindset:** PowerShell, Power Query, PowerBI, ETL automation, and AI tooling development show a hands-on innovator who drives efficiency — highly relevant to digital transformation goals
+- **Team Building and People Development:** Led teams of 50+ across APAC with demonstrated improvements in service quality, SLA compliance, and staff capability
+- **Business Continuity and DR Expertise:** Multiple BCP drills, zero-downtime relocations, and disaster recovery planning across regulated industries
+- **APAC Regional Experience:** Deep familiarity with the Hong Kong technology and regulatory landscape, and multi-country APAC operations
+- **Immediate Availability:** Available immediately, which may be attractive if the hotel has an urgent vacancy
+
+---
+
+## 5. GAPS & RISKS
+
+- **No Hospitality Sector Experience (Critical Gap):** Zero experience in hotels, resorts, or hospitality IT. The JD explicitly prefers luxury hotel or hotel group background. Hotel IT has distinct operational rhythms, guest-facing service expectations, and technology ecosystems entirely absent from his profile — this is the most disqualifying factor
+- **No PMS, POS, or CRM Hotel Systems Knowledge:** Opera, Agilysys, Infor HMS, Amadeus, or equivalent hotel technology platforms are standard requirements for this role and are not evidenced anywhere in his background
+- **No PCI DSS Compliance Experience:** Hotels process significant card payment volumes requiring PCI DSS governance — not demonstrated in his financial services compliance background (which focused on HKMA, SFC, ISO 27001)
+- **No Audio Visual Management Experience:** A discrete and explicitly stated responsibility in the JD — events AV, ballroom systems, and hotel AV vendor management is not evidenced
+- **Career Break (3.25 Years, 2020–2023):** The gap between August 2020 and November 2023 will require clear explanation; while the subsequent AIA role partially addresses recency concerns, interviewers will probe this
+- **Guest-Facing Technology Culture Gap:** Luxury hotel IT operates with a "guest first" service philosophy fundamentally different from financial services IT operations. No evidence of guest-facing technology management or high-touch service delivery orientation
+- **No Director-Level Full P&L / Budget Ownership:** While he has managed large teams and delivered cost savings, no clear evidence of owning a complete IT department budget with capex submissions and headcount approvals at director level
+- **Certifications Not Documented:** No certifications listed — a director-level candidate at a luxury hotel group would be expected to hold ITIL, PMP, CISSP, or CHTP credentials
+- **Education Not Confirmed:** The JD requires a degree in IT or related discipline — this cannot be verified from the provided profile
+- **Cultural Fit Risk:** Financial services culture and luxury hospitality culture are significantly different in pace, stakeholder expectations, and service philosophy — adaptation risk is real
+
+---
+
+## 6. TAILORING RECOMMENDATIONS
+
+### a) Resume Adjustments
+
+- **Lead with Transferability, Not Industry:** Rewrite the professional summary to explicitly bridge from financial services IT leadership to hospitality IT leadership. Frame enterprise-grade compliance, vendor governance, and service delivery excellence as directly applicable to hotel operations
+- **Add a "Relevant Technology Skills" Section:** Explicitly list any exposure to PMS-adjacent systems, payment technology, guest Wi-Fi management, or CRM platforms, however tangential. If he has researched or studied hotel tech stacks, reference this
+- **Reframe AIA Role as Service-Oriented IT:** AIA's insurance business has customer-facing service delivery parallels — reframe the End User Services and Service Desk leadership to emphasize service culture and SLA discipline applicable to hospitality
+- **Quantify Team Leadership More Precisely:** State exact team sizes managed, budget amounts owned (if any), and governance structures — the JD requires clear evidence of director-level people management
+- **Highlight DR and BCP Achievements More Prominently:** HKMA-aligned DR drills and zero-downtime relocations are directly relevant — elevate these from buried bullet points to headline achievements
+- **Remove or Minimize Financial Services Jargon:** Terms like "stateless VDI," "ODC," "VPC performance," and "trader escalation" are industry-specific to financial services and may create distance for a hospitality recruiter
+- **Address the Career Break Explicitly:** Add a brief, confident career break explanation (e.g., personal development, family, advisory work) in a dedicated line or cover letter — do not leave it unexplained
+- **Tailor the Cover Letter Strongly:** The cover letter must do the sector-bridging work the resume cannot. Articulate genuine motivation for moving to luxury hospitality and connect his enterprise credentials to the hotel's specific technology challenges
+
+### b) Interview Preparation
+
+- **Research MOHG Technology Standards:** Study Mandarin Oriental Hotel Group's published technology philosophy, digital guest experience initiatives, and any public information about their IT governance model and corporate standards
+- **Learn Hotel Technology Fundamentals:** Study Opera Cloud PMS, Agilysys POS, Salesforce/Amadeus CRM for hospitality, and guest Wi-Fi management platforms before any interview. Be able to speak to them with intellectual credibility even without hands-on experience
+- **Prepare PCI DSS Narrative:** Study PCI DSS v4.0 requirements for hospitality environments. Prepare a credible narrative about how his compliance experience (ISO 27001, HKMA) provides a strong foundation that he would build upon with PCI-specific training
+- **Develop a "Why Hospitality" Answer:** Prepare a compelling, genuine answer for why he is transitioning from financial services to luxury hospitality IT — this will be asked in every interview
+- **Prepare Stakeholder Management Stories:** Practice STAR-format answers about managing demanding C-suite stakeholders, as the role reports to two General Managers — frame Morgan Stanley and AIA executive engagement stories in this context
+- **Research Luxury Service Culture:** Read about the Mandarin Oriental brand values, Forbes Five Star service standards, and luxury hospitality IT challenges (guest experience technology, personalization engines, digital concierge systems)
+- **Prepare an Audio Visual Response:** Acknowledge the AV gap honestly but frame it as a manageable learning curve, referencing his experience managing vendor relationships and overseeing technology domains he inherited without prior background
+- **Address the Career Break Confidently:** Prepare a clear, concise, and forward-looking explanation — rehearse it until it sounds natural and does not invite follow-up concern
+
+### c) Certifications to Pursue
+
+- **ITIL 4 Foundation (Priority: High):** If not already held, ITIL 4 Foundation is the baseline credential expected for a Director of IT in hospitality. Achievable within 2–4 weeks of study
+- **PCI DSS Foundation / Implementer Certification (Priority: High):** Directly addresses the most specific compliance gap. ISA (Internal Security Assessor) training or a PCIP (PCI Professional) credential would be highly relevant
+- **CHTP — Certified Hospitality Technology Professional (Priority: High):** Offered by HFTP (Hospitality Financial and Technology Professionals), this is the gold-standard hospitality IT credential and would signal genuine sector commitment to MOHG recruiters
+- **CISSP or CISM (Priority: Medium):** Either credential would strengthen cybersecurity credibility for the director-level security responsibilities in the JD — particularly relevant given the cybersecurity strategy ownership required
+- **CompTIA Network+ or Cisco CCNA (Priority: Low):** Only if there is a desire to reinforce network infrastructure credibility; likely not necessary given his demonstrated infrastructure track record
+- **AWS/Azure Cloud Practitioner (Priority: Low):** Cloud fluency is increasingly expected in hotel IT director roles; a foundational cloud certification would round out the profile modestly
+
+---
+
+## 7. VERDICT
+
+**Should the candidate apply? Yes — but with realistic expectations and strong preparation.**
+
+John Hau is a technically strong, experienced, and credible IT leader who would bring genuine enterprise-grade capability to this role. His 27+ years of infrastructure leadership, compliance discipline, automation expertise, and people management experience are real assets that cannot be dismissed. In terms of raw technical seniority and track record, he is a competitive candidate.
+
+However, the hospitality sector gap is substantial and will be immediately apparent to any experienced hotel recruiter or hiring manager. Mandarin Oriental is one of the world's most prestigious luxury hotel brands, and the Cluster Director of IT role carries significant guest-experience accountability. Candidates with five to ten years of hotel IT management experience — particularly within luxury hotel groups — will be preferred and will compete directly against him.
+
+**Recommended Approach:** Apply, but treat this as a medium-probability opportunity requiring maximum differentiation effort. The cover letter must do heavy lifting — framing his financial services enterprise credentials as additive to hotel IT capability, not as a lateral move. He should invest two to four weeks before applying to obtain at minimum an ITIL 4 Foundation certification (if not held) and basic hospitality technology literacy (PMS systems, PCI DSS awareness, HFTP membership). If he can register for CHTP preparation, reference this in the application as evidence of sector commitment.
+
+His strongest argument is that enterprise-grade IT governance, compliance rigor, large-scale operations management, and automation capability are often underdeveloped in hotel IT environments — and that he brings a level of technical sophistication that could genuinely elevate MOHG's IT maturity. Positioned correctly, as a transformational leader bringing financial services discipline to luxury hospitality, rather than as a hospitality IT specialist, he has a credible story to tell. The risk is that MOHG will prefer the known quantity of an experienced hotel IT director. His probability of advancing past initial screening is moderate; his probability of succeeding in the role, if hired, is higher than his background implies — provided he commits fully to understanding the hospitality operational context.
+
+---
+*Scorecard prepared based solely on candidate profile data provided. No external facts have been introduced.*
