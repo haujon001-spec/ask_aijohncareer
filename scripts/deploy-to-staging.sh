@@ -106,10 +106,10 @@ if [ ! -f "Caddyfile" ]; then
 fi
 
 # Check critical Caddyfile entries
-if grep -q "john-career-copilot:3000" Caddyfile; then
+if grep -q "app:3000" Caddyfile; then
     echo -e "${GREEN}✅ Caddyfile has correct service reference${NC}"
 else
-    echo -e "${RED}❌ ERROR: Caddyfile missing 'john-career-copilot:3000'${NC}"
+    echo -e "${RED}❌ ERROR: Caddyfile missing 'app:3000'${NC}"
     exit 1
 fi
 

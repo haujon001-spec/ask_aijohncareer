@@ -20,7 +20,9 @@ services:
       retries: 3
       start_period: 10s
     networks:
-      - careers
+      careers:
+        aliases:
+          - app
     # Optional: Add resource limits
     # deploy:
     #   resources:

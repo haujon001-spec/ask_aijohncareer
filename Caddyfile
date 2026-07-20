@@ -6,7 +6,7 @@
 
 # Main domain with automatic HTTPS
 www.askcareer-ai.com {
-    reverse_proxy john-career-copilot-app:3000 {
+    reverse_proxy app:3000 {
         # Preserve original request headers
         header_up X-Forwarded-Proto {http.request.proto}
         header_up X-Forwarded-Host {http.request.host}
