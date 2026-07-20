@@ -1,0 +1,170 @@
+import { spawn } from 'child_process';
+import fs from 'fs';
+import path from 'path';
+
+const SCRIPT_REL_PATH = path.join('scripts', 'jd_scorecard_resume.py');
+
+const MODE_FLAGS = {
+  scorecard: '--scorecard-only',
+  resume: '--resume-only',
+  coverletter: '--coverletter-only',
+  all: null,
+};
+
+const LLM_KEY_ENV = {
+  sonnet: 'OPENROUTER_API_KEY',
+  gemini: 'OPENROUTER_API_KEY',
+  deepseek: 'DEEPSEEK_API_KEY',
+};
+
+const TYPE_DIRS = { scorecard: 'ScoreCard', resume: 'resume', coverletter: 'CoverLetter' };
+const OUTPUT_KEY = { scorecard: 'scorecard', resume: 'resume', coverletter: 'coverLetter' };
+
+export function isValidLlm(llm) {
+  return Object.prototype.hasOwnProperty.call(LLM_KEY_ENV, llm);
+}
+
+export function requiredKeyEnvFor(llm) {
+  return LLM_KEY_ENV[llm];
+}
+
+function resolvePythonBin(projectRoot) {
+  if (process.env.PYTHON_BIN) return process.env.PYTHON_BIN;
+  const venvPython = process.platform === 'win32'
+    ? path.join(projectRoot, '.venv', 'Scripts', 'python.exe')
+    : path.join(projectRoot, '.venv', 'bin', 'python');
+  if (fs.existsSync(venvPython)) return venvPython;
+  return process.platform === 'win32' ? 'python' : 'python3';
+}
+
+function buildRunArgs({ jdAbsPath, llm, mode, refreshBlueprint, generateDocx }) {
+  const args = [jdAbsPath];
+  const modeFlag = MODE_FLAGS[mode || 'all'];
+  if (modeFlag) args.push(modeFlag);
+  if (refreshBlueprint) args.push('--refresh-blueprint');
+  if (generateDocx === false) args.push('--no-docx');
+  args.push(`--llm=${llm}`);
+  return args;
+}
+
+export function runJdPipeline({ projectRoot, jdAbsPath, llm, mode, refreshBlueprint, generateDocx, timeoutMs }) {
+  return new Promise((resolve) => {
+    const pythonBin = resolvePythonBin(projectRoot);
+    const scriptPath = path.join(projectRoot, SCRIPT_REL_PATH);
+    const args = buildRunArgs({ jdAbsPath, llm, mode, refreshBlueprint, generateDocx });
+
+    console.log(`🐍 [jd-api] Spawning: ${pythonBin} ${scriptPath} ${args.join(' ')}`);
+
+    // The script prints emoji to stdout; when spawned as a piped child process on
+    // Windows, Python otherwise inherits the console's cp1252 codepage and crashes
+    // encoding them (this doesn't happen when a human runs it in a real terminal).
+    const child = spawn(pythonBin, [scriptPath, ...args], {
+      cwd: projectRoot,
+      env: { ...process.env, PYTHONIOENCODING: 'utf-8', PYTHONUTF8: '1' },
+    });
+
+    let stdout = '';
+    let stderr = '';
+    let settled = false;
+
+    const timer = setTimeout(() => {
+      if (settled) return;
+      settled = true;
+      child.kill();
+      resolve({ timedOut: true, exitCode: null, stdout, stderr });
+    }, timeoutMs);
+
+    child.stdout.on('data', (chunk) => {
+      const text = chunk.toString();
+      stdout += text;
+      process.stdout.write(text);
+    });
+    child.stderr.on('data', (chunk) => {
+      const text = chunk.toString();
+      stderr += text;
+      process.stderr.write(text);
+    });
+
+    child.on('error', (err) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      resolve({ spawnError: err.message, exitCode: null, stdout, stderr });
+    });
+
+    child.on('close', (code) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      resolve({ exitCode: code, stdout, stderr, timedOut: false });
+    });
+  });
+}
+
+function newestFileSince(dir, sinceMs) {
+  if (!fs.existsSync(dir)) return null;
+  const files = fs.readdirSync(dir)
+    .map((name) => {
+      const full = path.join(dir, name);
+      const stat = fs.statSync(full);
+      return { name, full, mtimeMs: stat.mtimeMs, isFile: stat.isFile() };
+    })
+    .filter((f) => f.isFile && f.mtimeMs >= sinceMs)
+    .sort((a, b) => b.mtimeMs - a.mtimeMs);
+  return files.length ? files[0] : null;
+}
+
+export function toRepoRelativePath(root, absPath) {
+  return path.relative(root, absPath).split(path.sep).join('/');
+}
+
+export function parseMatchScore(content) {
+  const m = content.match(/(\d{1,3})\s*\/\s*100\s*[—\-–]\s*(STRONG MATCH|GOOD MATCH|PARTIAL MATCH|WEAK MATCH)/i);
+  if (!m) return null;
+  return { score: Number(m[1]), maxScore: 100, verdict: m[2].toUpperCase() };
+}
+
+function parseSection(content, startHeader, endHeader) {
+  const start = content.indexOf(startHeader);
+  if (start === -1) return null;
+  const afterStart = start + startHeader.length;
+  const end = endHeader ? content.indexOf(endHeader, afterStart) : -1;
+  const slice = end === -1 ? content.slice(afterStart) : content.slice(afterStart, end);
+  const trimmed = slice.trim().slice(0, 4000);
+  return trimmed || null;
+}
+
+/**
+ * Discover the freshly-written output files for a run by scanning
+ * data_processed/<employer>/<Type>/txt for files newer than runStartedAtMs.
+ * Avoids re-deriving the Python script's DATE_STAMP format in Node.
+ */
+export function discoverOutputs({ projectRoot, employer, mode, runStartedAtMs }) {
+  const types = mode === 'all' ? ['scorecard', 'resume', 'coverletter'] : [mode];
+  const outputs = {};
+
+  for (const type of types) {
+    const txtDir = path.join(projectRoot, 'data_processed', employer, TYPE_DIRS[type], 'txt');
+    const newest = newestFileSince(txtDir, runStartedAtMs);
+    if (!newest) continue;
+
+    const content = fs.readFileSync(newest.full, 'utf-8');
+    const docxPath = path.join(projectRoot, 'data_processed', employer, TYPE_DIRS[type], 'docx', newest.name.replace(/\.txt$/, '.docx'));
+
+    const entry = {
+      txt: toRepoRelativePath(projectRoot, newest.full),
+      docx: fs.existsSync(docxPath) ? toRepoRelativePath(projectRoot, docxPath) : null,
+      content,
+    };
+
+    if (type === 'scorecard') {
+      entry.matchScore = parseMatchScore(content);
+      entry.strengths = parseSection(content, 'KEY STRENGTHS', 'GAPS & RISKS');
+      entry.gaps = parseSection(content, 'GAPS & RISKS', 'TAILORING RECOMMENDATIONS');
+    }
+
+    outputs[OUTPUT_KEY[type]] = entry;
+  }
+
+  return outputs;
+}
