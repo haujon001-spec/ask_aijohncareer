@@ -106,10 +106,10 @@ if [ ! -f "Caddyfile" ]; then
 fi
 
 # Check critical Caddyfile entries
-if grep -q "john-career-copilot:3000" Caddyfile; then
+if grep -q "john-career-copilot-app:3000" Caddyfile; then
     echo -e "${GREEN}✅ Caddyfile has correct service reference${NC}"
 else
-    echo -e "${RED}❌ ERROR: Caddyfile missing 'john-career-copilot:3000'${NC}"
+    echo -e "${RED}❌ ERROR: Caddyfile missing 'john-career-copilot-app:3000'${NC}"
     exit 1
 fi
 
@@ -126,7 +126,7 @@ fi
 echo ""
 echo -e "${BLUE}[STEP 6]${NC} Rebuilding Docker image (this takes 2-5 minutes)..."
 
-docker-compose build --no-cache
+docker-compose -f docker-compose.prod.yml build --no-cache
 
 if [ $? -eq 0 ]; then
     echo -e "${GREEN}✅ Docker image built successfully${NC}"
@@ -142,8 +142,8 @@ fi
 echo ""
 echo -e "${BLUE}[STEP 7]${NC} Stopping old containers and starting new deployment..."
 
-docker-compose down
-docker-compose up -d
+docker-compose -f docker-compose.prod.yml down
+docker-compose -f docker-compose.prod.yml up -d
 
 # Wait for services to start
 sleep 10
@@ -163,7 +163,7 @@ if [ "$RUNNING" -gt 0 ]; then
     docker ps
 else
     echo -e "${RED}❌ ERROR: Application container not running${NC}"
-    docker-compose logs
+    docker-compose -f docker-compose.prod.yml logs
     exit 1
 fi
 
@@ -173,7 +173,7 @@ if [ "$CADDY_RUNNING" -gt 0 ]; then
     echo -e "${GREEN}✅ Caddy container is running${NC}"
 else
     echo -e "${RED}❌ ERROR: Caddy container not running${NC}"
-    docker-compose logs caddy
+    docker-compose -f docker-compose.prod.yml logs caddy
     exit 1
 fi
 
@@ -189,7 +189,7 @@ if [ "$HEALTH_CHECK" = "200" ] || [ "$HEALTH_CHECK" = "404" ]; then
     echo -e "${GREEN}✅ Backend API is responding (HTTP $HEALTH_CHECK)${NC}"
 else
     echo -e "${YELLOW}⚠️  Backend returned HTTP $HEALTH_CHECK (checking logs...)${NC}"
-    docker-compose logs --tail=10 john-career-copilot || true
+    docker-compose -f docker-compose.prod.yml logs --tail=10 app || true
 fi
 
 # ============================================================================
@@ -204,7 +204,7 @@ if [ ! "$FRONTEND_CHECK" = "NOT_FOUND" ]; then
     echo -e "${GREEN}✅ Frontend is serving correctly${NC}"
 else
     echo -e "${YELLOW}⚠️  Frontend check inconclusive (checking Docker logs...)${NC}"
-    docker-compose logs --tail=5 john-career-copilot || true
+    docker-compose -f docker-compose.prod.yml logs --tail=5 app || true
 fi
 
 # ============================================================================
@@ -231,5 +231,5 @@ echo ""
 echo "🔄 Rollback (if needed):"
 echo "  cd $(pwd)"
 echo "  tar -xzf $BACKUP_PATH"
-echo "  docker-compose down && docker-compose up -d"
+echo "  docker-compose -f docker-compose.prod.yml down && docker-compose -f docker-compose.prod.yml up -d"
 echo ""

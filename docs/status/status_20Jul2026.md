@@ -1,4 +1,8 @@
-# Status — 20 July 2026
+# Status — 20 July 2026 (correction appended 21 Jul 2026)
+
+## Correction (21 Jul 2026)
+
+The "askcareer-ai.com" entry below is **inaccurate** and superseded. It claimed a Caddyfile/docker-compose.yml fix existed as uncommitted local changes (`reverse_proxy app:3000`, network alias `app`). Verified 21 Jul 2026: `git status` shows these files clean — no such uncommitted changes exist or ever landed in the working tree. The real, already-committed state (since commit `1fa97ef`, 30 Mar) is `Caddyfile` → `john-career-copilot-app:3000` matching `docker-compose.prod.yml`'s `container_name: john-career-copilot-app` — these two files were already consistent. The actual bug was in `scripts/deploy-to-staging.sh` (wrong compose file target + wrong grep string), fixed 21 Jul 2026. See `docs/todolist/todolist_20Jul2026.md` for the current, verified state.
 
 ## JD Automation Portal — Phase 1 (Backend API)
 
