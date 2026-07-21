@@ -9,13 +9,18 @@
 
 ## New today (21 Jul 2026)
 
-### 1. JD Automation Portal — Phase 2 direction change
+### 1. JD Automation Portal — Phase 2 — DONE 21 Jul 2026
 
 **Decision (user, 21 Jul 2026):** `build_frontend_portal` will **not** be a separate/standalone portal route. It will be integrated into the existing **John's Career Copilot** React app (this repo's live `src/` app) as additional tabs or pages alongside the existing chat experience — same app, same deploy, same domain (`askcareer-ai.com`).
 
-- [ ] Design nav/tab structure for the JD portal views within the existing `src/App.jsx` shell (needs a decision on tab vs. routed pages — see open questions below)
-- [ ] Wire the new UI to the existing `backend/jd_api_server.js` (port 3010) endpoints from Phase 1
-- [ ] Superseded: any earlier assumption of a standalone `/jd-portal` route as a separate deployable unit
+- [x] Merged `dev` branch (Phase 1 backend API, commit `86b76d9`) into `main` — it had never been merged; `main`'s `backend/` was missing `jd_api_server.js` and support files entirely until now. Clean merge, no conflicts.
+- [x] Design nav/tab structure: tabs within `src/App.jsx` (Chat / JD Portal), no router, matching existing conditional-render conventions (user decision).
+- [x] Scope decision: build UI only for the working endpoints (upload, run, history, download); `POST /api/profile/update` stays an unwired, visibly-disabled "coming soon" button pending Phase 3 NLP work (user decision).
+- [x] Deleted a typo'd duplicate untracked file, `src/data/jd/JD_ZurichInsurancel_IT_HeadOfData_AI.json` (extra "l"), before starting (user decision).
+- [x] New files: `src/utils/jdApi.js`, `src/components/TabBar.jsx/.css`, `src/components/JDPortal/{JDPortal,JDUploadForm,JDRunPanel,JDHistoryList}.jsx` + `.css`.
+- [x] Modified: `src/App.jsx` (tab wiring), `src/App.css` (`.app` sizing fix so it correctly shares vertical space with the new tab bar), `package.json` (`dev:all` now also runs `dev:jd-api`), `.env.example` (documented `VITE_JD_API_BASE`).
+- [x] Verified end-to-end: API-level `curl` smoke test (upload/409/run/download/history) confirming exact response shapes, plus a full browser-driven Playwright pass (upload → run → results → history → back to Chat with no regressions) — zero console errors, dark mode and mobile viewport both confirmed. Smoke-test data cleaned up afterward.
+- [x] Wrote dated guide: `docs/guides/JDPORTALPHASE2_21JUL2026.md`.
 
 ### 2. New requirement — `jd_scorecard_resume_v2.py`
 
@@ -111,7 +116,7 @@ User reviewed real v2 output (Zurich Insurance / IT_HeadOfData_AI JD, screenshot
 
 1. ~~Push to GitHub~~ — **done**
 2. ~~Implement "v2 refinement round 2"~~ — **done, see above**
-3. JD Portal Phase 2 — integrate as tabs/pages in the existing Career Copilot app
+3. ~~JD Portal Phase 2 — integrate as tabs/pages in the existing Career Copilot app~~ — **done, see above**
 4. Remaining JD Automation Portal phases (NLP, integration, Docker, deploy)
 5. LinkedIn automation scoping
 6. Future roadmap items (LLM key UI, Sonnet 5 bump, MFA) — not yet scoped

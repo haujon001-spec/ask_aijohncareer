@@ -4,8 +4,11 @@ import Hero from './components/Hero'
 import ChatWindow from './components/ChatWindow'
 import ModelSelector from './components/ModelSelector'
 import SidebarIntro from './components/SidebarIntro'
+import TabBar from './components/TabBar'
+import JDPortal from './components/JDPortal/JDPortal'
 
 function App() {
+    const [activeTab, setActiveTab] = useState('chat')
     const [backendError, setBackendError] = useState(false)
   
   // Model name mapping for display
@@ -163,33 +166,44 @@ function App() {
   return (
     <div className="app-container">
       <Hero />
-      <div className="app">
-        <div className="sidebar">
-          <SidebarIntro onQuickPrompt={handleQuickPrompt} />
-          <ModelSelector selectedModel={selectedModel} onModelChange={setSelectedModel} />
-          <label className="reasoning-toggle" title={selectedModel === 'nemotron' ? 'Show extended reasoning' : 'Only available with DeepSeek R1'}>
-            <input
-              type="checkbox"
-              checked={showReasoning}
-              onChange={(e) => setShowReasoning(e.target.checked)}
-              disabled={selectedModel !== 'nemotron'}
-            />
-            <span>Show reasoning {selectedModel !== 'nemotron' ? '(DeepSeek only)' : ''}</span>
-          </label>
-          {backendError && (
-            <div style={{color: '#b91c1c', background: '#fee2e2', padding: 8, borderRadius: 8, marginTop: 12, fontSize: 13}}>
-              <b>Warning:</b> Unable to connect to backend.<br/>
-              If you are on mobile, make sure the backend is deployed and reachable from your device.<br/>
-              <span style={{fontSize: 12, opacity: 0.8}}>Localhost will not work on mobile. Use a public or LAN URL.</span>
-            </div>
-          )}
+      <TabBar
+        tabs={[
+          { id: 'chat', label: '💬 Chat' },
+          { id: 'jdPortal', label: '📋 JD Portal' }
+        ]}
+        activeTab={activeTab}
+        onChange={setActiveTab}
+      />
+      {activeTab === 'chat' && (
+        <div className="app">
+          <div className="sidebar">
+            <SidebarIntro onQuickPrompt={handleQuickPrompt} />
+            <ModelSelector selectedModel={selectedModel} onModelChange={setSelectedModel} />
+            <label className="reasoning-toggle" title={selectedModel === 'nemotron' ? 'Show extended reasoning' : 'Only available with DeepSeek R1'}>
+              <input
+                type="checkbox"
+                checked={showReasoning}
+                onChange={(e) => setShowReasoning(e.target.checked)}
+                disabled={selectedModel !== 'nemotron'}
+              />
+              <span>Show reasoning {selectedModel !== 'nemotron' ? '(DeepSeek only)' : ''}</span>
+            </label>
+            {backendError && (
+              <div style={{color: '#b91c1c', background: '#fee2e2', padding: 8, borderRadius: 8, marginTop: 12, fontSize: 13}}>
+                <b>Warning:</b> Unable to connect to backend.<br/>
+                If you are on mobile, make sure the backend is deployed and reachable from your device.<br/>
+                <span style={{fontSize: 12, opacity: 0.8}}>Localhost will not work on mobile. Use a public or LAN URL.</span>
+              </div>
+            )}
+          </div>
+          <ChatWindow
+            messages={messages}
+            onSendMessage={handleSendMessage}
+            isLoading={isLoading}
+          />
         </div>
-        <ChatWindow 
-          messages={messages} 
-          onSendMessage={handleSendMessage}
-          isLoading={isLoading}
-        />
-      </div>
+      )}
+      {activeTab === 'jdPortal' && <JDPortal />}
     </div>
   )
 }

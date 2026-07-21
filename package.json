@@ -7,7 +7,7 @@
     "dev": "vite",
     "dev:backend": "node backend/server.js",
     "dev:jd-api": "node backend/jd_api_server.js",
-    "dev:all": "concurrently \"npm run dev\" \"npm run dev:backend\"",
+    "dev:all": "concurrently \"npm run dev\" \"npm run dev:backend\" \"npm run dev:jd-api\"",
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint src --ext .js,.jsx"

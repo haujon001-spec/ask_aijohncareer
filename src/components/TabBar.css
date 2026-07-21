@@ -1,0 +1,61 @@
+.tab-bar {
+  display: flex;
+  gap: 8px;
+  padding: 12px 24px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.tab-bar-button {
+  padding: 10px 20px;
+  background: var(--bg-tertiary);
+  border: 2px solid var(--border-light);
+  border-radius: 8px;
+  color: var(--text-primary);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.tab-bar-button:hover {
+  border-color: var(--accent-blue);
+  background: var(--bg-secondary);
+}
+
+.tab-bar-button.active {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.25) 0%, rgba(29, 78, 216, 0.15) 100%);
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+}
+
+/* Smaller sub-nav variant, e.g. New Run / History inside JD Portal */
+.tab-bar.tab-bar--sub {
+  padding: 12px 0 16px;
+  background: transparent;
+  border-bottom: none;
+}
+
+.tab-bar.tab-bar--sub .tab-bar-button {
+  padding: 8px 16px;
+  font-size: 13px;
+}
+
+@media (max-width: 768px) {
+  .tab-bar {
+    padding: 8px 12px;
+    gap: 6px;
+  }
+
+  .tab-bar-button {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tab-bar-button {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+}
