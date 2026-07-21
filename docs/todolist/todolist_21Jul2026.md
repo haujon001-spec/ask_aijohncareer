@@ -107,10 +107,11 @@ User reviewed real v2 output (Zurich Insurance / IT_HeadOfData_AI JD, screenshot
 
 **Decision (user, 21 Jul 2026 evening):** the earlier "Bring-your-own-LLM-key UI" and "Model version bump (Sonnet 4.6→5)" roadmap items are **merged and refined** into one spec, explicitly *not* implemented tonight — scoped here for tomorrow instead:
 
-- All LLM calls (JD scorecard/resume scripts and any future portal UI) must go through **OpenRouter** to invoke Anthropic models (e.g. Claude Sonnet 5), not a hardcoded model slug baked into `LLM_CONFIGS` (`scripts/jd_scorecard_resume.py` / `_v2.py` currently hardcode `"sonnet": ("anthropic/claude-sonnet-4.6", ...)`).
+- All LLM calls (JD scorecard/resume scripts and any future portal UI) must go through **OpenRouter's API** to invoke Anthropic models (e.g. Claude Sonnet 5), not a hardcoded model slug baked into `LLM_CONFIGS` (`scripts/jd_scorecard_resume.py` / `_v2.py` currently hardcode `"sonnet": ("anthropic/claude-sonnet-4.6", ...)`).
 - The user must be able to **input their own API key** (OpenRouter, DeepSeek) — from the web portal UI or via a Python script — rather than only reading from `.env*` files on the server.
 - The user must be able to **select the proper Claude LLM** dynamically (e.g. pick Sonnet 5 vs. another OpenRouter-listed Anthropic model) instead of it being hardcoded — same dynamic-selection treatment for DeepSeek.
-- Explicitly deferred, not started tonight: no code changes to `LLM_CONFIGS`, no OpenRouter model-slug research/confirmation performed yet. This is the first task to scope properly tomorrow.
+- **Confirmed 21 Jul 2026 evening (user-supplied screenshot, openrouter.ai/models?q=claude):** "Anthropic: Claude Sonnet 5" is listed on OpenRouter — released ~2 weeks ago, 1.2T weekly tokens, $2/$10 per M input/output tokens, 1M context window. This confirms the model is available via OpenRouter's API; the exact request-time model-slug string (e.g. whether it's `anthropic/claude-sonnet-5` or a different suffix) still needs to be read off the model's own detail page or a live API call tomorrow before wiring it into code — the models list only shows the display name, not the API identifier, so don't hardcode a guessed slug.
+- Explicitly deferred, not started tonight: no code changes to `LLM_CONFIGS`, no OpenRouter model-slug confirmed yet from the model detail page/API. This is the first task to scope properly tomorrow.
 
 ## JD Portal Phase 2 — VPS deploy explicitly deferred (21 Jul 2026 evening)
 
