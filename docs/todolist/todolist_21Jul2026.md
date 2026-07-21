@@ -101,9 +101,33 @@ User reviewed real v2 output (Zurich Insurance / IT_HeadOfData_AI JD, screenshot
 
 ## Future roadmap items (requested 21 Jul 2026 — todolist only, not yet scoped/implemented)
 
-- [ ] **Bring-your-own-LLM-key UI**: let the user type their own API key into the (future) web portal for OpenRouter, DeepSeek, and together.xyz, rather than only reading from `.env*` files on the server
-- [ ] **Model version bump**: update the "sonnet" LLM config from Claude Sonnet 4.6 to Sonnet 5 — needs the correct OpenRouter model slug confirmed before changing `LLM_CONFIGS` in the scripts (currently `anthropic/claude-sonnet-4.6`)
 - [ ] **MFA on the new JD Portal tabs**: password + Google Authenticator (TOTP) protecting the new tabs/pages once built; the existing chatbot landing page stays open/public for anyone to query the career profile — auth only gates the new JD-portal functionality, not the existing chat experience
+
+## Tomorrow's top priority (refined 21 Jul 2026, evening) — bring-your-own-key + dynamic LLM selection
+
+**Decision (user, 21 Jul 2026 evening):** the earlier "Bring-your-own-LLM-key UI" and "Model version bump (Sonnet 4.6→5)" roadmap items are **merged and refined** into one spec, explicitly *not* implemented tonight — scoped here for tomorrow instead:
+
+- All LLM calls (JD scorecard/resume scripts and any future portal UI) must go through **OpenRouter** to invoke Anthropic models (e.g. Claude Sonnet 5), not a hardcoded model slug baked into `LLM_CONFIGS` (`scripts/jd_scorecard_resume.py` / `_v2.py` currently hardcode `"sonnet": ("anthropic/claude-sonnet-4.6", ...)`).
+- The user must be able to **input their own API key** (OpenRouter, DeepSeek) — from the web portal UI or via a Python script — rather than only reading from `.env*` files on the server.
+- The user must be able to **select the proper Claude LLM** dynamically (e.g. pick Sonnet 5 vs. another OpenRouter-listed Anthropic model) instead of it being hardcoded — same dynamic-selection treatment for DeepSeek.
+- Explicitly deferred, not started tonight: no code changes to `LLM_CONFIGS`, no OpenRouter model-slug research/confirmation performed yet. This is the first task to scope properly tomorrow.
+
+## JD Portal Phase 2 — VPS deploy explicitly deferred (21 Jul 2026 evening)
+
+Phase 2 frontend is done and verified **locally** (see Phase 2 section above), and its code is pushed to GitHub `main` (commit `135a119`). **Deploying it to the live `askcareer-ai.com` VPS was investigated tonight and deliberately NOT done**, because doing so would ship a visibly broken JD Portal tab to real visitors:
+
+- `docker-compose.prod.yml` only defines `app` (chat backend + frontend) and `caddy` — there is no service running `backend/jd_api_server.js` (port 3010) in production.
+- The production `Dockerfile`'s runtime stage is plain `node:18-alpine` with no Python installed — the JD pipeline spawns `scripts/jd_scorecard_resume(_v2).py` via Python, so even adding a jd-api service wouldn't work without a Python runtime in the image.
+- `Caddyfile`'s CSP (`connect-src 'self' https://openrouter.ai https://api.deepseek.com`) and the frontend's `JD_API_BASE` default (`http://localhost:3010`) mean a real visitor's browser would try to reach their own machine, not the VPS — blocked by CSP either way.
+- **User decision:** stop here, don't deploy JD Portal to VPS tonight. This becomes in-scope for Phase 5 (Docker) + Phase 7 (deploy) of the JD Automation Portal roadmap, not tonight's session.
+- **Current live state unaffected:** `https://www.askcareer-ai.com` is still running the pre-Phase-2 chat-only stack (JD Portal frontend code exists on GitHub but has not been deployed there).
+
+## Session close — 21 Jul 2026
+
+- [x] GitHub updated: JD Portal Phase 2 commit (`135a119`) pushed to `origin/main`.
+- [x] Todolist updated (this file) to close out Phase 2 and record tomorrow's scoped priority.
+- [ ] VPS deploy of JD Portal — deliberately deferred, see section above.
+- [ ] Tomorrow: scope + implement bring-your-own-key + dynamic LLM selection (see section above), plus whatever additional feature the user brings.
 
 ## Answered questions (21 Jul 2026)
 
@@ -116,7 +140,8 @@ User reviewed real v2 output (Zurich Insurance / IT_HeadOfData_AI JD, screenshot
 
 1. ~~Push to GitHub~~ — **done**
 2. ~~Implement "v2 refinement round 2"~~ — **done, see above**
-3. ~~JD Portal Phase 2 — integrate as tabs/pages in the existing Career Copilot app~~ — **done, see above**
-4. Remaining JD Automation Portal phases (NLP, integration, Docker, deploy)
-5. LinkedIn automation scoping
-6. Future roadmap items (LLM key UI, Sonnet 5 bump, MFA) — not yet scoped
+3. ~~JD Portal Phase 2 — integrate as tabs/pages in the existing Career Copilot app~~ — **done locally + on GitHub, VPS deploy deliberately deferred (see above)**
+4. **Tomorrow's top priority:** bring-your-own-key + dynamic LLM selection (OpenRouter/DeepSeek, no hardcoded model slugs) — see "Tomorrow's top priority" section above
+5. Remaining JD Automation Portal phases (NLP, integration, Docker, deploy — needed before JD Portal can go live on the VPS)
+6. LinkedIn automation scoping
+7. Future roadmap items (MFA) — not yet scoped
