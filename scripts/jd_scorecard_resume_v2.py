@@ -89,6 +89,52 @@ def soften_experience_years(text):
     return YEARS_FIGURE_RE.sub("extensive years", text)
 
 
+def tighten_contact_header(text):
+    """Remove ALL blank lines from the resume's top contact block (name,
+    address, LinkedIn, website) — up to but excluding the first section
+    separator line — leaving the rest of the document's spacing untouched."""
+    lines = text.splitlines()
+    sep_idx = next(
+        (i for i, l in enumerate(lines) if set(l.strip()) <= {"=", "_", "-"} and len(l.strip()) >= 8),
+        None,
+    )
+    if sep_idx is None:
+        return text
+    head = [l for l in lines[:sep_idx] if l.strip() != ""]
+    return "\n".join(head + lines[sep_idx:])
+
+
+DATE_LINE_RE = re.compile(r"^\d{1,2}\s+\w+\s+\d{4}$")
+
+
+def clean_coverletter_header(text, employer_display):
+    """Safety net: strip any date / 'Hiring Manager' / company-name lines and
+    blank lines from the letter header block, in case the LLM didn't fully
+    follow the prompt instructions. Stops at the salutation line."""
+    lines = text.splitlines()
+    sal_idx = next(
+        (i for i, l in enumerate(lines) if l.strip().lower().startswith("dear ")),
+        None,
+    )
+    if sal_idx is None:
+        return text
+
+    head = []
+    for l in lines[:sal_idx]:
+        stripped = l.strip()
+        if not stripped:
+            continue
+        if stripped.lower() == "hiring manager":
+            continue
+        if stripped == employer_display:
+            continue
+        if DATE_LINE_RE.match(stripped):
+            continue
+        head.append(l)
+
+    return "\n".join(head + lines[sal_idx:])
+
+
 def normalize_blank_lines(text):
     """Collapse runs of 2+ blank lines to exactly 1, and drop a blank line that
     immediately follows an ALL-CAPS section header (tighter spacing per the
@@ -772,9 +818,10 @@ if run_resume:
         "5. If the JD asks for hospitality/PMS/POS/PCI or other domain-specific items not explicitly in the profile, position John's background as transferable or adjacent experience only.\n"
         "6. The `AI & AUTOMATION HIGHLIGHTS` section is mandatory in every resume output. Preserve it and populate it with vivid, concrete examples from the profile/template only.\n"
         "7. Make the resume balanced: show both technical depth and leadership/soft skills supported by the profile.\n"
-        "8. Every achievement bullet must be written in SMART form (Specific, Measurable, Achievable, Relevant, Time-bound) and must wrap its single key metric or standout achievement phrase in double asterisks, e.g. '**saving HK$3.5M**' or '**from 58% to 100%**' — exactly one bolded phrase per bullet, never multiple, never nested. The reference template shows this convention in a few of its bullets; follow that pattern for every bullet you write.\n"
+        "8. Every achievement bullet must be written in SMART form (Specific, Measurable, Achievable, Relevant, Time-bound). Wrap EVERY distinct quantifiable figure in the bullet in double asterisks — percentages, dollar/HK$ amounts, headcounts, device/user counts, time savings, etc. — no cap on how many per bullet; bold every one that appears, but never wrap overlapping or adjacent text as a single run. The reference template shows this convention in a few of its bullets; follow that pattern for every bullet you write.\n"
         "9. Never state an exact number of years of experience (e.g. do not write '27 years' or '27+ years'). Use wording like 'extensive years' or 'extensive experience' instead.\n"
-        "10. Output ONLY the resume text — no preamble, no explanation, no markdown code fences (the ** bold markers from rule 8 are the one exception — those are expected)."
+        "10. Weave visible people-management evidence into the most recent 2-3 roles specifically (not just a generic soft-skills line) — team leadership, mentoring/coaching, hiring or onboarding, performance management, career development, org design — using only what the profile actually documents (e.g. leading a team of 50+, coaching teams across multiple countries, mentorship and team development).\n"
+        "11. Output ONLY the resume text — no preamble, no explanation, no markdown code fences (the ** bold markers from rule 8 are the one exception — those are expected)."
     )
 
     RESUME_USER = f"""
@@ -819,13 +866,15 @@ Layout rules:
 - If the template includes a competencies/skills section, ensure it reflects a mix of technical and soft skills
 - Keep EDUCATION & CERTIFICATIONS, LANGUAGES, and AVAILABILITY sections unchanged from profile data
 - Total length: equivalent to the reference template (~2 pages of content)
-- Every achievement bullet: SMART form, one **bolded** key metric/achievement phrase (see system rule 8)
+- Every achievement bullet: SMART form, every distinct quantifiable figure **bolded** (see system rule 8)
+- Weave people-management evidence into the most recent roles (see system rule 10)
 - Do not state an exact years-of-experience number anywhere (see system rule 9)
-- Keep spacing tight: a single blank line between sections is enough, no blank line directly under a section header before its content
+- Keep spacing tight: a single blank line between sections is enough, no blank line directly under a section header before its content, and NO blank lines at all between the name/address/LinkedIn/website lines at the very top of the resume
 """
 
     resume_text = call_llm(RESUME_SYS, RESUME_USER, max_tokens=4500, label="Resume")
     resume_text = soften_experience_years(resume_text)
+    resume_text = tighten_contact_header(resume_text)
     resume_text = normalize_blank_lines(resume_text)
     print("  ✓  Resume complete")
 
@@ -843,6 +892,7 @@ if run_coverletter:
     phone    = meta.get("phone", "+852 5722 2007")
     email    = meta.get("email", "haujon001@gmail.com")
     linkedin = meta.get("linkedin", "linkedin.com/in/johnhau")
+    website  = "https://askcareer-ai.com"
     today    = datetime.now().strftime("%d %B %Y")
 
     COVERLETTER_SYS = (
@@ -860,9 +910,11 @@ if run_coverletter:
         "4. Use semantic matching to connect adjacent experience from the profile to the JD without overstating direct domain experience.\n"
         "5. Never claim direct experience with named domain-specific tools, standards, or industries unless they are explicitly present in the profile data.\n"
         "6. Do NOT use generic phrases like 'I am writing to apply for'. Open with impact.\n"
-        "7. In paragraphs 2 and 4, wrap the one or two most important quantified achievements in double asterisks, e.g. '**delivering HK$3.5M in savings**' — do not bold more than two phrases per paragraph, and never bold a whole sentence.\n"
-        "8. Never state an exact number of years of experience (e.g. do not write '27 years' or '27+ years'). Use wording like 'extensive years' or 'extensive experience' instead.\n"
-        "9. Output ONLY the cover letter text — no preamble, no commentary (the ** bold markers from rule 7 are the one exception — those are expected)."
+        "7. Wrap EVERY distinct quantifiable figure mentioned anywhere in the letter in double asterisks — percentages, dollar amounts, headcounts, user/device counts, time savings, etc., e.g. '**delivering HK$3.5M in savings**' or '**supporting 80,000 users**' — no cap on how many, bold every one that appears, but never bold a whole sentence.\n"
+        "8. Whenever a specific job title is named together with a company (e.g. 'Associate Director of Infrastructure Services at AIA', 'VP, Asia Manager at Morgan Stanley'), wrap the title phrase itself in double asterisks too — do this consistently for every company/title mention in the letter, not just one.\n"
+        "9. Never state an exact number of years of experience (e.g. do not write '27 years' or '27+ years'). Use wording like 'extensive years' or 'extensive experience' instead.\n"
+        "10. The header block is ONLY: candidate name, location, phone | email, LinkedIn, website — one line each, no blank lines between them. Do NOT include a date line, a recipient name line ('Hiring Manager'), or a company name line anywhere before the salutation. Go directly from the header block to 'Dear Hiring Manager,'.\n"
+        "11. Output ONLY the cover letter text — no preamble, no commentary (the ** bold markers from rules 7-8 are the one exception — those are expected)."
     )
 
     # Derive employer display name from employer slug (e.g. MandarinOriental -> Mandarin Oriental)
@@ -886,16 +938,16 @@ Location : {location}
 Phone    : {phone}
 Email    : {email}
 LinkedIn : {linkedin}
-Date     : {today}
-Hiring Company : {employer_display}
-Role     : {role_display}
+Website  : {website}
+(Context only, do not print as header lines — Date: {today}, Hiring Company: {employer_display})
 
 === INSTRUCTIONS ===
 Write a formal executive cover letter for John Hau applying for the {role_display} role
 at {employer_display}.
 
 Structure:
-- Letter header block (candidate contact details, date, company)
+- Letter header block, exactly these lines with no blank lines between them: Name / Location / Phone | Email / LinkedIn / Website
+- No date line, no recipient name line, no company name line
 - Salutation: Dear Hiring Manager,
 - 4-5 focused paragraphs as described in the system instructions
 - Professional sign-off
@@ -908,12 +960,14 @@ Key themes to hit (using only profile facts):
 - AI/automation innovation as a differentiator when it genuinely supports the role
 - Immediate availability, Hong Kong-based, and Cantonese-speaking only if helpful and supported by the profile
 - Use semantic alignment: connect adjacent evidence honestly rather than waiting for exact keyword matches
-- Bold the 1-2 key quantified achievements per paragraph in paragraphs 2 and 4 (see system rule 7)
-- Do not state an exact years-of-experience number anywhere (see system rule 8)
+- Bold every distinct quantified achievement and every company/title mention (see system rules 7-8)
+- Do not state an exact years-of-experience number anywhere (see system rule 9)
+- No date/recipient-name/company lines before the salutation (see system rule 10)
 """
 
     coverletter_text = call_llm(COVERLETTER_SYS, COVERLETTER_USER, max_tokens=2500, label="Cover Letter")
     coverletter_text = soften_experience_years(coverletter_text)
+    coverletter_text = clean_coverletter_header(coverletter_text, employer_display)
     coverletter_text = normalize_blank_lines(coverletter_text)
     print("  ✓  Cover Letter complete")
 

@@ -71,9 +71,47 @@ New script, created alongside (not replacing) `scripts/jd_scorecard_resume.py`, 
 
 **Verification artifacts** (left in place, not deleted): `data_processed/McDonalds/resume/{txt,docx}/..._21JUL2026.*` and `data_processed/McDonalds/CoverLetter/{txt,docx}/..._21JUL2026.*` — real v2 output, doesn't collide with the existing 20 Jul files or the user's manual `_V2.docx` edits.
 
+## GitHub sync — DONE 21 Jul 2026
+
+- [x] Pushed local commits to `origin/main` (`3c946c7` VPS deploy fix, `536c5c3` v2 script) — user requested "Update GitHub now."
+
+## v2 refinement round 2 — DONE 21 Jul 2026
+
+User reviewed real v2 output (Zurich Insurance / IT_HeadOfData_AI JD, screenshots provided) and requested further changes. Implemented, verified end-to-end, and committed.
+
+### Cover letter
+- [x] Added `https://askcareer-ai.com` directly under the `linkedin.com/in/johnhau` line in the letter header
+- [x] Removed the date line, "Hiring Manager" line, and company-name line — goes straight to "Dear Hiring Manager," (salutation kept, per user decision)
+- [x] Bold cap removed — every distinct quantifiable figure in the letter is now bolded
+- [x] Job titles bolded on every company/title mention (per user decision — generalized, not just the AIA example)
+- [x] Added `clean_coverletter_header()` as a deterministic safety net in case the LLM doesn't fully follow the header-format prompt instruction
+
+### Resume
+- [x] Added `tighten_contact_header()` — zero blank lines between name/address/LinkedIn/website
+- [x] Bold cap removed — every distinct figure per bullet is now bolded
+- [x] Added prompt guidance to weave people-management evidence into the most recent 2-3 roles specifically
+- [x] "Earlier Roles (Siemens, Alco)" dates — user supplied them directly in the master template (`Siemens - Apr 1997 - Apr 1998, Alco - Feb 1995 – Mar 1997`); no code change needed since the LLM mirrors the template for this section (no profile-JSON data exists for these two employers). **Note:** verification run showed the LLM collapsing this to a combined `1995 – 1998` range rather than each company's own exact range — possible follow-up if per-company precision matters.
+
+**Re-verified end-to-end** (same McDonalds JD, `--llm=gemini --force`): 76 bold runs in the resume docx, 25 in the cover letter docx, header fully tight in both, zero stray asterisks, zero Generated/Profile lines, zero leftover date/address-block lines, zero "27 years" mentions. See `docs/guides/JDSCORECARDRESUMEV2_21JUL2026.md` for the full record.
+
+## Future roadmap items (requested 21 Jul 2026 — todolist only, not yet scoped/implemented)
+
+- [ ] **Bring-your-own-LLM-key UI**: let the user type their own API key into the (future) web portal for OpenRouter, DeepSeek, and together.xyz, rather than only reading from `.env*` files on the server
+- [ ] **Model version bump**: update the "sonnet" LLM config from Claude Sonnet 4.6 to Sonnet 5 — needs the correct OpenRouter model slug confirmed before changing `LLM_CONFIGS` in the scripts (currently `anthropic/claude-sonnet-4.6`)
+- [ ] **MFA on the new JD Portal tabs**: password + Google Authenticator (TOTP) protecting the new tabs/pages once built; the existing chatbot landing page stays open/public for anyone to query the career profile — auth only gates the new JD-portal functionality, not the existing chat experience
+
+## Answered questions (21 Jul 2026)
+
+1. "Dear Hiring Manager," salutation stays — only the date/name/company address block above it is removed.
+2. Job-title bolding generalizes to every company/title mention in the cover letter, not just AIA.
+3. Siemens/Alco dates supplied by user directly in the master template.
+4. Uncapped bold-SMART-number rule confirmed acceptable — bold every distinct figure regardless of density.
+
 ## Priority order
 
-1. ~~Implement and verify `jd_scorecard_resume_v2.py`~~ — **done, see above**
-2. JD Portal Phase 2 — integrate as tabs/pages in the existing Career Copilot app.
-3. Remaining JD Automation Portal phases (NLP, integration, Docker, deploy).
-4. LinkedIn automation scoping.
+1. ~~Push to GitHub~~ — **done**
+2. ~~Implement "v2 refinement round 2"~~ — **done, see above**
+3. JD Portal Phase 2 — integrate as tabs/pages in the existing Career Copilot app
+4. Remaining JD Automation Portal phases (NLP, integration, Docker, deploy)
+5. LinkedIn automation scoping
+6. Future roadmap items (LLM key UI, Sonnet 5 bump, MFA) — not yet scoped

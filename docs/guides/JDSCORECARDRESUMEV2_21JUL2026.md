@@ -63,6 +63,26 @@ python scripts/jd_scorecard_resume_v2.py --coverletter-only --llm=deepseek
 python scripts/jd_scorecard_resume_v2.py --batch
 ```
 
+## Round 2 refinements (same day, 21 Jul 2026 — based on live Zurich Insurance test output)
+
+After reviewing real v2 output, the user requested further changes, confirmed via a short question round:
+
+**Cover letter:**
+- `https://askcareer-ai.com` added directly under the `linkedin.com/in/johnhau` line in the header
+- Date line, "Hiring Manager" line, and company-name line removed entirely — goes straight from the header block to "Dear Hiring Manager," (salutation kept, per user's answer)
+- Bold-achievement cap removed: every distinct quantifiable figure anywhere in the letter is now bolded (was capped at 1-2 per paragraph)
+- Job titles are now bolded on **every** company/title mention in the letter (was scoped to a single example), e.g. `**Associate Director, Infrastructure Services** at **AIA International Ltd**`
+
+**Resume:**
+- Header block (name/address/LinkedIn/website) fully tightened — zero blank lines between those four lines (new `tighten_contact_header()` function, applied only to the resume, since the cover letter header was already tight)
+- Bold-achievement cap removed here too — every distinct figure per bullet is now bolded (was one per bullet)
+- Added explicit prompt guidance to weave visible people-management evidence (mentoring, team leadership, coaching) into the most recent 2-3 roles specifically, not just a generic soft-skills line
+- "Earlier Roles (Siemens, Alco)" dates: the user supplied the actual dates directly in the master template (`Siemens - Apr 1997 - Apr 1998, Alco - Feb 1995 – Mar 1997`) — no code change needed, the LLM mirrors this template line since no profile-JSON data exists for these two employers. **Note:** in the verification run, the LLM collapsed this to a single combined `1995 – 1998` range rather than showing each company's own exact range — flagged back to the user as a possible follow-up if per-company precision is wanted.
+
+**New deterministic safety net:** `clean_coverletter_header()` — strips any leftover date/"Hiring Manager"/company-name line up to the salutation, in case the LLM doesn't fully follow the prompt instruction on a given run.
+
+Re-verified end-to-end (same McDonalds JD, `--llm=gemini`, `--force` to regenerate over the same day's test files): header tightened correctly in both formats, 76 bold runs in the resume docx / 25 in the cover letter docx, zero stray asterisks, zero Generated/Profile lines, zero leftover address-block lines, zero "27 years" mentions.
+
 ## Known follow-ups (not done in this session)
 
 - v1 (`jd_scorecard_resume.py`) is untouched and remains available/callable — only the shared master template changed underneath it, per user decision.
