@@ -1,0 +1,175 @@
+{
+  "jd_file": "head_of_data_ai_insurance",
+  "company": "Not specified",
+  "company_slug": "not-specified",
+  "job_title": "Head of Data & AI",
+  "role_slug": "head-of-data-ai",
+  "industry": "Insurance / Financial Services",
+  "role_summary": "Strategic leadership role focused on driving enterprise-wide AI enablement, large-scale automation, and AI-native insurance business models within a regulated environment.",
+  "must_have_requirements": [
+    "Master's degree in Computer Science, Data Science, Statistics, or Actuarial Science",
+    "Minimum 15 years professional experience in insurance or financial services",
+    "Proven track record of enterprise data and AI transformation at scale",
+    "10+ years of experience in data strategy and management",
+    "Advanced command of written and spoken English and Chinese (Cantonese or Mandarin)",
+    "Deep understanding of insurance operations (underwriting, claims, actuarial, distribution)",
+    "Hands-on experience with production-grade AI delivery and MLOps",
+    "Experience operating in highly regulated industry environments"
+  ],
+  "nice_to_have_requirements": [
+    "Published thought leadership or external speaking experience",
+    "Expertise in Agentic AI and autonomous workflow design",
+    "Deep technical proficiency with Microsoft 365 Copilot stack",
+    "Experience with knowledge graphs and RAG architectures"
+  ],
+  "soft_skills_priority": [
+    "Executive Presence",
+    "Change Leadership",
+    "Stakeholder Management",
+    "Strategic Problem Solving",
+    "Cross-functional Collaboration"
+  ],
+  "semantic_match_guidance": {
+    "AI_Leadership": [
+      "AI strategy",
+      "Generative AI",
+      "AI-native",
+      "LLM",
+      "Agentic AI",
+      "AI enablement"
+    ],
+    "Insurance_Domain": [
+      "underwriting",
+      "actuarial science",
+      "claims management",
+      "policy administration",
+      "insurance regulations"
+    ],
+    "Data_Governance": [
+      "data management",
+      "data architecture",
+      "data lineage",
+      "regulatory compliance",
+      "data quality"
+    ],
+    "Execution_Scale": [
+      "production rollout",
+      "business casing",
+      "KPI optimization",
+      "cost savings",
+      "cycle time reduction"
+    ]
+  },
+  "scoring_criteria": [
+    {
+      "name": "Insurance Domain Expertise",
+      "weight": 20,
+      "why_it_matters": "The role requires navigation of specific insurance regulatory and operational complexities.",
+      "evidence_type_to_look_for": [
+        "Underwriting systems",
+        "Risk assessment frameworks",
+        "Actuarial data"
+      ],
+      "gap_expected": "Candidates from pure tech sectors without FS exposure"
+    },
+    {
+      "name": "AI Transformation at Scale",
+      "weight": 20,
+      "why_it_matters": "The business needs to move beyond pilots to production-ready enterprise systems.",
+      "evidence_type_to_look_for": [
+        "Production AI deployment",
+        "Scaling AI architecture",
+        "Measurable ROI/Efficiency"
+      ],
+      "gap_expected": "Candidates with academic or research-only backgrounds"
+    },
+    {
+      "name": "Governance & Regulatory Compliance",
+      "weight": 15,
+      "why_it_matters": "Responsible AI in insurance is non-negotiable for risk management.",
+      "evidence_type_to_look_for": [
+        "Data governance frameworks",
+        "Risk auditing",
+        "Compliance controls"
+      ],
+      "gap_expected": "Candidates from startups with low regulatory scrutiny"
+    },
+    {
+      "name": "Leadership & Stakeholder Influence",
+      "weight": 15,
+      "why_it_matters": "Must drive shift in organizational behavior and influence executive boards.",
+      "evidence_type_to_look_for": [
+        "Team management",
+        "Board reporting",
+        "Cross-departmental strategy"
+      ],
+      "gap_expected": "Candidates focused strictly on implementation rather than strategy"
+    },
+    {
+      "name": "Enterprise Data Strategy",
+      "weight": 10,
+      "why_it_matters": "Essential for building the data foundation required for mature AI systems.",
+      "evidence_type_to_look_for": [
+        "Data roadmap",
+        "Cloud ecosystems",
+        "Data architecture modernization"
+      ],
+      "gap_expected": "Candidates focused on software engineering rather than data strategy"
+    },
+    {
+      "name": "Language Proficiency",
+      "weight": 10,
+      "why_it_matters": "Bilingual requirement (English/Chinese) is critical for local team leadership and stakeholder communication.",
+      "evidence_type_to_look_for": [
+        "Professional experience in Hong Kong/China markets",
+        "Bilingual proficiency stated"
+      ],
+      "gap_expected": "English-only native speakers"
+    },
+    {
+      "name": "Change Management",
+      "weight": 5,
+      "why_it_matters": "Internal AI enablement relies on organizational culture shifts.",
+      "evidence_type_to_look_for": [
+        "AI literacy programs",
+        "Adoption KPIs",
+        "Change management strategy"
+      ],
+      "gap_expected": "Candidates who lack people-enablement experience"
+    },
+    {
+      "name": "Academic Credentials",
+      "weight": 5,
+      "why_it_matters": "Sets the baseline for technical depth.",
+      "evidence_type_to_look_for": [
+        "Master degree transcripts",
+        "Actuarial fellowship"
+      ],
+      "gap_expected": "Candidates with only bachelor degrees"
+    }
+  ],
+  "resume_tailoring_guidance": {
+    "mandatory_sections": [
+      "PROFESSIONAL SUMMARY",
+      "AI & AUTOMATION HIGHLIGHTS",
+      "CORE COMPETENCIES",
+      "SOFT SKILLS"
+    ],
+    "summary_focus": [
+      "Highlight specific fiscal impact of AI/Data initiatives in insurance settings.",
+      "Emphasize experience in moving AI projects from experimentation to institutionalized, production-grade tools."
+    ],
+    "do_not_overclaim": [
+      "Do not claim 'full lifecycle AI' if your experience is limited to pilot evaluation or external vendor management.",
+      "Be precise about Chinese language capability; strictly outline professional/business fluency."
+    ]
+  },
+  "cover_letter_guidance": {
+    "tone": "Strategic, authoritative, yet collaborative and pragmatic.",
+    "positioning": "Position yourself as an 'Enabler'; someone who bridges the gap between complex AI architecture and tangible business value.",
+    "bridge_gaps_honestly": [
+      "If limited in specific insurance domain areas, emphasize transferable experience in highly regulated fintech environments.",
+      "If you lack experience with a specific stack, highlight your methodology for learning and deploying new enterprise toolsets."
+    ]
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "jd_file": "Prudential-Enterprise-Architecture-Head",
+  "company": "Prudential",
+  "company_slug": "prudential",
+  "job_title": "Head of Enterprise Architecture & Innovation",
+  "role_slug": "head-of-enterprise-architecture-and-innovation",
+  "industry": "Insurance / Financial Services",
+  "role_summary": "Strategic leadership role focused on enterprise architecture, legacy core system modernization, and scalable, responsible AI adoption in a regulated insurance environment.",
+  "must_have_requirements": [
+    "15+ years in enterprise technology or large-scale digital transformation",
+    "Proven leadership in core system modernization within insurance or financial services",
+    "Deep expertise in Cloud platforms (AWS, Azure, GCP, or AliCloud)",
+    "Extensive experience in microservices, API-first, and event-driven architectures",
+    "Hands-on experience implementing AI/ML solutions at scale in business use cases",
+    "Fluency in both English and Chinese (written and spoken)",
+    "Strong understanding of IT governance, regulatory compliance, and risk management"
+  ],
+  "nice_to_have_requirements": [
+    "Experience with DevSecOps and automation pipelines",
+    "Proven track record in building and mentoring high-performing architecture teams",
+    "Strong background in Actuarial or Underwriting digital enablement"
+  ],
+  "soft_skills_priority": [
+    "Strategic communication with C-suite and ExCo",
+    "Influence without authority",
+    "Pragmatic decision-making (balancing innovation vs. operational stability)",
+    "Stakeholder alignment"
+  ],
+  "semantic_match_guidance": {
+    "Architecture": [
+      "TOGAF",
+      "Enterprise Blueprint",
+      "Solution Architecture",
+      "Application Modernization"
+    ],
+    "AI_Scale": [
+      "GenAI",
+      "Machine Learning",
+      "Decision Intelligence",
+      "AI Governance",
+      "Responsible AI"
+    ],
+    "Financial_Reg": [
+      "Insurance",
+      "Actuarial",
+      "Compliance",
+      "Regulatory reporting",
+      "Risk Appetite"
+    ],
+    "Engineering": [
+      "Cloud-native",
+      "Microservices",
+      "API-first",
+      "Event-driven",
+      "DevSecOps"
+    ]
+  },
+  "scoring_criteria": [
+    {
+      "name": "Relevant Tenure",
+      "weight": 15,
+      "why_it_matters": "Ensures sufficient experience for ExCo-level strategic impact.",
+      "evidence_type_to_look_for": [
+        "15+ years experience",
+        "Previous Head of/VP architecture titles"
+      ],
+      "gap_expected": "Candidates with <12 years may lack enterprise-wide maturity."
+    },
+    {
+      "name": "Core Insurance/Finance Domain Experience",
+      "weight": 15,
+      "why_it_matters": "Necessary for understanding regulatory-constrained modernization of policy/claims systems.",
+      "evidence_type_to_look_for": [
+        "Policy administration systems",
+        "Insurance domain",
+        "Claims processing"
+      ]
+    },
+    {
+      "name": "Legacy Modernization Track Record",
+      "weight": 15,
+      "why_it_matters": "Direct responsibility for moving from legacy to cloud-native platforms.",
+      "evidence_type_to_look_for": [
+        "Large scale migration",
+        "Decommissioning legacy",
+        "Cloud-native architecture"
+      ]
+    },
+    {
+      "name": "AI Innovation at Scale",
+      "weight": 15,
+      "why_it_matters": "Must demonstrate AI beyond experimentation; requires integration into business value chains.",
+      "evidence_type_to_look_for": [
+        "AI roadmap",
+        "Responsible AI governance",
+        "GenAI implementations"
+      ]
+    },
+    {
+      "name": "Stakeholder Management",
+      "weight": 10,
+      "why_it_matters": "Critical to influence business units and alignment with compliance/security.",
+      "evidence_type_to_look_for": [
+        "Board reporting",
+        "C-suite alignment",
+        "Strategic vendor management"
+      ]
+    },
+    {
+      "name": "Architecture Governance",
+      "weight": 10,
+      "why_it_matters": "Ability to set standards and guardrails for delivery teams.",
+      "evidence_type_to_look_for": [
+        "Architecture Review Board",
+        "Principle-based design",
+        "Architectural assurance"
+      ]
+    },
+    {
+      "name": "Language Proficiency",
+      "weight": 10,
+      "why_it_matters": "Required for regional communication in Asia markets.",
+      "evidence_type_to_look_for": [
+        "Bilingual proficiency",
+        "English and Chinese"
+      ]
+    },
+    {
+      "name": "Leadership Capability",
+      "weight": 10,
+      "why_it_matters": "Required to build and scale horizontal architecture teams.",
+      "evidence_type_to_look_for": [
+        "Team building",
+        "Mentorship",
+        "Influencing cross-functional teams"
+      ]
+    }
+  ],
+  "resume_tailoring_guidance": {
+    "mandatory_sections": [
+      "PROFESSIONAL SUMMARY",
+      "AI & AUTOMATION HIGHLIGHTS",
+      "CORE COMPETENCIES",
+      "SOFT SKILLS"
+    ],
+    "summary_focus": [
+      "High-level impact on digital transformation and AI integration within the insurance sector."
+    ],
+    "do_not_overclaim": [
+      "Do not claim AI expertise if limited only to personal/academic training; must show business value."
+    ]
+  },
+  "cover_letter_guidance": {
+    "tone": "Strategic, executive, and visionary",
+    "positioning": "Bridge between business complexity and modern technological solutioning.",
+    "bridge_gaps_honestly": [
+      "Emphasize transferrable skills from other highly regulated sectors if pure insurance experience is lacking."
+    ]
+  }
+}

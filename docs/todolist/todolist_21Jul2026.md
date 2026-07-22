@@ -142,7 +142,47 @@ Phase 2 frontend is done and verified **locally** (see Phase 2 section above), a
 1. ~~Push to GitHub~~ — **done**
 2. ~~Implement "v2 refinement round 2"~~ — **done, see above**
 3. ~~JD Portal Phase 2 — integrate as tabs/pages in the existing Career Copilot app~~ — **done locally + on GitHub, VPS deploy deliberately deferred (see above)**
-4. **Tomorrow's top priority:** bring-your-own-key + dynamic LLM selection (OpenRouter/DeepSeek, no hardcoded model slugs) — see "Tomorrow's top priority" section above
+4. ~~Bring-your-own-key + dynamic LLM selection~~ — **superseded as today's (22 Jul 2026) top priority by the `--ResumeAdjustment` work below (user redirected priority); still outstanding, carry forward**
 5. Remaining JD Automation Portal phases (NLP, integration, Docker, deploy — needed before JD Portal can go live on the VPS)
 6. LinkedIn automation scoping
 7. Future roadmap items (MFA) — not yet scoped
+
+---
+
+## 22 Jul 2026 — today's session
+
+### 1. Explainer PowerPoint for `jd_scorecard_resume_v2.py` — DONE
+
+Hiring-manager-facing, plain-English walkthrough of what the script does (not how — no code/jargon). 7 slides: the problem it solves, the 3-step flow, deep dive on the Scorecard, deep dive on Resume/Cover Letter, the anti-hallucination "trust layer," and the bottom-line pitch.
+
+- [x] Built with `python-pptx` (newly installed, not added to `requirements.txt` — one-off deliverable, not a runtime dependency of any script)
+- [x] Verified: 7 slides confirmed via re-parsing the file with python-docx/pptx, no mojibake in text runs
+- [x] Saved to `docs/guides/JDSCORECARDRESUMEV2_EXPLAINER_22JUL2026.pptx`
+
+### 2. `--ResumeAdjustment` flag added to `jd_scorecard_resume_v2.py` — DONE, this was today's first priority
+
+**User request:** pull the "6a) Resume Adjustments" recommendations out of a JD's own Match Scorecard (e.g. `data_processed/Manulife/ScoreCard/docx/JD_SCORECARD_Manulife_..._21JUL2026.docx`, reviewed alongside the user's manually-edited `JohnHauCoverLetter_Manulife_IT_Director.docx`) and apply that guidance to the Resume and Cover Letter — grounded strictly in `src/data/john_profile.json`, never hallucinated.
+
+**Decisions confirmed by user (22 Jul 2026, via clarifying questions before implementation, per soul.md intake rule):**
+1. **Invisible guidance only** — the 6a recommendations shape wording/emphasis/section framing inside the existing Resume/Cover-Letter prompts. No visible "Resume Adjustments" heading is ever printed into the output.
+2. **Auto-detect latest scorecard** — glob `data_processed/<Employer>/ScoreCard/txt/` for the most recent scorecard matching the JD; if none exists yet, generate one first (forces `run_scorecard = True` for that run), then extract.
+3. **Prompt-level anti-hallucination only** — same mechanism already used everywhere else in this script (explicit LLM rule: apply the guidance to wording only, never invent a fact/figure/project not already in the profile). No new automated post-generation fact-checker was added — consistent with v1/v2's existing architecture.
+
+**Implementation (`scripts/jd_scorecard_resume_v2.py`):**
+- [x] Backed up first per soul.md/CLAUDE.md golden-rule: `scripts/jd_scorecard_resume_v2.py.20260722_V1.bak`
+- [x] New flag: `--ResumeAdjustment` (boolean, case-insensitive match)
+- [x] `find_latest_scorecard_txt()` — globs the existing scorecard pattern already used by `build_output_targets()`
+- [x] `extract_resume_adjustments()` + `RESUME_ADJUSTMENTS_RE` — regex-extracts the "6a) Resume Adjustments" block; hardened against real-world format drift (tested against **all 17** historical scorecard `.txt` files under `data_processed/**/ScoreCard/txt/` going back to March 2026 — handles the "a)"-prefixed form, the un-lettered `**Resume Adjustments:**` form, and a subtitle-suffixed heading variant; **17/17 matched correctly**, zero false positives)
+- [x] Resolution logic runs once, before the run header prints, so the header's new `ResumeAdj:` line always reflects the final decision (existing file used / none found so generating one first / ignored in scorecard-only mode)
+- [x] Guidance text injected into both `RESUME_USER`/`RESUME_SYS` and `COVERLETTER_USER`/`COVERLETTER_SYS` as a new context block + new system rule 12, with an explicit instruction never to invent facts to satisfy it and never to print it verbatim
+- [x] Usage docstring and `--help`-style printout at the bottom of the script updated with the new flag
+
+**Verification (soul.md §3.1 — executed, not just written):**
+- [x] Real run against the Manulife JD, `--resume-only --ResumeAdjustment --llm=gemini`: correctly auto-detected the existing 21JUL2026 scorecard, extracted 6a, and visibly applied it — Professional Summary headline changed to **"Transformation-Focused Technology & Operations Leader"** (the scorecard's exact suggested headline) and the bridging section retitled **"OPERATIONAL TRANSFORMATION RELEVANCE"** — with zero "Resume Adjustments" text leaked into the output
+- [x] Docx spot-check: 75 bold runs, 0 stray asterisks, heading not present
+- [x] Anti-hallucination spot-check: flagged three claims in the new output that looked unfamiliar (a `here.now` URL, "16,000 financial advisers," "800+ China developers... 40%") and traced all three back to real entries in `john_profile.json` / the master template — confirmed genuine, not invented
+- [x] Real run against the Manulife JD, `--coverletter-only --ResumeAdjustment --llm=gemini`: same mechanism, reused the cached scorecard (no regeneration), 24 bold runs, 0 stray asterisks, no leaked heading
+- [x] Separately exercised the "no scorecard exists yet" branch using a throwaway smoke-test JD (`JD_ResumeAdjustmentSmokeTest_Temp`) — confirmed the script generates the scorecard first, then correctly extracts and applies 6a; **all smoke-test artifacts (JD txt, JSON blueprint, `data_processed/ResumeAdjustmentSmokeTest/`) deleted afterward**, no trace left behind
+- [x] Real Manulife 22JUL2026 outputs (resume + cover letter, txt + docx) left in place — legitimate output for a real JD, doesn't collide with the 21JUL2026 files or the user's manually-edited docx files
+
+**Not done / explicitly deferred:** no dated guide written yet for this feature (next step); `docs/guides/JDSCORECARDRESUMEV2_21JUL2026.md` (yesterday's v2 guide) not yet updated to mention this addition.

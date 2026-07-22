@@ -1,0 +1,151 @@
+{
+  "jd_file": "Director, Technology Delivery",
+  "company": "Sun Life",
+  "company_slug": "sun-life",
+  "job_title": "Director, Technology Delivery",
+  "role_slug": "director-technology-delivery",
+  "industry": "Financial Services & Insurance",
+  "role_summary": "Strategic leadership role focused on end-to-end digital platform implementation, enterprise-scale software delivery, and aligning technology roadmaps with business objectives in the insurance sector.",
+  "must_have_requirements": [
+    "University degree in IT, Computer Science, or related field",
+    "12+ years of professional software development experience",
+    "Expertise in Java and Spring Boot framework",
+    "Extensive experience overseeing full SDLC at enterprise scale",
+    "Proficiency in Cloud Platform system development",
+    "Strong SQL knowledge (PostgreSQL, Oracle)",
+    "Deep expertise in API design (RESTful, OpenAPI 3.0/Swagger)",
+    "Experience managing Agile teams and cross-functional stakeholders",
+    "Fluency in English (written and spoken)"
+  ],
+  "nice_to_have_requirements": [
+    "Broad knowledge of insurance industry regulatory and compliance standards",
+    "Proven background in digital transformation of customer journeys",
+    "Experience with post-implementation review and process optimization frameworks"
+  ],
+  "soft_skills_priority": [
+    "Strategic Visioning",
+    "Stakeholder Management",
+    "Complex Problem Solving",
+    "Influencing and Negotiation",
+    "Change Management"
+  ],
+  "semantic_match_guidance": {
+    "Technology Delivery": [
+      "SDLC",
+      "Software Delivery",
+      "Platform Implementation",
+      "Digital Initiatives"
+    ],
+    "Technical Leadership": [
+      "Java",
+      "Spring Boot",
+      "API Design",
+      "Cloud Infrastructure",
+      "System Integration"
+    ],
+    "Strategic Governance": [
+      "Risk Management",
+      "Compliance",
+      "Roadmap Alignment",
+      "Stakeholder Benchmarking"
+    ]
+  },
+  "scoring_criteria": [
+    {
+      "name": "Enterprise SDLC Leadership",
+      "weight": 20,
+      "why_it_matters": "The role requires directing end-to-end execution at a high organizational level.",
+      "evidence_type_to_look_for": [
+        "Director level title",
+        "12+ years experience",
+        "Led teams in enterprise environments"
+      ],
+      "gap_expected": "Candidates without director experience may struggle with strategic alignment"
+    },
+    {
+      "name": "Java/Spring Boot Expertise",
+      "weight": 15,
+      "why_it_matters": "Core technical foundation for the platform development.",
+      "evidence_type_to_look_for": [
+        "Java development history",
+        "Spring Boot framework usage",
+        "Backend architectural design"
+      ]
+    },
+    {
+      "name": "Insurance Industry Knowledge",
+      "weight": 10,
+      "why_it_matters": "The role involves localizing global standards for insurance regulatory environments.",
+      "evidence_type_to_look_for": [
+        "Insurance or FinTech experience",
+        "Regulatory compliance projects"
+      ]
+    },
+    {
+      "name": "Cloud & API Fluency",
+      "weight": 15,
+      "why_it_matters": "Essential for modern, scalable, and integrable technology delivery.",
+      "evidence_type_to_look_for": [
+        "Cloud platform experience (AWS/Azure/GCP)",
+        "RESTful API / OpenAPI documentation"
+      ]
+    },
+    {
+      "name": "Strategic Planning & Roadmap",
+      "weight": 10,
+      "why_it_matters": "Must link technical output to commercial business objectives.",
+      "evidence_type_to_look_for": [
+        "Technical roadmap development",
+        "Strategic partnership with Product Owners"
+      ]
+    },
+    {
+      "name": "Operational Excellence",
+      "weight": 10,
+      "why_it_matters": "Focus is on reducing costs and optimizing workflows.",
+      "evidence_type_to_look_for": [
+        "Process re-engineering",
+        "Post-implementation review leadership"
+      ]
+    },
+    {
+      "name": "Stakeholder Management",
+      "weight": 10,
+      "why_it_matters": "Primary bridge between technical teams and business functional heads.",
+      "evidence_type_to_look_for": [
+        "Cross-functional team leadership",
+        "C-suite or Senior management communication"
+      ]
+    },
+    {
+      "name": "Agile Methodology",
+      "weight": 10,
+      "why_it_matters": "Necessary for keeping multiple IT and business teams synchronized.",
+      "evidence_type_to_look_for": [
+        "Agile/Scrum certification",
+        "Lead multiple delivery pods"
+      ]
+    }
+  ],
+  "resume_tailoring_guidance": {
+    "mandatory_sections": [
+      "PROFESSIONAL SUMMARY",
+      "AI & AUTOMATION HIGHLIGHTS",
+      "CORE COMPETENCIES",
+      "SOFT SKILLS"
+    ],
+    "summary_focus": [
+      "High-level leadership in digital transformation and large-scale technical delivery"
+    ],
+    "do_not_overclaim": [
+      "Avoid claiming full-stack development experience if focus is on management/architecture"
+    ]
+  },
+  "cover_letter_guidance": {
+    "tone": "Professional, visionary, and results-oriented",
+    "positioning": "Emphasize ability to translate complex technology roadmaps into tangible insurance business value",
+    "bridge_gaps_honestly": [
+      "Focus on transferable management experience if industry experience is outside insurance"
+    ]
+  }
+}

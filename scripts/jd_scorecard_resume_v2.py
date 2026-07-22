@@ -40,6 +40,18 @@ Usage: identical to v1, just invoke this file instead.
   python scripts/jd_scorecard_resume_v2.py --batch
   python scripts/jd_scorecard_resume_v2.py --batch --force
   python scripts/jd_scorecard_resume_v2.py --llm=sonnet|deepseek|gemini
+  python scripts/jd_scorecard_resume_v2.py --ResumeAdjustment
+
+--ResumeAdjustment (added 22 Jul 2026):
+  Pulls the "6a) Resume Adjustments" recommendations out of this JD's own Match
+  Scorecard (auto-detects the latest scorecard already on disk for this
+  employer/JD; generates one first if none exists yet) and feeds them to the
+  Resume and Cover Letter prompts as extra tailoring guidance. It only shapes
+  wording/emphasis/section framing in the existing output — it never adds a
+  visible "Resume Adjustments" heading, and it can never introduce a fact,
+  figure, or claim that isn't already in src/data/john_profile.json (same
+  single-source-of-truth / no-hallucination rule as everything else in this
+  script).
 
 Outputs go to the same data_processed/<Employer>/ tree as v1 — filenames are
 date-stamped, so re-running v2 against a JD already processed by v1 on a
@@ -257,6 +269,33 @@ def requested_outputs_exist(path, include_scorecard=True, include_resume=True, i
         checks.append(any(targets["cover_dir"].glob(targets["cover_pattern"])))
     return bool(checks) and all(checks)
 
+
+# ── v2-only: --ResumeAdjustment support ────────────────────────────────────
+# Extracts "6a) Resume Adjustments" out of a scorecard's own TAILORING
+# RECOMMENDATIONS section, stopping at "b)"/"c)" or end of text.
+RESUME_ADJUSTMENTS_RE = re.compile(
+    r"\**\s*(?:a\)\s*)?Resume Adjustments\b[^\n]*\n(.*?)"
+    r"(?=\n\s*\**\s*(?:[bc]\)\s*)?(?:Interview Preparation|Certifications)|\n\s*#{1,4}\s*\d|\Z)",
+    re.IGNORECASE | re.DOTALL,
+)
+
+
+def find_latest_scorecard_txt(path):
+    """Most recently modified existing scorecard .txt for this JD, if any."""
+    targets = build_output_targets(path)
+    candidates = sorted(
+        targets["scorecard_dir"].glob(targets["scorecard_pattern"]),
+        key=lambda p: p.stat().st_mtime,
+        reverse=True,
+    )
+    return candidates[0] if candidates else None
+
+
+def extract_resume_adjustments(scorecard_text):
+    """Pull the '6a) Resume Adjustments' block out of a JD Match Scorecard body."""
+    match = RESUME_ADJUSTMENTS_RE.search(scorecard_text)
+    return match.group(1).strip() if match else None
+
 # ── Parse CLI arguments ────────────────────────────────────────────────────────
 args = [a for a in sys.argv[1:] if not a.startswith("-")]
 flags = [a for a in sys.argv[1:] if a.startswith("-")]
@@ -274,6 +313,7 @@ refresh_blueprint = "--refresh-blueprint" in flags
 batch_mode        = "--batch" in flags
 force_run         = "--force" in flags
 generate_docx     = "--no-docx" not in flags
+resume_adjustment = any(f.lower() == "--resumeadjustment" for f in flags)
 
 # ── LLM selection via --llm=<name> flag ───────────────────────────────────────
 llm_flag = next((f for f in flags if f.startswith("--llm=")), "--llm=sonnet")
@@ -408,6 +448,25 @@ if batch_mode:
 
     sys.exit(0 if failed == 0 else 1)
 
+# ── v2-only: resolve --ResumeAdjustment source before anything prints ─────────
+# Auto-detects the latest existing scorecard for this JD; if none exists yet,
+# forces the scorecard to be generated this run so the guidance is available.
+resume_adjustments_text = None
+if resume_adjustment and (run_resume or run_coverletter):
+    existing_scorecard_path = find_latest_scorecard_txt(jd_path)
+    if existing_scorecard_path:
+        resume_adjustments_text = extract_resume_adjustments(
+            existing_scorecard_path.read_text(encoding="utf-8")
+        )
+        _scorecard_source_note = f"existing → {existing_scorecard_path.relative_to(ROOT)}"
+    elif not run_scorecard:
+        run_scorecard = True
+        _scorecard_source_note = "none found — generating one first"
+    else:
+        _scorecard_source_note = "will extract from this run's freshly generated scorecard"
+elif resume_adjustment:
+    _scorecard_source_note = "ignored — no resume/cover-letter requested this run"
+
 # ── Read source files ──────────────────────────────────────────────────────────
 print(f"\n{'='*60}")
 print("  JD APPLICATION GENERATOR v2 — John Hau")
@@ -421,6 +480,8 @@ print(f"  API Key     : {API_KEY[:25]}...")
 print(f"  Date        : {DATE_STAMP}")
 print(f"  LLM         : {llm_choice} ({MODEL})")
 print(f"  Generating  : {'Scorecard ' if run_scorecard else ''}{'Resume ' if run_resume else ''}{'CoverLetter' if run_coverletter else ''}")
+if resume_adjustment:
+    print(f"  ResumeAdj   : {_scorecard_source_note}")
 print(f"{'='*60}\n")
 
 print("📂  Reading source files...")
@@ -801,6 +862,11 @@ Produce a comprehensive JD Match Scorecard with ALL of these sections:
     scorecard_text = call_llm(SCORECARD_SYS, SCORECARD_USER, max_tokens=6000, label="Scorecard")
     print("  ✓  Scorecard complete")
 
+    if resume_adjustment and resume_adjustments_text is None:
+        resume_adjustments_text = extract_resume_adjustments(scorecard_text)
+        if not resume_adjustments_text:
+            print("  ⚠️  --ResumeAdjustment: could not find a '6a) Resume Adjustments' section in this scorecard")
+
 # ══════════════════════════════════════════════════════════════════════════════
 # TASK 2 — TAILORED RESUME (v2: SMART + bold-markup + no "27 years")
 # ══════════════════════════════════════════════════════════════════════════════
@@ -821,7 +887,16 @@ if run_resume:
         "8. Every achievement bullet must be written in SMART form (Specific, Measurable, Achievable, Relevant, Time-bound). Wrap EVERY distinct quantifiable figure in the bullet in double asterisks — percentages, dollar/HK$ amounts, headcounts, device/user counts, time savings, etc. — no cap on how many per bullet; bold every one that appears, but never wrap overlapping or adjacent text as a single run. The reference template shows this convention in a few of its bullets; follow that pattern for every bullet you write.\n"
         "9. Never state an exact number of years of experience (e.g. do not write '27 years' or '27+ years'). Use wording like 'extensive years' or 'extensive experience' instead.\n"
         "10. Weave visible people-management evidence into the most recent 2-3 roles specifically (not just a generic soft-skills line) — team leadership, mentoring/coaching, hiring or onboarding, performance management, career development, org design — using only what the profile actually documents (e.g. leading a team of 50+, coaching teams across multiple countries, mentorship and team development).\n"
-        "11. Output ONLY the resume text — no preamble, no explanation, no markdown code fences (the ** bold markers from rule 8 are the one exception — those are expected)."
+        "11. Output ONLY the resume text — no preamble, no explanation, no markdown code fences (the ** bold markers from rule 8 are the one exception — those are expected).\n"
+        + ("12. Recruiter resume-adjustment guidance (below) may be supplied — it comes from this JD's own Match Scorecard. Apply it ONLY to wording, emphasis, section framing, and which existing facts get foregrounded. It must NEVER be used to introduce a fact, figure, project, or claim that is not already present in the candidate profile data — the guidance changes how real facts are presented, never what the facts are. Never print the guidance verbatim or add a visible \"Resume Adjustments\" heading.\n" if resume_adjustment else "")
+    )
+
+    resume_adjustment_block = (
+        f"""
+=== RECRUITER RESUME-ADJUSTMENT GUIDANCE (from this JD's own Match Scorecard — apply per system rule 12; never invent a fact to satisfy it) ===
+{resume_adjustments_text}
+"""
+        if resume_adjustments_text else ""
     )
 
     RESUME_USER = f"""
@@ -836,7 +911,7 @@ if run_resume:
 
 === CANDIDATE PROFILE (single source of truth — all facts from here only) ===
 {profile_context}
-
+{resume_adjustment_block}
 === INSTRUCTIONS ===
 Write a complete tailored resume for John Hau targeting the role above.
 
@@ -870,6 +945,7 @@ Layout rules:
 - Weave people-management evidence into the most recent roles (see system rule 10)
 - Do not state an exact years-of-experience number anywhere (see system rule 9)
 - Keep spacing tight: a single blank line between sections is enough, no blank line directly under a section header before its content, and NO blank lines at all between the name/address/LinkedIn/website lines at the very top of the resume
+{"- If recruiter resume-adjustment guidance was supplied above, weave it in naturally (headline framing, which bullets/section lead) — do not quote it or add a visible heading for it (see system rule 12)" if resume_adjustments_text else ""}
 """
 
     resume_text = call_llm(RESUME_SYS, RESUME_USER, max_tokens=4500, label="Resume")
@@ -914,13 +990,22 @@ if run_coverletter:
         "8. Whenever a specific job title is named together with a company (e.g. 'Associate Director of Infrastructure Services at AIA', 'VP, Asia Manager at Morgan Stanley'), wrap the title phrase itself in double asterisks too — do this consistently for every company/title mention in the letter, not just one.\n"
         "9. Never state an exact number of years of experience (e.g. do not write '27 years' or '27+ years'). Use wording like 'extensive years' or 'extensive experience' instead.\n"
         "10. The header block is ONLY: candidate name, location, phone | email, LinkedIn, website — one line each, no blank lines between them. Do NOT include a date line, a recipient name line ('Hiring Manager'), or a company name line anywhere before the salutation. Go directly from the header block to 'Dear Hiring Manager,'.\n"
-        "11. Output ONLY the cover letter text — no preamble, no commentary (the ** bold markers from rules 7-8 are the one exception — those are expected)."
+        "11. Output ONLY the cover letter text — no preamble, no commentary (the ** bold markers from rules 7-8 are the one exception — those are expected).\n"
+        + ("12. Recruiter resume-adjustment guidance (below) may be supplied — it comes from this JD's own Match Scorecard. Apply it ONLY to tone, emphasis, and which existing achievements get foregrounded. It must NEVER be used to introduce a fact, figure, project, or claim that is not already present in the candidate profile data. Never print the guidance verbatim or add a visible heading for it.\n" if resume_adjustment else "")
     )
 
     # Derive employer display name from employer slug (e.g. MandarinOriental -> Mandarin Oriental)
     import re as _re
     employer_display = _re.sub(r'(?<=[a-z])(?=[A-Z])', ' ', employer)  # CamelCase -> spaced
     role_display     = role_slug.replace('_', ' ')                      # slug -> readable
+
+    coverletter_adjustment_block = (
+        f"""
+=== RECRUITER RESUME-ADJUSTMENT GUIDANCE (from this JD's own Match Scorecard — apply per system rule 12; never invent a fact to satisfy it) ===
+{resume_adjustments_text}
+"""
+        if resume_adjustments_text else ""
+    )
 
     COVERLETTER_USER = f"""
 === JOB DESCRIPTION ===
@@ -931,7 +1016,7 @@ if run_coverletter:
 
 === CANDIDATE PROFILE (single source of truth — all facts from here only) ===
 {profile_context}
-
+{coverletter_adjustment_block}
 === LETTER HEADER DETAILS ===
 Name     : {name}
 Location : {location}
@@ -963,6 +1048,7 @@ Key themes to hit (using only profile facts):
 - Bold every distinct quantified achievement and every company/title mention (see system rules 7-8)
 - Do not state an exact years-of-experience number anywhere (see system rule 9)
 - No date/recipient-name/company lines before the salutation (see system rule 10)
+{"- If recruiter resume-adjustment guidance was supplied above, weave it into tone/emphasis only — do not quote it or add a visible heading for it (see system rule 12)" if resume_adjustments_text else ""}
 """
 
     coverletter_text = call_llm(COVERLETTER_SYS, COVERLETTER_USER, max_tokens=2500, label="Cover Letter")
@@ -1033,6 +1119,7 @@ print(f"  python scripts/jd_scorecard_resume_v2.py --coverletter-only")
 print(f"  python scripts/jd_scorecard_resume_v2.py --batch")
 print(f"  python scripts/jd_scorecard_resume_v2.py --batch --force")
 print(f"  python scripts/jd_scorecard_resume_v2.py --refresh-blueprint")
+print(f"  python scripts/jd_scorecard_resume_v2.py --ResumeAdjustment  (apply this JD's scorecard 6a guidance)")
 print(f"  python scripts/jd_scorecard_resume_v2.py --llm=sonnet    (default, Claude Sonnet 4.6)")
 print(f"  python scripts/jd_scorecard_resume_v2.py --llm=deepseek  (DeepSeek R1)")
 print(f"  python scripts/jd_scorecard_resume_v2.py --llm=gemini    (Gemini Flash Lite - cheaper)")

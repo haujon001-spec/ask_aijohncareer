@@ -1,0 +1,153 @@
+{
+  "jd_file": "Associate Director, C360 Data & Analytics",
+  "company": "Confidential",
+  "company_slug": "confidential-employer",
+  "job_title": "Associate Director, C360 Data & Analytics",
+  "role_slug": "associate-director-c360-data-analytics",
+  "industry": "Data & Analytics / Customer Experience",
+  "role_summary": "Lead liaison bridging business stakeholders and technical teams to design and implement Customer 360 (C360) data management strategies and MDM solutions.",
+  "must_have_requirements": [
+    "10+ years of business analysis experience in data management or customer data projects",
+    "Expertise in requirements gathering, facilitation, and functional documentation",
+    "Direct experience with MDM platforms (Informatica, Profisee, or Stibo Systems)",
+    "Domain expertise in customer lifecycles, segmentation, and marketing technology stacks",
+    "Proven background in data profiling, quality assessment, and defining matching strategies",
+    "Strong technical literacy in data modeling, APIs, data integration, and cloud architecture (AWS)"
+  ],
+  "nice_to_have_requirements": [
+    "Master's degree in Business Administration or Information Systems",
+    "Prior consulting experience",
+    "PMP or Agile certification",
+    "Experience in marketing transformation initiatives"
+  ],
+  "soft_skills_priority": [
+    "Stakeholder management and consensus-building",
+    "Change management and conflict resolution",
+    "Executive-level communication",
+    "Influencing without authority",
+    "Translating business needs to technical requirements"
+  ],
+  "semantic_match_guidance": {
+    "Data_Strategy": [
+      "Customer 360",
+      "C360",
+      "Master Data Management",
+      "MDM",
+      "Data Governance",
+      "Matching Rules"
+    ],
+    "Technical_Skills": [
+      "AWS",
+      "API Integration",
+      "Data Modeling",
+      "Data Profiling",
+      "Data Quality",
+      "SQL"
+    ],
+    "Business_Analysis": [
+      "Requirements Gathering",
+      "User Stories",
+      "Functional Specifications",
+      "Acceptance Criteria",
+      "Stakeholder Workshops"
+    ],
+    "Leadership": [
+      "Cross-functional leadership",
+      "Liaison",
+      "Agile",
+      "Change Management",
+      "Transformation"
+    ]
+  },
+  "scoring_criteria": [
+    {
+      "name": "Data Management Experience",
+      "weight": 20,
+      "why_it_matters": "Core competency for overseeing C360 and MDM initiatives.",
+      "evidence_type_to_look_for": [
+        "MDM implementation history",
+        "Data quality strategy execution"
+      ],
+      "gap_expected": "Candidates without dedicated MDM platform exposure may struggle."
+    },
+    {
+      "name": "Stakeholder Management",
+      "weight": 15,
+      "why_it_matters": "40% of the role involves facilitating workshops and achieving compromise.",
+      "evidence_type_to_look_for": [
+        "Collaborating with C-suite",
+        "Requirements workshops",
+        "Prioritization matrices"
+      ]
+    },
+    {
+      "name": "Technical Translation",
+      "weight": 15,
+      "why_it_matters": "Acts as the literal bridge between business users and engineers.",
+      "evidence_type_to_look_for": [
+        "Technical requirement documentation",
+        "Translating functional needs to API/Architecture specs"
+      ]
+    },
+    {
+      "name": "Business Domain Depth",
+      "weight": 10,
+      "why_it_matters": "Must understand marketing/sales workflows to create meaningful data definitions.",
+      "evidence_type_to_look_for": [
+        "CRM/Marketing automation project experience"
+      ]
+    },
+    {
+      "name": "Years of Experience",
+      "weight": 10,
+      "why_it_matters": "High-level role requiring senior-level seniority.",
+      "evidence_type_to_look_for": [
+        "10+ years in resume"
+      ]
+    },
+    {
+      "name": "Communication & Documentation",
+      "weight": 10,
+      "why_it_matters": "Ability to convert complex concepts into clear business output.",
+      "evidence_type_to_look_for": [
+        "Writing samples, workshop facilitation experience"
+      ]
+    },
+    {
+      "name": "Data Governance/Quality",
+      "weight": 10,
+      "why_it_matters": "Ensures C360 data is reliable and compliant (GDPR/CCPA).",
+      "evidence_type_to_look_for": [
+        "Data cleansing, matching strategies, compliance audits"
+      ]
+    },
+    {
+      "name": "Consultative/Agile Mindset",
+      "weight": 10,
+      "why_it_matters": "Aligns with the 'dynamic' culture and methodology requirements.",
+      "evidence_type_to_look_for": [
+        "Consulting background, Agile/Scrum certifications"
+      ]
+    }
+  ],
+  "resume_tailoring_guidance": {
+    "mandatory_sections": [
+      "PROFESSIONAL SUMMARY",
+      "CORE COMPETENCIES",
+      "PROFESSIONAL EXPERIENCE"
+    ],
+    "summary_focus": [
+      "Highlight your tenure as a bridge between Business and IT in C360/MDM ecosystems."
+    ],
+    "do_not_overclaim": [
+      "Avoid claiming deep coding skills (e.g., software engineering); focus on 'technical requirement translation' instead."
+    ]
+  },
+  "cover_letter_guidance": {
+    "tone": "Professional, authoritative, and service-oriented",
+    "positioning": "Emphasize your role as the catalyst for reliable data that drives marketing and sales decisions.",
+    "bridge_gaps_honestly": [
+      "If lacking specific MDM vendor experience, emphasize exposure to similar data architecture projects and ability to learn new platforms."
+    ]
+  }
+}

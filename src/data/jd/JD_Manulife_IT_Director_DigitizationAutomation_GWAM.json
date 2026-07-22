@@ -1,0 +1,155 @@
+{
+  "jd_file": "Director_Digitization_Automation_GWAM_GA_Asia",
+  "company": "Not specified",
+  "company_slug": "not-specified",
+  "job_title": "Director, Digitization & Automation, GWAM & GA Asia Operations",
+  "role_slug": "director-digitization-automation",
+  "industry": "Financial Services / Operations",
+  "role_summary": "Lead a regional transformation team to drive digitization, automation (AI, Power Platform), and process re-engineering. This is a high-visibility lead role responsible for scaling efficiency, business intelligence, and digital solutions in a complex, matrixed global operation.",
+  "must_have_requirements": [
+    "Experience leading automation/AI at scale in complex environments",
+    "Expertise in Microsoft technology stack (Power Platform, Azure)",
+    "Demonstrable history as a change agent in process transformation",
+    "Strong financial acumen (cost management and benefit articulation)",
+    "Leadership experience managing high-performing, geographically dispersed teams",
+    "University degree or equivalent professional experience"
+  ],
+  "nice_to_have_requirements": [
+    "Entrepreneurial mindset with hands-on technical proficiency",
+    "Proven track record of managing multiple concurrent, cross-functional initiatives",
+    "Experience in the financial services sector (GWAM/GA context)"
+  ],
+  "soft_skills_priority": [
+    "Change Management",
+    "Strategic Communication",
+    "Influencing Stakeholders",
+    "Problem Solving",
+    "Transparency and Collaboration",
+    "Critical Thinking"
+  ],
+  "semantic_match_guidance": {
+    "Automation_Expertise": [
+      "RPA",
+      "Power Automate",
+      "AI/ML",
+      "Workflow Automation",
+      "Intelligent Automation"
+    ],
+    "Digital_Transformation": [
+      "Business Process Re-engineering",
+      "Operational Excellence",
+      "Digitization",
+      "Capacity Planning"
+    ],
+    "Leadership": [
+      "Cross-functional leadership",
+      "Stakeholder Management",
+      "Change Management",
+      "Matrix leadership"
+    ]
+  },
+  "scoring_criteria": [
+    {
+      "name": "Automation/AI Scale Experience",
+      "weight": 20,
+      "why_it_matters": "The role requires moving beyond pilot projects to enterprise-wide automation.",
+      "evidence_type_to_look_for": [
+        "Large scale RPA deployments",
+        "AI initiative ownership",
+        "Operational throughput improvements"
+      ],
+      "gap_expected": "Need quantified results (e.g., % efficiency gains)"
+    },
+    {
+      "name": "Microsoft Stack Proficiency",
+      "weight": 15,
+      "why_it_matters": "Direct reliance on the MS Power Platform and Azure environment.",
+      "evidence_type_to_look_for": [
+        "Power Platform architecture",
+        "Azure integrations",
+        "Cloud digital transformation projects"
+      ]
+    },
+    {
+      "name": "Change Leadership",
+      "weight": 15,
+      "why_it_matters": "Requires influencing stakeholders and shifting organizational culture.",
+      "evidence_type_to_look_for": [
+        "Stakeholder buy-in stories",
+        "Change management frameworks",
+        "Cultural transformation initiatives"
+      ]
+    },
+    {
+      "name": "Financial/Business Acumen",
+      "weight": 10,
+      "why_it_matters": "Must translate technical automation into P&L impact and cost reduction.",
+      "evidence_type_to_look_for": [
+        "Budget oversight",
+        "Cost/benefit analysis ownership",
+        "Business case development"
+      ]
+    },
+    {
+      "name": "Process Redesign Ownership",
+      "weight": 10,
+      "why_it_matters": "Automation of bad processes is ineffective; redesign is a prerequisite.",
+      "evidence_type_to_look_for": [
+        "Lean Six Sigma",
+        "Process optimization",
+        "Legacy system modernization"
+      ]
+    },
+    {
+      "name": "Matrix Leadership",
+      "weight": 10,
+      "why_it_matters": "Success depends on working with geographically dispersed teams without direct reporting lines.",
+      "evidence_type_to_look_for": [
+        "Global project delivery",
+        "Cross-regional stakeholder management"
+      ],
+      "gap_expected": "Need evidence of remote/matrix team building"
+    },
+    {
+      "name": "Strategic Communication",
+      "weight": 10,
+      "why_it_matters": "Must bridge the gap between technical teams and executive leadership.",
+      "evidence_type_to_look_for": [
+        "Executive reporting",
+        "Vision communication",
+        "Communication strategy"
+      ]
+    },
+    {
+      "name": "Operational Risk Mitigation",
+      "weight": 10,
+      "why_it_matters": "Digitization must reduce, not increase, operational risk.",
+      "evidence_type_to_look_for": [
+        "Compliance automation",
+        "Risk controls integration",
+        "Security-first digitization"
+      ]
+    }
+  ],
+  "resume_tailoring_guidance": {
+    "mandatory_sections": [
+      "PROFESSIONAL SUMMARY",
+      "AI & AUTOMATION HIGHLIGHTS",
+      "CORE COMPETENCIES",
+      "SOFT SKILLS"
+    ],
+    "summary_focus": [
+      "Transformational leader with specific focus on scaling regional automation for business/financial operations."
+    ],
+    "do_not_overclaim": [
+      "Do not claim responsibility for global-scale AI software development if only focused on business-level process automation."
+    ]
+  },
+  "cover_letter_guidance": {
+    "tone": "Confident, collaborative, and results-oriented",
+    "positioning": "Highlight specific instances where you turned a 'complex, broken' status quo into a 'simplified, automated' success story.",
+    "bridge_gaps_honestly": [
+      "Focus on expertise in scaling technology rather than years in a specific industry, if coming from outside insurance/finance."
+    ]
+  }
+}
