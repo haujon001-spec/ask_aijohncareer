@@ -59,3 +59,27 @@
     font-size: 12px;
   }
 }
+
+/* JD Portal fintech theme override — used for the New Run / History sub-nav */
+[data-portal-theme="fintech"] .tab-bar {
+  background: transparent;
+  border-bottom: none;
+}
+
+[data-portal-theme="fintech"] .tab-bar-button {
+  background: rgba(16, 22, 42, 0.5);
+  border: 1px solid var(--portal-border);
+  color: var(--portal-text-secondary);
+}
+
+[data-portal-theme="fintech"] .tab-bar-button:hover {
+  border-color: var(--portal-accent-cyan);
+  background: rgba(34, 211, 238, 0.08);
+  color: var(--portal-text-primary);
+}
+
+[data-portal-theme="fintech"] .tab-bar-button.active {
+  background: var(--portal-metallic-gradient);
+  border-color: transparent;
+  color: #04070f;
+}

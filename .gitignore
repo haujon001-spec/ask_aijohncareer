@@ -10,7 +10,11 @@
 /data_processed/
 
 # Secrets directory (soul.md §4)
-/secrets/
+# Excluding contents (not the directory itself) so the .example placeholder
+# below can be explicitly re-included — git can't un-ignore a file whose
+# parent directory is itself excluded.
+/secrets/*
+!/secrets/jd_portal_auth.json.example
 *.pem
 *.key
 *.p8

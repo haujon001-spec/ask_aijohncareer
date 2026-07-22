@@ -1,0 +1,125 @@
+.doc-viewer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 4, 9, 0.75);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 100;
+}
+
+.doc-viewer-modal {
+  width: 100%;
+  max-width: 760px;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--portal-bg-layer-1, #0a0e1a);
+  border: 1px solid var(--portal-glass-border);
+  border-radius: var(--portal-radius, 14px);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.doc-viewer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--portal-border);
+  flex-shrink: 0;
+}
+
+.doc-viewer-title {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--portal-text-primary);
+}
+
+.doc-viewer-close {
+  background: transparent;
+  border: 1px solid var(--portal-border-strong);
+  color: var(--portal-text-secondary);
+  border-radius: 6px;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1;
+}
+
+.doc-viewer-close:hover {
+  color: var(--portal-danger);
+  border-color: var(--portal-danger);
+}
+
+.doc-viewer-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 24px 28px;
+}
+
+/* Un-styled reset for mammoth's plain semantic HTML output */
+.doc-viewer-content {
+  color: var(--portal-text-primary);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.doc-viewer-content h1,
+.doc-viewer-content h2,
+.doc-viewer-content h3 {
+  color: var(--portal-accent-cyan);
+  margin: 18px 0 8px;
+  font-size: 15px;
+  letter-spacing: 0.3px;
+}
+
+.doc-viewer-content p {
+  margin: 0 0 10px;
+}
+
+.doc-viewer-content strong {
+  color: #fff;
+  font-weight: 700;
+}
+
+.doc-viewer-content ul,
+.doc-viewer-content ol {
+  margin: 0 0 12px 20px;
+}
+
+.doc-viewer-content li {
+  margin-bottom: 6px;
+}
+
+.doc-viewer-content a {
+  color: var(--portal-accent-blue);
+}
+
+@media (max-width: 768px) {
+  .doc-viewer-overlay {
+    padding: 12px;
+  }
+
+  .doc-viewer-body {
+    padding: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .doc-viewer-modal {
+    max-height: 92vh;
+  }
+
+  .doc-viewer-header {
+    padding: 12px 16px;
+  }
+
+  .doc-viewer-body {
+    padding: 14px;
+  }
+}

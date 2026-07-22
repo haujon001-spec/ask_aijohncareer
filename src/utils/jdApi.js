@@ -6,6 +6,7 @@ export const JD_API_BASE = import.meta.env.VITE_JD_API_BASE || 'http://localhost
 async function request(path, options = {}) {
   const resp = await fetch(`${JD_API_BASE}${path}`, {
     headers: { 'Content-Type': 'application/json' },
+    credentials: 'include', // send/receive the httpOnly MFA session cookie
     ...options
   })
 
@@ -62,4 +63,53 @@ export function toDownloadUrl(pathOrUrl) {
   }
   const relative = pathOrUrl.replace(/^data_processed\//, '')
   return `${JD_API_BASE}/api/download/${relative}`
+}
+
+// Same path-normalization as toDownloadUrl, but for the docx view-mode endpoint.
+function toViewPath(pathOrUrl) {
+  if (!pathOrUrl) return null
+  if (pathOrUrl.startsWith('/api/download/')) {
+    return pathOrUrl.replace(/^\/api\/download\//, '')
+  }
+  return pathOrUrl.replace(/^data_processed\//, '')
+}
+
+export function viewDoc(pathOrUrl) {
+  const relative = toViewPath(pathOrUrl)
+  return request(`/api/view/${relative}`)
+}
+
+// ---- Portal auth (MFA: password + TOTP) ----
+
+export function fetchAuthStatus() {
+  return request('/api/auth/status')
+}
+
+export function enroll({ password }) {
+  return request('/api/auth/enroll', {
+    method: 'POST',
+    body: JSON.stringify({ password })
+  })
+}
+
+export function confirmEnroll({ totpCode }) {
+  return request('/api/auth/enroll/confirm', {
+    method: 'POST',
+    body: JSON.stringify({ totpCode })
+  })
+}
+
+export function login({ password, totpCode }) {
+  return request('/api/auth/login', {
+    method: 'POST',
+    body: JSON.stringify({ password, totpCode })
+  })
+}
+
+export function logout() {
+  return request('/api/auth/logout', { method: 'POST' })
+}
+
+export function fetchMe() {
+  return request('/api/auth/me')
 }

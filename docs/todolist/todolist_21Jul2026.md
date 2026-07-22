@@ -186,3 +186,29 @@ Hiring-manager-facing, plain-English walkthrough of what the script does (not ho
 - [x] Real Manulife 22JUL2026 outputs (resume + cover letter, txt + docx) left in place — legitimate output for a real JD, doesn't collide with the 21JUL2026 files or the user's manually-edited docx files
 
 **Not done / explicitly deferred:** no dated guide written yet for this feature (next step); `docs/guides/JDSCORECARDRESUMEV2_21JUL2026.md` (yesterday's v2 guide) not yet updated to mention this addition.
+
+### 3. JD Portal revamp — separate MFA-gated page, requested 22 Jul 2026 (NOT YET SCOPED/IMPLEMENTED)
+
+**Supersedes/expands** the 21 Jul roadmap item "MFA on the new JD Portal tabs." Phase 2 (21 Jul) integrated the JD Portal as **tabs inside `src/App.jsx`**, same page as the chat experience, no router. User now wants that reworked into a **fully separate, access-controlled page**, distinct from the public-facing "John's Career Copilot" chat landing page.
+
+**Requirements as stated by user (22 Jul 2026):**
+- a. JD Portal becomes its own second page/route, separate from the chat landing page, gated by MFA — only for the authorized user, not public visitors.
+- b. Rationale: the JD Portal and John's Career Copilot chat serve different audiences and purposes (internal tool vs. public-facing career chatbot).
+- c. JD Portal must support a **view mode** for generated output files — render the generated `.docx` (Resume/Cover Letter/Scorecard) as HTML/viewable content inside the portal itself, not just download links.
+- d. Full UI/UX must be user-friendly on both **desktop and mobile**.
+- e. Visual redesign: modernized **fintech look and feel** — black/blue metallic theme, replacing the current portal styling.
+
+**Decisions (user, 22 Jul 2026, answering clarifying questions above):**
+1. **Architecture:** same deploy, new client-side route (e.g. `react-router`) — chat stays at `/`, JD Portal moves behind a new route (e.g. `/portal`), gated by an MFA check before rendering. Same domain/Docker/Caddy stack, no new subdomain/infra.
+2. **MFA mechanism:** password + TOTP (Google Authenticator), per the 21 Jul roadmap note — needs a small auth backend (session/JWT) and a TOTP secret setup step.
+3. **Docx view mode:** server-side docx→HTML conversion (e.g. mammoth.js or similar), rendered in-portal, styleable to match the new theme — no third-party/embedded office viewer.
+4. **Design:** Claude proposes a fintech black/blue metallic style (dark navy + metallic blue gradients, glass-panel cards) for user review before building the full portal UI — no existing reference app to match.
+
+**Status: DONE 22 Jul 2026.** Implemented, executed, and verified end-to-end per soul.md §3.1 (API-level curl checks + headless-browser Playwright pass with screenshots) — see `docs/guides/JDPORTALREVAMP_22JUL2026.md` for the full build/verification record. Local only — VPS deploy stays deferred per the existing Phase 5/7 roadmap item below.
+
+- [x] `react-router-dom` route split: `/` = public chat (unchanged, verified no regression), `/portal/*` = JD Portal, gated by `ProtectedRoute`
+- [x] Password + TOTP (Google Authenticator) MFA — enroll → confirm → login flow built and verified with a real authenticator code
+- [x] httpOnly JWT session cookie (12h), rate-limited login endpoint (5/15min), all JD API routes now require auth except `/api/health` and `/api/auth/*`
+- [x] Docx view mode — `GET /api/view/*` (mammoth conversion) + `DocViewer` modal, wired into History and fresh-run results
+- [x] Fintech black/blue metallic theme, scoped independently from the chat app's light/dark toggle, verified responsive at 390px mobile width
+- [x] Bug found + fixed during verification: session cookie's `secure` flag was wrongly tied to `NODE_ENV` (which is `production` even in local dev due to this repo's `.env.vps` merge) — fixed to derive from the actual request scheme instead

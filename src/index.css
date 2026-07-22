@@ -114,3 +114,48 @@ select {
     font-size: 16px;
   }
 }
+
+/* ==========================================================================
+   JD Portal — fintech black/blue metallic theme.
+   Scoped to [data-portal-theme="fintech"] on PortalShell's own root element
+   (not document.documentElement), so it never interacts with the chat app's
+   light/dark data-theme toggle above, in either direction.
+   ========================================================================== */
+[data-portal-theme="fintech"] {
+  --portal-bg-base: #05070d;
+  --portal-bg-layer-1: #0a0e1a;
+  --portal-bg-layer-2: #10162a;
+  --portal-glass-bg: rgba(16, 22, 42, 0.55);
+  --portal-glass-border: rgba(120, 170, 255, 0.16);
+  --portal-glass-blur: 16px;
+
+  --portal-accent-blue: #3b82f6;
+  --portal-accent-cyan: #22d3ee;
+  --portal-metallic-gradient: linear-gradient(135deg, #1e3a8a 0%, #2563eb 45%, #38bdf8 100%);
+  --portal-metallic-gradient-hover: linear-gradient(135deg, #2547a0 0%, #3b82f6 45%, #5cd3ff 100%);
+
+  --portal-text-primary: #eef2ff;
+  --portal-text-secondary: #93a4c3;
+  --portal-text-muted: #5b6a8a;
+
+  --portal-border: rgba(120, 170, 255, 0.14);
+  --portal-border-strong: rgba(120, 170, 255, 0.32);
+
+  --portal-success: #34d399;
+  --portal-warning: #fbbf24;
+  --portal-danger: #f87171;
+
+  --portal-shadow-glow: 0 0 24px rgba(59, 130, 246, 0.25);
+  --portal-radius: 14px;
+
+  color-scheme: dark;
+}
+
+[data-portal-theme="fintech"] .portal-card {
+  background: var(--portal-glass-bg);
+  border: 1px solid var(--portal-glass-border);
+  border-radius: var(--portal-radius);
+  backdrop-filter: blur(var(--portal-glass-blur));
+  -webkit-backdrop-filter: blur(var(--portal-glass-blur));
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}

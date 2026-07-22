@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { runJd, toDownloadUrl } from '../../utils/jdApi'
+import DocViewer from './DocViewer'
 
 const OUTPUT_LABELS = {
   scorecardTxt: 'Scorecard (.txt)',
@@ -23,6 +24,7 @@ function JDRunPanel({ initialJdFile }) {
   const [error, setError] = useState(null)
   const [errorDetails, setErrorDetails] = useState(null)
   const [runConflict, setRunConflict] = useState(false)
+  const [viewing, setViewing] = useState(null) // { path, label } | null
 
   const timerRef = useRef(null)
 
@@ -179,14 +181,37 @@ function JDRunPanel({ initialJdFile }) {
 
           {result.downloadUrls && Object.keys(result.downloadUrls).length > 0 && (
             <div className="jd-download-links">
-              {Object.entries(result.downloadUrls).map(([key, url]) => (
-                <a key={key} href={toDownloadUrl(url)} target="_blank" rel="noreferrer">
-                  {OUTPUT_LABELS[key] || key}
-                </a>
-              ))}
+              {Object.entries(result.downloadUrls).map(([key, url]) => {
+                const label = OUTPUT_LABELS[key] || key
+                if (key.endsWith('Docx')) {
+                  return (
+                    <span className="jd-download-group" key={key}>
+                      <a href={toDownloadUrl(url)} target="_blank" rel="noreferrer">
+                        {label}
+                      </a>
+                      <button
+                        type="button"
+                        className="jd-button-view"
+                        onClick={() => setViewing({ path: url, label })}
+                      >
+                        View
+                      </button>
+                    </span>
+                  )
+                }
+                return (
+                  <a key={key} href={toDownloadUrl(url)} target="_blank" rel="noreferrer">
+                    {label}
+                  </a>
+                )
+              })}
             </div>
           )}
         </div>
+      )}
+
+      {viewing && (
+        <DocViewer path={viewing.path} label={viewing.label} onClose={() => setViewing(null)} />
       )}
     </div>
   )
