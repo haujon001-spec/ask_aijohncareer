@@ -4,6 +4,13 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { authenticator } from 'otplib';
 
+// Default window is 0 (zero tolerance) — rejects any code unless the server's
+// clock is exactly in sync with the phone's, down to the current 30s slice.
+// window:2 accepts codes from +/-60s, enough to absorb realistic client/server
+// clock drift (a dev machine's system clock a minute off real time is common)
+// without meaningfully weakening the code's ~6-digit guess-space.
+authenticator.options = { window: 2 };
+
 const SESSION_COOKIE_NAME = 'jd_portal_session';
 const SESSION_TTL = '12h';
 const BCRYPT_ROUNDS = 12;

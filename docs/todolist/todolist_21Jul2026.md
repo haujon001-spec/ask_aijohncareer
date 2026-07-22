@@ -185,7 +185,7 @@ Hiring-manager-facing, plain-English walkthrough of what the script does (not ho
 - [x] Separately exercised the "no scorecard exists yet" branch using a throwaway smoke-test JD (`JD_ResumeAdjustmentSmokeTest_Temp`) — confirmed the script generates the scorecard first, then correctly extracts and applies 6a; **all smoke-test artifacts (JD txt, JSON blueprint, `data_processed/ResumeAdjustmentSmokeTest/`) deleted afterward**, no trace left behind
 - [x] Real Manulife 22JUL2026 outputs (resume + cover letter, txt + docx) left in place — legitimate output for a real JD, doesn't collide with the 21JUL2026 files or the user's manually-edited docx files
 
-**Not done / explicitly deferred:** no dated guide written yet for this feature (next step); `docs/guides/JDSCORECARDRESUMEV2_21JUL2026.md` (yesterday's v2 guide) not yet updated to mention this addition.
+**Correction (22 Jul 2026, later same day):** the line above is stale. A dated guide was in fact written and committed: `docs/guides/JDSCORECARDRESUMEV2_RESUMEADJUSTMENT_22JUL2026.md` (commit `c4a27c5`). This item is done, not deferred.
 
 ### 3. JD Portal revamp — separate MFA-gated page, requested 22 Jul 2026 (NOT YET SCOPED/IMPLEMENTED)
 
