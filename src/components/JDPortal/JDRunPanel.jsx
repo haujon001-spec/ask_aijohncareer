@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { runJd, toDownloadUrl } from '../../utils/jdApi'
+import { runJd, toDownloadUrl, fetchRunStatus, cancelRun } from '../../utils/jdApi'
 import DocViewer from './DocViewer'
+import CollapsibleCard from './CollapsibleCard'
+
+const STATUS_POLL_MS = 2000
 
 const OUTPUT_LABELS = {
   scorecardTxt: 'Scorecard (.txt)',
@@ -42,6 +45,9 @@ function JDRunPanel({ initialJdFile }) {
 
   const [running, setRunning] = useState(false)
   const [elapsedSec, setElapsedSec] = useState(0)
+  const [progressStep, setProgressStep] = useState(null)
+  const [cancelling, setCancelling] = useState(false)
+  const [cancelledMsg, setCancelledMsg] = useState(null)
   const [result, setResult] = useState(null)
   const [error, setError] = useState(null)
   const [errorDetails, setErrorDetails] = useState(null)
@@ -49,13 +55,17 @@ function JDRunPanel({ initialJdFile }) {
   const [viewing, setViewing] = useState(null) // { path, label } | null
 
   const timerRef = useRef(null)
+  const pollRef = useRef(null)
 
   useEffect(() => {
     if (initialJdFile) setJdFile(initialJdFile)
   }, [initialJdFile])
 
   useEffect(() => {
-    return () => clearInterval(timerRef.current)
+    return () => {
+      clearInterval(timerRef.current)
+      clearInterval(pollRef.current)
+    }
   }, [])
 
   const handleRun = async (e) => {
@@ -65,12 +75,26 @@ function JDRunPanel({ initialJdFile }) {
     setErrorDetails(null)
     setRunConflict(false)
     setResult(null)
+    setCancelledMsg(null)
     setElapsedSec(0)
+    setProgressStep(null)
     timerRef.current = setInterval(() => setElapsedSec((s) => s + 1), 1000)
+    pollRef.current = setInterval(async () => {
+      try {
+        const status = await fetchRunStatus()
+        if (status.running) setProgressStep(status.currentStep)
+      } catch {
+        // status polling is best-effort — a failed poll shouldn't disrupt the run
+      }
+    }, STATUS_POLL_MS)
 
     try {
       const response = await runJd({ jdFile, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment })
-      setResult(response)
+      if (response.cancelled) {
+        setCancelledMsg(`Run stopped — steps already completed before the stop were kept (${response.jdFile}).`)
+      } else {
+        setResult(response)
+      }
     } catch (err) {
       if (err.status === 409) {
         setRunConflict(true)
@@ -82,19 +106,32 @@ function JDRunPanel({ initialJdFile }) {
       }
     } finally {
       clearInterval(timerRef.current)
+      clearInterval(pollRef.current)
+      setProgressStep(null)
       setRunning(false)
+      setCancelling(false)
+    }
+  }
+
+  const handleStop = async () => {
+    setCancelling(true)
+    try {
+      await cancelRun()
+    } catch {
+      // if there's nothing to cancel (race with natural completion), the run
+      // finishing on its own will resolve handleRun's try/finally regardless
     }
   }
 
   return (
-    <div className="jd-portal-card">
-      <h3>Run JD Pipeline</h3>
-
+    <CollapsibleCard title="Run JD Pipeline">
       {runConflict && (
         <div className="jd-banner jd-banner--warning">
           Another JD run is already in progress. Try again shortly.
         </div>
       )}
+
+      {cancelledMsg && <div className="jd-banner jd-banner--warning">{cancelledMsg}</div>}
 
       {error && (
         <div className="jd-banner jd-banner--error">
@@ -184,16 +221,26 @@ function JDRunPanel({ initialJdFile }) {
           </pre>
         </div>
 
-        <button type="submit" className="jd-button" disabled={running || !jdFile.trim()}>
-          {running ? 'Running…' : 'Run'}
-        </button>
+        <div style={{ display: 'flex', gap: 10 }}>
+          <button type="submit" className="jd-button" disabled={running || !jdFile.trim()}>
+            {running ? 'Running…' : 'Run'}
+          </button>
+          {running && (
+            <button type="button" className="jd-button jd-button-secondary" onClick={handleStop} disabled={cancelling}>
+              {cancelling ? 'Stopping…' : 'Stop'}
+            </button>
+          )}
+        </div>
 
         {running && (
           <div className="jd-elapsed-timer">
             <span className="jd-typing-dots">
               <span></span><span></span><span></span>
             </span>
-            Running… {elapsedSec}s (this can take several minutes)
+            <span>
+              Running… {elapsedSec}s (this can take several minutes)
+              {progressStep && <div className="jd-progress-step">{progressStep}</div>}
+            </span>
           </div>
         )}
       </form>
@@ -255,7 +302,7 @@ function JDRunPanel({ initialJdFile }) {
       {viewing && (
         <DocViewer path={viewing.path} label={viewing.label} onClose={() => setViewing(null)} />
       )}
-    </div>
+    </CollapsibleCard>
   )
 }
 

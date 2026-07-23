@@ -47,9 +47,22 @@ User has used the portal for real runs today (e.g. Manulife — AVP_Technology_A
 - Phase C: step-wizard redesign (Configure/JD Run/Reports, current "keep today's run behavior" — no live-streaming console output, that's an explicitly deferred separate scope) + new bespoke light theme. Largest and most design-subjective — own session.
 
 **Carried forward, still outstanding (unaffected by the above, unchanged priority):**
-- Bring-your-own-key + dynamic LLM selection (OpenRouter, confirm the exact Claude Sonnet 5 API model-slug)
+- Bring-your-own-key + dynamic LLM selection (OpenRouter) — **partially done, see below**
 - Remaining JD Automation Portal phases (NLP, integration, Docker, dev env docs, deploy — deploy now also covers the new auth/view routes)
 - LinkedIn automation scoping
+
+## New today (23 Jul 2026, later still) — collapsible sections, dynamic width, progress/model fix, force-stop, JD text caching
+
+User hit a real ~6-minute run today (Manulife, `--llm=sonnet`, mode=all, `--refresh-blueprint --ResumeAdjustment`) with no progress feedback beyond an elapsed-second counter, reasonably read it as hung, and surfaced five asks plus a request to ask questions before resuming Phase B/C.
+
+1. **Collapsible sections** — every top-level card on "New JD Run" (Paste a Job Description, Run JD Pipeline) and "History" (Run History) should be collapsible, not just the History accordion rows built earlier today.
+2. **Dynamic left/right spacing** — `.portal-main`'s fixed `max-width: 960px; margin: 0 auto` leaves large empty margins on wide desktop viewports (visible in screenshot); should scale with available width on both desktop and mobile instead of a fixed cap.
+3. **Model slug bug — confirmed and fixed.** `LLM_CONFIGS["sonnet"]` in `scripts/jd_scorecard_resume_v2.py` was `anthropic/claude-sonnet-4.6`. Checked OpenRouter's live `/api/v1/models` API directly: `anthropic/claude-sonnet-4.6` **is** a real, currently-listed model (not a broken slug) — the "hang" was the run genuinely taking ~6 minutes (5 sequential LLM calls: blueprint, blueprint-repair, scorecard, resume, cover letter), not an error. But per the user's 21 Jul decision, `anthropic/claude-sonnet-5` (confirmed present in the same API response, pricing matches the 21 Jul screenshot: $2/$10 per M tokens, 1M context) is the intended model. **Fixed and verified 23 Jul 2026** — real CLI run (`--scorecard-only --llm=sonnet --force`) confirms the new slug calls successfully. `scripts/jd_scorecard_resume.py` (v1) has the same stale slug but was left untouched (golden-rule; v1 is no longer invoked by the portal after today's Phase A repoint) — flagged for the user, not changed without being asked.
+4. **Progress visibility during a run** — script already prints step markers (`[0/3]` blueprint, `[1/3]` scorecard, `[2/3]` resume, `[3/3]` cover letter) to stdout; portal UI currently only shows an elapsed-second counter. Scope (polling a captured-stdout/step endpoint vs. full live streaming) and whether this supersedes last turn's "Phase C: keep current run behavior, no live streaming" decision — **needs clarification, asked below**.
+5. **Force-stop a running job** — no cancel mechanism exists today; a run only ends via completion or the existing hard timeout in `pythonRunner.js`. Needs a new cancel endpoint + UI button; semantics of already-written partial output (keep vs. discard) — **needs clarification, asked below**.
+6. **Cache last-saved JD text** — `JDUploadForm` doesn't persist Employer/Role/JD text across reloads. Scope (last-saved-only vs. also autosave in-progress typing) — **needs clarification, asked below**.
+
+**All five confirmed and done 23 Jul 2026** — see `docs/guides/JDPORTALUSABILITY_23JUL2026.md` for the full build/verification record (also covers the sonnet model-slug fix, item 3 above).
 
 ## Priority order
 
@@ -57,8 +70,10 @@ User has used the portal for real runs today (e.g. Manulife — AVP_Technology_A
 2. ~~Redesign History/doc-view from modal to expand/collapse accordion~~ — **done, verified 23 Jul 2026**
 3. ~~UI/UX spacing polish pass~~ — **done, verified 23 Jul 2026**
 4. ~~JD Portal v2 Phase A (backend repoint to v2, --ResumeAdjustment wiring, command preview)~~ — **done, verified 23 Jul 2026**
-5. JD Portal v2 Phase B — company-grouped History accordion
-6. JD Portal v2 Phase C — step-wizard redesign (Configure/JD Run/Reports) + light/dark theme toggle
-7. Bring-your-own-key + dynamic LLM selection
-8. Remaining JD Automation Portal phases (NLP, integration, Docker, dev env docs, deploy — deploy now also covers the new auth/view routes)
-9. LinkedIn automation scoping
+5. ~~Sonnet model slug fix (claude-sonnet-4.6 → claude-sonnet-5)~~ — **done, verified 23 Jul 2026**
+6. ~~Collapsible sections, dynamic width, progress visibility, force-stop, JD text caching~~ — **done, verified 23 Jul 2026**
+7. JD Portal v2 Phase B — company-grouped History accordion
+8. JD Portal v2 Phase C — step-wizard redesign (Configure/JD Run/Reports) + light/dark theme toggle
+9. Bring-your-own-key + dynamic LLM selection (model-slug half now done; user-supplied-key UI still outstanding)
+10. Remaining JD Automation Portal phases (NLP, integration, Docker, dev env docs, deploy — deploy now also covers the new auth/view routes)
+11. LinkedIn automation scoping

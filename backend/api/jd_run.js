@@ -3,13 +3,29 @@ import fs from 'fs';
 import path from 'path';
 import { resolveWithinRoot, PathGuardError } from '../lib/pathGuard.js';
 import { deriveJdMetadata } from '../lib/jdNaming.js';
-import { runJdPipeline, discoverOutputs, isValidLlm, requiredKeyEnvFor } from '../lib/pythonRunner.js';
+import { runJdPipeline, discoverOutputs, isValidLlm, requiredKeyEnvFor, getCurrentRunStatus, cancelCurrentRun } from '../lib/pythonRunner.js';
 
 const VALID_MODES = ['all', 'scorecard', 'resume', 'coverletter'];
 
 export function createJdRunRouter({ projectRoot, jdTxtDir, timeoutMs }) {
   const router = express.Router();
   let runInProgress = false;
+
+  // Polled by the UI while a run is active to show step-level progress
+  // (e.g. "[2/3] Generating Tailored Resume...") instead of just an elapsed timer.
+  router.get('/status', (req, res) => {
+    res.json(getCurrentRunStatus());
+  });
+
+  // Force-stop: kills the in-flight python process. Already-written output
+  // files from completed steps are left in place (see pythonRunner.js).
+  router.post('/cancel', (req, res) => {
+    const result = cancelCurrentRun();
+    if (!result.cancelled) {
+      return res.status(409).json({ error: result.reason || 'No run in progress to cancel' });
+    }
+    res.json(result);
+  });
 
   router.post('/', async (req, res) => {
     const { jdFile, llm = 'sonnet', mode = 'all', refreshBlueprint = false, generateDocx = true, resumeAdjustment = false } = req.body || {};
@@ -61,6 +77,10 @@ export function createJdRunRouter({ projectRoot, jdTxtDir, timeoutMs }) {
           error: `Failed to start python process: ${result.spawnError}`,
           hint: 'Check PYTHON_BIN / .venv setup.',
         });
+      }
+      if (result.cancelled) {
+        console.log(`⏹️ [jd-api] JD pipeline cancelled by user: ${jdFile}`);
+        return res.json({ success: false, cancelled: true, jdFile, employer });
       }
       if (result.exitCode !== 0) {
         return res.status(500).json({

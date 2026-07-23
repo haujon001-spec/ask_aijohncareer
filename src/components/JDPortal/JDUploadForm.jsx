@@ -1,12 +1,24 @@
 import React, { useState } from 'react'
 import { uploadJd } from '../../utils/jdApi'
+import CollapsibleCard from './CollapsibleCard'
 
 const MIN_JD_LENGTH = 50
+const LAST_SAVED_JD_KEY = 'jdPortal.lastSavedJd'
+
+function loadLastSavedJd() {
+  try {
+    const raw = localStorage.getItem(LAST_SAVED_JD_KEY)
+    return raw ? JSON.parse(raw) : null
+  } catch {
+    return null
+  }
+}
 
 function JDUploadForm({ onUploaded }) {
-  const [employer, setEmployer] = useState('')
-  const [role, setRole] = useState('')
-  const [jdText, setJdText] = useState('')
+  const lastSaved = loadLastSavedJd()
+  const [employer, setEmployer] = useState(lastSaved?.employer || '')
+  const [role, setRole] = useState(lastSaved?.role || '')
+  const [jdText, setJdText] = useState(lastSaved?.jdText || '')
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState(null)
   const [conflict, setConflict] = useState(null)
@@ -22,6 +34,11 @@ function JDUploadForm({ onUploaded }) {
       const result = await uploadJd({ employer, role, jdText, overwrite })
       setConflict(null)
       setSuccessMsg(`Saved as ${result.file.filename}`)
+      try {
+        localStorage.setItem(LAST_SAVED_JD_KEY, JSON.stringify({ employer, role, jdText }))
+      } catch {
+        // localStorage unavailable (e.g. private browsing) — caching is a convenience, not required
+      }
       onUploaded(result.file)
     } catch (err) {
       if (err.status === 409) {
@@ -41,9 +58,7 @@ function JDUploadForm({ onUploaded }) {
   }
 
   return (
-    <div className="jd-portal-card">
-      <h3>Paste a Job Description</h3>
-
+    <CollapsibleCard title="Paste a Job Description">
       {error && <div className="jd-banner jd-banner--error">{error}</div>}
       {successMsg && <div className="jd-banner jd-banner--success">{successMsg}</div>}
 
@@ -113,7 +128,7 @@ function JDUploadForm({ onUploaded }) {
           {submitting ? 'Saving…' : 'Save JD'}
         </button>
       </form>
-    </div>
+    </CollapsibleCard>
   )
 }
 

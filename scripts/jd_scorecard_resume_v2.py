@@ -354,7 +354,7 @@ for env_file in [ROOT / ".env.local", ROOT / ".env.vps", ROOT / ".env"]:
 # ── Resolve API key and model based on LLM selection ─────────────────────────
 LLM_CONFIGS = {
     # name          model_id                                     api_key_env            base_url
-    "sonnet":  ("anthropic/claude-sonnet-4.6",              "OPENROUTER_API_KEY",  "https://openrouter.ai/api/v1/chat/completions"),
+    "sonnet":  ("anthropic/claude-sonnet-5",                "OPENROUTER_API_KEY",  "https://openrouter.ai/api/v1/chat/completions"),
     "deepseek":("deepseek-reasoner",                        "DEEPSEEK_API_KEY",    "https://api.deepseek.com/chat/completions"),
     "gemini":  ("google/gemini-3.1-flash-lite-preview",     "OPENROUTER_API_KEY",  "https://openrouter.ai/api/v1/chat/completions"),
 }
@@ -1120,6 +1120,6 @@ print(f"  python scripts/jd_scorecard_resume_v2.py --batch")
 print(f"  python scripts/jd_scorecard_resume_v2.py --batch --force")
 print(f"  python scripts/jd_scorecard_resume_v2.py --refresh-blueprint")
 print(f"  python scripts/jd_scorecard_resume_v2.py --ResumeAdjustment  (apply this JD's scorecard 6a guidance)")
-print(f"  python scripts/jd_scorecard_resume_v2.py --llm=sonnet    (default, Claude Sonnet 4.6)")
+print(f"  python scripts/jd_scorecard_resume_v2.py --llm=sonnet    (default, Claude Sonnet 5)")
 print(f"  python scripts/jd_scorecard_resume_v2.py --llm=deepseek  (DeepSeek R1)")
 print(f"  python scripts/jd_scorecard_resume_v2.py --llm=gemini    (Gemini Flash Lite - cheaper)")

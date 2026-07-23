@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { fetchHistory, toDownloadUrl } from '../../utils/jdApi'
 import DocViewerInline from './DocViewerInline'
+import CollapsibleCard from './CollapsibleCard'
 
 function DownloadLink({ label, path }) {
   if (!path) return null
@@ -66,14 +67,14 @@ function JDHistoryList() {
   }
 
   return (
-    <div className="jd-portal-card">
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
-        <h3 style={{ margin: 0 }}>Run History</h3>
+    <CollapsibleCard
+      title="Run History"
+      headerExtra={
         <button type="button" className="jd-button jd-button-secondary" onClick={load} disabled={loading}>
           {loading ? 'Loading…' : 'Refresh'}
         </button>
-      </div>
-
+      }
+    >
       {error && <div className="jd-banner jd-banner--error">{error}</div>}
 
       {!loading && history.length === 0 && !error && (
@@ -150,7 +151,7 @@ function JDHistoryList() {
           </div>
         )
       })}
-    </div>
+    </CollapsibleCard>
   )
 }
 

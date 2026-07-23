@@ -1,4 +1,4 @@
-import { spawn } from 'child_process';
+import { spawn, spawnSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 
@@ -19,6 +19,49 @@ const LLM_KEY_ENV = {
 
 const TYPE_DIRS = { scorecard: 'ScoreCard', resume: 'resume', coverletter: 'CoverLetter' };
 const OUTPUT_KEY = { scorecard: 'scorecard', resume: 'resume', coverletter: 'coverLetter' };
+
+// Matches the script's own step markers, e.g. "🔍  [1/3] Generating JD Scorecard..."
+const STEP_MARKER_RE = /\[(\d)\/3\]\s+([^\r\n]+)/;
+
+// Tracks the single in-flight run (the API only ever allows one at a time, see
+// jd_run.js's runInProgress lock) so a status-poll and a force-stop request
+// both have something to read/act on without re-plumbing state through Express.
+let currentRun = null; // { child, jdFile, currentStep, startedAtMs, cancelRequested } | null
+
+export function getCurrentRunStatus() {
+  if (!currentRun) return { running: false };
+  return {
+    running: true,
+    jdFile: currentRun.jdFile,
+    currentStep: currentRun.currentStep,
+    elapsedMs: Date.now() - currentRun.startedAtMs,
+  };
+}
+
+// Force-stop: kills the in-flight python process. Whatever it already wrote to
+// disk before this point stays (each output file is written as soon as that
+// step finishes, so a cancelled run keeps its completed steps' files) — only
+// the in-flight step's output is lost, per user decision 23 Jul 2026.
+export function cancelCurrentRun() {
+  if (!currentRun || !currentRun.child || currentRun.child.pid == null) {
+    return { cancelled: false, reason: 'No run in progress' };
+  }
+  currentRun.cancelRequested = true;
+  const pid = currentRun.child.pid;
+  const jdFile = currentRun.jdFile;
+  try {
+    if (process.platform === 'win32') {
+      // child.kill() alone can leave the python.exe orphaned on Windows in some
+      // spawn configurations; taskkill with /t is the reliable way to end it.
+      spawnSync('taskkill', ['/pid', String(pid), '/t', '/f']);
+    } else {
+      currentRun.child.kill('SIGTERM');
+    }
+  } catch (err) {
+    return { cancelled: false, reason: err.message };
+  }
+  return { cancelled: true, jdFile };
+}
 
 export function isValidLlm(llm) {
   return Object.prototype.hasOwnProperty.call(LLM_KEY_ENV, llm);
@@ -64,21 +107,37 @@ export function runJdPipeline({ projectRoot, jdAbsPath, llm, mode, refreshBluepr
       env: { ...process.env, PYTHONIOENCODING: 'utf-8', PYTHONUTF8: '1' },
     });
 
+    currentRun = {
+      child,
+      jdFile: path.basename(jdAbsPath),
+      currentStep: 'Starting…',
+      startedAtMs: Date.now(),
+      cancelRequested: false,
+    };
+
     let stdout = '';
     let stderr = '';
     let settled = false;
 
-    const timer = setTimeout(() => {
+    const finish = (result) => {
       if (settled) return;
       settled = true;
+      clearTimeout(timer);
+      currentRun = null;
+      resolve(result);
+    };
+
+    const timer = setTimeout(() => {
       child.kill();
-      resolve({ timedOut: true, exitCode: null, stdout, stderr });
+      finish({ timedOut: true, exitCode: null, stdout, stderr });
     }, timeoutMs);
 
     child.stdout.on('data', (chunk) => {
       const text = chunk.toString();
       stdout += text;
       process.stdout.write(text);
+      const stepMatch = text.match(STEP_MARKER_RE);
+      if (stepMatch && currentRun) currentRun.currentStep = stepMatch[0].trim();
     });
     child.stderr.on('data', (chunk) => {
       const text = chunk.toString();
@@ -87,17 +146,12 @@ export function runJdPipeline({ projectRoot, jdAbsPath, llm, mode, refreshBluepr
     });
 
     child.on('error', (err) => {
-      if (settled) return;
-      settled = true;
-      clearTimeout(timer);
-      resolve({ spawnError: err.message, exitCode: null, stdout, stderr });
+      finish({ spawnError: err.message, exitCode: null, stdout, stderr });
     });
 
     child.on('close', (code) => {
-      if (settled) return;
-      settled = true;
-      clearTimeout(timer);
-      resolve({ exitCode: code, stdout, stderr, timedOut: false });
+      const cancelled = currentRun?.cancelRequested || false;
+      finish({ exitCode: code, stdout, stderr, timedOut: false, cancelled });
     });
   });
 }

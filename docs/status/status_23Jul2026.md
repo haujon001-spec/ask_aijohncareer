@@ -20,8 +20,14 @@ User requested a larger second round of portal work (company-grouped history, ex
 
 **Phase B (company-grouped History accordion) and Phase C (step-wizard redesign + light/dark theme) are scoped but not started** — Phase C is the largest and most design-subjective, planned as its own session.
 
+## JD Portal usability round: collapsible sections, dynamic width, progress, force-stop, JD caching, model fix (later still, 23 Jul 2026)
+
+**Status: Done and verified.** Full record: `docs/guides/JDPORTALUSABILITY_23JUL2026.md`.
+
+Triggered by a real ~6-minute run the user reasonably read as hung. Investigated and confirmed `anthropic/claude-sonnet-4.6` (the previously hardcoded "sonnet" slug) is a real, working OpenRouter model — the run wasn't broken, just slow — but swapped it to `anthropic/claude-sonnet-5` per the 21 Jul decision (confirmed via OpenRouter's live models API), verified with a real CLI call. Added: step-level progress polling (no live console streaming, per user decision — reads the script's own `[n/3]` step markers), a force-stop button (keeps already-completed files, only abandons the in-flight step; Windows-safe `taskkill /t` to avoid orphaned processes), last-saved-JD caching via localStorage, collapsible top-level cards (new `CollapsibleCard` component, reused on all three sections), and a dynamic-width fix (`.portal-main` max-width now scales with viewport instead of a fixed 960px cap). All verified via real Playwright runs against the live dev stack, including a genuine force-stop of an in-flight pipeline run with no orphaned processes left behind.
+
 ## Known open items (unchanged, carried forward)
 
-- Bring-your-own-key + dynamic LLM selection (OpenRouter, Claude Sonnet 5 model-slug confirmation) — still outstanding.
+- Bring-your-own-key UI (OpenRouter/DeepSeek key input) — model-slug half of this item now done; still need user-supplied-key UI.
 - JD Automation Portal Phases 3-7 (NLP profile-update, Docker, VPS deploy) — still outstanding, now includes wiring the new auth/view routes into the prod stack whenever that phase starts.
 - LinkedIn job-search automation scoping — not started.

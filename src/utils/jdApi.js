@@ -45,6 +45,14 @@ export function runJd({ jdFile, llm, mode, refreshBlueprint, generateDocx, resum
   })
 }
 
+export function fetchRunStatus() {
+  return request('/api/jd/run/status')
+}
+
+export function cancelRun() {
+  return request('/api/jd/run/cancel', { method: 'POST' })
+}
+
 export function fetchHistory({ employer, limit } = {}) {
   const params = new URLSearchParams()
   if (employer) params.set('employer', employer)
