@@ -45,8 +45,16 @@ History restructured from a flat per-run accordion into **Company → Job run �
 
 Closes out the item carried forward since 21 Jul. Server-side key storage (`secrets/jd_portal_llm_keys.json`, gitignored, same convention as `jd_portal_auth.json`) — a saved personal OpenRouter/DeepSeek key optionally overrides the server's `.env`-based key, injected only into the spawned Python process's environment (never logged, never sent back to the browser once saved — status responses only show a redacted preview). New "Custom" LLM option in the portal (provider + free-text model id) plus matching `--model=`/`--provider=`/`--api-key=` CLI flags on `jd_scorecard_resume_v2.py`. Verified with a real end-to-end Playwright run: saved a real key via the UI, ran a custom-model job through the full new path, got a genuine successful Match Score back, then cleared the key and confirmed it reverted to the server default with nothing left on disk.
 
+## Session close — 23 Jul 2026
+
+- [x] Wrote a plain-language explainer for the bring-your-own-key behavior: `docs/guides/JDPORTALAPIKEYS_EXPLAINER_23JUL2026.md` (what happens when a key is saved/used/cleared, precedence, security handling, scope) — companion to the technical build record.
+- [x] `docs/todolist/todolist_23Jul2026.md` updated with a "Tomorrow (24 Jul 2026) — priority order" section: Phase C first, then the width follow-up (fold into Phase C if convenient), then remaining JD Automation Portal phases, then LinkedIn scoping.
+- [x] GitHub updated before session close.
+- Nothing left broken or half-finished from today — every item logged under "New today" is done and verified except the two explicitly-deferred future-work items below.
+
 ## Known open items (unchanged, carried forward)
 
-- JD Portal v2 Phase C — step-wizard redesign (Configure/JD Run/Reports) + light/dark theme toggle. Largest and most design-subjective remaining piece.
-- JD Automation Portal Phases 3-7 (NLP profile-update, Docker, VPS deploy) — still outstanding, now includes wiring the new auth/view routes into the prod stack whenever that phase starts.
+- JD Portal v2 Phase C — step-wizard redesign (Configure/JD Run/Reports) + light/dark theme toggle. Largest and most design-subjective remaining piece — tomorrow's top priority.
+- Dynamic width further enhancement (per-breakpoint values) — medium priority, consider folding into Phase C.
+- JD Automation Portal Phases 3-7 (NLP profile-update, Docker, VPS deploy) — still outstanding, now includes wiring the new auth/view/settings routes and both `secrets/jd_portal_auth.json` + `secrets/jd_portal_llm_keys.json` provisioning onto the VPS whenever that phase starts.
 - LinkedIn job-search automation scoping — not started.

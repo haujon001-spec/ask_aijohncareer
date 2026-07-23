@@ -1,0 +1,201 @@
+{
+  "jd_file": "FWD_Head_SRE_JD",
+  "company": "FWD Group",
+  "company_slug": "fwd-group",
+  "job_title": "Head of Site Reliability Engineering",
+  "role_slug": "head-of-site-reliability-engineering",
+  "industry": "Insurance",
+  "role_summary": "Own group-wide IT resilience, service reliability, and platform modernization across FWD Group's infrastructure, cloud platforms, and core systems. Lead a federated SRE operating model, drive modernization roadmaps, govern resilience standards, and chair the Group Resilience Council.",
+  "must_have_requirements": [
+    "15+ years in large-scale infrastructure/platform/SRE",
+    "8–10+ years leading managers across multi-region operations",
+    "Proven track record leading enterprise resilience and modernization transformations including legacy remediation, cloud adoption, platform standardization, and operating model change in multinational environments",
+    "Budget ownership and vendor/commercial leadership; experience reporting to GMT on production risk",
+    "Deep expertise with multi-cloud (AWS/Azure/GCP), Kubernetes, CI/CD, OpenTelemetry, and enterprise observability",
+    "Familiarity with ITIL 4, ISO 22301/27001, incident response (NIST 800-61), and audit frameworks relevant to insurance",
+    "Bachelor's or Master's degree in Computer Science, Information Technology, Engineering, or related field"
+  ],
+  "nice_to_have_requirements": [
+    "Chinese written proficiency",
+    "Understanding of IT operations in Insurance, BCP/DR, and regulatory expectations"
+  ],
+  "soft_skills_priority": [
+    "Stakeholder management across Group and Business Units",
+    "Excellent communication and executive presentation skills (fluent English)",
+    "Thought leadership and decision-making in technical strategy",
+    "Ability to foster blameless culture and continuous improvement",
+    "Leadership in building global SRE teams and running academy programs"
+  ],
+  "semantic_match_guidance": {
+    "SRE practices at scale": [
+      "SLO/SLI design",
+      "error budgets",
+      "chaos engineering",
+      "capacity management",
+      "incident command",
+      "on-call frameworks",
+      "post-incident reviews"
+    ],
+    "Observability and AIOps": [
+      "Elastic",
+      "Datadog",
+      "Dynatrace",
+      "correlation and anomaly detection",
+      "telemetry standards",
+      "automated release controls"
+    ],
+    "Cloud and modernization": [
+      "AWS",
+      "Azure",
+      "GCP",
+      "Kubernetes",
+      "CI/CD",
+      "infrastructure-as-code",
+      "refactoring",
+      "replatforming",
+      "legacy decomposition",
+      "container orchestration"
+    ],
+    "Resilience and disaster recovery": [
+      "DR plan",
+      "failover",
+      "RTO/RPO",
+      "chaos/DR exercises",
+      "cyber-resilience",
+      "high availability"
+    ],
+    "Governance and policy": [
+      "release gates",
+      "error budget policy",
+      "incident framework",
+      "on-call health",
+      "SRE standards",
+      "production change controls"
+    ]
+  },
+  "scoring_criteria": [
+    {
+      "name": "SRE & Infrastructure Experience",
+      "weight": 20,
+      "why_it_matters": "Core requirement: proven depth in large-scale SRE, platform engineering, and reliability practices.",
+      "evidence_type_to_look_for": [
+        "Years of SRE/infrastructure roles",
+        "Managed large distributed systems",
+        "Implemented SLO/SLI, error budgets",
+        "Led incident response at scale"
+      ],
+      "gap_expected": "Less than 15 years total or insufficient hands-on SRE maturity"
+    },
+    {
+      "name": "Leadership & Team Management",
+      "weight": 15,
+      "why_it_matters": "Must lead managers across regions and build a global SRE organization.",
+      "evidence_type_to_look_for": [
+        "Managed managers",
+        "Multi-region team leadership",
+        "Built SRE teams from scratch",
+        "Developed talent pipeline"
+      ],
+      "gap_expected": "No multi-region or manager-of-managers experience"
+    },
+    {
+      "name": "Modernization & Transformation",
+      "weight": 15,
+      "why_it_matters": "JD emphasizes driving modernization of legacy systems and platform simplification.",
+      "evidence_type_to_look_for": [
+        "Led legacy remediation projects",
+        "Cloud adoption initiatives",
+        "Platform standardization",
+        "Technical debt reduction roadmaps"
+      ],
+      "gap_expected": "No evidence of enterprise modernization leadership"
+    },
+    {
+      "name": "Cloud & Technical Expertise",
+      "weight": 15,
+      "why_it_matters": "Deep multi-cloud, Kubernetes, CI/CD, observability required.",
+      "evidence_type_to_look_for": [
+        "AWS/Azure/GCP certifications or experience",
+        "Kubernetes in production",
+        "Observability stack (Datadog, Dynatrace etc.)",
+        "CI/CD pipeline design"
+      ],
+      "gap_expected": "Missing one or more key technologies"
+    },
+    {
+      "name": "Resilience & Disaster Recovery",
+      "weight": 10,
+      "why_it_matters": "Direct accountability for DR tiers, exercises, and ensuring high availability.",
+      "evidence_type_to_look_for": [
+        "Defined RTO/RPO",
+        "Chaos engineering initiatives",
+        "DR exercise leadership",
+        "Failed over production systems"
+      ],
+      "gap_expected": "No specific resilience or DR ownership"
+    },
+    {
+      "name": "Governance & Policy Creation",
+      "weight": 10,
+      "why_it_matters": "Must develop and enforce enterprise-wide SRE standards and release gates.",
+      "evidence_type_to_look_for": [
+        "Authored incident command frameworks",
+        "Created error budget policies",
+        "Implemented release governance",
+        "On-call health policies"
+      ],
+      "gap_expected": "No policy creation or enforcement experience"
+    },
+    {
+      "name": "Communication & Stakeholder Management",
+      "weight": 10,
+      "why_it_matters": "Regular reporting to GMT and Excos, plus cross-BU engagement.",
+      "evidence_type_to_look_for": [
+        "Executive presentations",
+        "Cross-functional stakeholder alignment",
+        "Vendor negotiations",
+        "Public speaking or training"
+      ],
+      "gap_expected": "Limited exposure to C-suite or multi-BU stakeholder management"
+    },
+    {
+      "name": "Industry & Regulatory Knowledge",
+      "weight": 5,
+      "why_it_matters": "Operates in regulated insurance environment; ITIL, ISO, NIST familiarity expected.",
+      "evidence_type_to_look_for": [
+        "ITIL certification",
+        "ISO 22301/27001 experience",
+        "NIST incident response",
+        "Insurance IT background"
+      ],
+      "gap_expected": "No regulatory or insurance domain experience; lower weight so candidates from adjacent regulated industries can compensate"
+    }
+  ],
+  "resume_tailoring_guidance": {
+    "mandatory_sections": [
+      "PROFESSIONAL SUMMARY",
+      "AI & AUTOMATION HIGHLIGHTS",
+      "CORE COMPETENCIES",
+      "SOFT SKILLS"
+    ],
+    "summary_focus": [
+      "Senior SRE leader with 15+ years driving enterprise resilience, modernization, and reliability at scale across multi-cloud environments",
+      "Proven track record building and leading global SRE teams, defining SRE standards, and reporting to executive leadership on production risk",
+      "Deep expertise in cloud platforms (AWS/Azure/GCP), Kubernetes, CI/CD, observability, and incident management frameworks"
+    ],
+    "do_not_overclaim": [
+      "Do not claim SRE transformation without concrete examples of legacy remediation or platform modernization",
+      "Do not claim multi-cloud expertise unless you have hands-on with at least two of AWS/Azure/GCP in production",
+      "Do not claim budget ownership without evidence of managing vendor budgets or P&L for platform teams"
+    ]
+  },
+  "cover_letter_guidance": {
+    "tone": "Professional, confident, and strategic",
+    "positioning": "Position yourself as a transformational SRE leader who combines deep technical expertise with the ability to build and govern reliability at scale across a global, regulated enterprise",
+    "bridge_gaps_honestly": [
+      "If you lack direct insurance experience, emphasize transferable risk management and regulatory compliance from other industries (e.g., finance, healthcare)",
+      "If you have not led a modernization of legacy systems, highlight adjacent work like cloud migration or platform consolidation",
+      "If you have limited multi-region leadership, frame extensive global collaboration or remote team management"
+    ]
+  }
+}

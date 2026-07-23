@@ -103,8 +103,17 @@ Blueprint refresh, blueprint-repair, and Scorecard all completed successfully wi
 7. ~~Width follow-up (fixed-gutter fix)~~ — **done, verified 23 Jul 2026**
 8. ~~Sonnet resume-generation crash (call_llm truncation/None handling + token budgets)~~ — **done, verified 23 Jul 2026**
 9. ~~JD Portal v2 Phase B — company-grouped History accordion~~ — **done, verified 23 Jul 2026**
-10. ~~Bring-your-own-key + dynamic LLM selection~~ — **done, verified 23 Jul 2026** — see `docs/guides/JDPORTALBRINGYOUROWNKEY_23JUL2026.md`. Server-side gitignored key storage (`secrets/jd_portal_llm_keys.json`), optional override falling back to `.env`, curated dropdown + free-text Custom model/provider override, `--api-key=`/`--model=`/`--provider=` CLI flags. Real portal Playwright run succeeded end-to-end through the full bring-your-own-key + custom-model path.
+10. ~~Bring-your-own-key + dynamic LLM selection~~ — **done, verified 23 Jul 2026** — see `docs/guides/JDPORTALBRINGYOUROWNKEY_23JUL2026.md` (technical) and `docs/guides/JDPORTALAPIKEYS_EXPLAINER_23JUL2026.md` (plain-language walkthrough of the behavior). Server-side gitignored key storage (`secrets/jd_portal_llm_keys.json`), optional override falling back to `.env`, curated dropdown + free-text Custom model/provider override, `--api-key=`/`--model=`/`--provider=` CLI flags. Real portal Playwright run succeeded end-to-end through the full bring-your-own-key + custom-model path.
 11. JD Portal v2 Phase C — step-wizard redesign (Configure/JD Run/Reports) + light/dark theme toggle
 12. Dynamic width further enhancement (per-breakpoint values) — medium priority, future work (see section above)
 13. Remaining JD Automation Portal phases (NLP, integration, Docker, dev env docs, deploy — deploy now also covers the new auth/view routes)
 14. LinkedIn automation scoping
+
+## Tomorrow (24 Jul 2026) — priority order
+
+Everything logged today under "New today" is done and verified except the two items explicitly deferred as future work (#11 below carries no urgency marker, #12 is medium-priority). Nothing is currently broken or half-finished — a clean starting point.
+
+1. **JD Portal v2 Phase C** — step-wizard redesign (Configure → JD Run → Reports, per the trading-portal-inspired look) + new bespoke light/dark theme toggle. Largest and most design-subjective remaining piece of the whole JD Portal v2 round; scope with fresh eyes before diving in, per soul.md intake (re-read the confirmed decisions in the "JD Portal v2" section above first — phasing, run-behavior, and theme-source questions were already asked and answered, don't re-ask).
+2. **Dynamic width further enhancement** — per-breakpoint gutter/max-width values (see section above); worth folding into Phase C's redesign work if that's touching `PortalShell.css` anyway, rather than doing it twice.
+3. **Remaining JD Automation Portal phases** (NLP `update_profile_json`, integration, Docker packaging, dev-env docs, VPS deploy — deploy phase now also covers `/api/auth/*`, `/api/view/*`, `/api/settings/*` routes and both `secrets/jd_portal_auth.json` + `secrets/jd_portal_llm_keys.json` provisioning on the VPS).
+4. **LinkedIn job-search automation scoping** — not started, still just an idea to scope.
