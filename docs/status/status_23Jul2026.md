@@ -26,6 +26,19 @@ User requested a larger second round of portal work (company-grouped history, ex
 
 Triggered by a real ~6-minute run the user reasonably read as hung. Investigated and confirmed `anthropic/claude-sonnet-4.6` (the previously hardcoded "sonnet" slug) is a real, working OpenRouter model — the run wasn't broken, just slow — but swapped it to `anthropic/claude-sonnet-5` per the 21 Jul decision (confirmed via OpenRouter's live models API), verified with a real CLI call. Added: step-level progress polling (no live console streaming, per user decision — reads the script's own `[n/3]` step markers), a force-stop button (keeps already-completed files, only abandons the in-flight step; Windows-safe `taskkill /t` to avoid orphaned processes), last-saved-JD caching via localStorage, collapsible top-level cards (new `CollapsibleCard` component, reused on all three sections), and a dynamic-width fix (`.portal-main` max-width now scales with viewport instead of a fixed 960px cap). All verified via real Playwright runs against the live dev stack, including a genuine force-stop of an in-flight pipeline run with no orphaned processes left behind.
 
+## Width follow-up + Sonnet resume-generation crash fix (later still, 23 Jul 2026)
+
+**Status: Both done and verified.**
+
+- **Width**: the `min(1400px, 94vw)` cap from the usability round still left ~230px dead space per side on the user's actual ~1862px-wide window (94vw exceeded 1400px, so the pixel cap always won). Switched to a fixed ~24px gutter (`width: calc(100% - 48px); max-width: 1800px`) — verified at the user's exact viewport width: gutter dropped from ~230px/side to ~31px/side.
+- **Sonnet resume-generation crash — root cause confirmed, fixed and verified.** Full record: `docs/guides/JDSCORECARDRESUMEV2_SONNET5TOKENBUDGET_23JUL2026.md`. `call_llm()` silently returned `None`/truncated content with no validation; `anthropic/claude-sonnet-5` turned out to need substantially more `max_tokens` than the previous `claude-sonnet-4.6` slug for every call in the pipeline (not a reasoning-tokens issue — confirmed `reasoning_tokens: 0` throughout, the model is just more verbose). Added defensive error handling (raises a clear, diagnostic error on empty or truncated content instead of crashing deep in an unrelated helper or silently shipping an incomplete document) and raised every call's token budget based on real measured truncation (Resume needed the biggest jump, 4500→20000). Full pipeline re-run with the exact original failing scenario now succeeds end-to-end, output verified complete by reading the actual files.
+
+## JD Portal v2 Phase B — company-grouped History accordion (later still, 23 Jul 2026)
+
+**Status: Done and verified.** Full record: `docs/guides/JDPORTALV2PHASEB_23JUL2026.md`.
+
+History restructured from a flat per-run accordion into **Company → Job run → Document** (one entry per employer, e.g. "Manulife — 3 runs", expanding to its individual JD runs). Single-open at every level, matching the rule already used for the flat version. Verified via Playwright: 19 flat runs now group into 10 companies, Manulife correctly nests its 3 real runs, single-open confirmed at both new levels, doc viewer still works three levels deep.
+
 ## Known open items (unchanged, carried forward)
 
 - Bring-your-own-key UI (OpenRouter/DeepSeek key input) — model-slug half of this item now done; still need user-supplied-key UI.

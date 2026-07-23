@@ -86,11 +86,11 @@ TypeError: expected string or bytes-like object, got 'NoneType'
 
 Blueprint refresh, blueprint-repair, and Scorecard all completed successfully with `anthropic/claude-sonnet-5` (confirmed in the debug log); the crash happened on the **Resume** step specifically — `call_llm(...)` (line ~951, `scripts/jd_scorecard_resume_v2.py`) returned `None` for `resume_text`, which then crashed the very first post-processing helper (`soften_experience_years`) since it assumes a string.
 
-**Root cause — investigated, not yet confirmed with certainty (logged as a hypothesis for whoever picks this up):**
-- `call_llm()` (line ~518) returns `resp.json()["choices"][0]["message"]["content"]` directly with no null-check — if OpenRouter/Anthropic ever returns a response where `content` is `null` (e.g. a reasoning-enabled model spends its `max_tokens` budget on internal reasoning before emitting any final-answer text), this function silently returns `None` instead of raising a clear error.
-- The Resume call uses a fixed `max_tokens=4500` (line ~951). Checked `anthropic/claude-sonnet-5`'s OpenRouter listing directly: `reasoning: {"mandatory": false, "default_effort": "medium", ...}` — reasoning is optional, not forced, but if the API applies some default reasoning behavior for this model that `anthropic/claude-sonnet-4.6` didn't (the two are different model lineages), a resume-length response (~2 pages, per the prompt's own length requirement) could plausibly exceed what's left of a 4500-token budget after reasoning tokens are spent — this is the leading theory, not yet proven (would need a live test with a higher `max_tokens`/`max_completion_tokens` or an explicit `reasoning: {enabled: false}` param to confirm).
-- Independent of the exact cause: `call_llm()` and its callers have **no defensive handling for `content == None`** anywhere in the script — this should raise a clear, actionable error (e.g. "OpenRouter returned empty content for <label> — check response.finish_reason / token budget") rather than crashing three function calls later with a cryptic `TypeError` in a string-processing helper.
-- Scoped as debug/fix work, not yet implemented — logged per user's explicit request to add to the debug/fix list rather than fix immediately.
+**Root cause — confirmed 23 Jul 2026, fixed and verified.** See `docs/guides/JDSCORECARDRESUMEV2_SONNET5TOKENBUDGET_23JUL2026.md` for the full record.
+- `call_llm()` (line ~518) returned raw API content with no validation — silently returned `None` on empty content, and (worse) could silently return **truncated** content when `finish_reason == "length"`, since a partial response still has *some* text. Both now raise a clear `RuntimeError` (model, finish_reason, refusal/token-usage detail) instead.
+- Confirmed via real testing against the actual failing JD: `anthropic/claude-sonnet-5` is simply more verbose than the previous `claude-sonnet-4.6` slug for every call in this pipeline (not reasoning-tokens — `reasoning_tokens: 0` throughout). Raised `max_tokens` for all five calls: Blueprint 2600→6000, Blueprint Repair 3000→6000, Scorecard 6000→12000, Resume 4500→**20000** (needed the largest jump), Cover Letter 2500→8000.
+- Full pipeline re-run (`--refresh-blueprint --force`, mode=all, sonnet — exactly replicating the original crash) now succeeds end-to-end; resume and cover letter output both verified complete (not truncated) by reading the actual files, not just checking for a zero exit code.
+- `scripts/jd_scorecard_resume.py` (v1) has the same stale slug and no defensive handling, deliberately left untouched (golden-rule, unused by the portal since Phase A).
 
 ## Priority order
 
@@ -101,8 +101,8 @@ Blueprint refresh, blueprint-repair, and Scorecard all completed successfully wi
 5. ~~Sonnet model slug fix (claude-sonnet-4.6 → claude-sonnet-5)~~ — **done, verified 23 Jul 2026**
 6. ~~Collapsible sections, dynamic width, progress visibility, force-stop, JD text caching~~ — **done, verified 23 Jul 2026**
 7. ~~Width follow-up (fixed-gutter fix)~~ — **done, verified 23 Jul 2026**
-8. **Sonnet resume-generation crash (`call_llm` returns None)** — debug/fix, not yet implemented (see section above)
-9. JD Portal v2 Phase B — company-grouped History accordion
+8. ~~Sonnet resume-generation crash (call_llm truncation/None handling + token budgets)~~ — **done, verified 23 Jul 2026**
+9. ~~JD Portal v2 Phase B — company-grouped History accordion~~ — **done, verified 23 Jul 2026**
 10. JD Portal v2 Phase C — step-wizard redesign (Configure/JD Run/Reports) + light/dark theme toggle
 11. Dynamic width further enhancement (per-breakpoint values) — medium priority, future work (see section above)
 12. Bring-your-own-key + dynamic LLM selection (model-slug half now done; user-supplied-key UI still outstanding)

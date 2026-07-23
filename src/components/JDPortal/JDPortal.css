@@ -360,6 +360,64 @@
   border-top: 1px solid var(--portal-border);
 }
 
+.jd-history-job {
+  background: rgba(5, 7, 13, 0.35);
+  border: 1px solid var(--portal-border);
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 8px;
+  margin-left: 8px;
+}
+
+.jd-history-job:last-child {
+  margin-bottom: 0;
+}
+
+.jd-history-job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.jd-history-job-header:hover .jd-history-job-title {
+  color: var(--portal-accent-cyan);
+}
+
+.jd-history-job-title {
+  font-weight: 600;
+  color: var(--portal-text-secondary);
+  font-size: 13px;
+  transition: color 0.15s ease;
+}
+
+.jd-history-job-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.jd-history-job-date {
+  font-size: 12px;
+  color: var(--portal-text-muted);
+}
+
+.jd-history-job-body {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--portal-border);
+}
+
 .jd-match-score--inline {
   margin-bottom: 0;
   padding: 4px 10px;

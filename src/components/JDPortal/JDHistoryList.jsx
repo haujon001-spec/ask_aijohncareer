@@ -33,12 +33,28 @@ function DocxWithView({ label, path, docKey, isOpen, onToggleView }) {
   )
 }
 
+// Groups the (already recency-sorted) flat history list by employer. Map
+// preserves insertion order, so the first time an employer is seen — from its
+// most-recent run — determines that company's position; company order thus
+// naturally follows "most recently active company first", same as today's
+// unfiled ordering.
+function groupByCompany(history) {
+  const groups = new Map()
+  history.forEach((entry, idx) => {
+    const key = entry.employer
+    if (!groups.has(key)) groups.set(key, [])
+    groups.get(key).push({ entry, idx })
+  })
+  return Array.from(groups.entries()).map(([employer, jobs]) => ({ employer, jobs }))
+}
+
 function JDHistoryList() {
   const [history, setHistory] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [expandedCompany, setExpandedCompany] = useState(null)
-  const [expandedDoc, setExpandedDoc] = useState(null) // { key, companyKey, path, label } | null
+  const [expandedJob, setExpandedJob] = useState(null) // jobKey | null
+  const [expandedDoc, setExpandedDoc] = useState(null) // { key, jobKey, path, label } | null
 
   const load = useCallback(async () => {
     setLoading(true)
@@ -57,14 +73,22 @@ function JDHistoryList() {
     load()
   }, [load])
 
-  const toggleCompany = (companyKey) => {
+  const toggleCompany = (employer) => {
+    setExpandedJob(null)
     setExpandedDoc(null)
-    setExpandedCompany((prev) => (prev === companyKey ? null : companyKey))
+    setExpandedCompany((prev) => (prev === employer ? null : employer))
   }
 
-  const toggleDoc = (companyKey) => (docKey, path, label) => {
-    setExpandedDoc((prev) => (prev?.key === docKey ? null : { key: docKey, companyKey, path, label }))
+  const toggleJob = (jobKey) => {
+    setExpandedDoc(null)
+    setExpandedJob((prev) => (prev === jobKey ? null : jobKey))
   }
+
+  const toggleDoc = (jobKey) => (docKey, path, label) => {
+    setExpandedDoc((prev) => (prev?.key === docKey ? null : { key: docKey, jobKey, path, label }))
+  }
+
+  const companies = groupByCompany(history)
 
   return (
     <CollapsibleCard
@@ -81,71 +105,95 @@ function JDHistoryList() {
         <p style={{ color: 'var(--portal-text-muted)', fontSize: 14 }}>No runs yet.</p>
       )}
 
-      {history.map((entry, idx) => {
-        const companyKey = `${entry.employer}-${entry.date}-${idx}`
-        const isCompanyOpen = expandedCompany === companyKey
-        const onToggleView = toggleDoc(companyKey)
+      {companies.map(({ employer, jobs }) => {
+        const isCompanyOpen = expandedCompany === employer
 
         return (
-          <div className="jd-history-card" key={companyKey}>
+          <div className="jd-history-card" key={employer}>
             <button
               type="button"
               className="jd-history-card-header"
-              onClick={() => toggleCompany(companyKey)}
+              onClick={() => toggleCompany(employer)}
               aria-expanded={isCompanyOpen}
             >
-              <span className="jd-history-card-title">
-                {entry.employer}
-                {entry.roleTag ? ` — ${entry.roleTag}` : ''}
-              </span>
+              <span className="jd-history-card-title">{employer}</span>
               <span className="jd-history-card-meta">
-                {entry.scorecard?.matchScore && (
-                  <span className="jd-match-score jd-match-score--inline">
-                    {entry.scorecard.matchScore.score} / {entry.scorecard.matchScore.maxScore} —{' '}
-                    {entry.scorecard.matchScore.verdict}
-                  </span>
-                )}
-                <span className="jd-history-card-date">{entry.date}</span>
+                <span className="jd-history-card-date">
+                  {jobs.length} run{jobs.length === 1 ? '' : 's'}
+                </span>
                 <span className={`jd-history-chevron${isCompanyOpen ? ' jd-history-chevron--open' : ''}`}>⌄</span>
               </span>
             </button>
 
             {isCompanyOpen && (
               <div className="jd-history-card-body">
-                <div className="jd-download-links">
-                  <DownloadLink label="Scorecard (.txt)" path={entry.scorecard?.txt} />
-                  <DocxWithView
-                    label="Scorecard (.docx)"
-                    path={entry.scorecard?.docx}
-                    docKey={`${companyKey}::scorecard`}
-                    isOpen={expandedDoc?.key === `${companyKey}::scorecard`}
-                    onToggleView={onToggleView}
-                  />
-                  <DownloadLink label="Resume (.txt)" path={entry.resume?.txt} />
-                  <DocxWithView
-                    label="Resume (.docx)"
-                    path={entry.resume?.docx}
-                    docKey={`${companyKey}::resume`}
-                    isOpen={expandedDoc?.key === `${companyKey}::resume`}
-                    onToggleView={onToggleView}
-                  />
-                  <DownloadLink label="Cover Letter (.txt)" path={entry.coverLetter?.txt} />
-                  <DocxWithView
-                    label="Cover Letter (.docx)"
-                    path={entry.coverLetter?.docx}
-                    docKey={`${companyKey}::coverletter`}
-                    isOpen={expandedDoc?.key === `${companyKey}::coverletter`}
-                    onToggleView={onToggleView}
-                  />
-                </div>
+                {jobs.map(({ entry, idx }) => {
+                  const jobKey = `${employer}-${entry.date}-${idx}`
+                  const isJobOpen = expandedJob === jobKey
+                  const onToggleView = toggleDoc(jobKey)
 
-                {expandedDoc && expandedDoc.companyKey === companyKey && (
-                  <DocViewerInline
-                    path={expandedDoc.path}
-                    label={expandedDoc.label}
-                    onClose={() => setExpandedDoc(null)}
-                  />
-                )}
+                  return (
+                    <div className="jd-history-job" key={jobKey}>
+                      <button
+                        type="button"
+                        className="jd-history-job-header"
+                        onClick={() => toggleJob(jobKey)}
+                        aria-expanded={isJobOpen}
+                      >
+                        <span className="jd-history-job-title">{entry.roleTag || '(no role tag)'}</span>
+                        <span className="jd-history-job-meta">
+                          {entry.scorecard?.matchScore && (
+                            <span className="jd-match-score jd-match-score--inline">
+                              {entry.scorecard.matchScore.score} / {entry.scorecard.matchScore.maxScore} —{' '}
+                              {entry.scorecard.matchScore.verdict}
+                            </span>
+                          )}
+                          <span className="jd-history-job-date">{entry.date}</span>
+                          <span className={`jd-history-chevron${isJobOpen ? ' jd-history-chevron--open' : ''}`}>⌄</span>
+                        </span>
+                      </button>
+
+                      {isJobOpen && (
+                        <div className="jd-history-job-body">
+                          <div className="jd-download-links">
+                            <DownloadLink label="Scorecard (.txt)" path={entry.scorecard?.txt} />
+                            <DocxWithView
+                              label="Scorecard (.docx)"
+                              path={entry.scorecard?.docx}
+                              docKey={`${jobKey}::scorecard`}
+                              isOpen={expandedDoc?.key === `${jobKey}::scorecard`}
+                              onToggleView={onToggleView}
+                            />
+                            <DownloadLink label="Resume (.txt)" path={entry.resume?.txt} />
+                            <DocxWithView
+                              label="Resume (.docx)"
+                              path={entry.resume?.docx}
+                              docKey={`${jobKey}::resume`}
+                              isOpen={expandedDoc?.key === `${jobKey}::resume`}
+                              onToggleView={onToggleView}
+                            />
+                            <DownloadLink label="Cover Letter (.txt)" path={entry.coverLetter?.txt} />
+                            <DocxWithView
+                              label="Cover Letter (.docx)"
+                              path={entry.coverLetter?.docx}
+                              docKey={`${jobKey}::coverletter`}
+                              isOpen={expandedDoc?.key === `${jobKey}::coverletter`}
+                              onToggleView={onToggleView}
+                            />
+                          </div>
+
+                          {expandedDoc && expandedDoc.jobKey === jobKey && (
+                            <DocViewerInline
+                              path={expandedDoc.path}
+                              label={expandedDoc.label}
+                              onClose={() => setExpandedDoc(null)}
+                            />
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  )
+                })}
               </div>
             )}
           </div>
