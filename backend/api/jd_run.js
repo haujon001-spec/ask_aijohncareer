@@ -3,7 +3,8 @@ import fs from 'fs';
 import path from 'path';
 import { resolveWithinRoot, PathGuardError } from '../lib/pathGuard.js';
 import { deriveJdMetadata } from '../lib/jdNaming.js';
-import { runJdPipeline, discoverOutputs, isValidLlm, requiredKeyEnvFor, getCurrentRunStatus, cancelCurrentRun } from '../lib/pythonRunner.js';
+import { runJdPipeline, discoverOutputs, isValidLlm, requiredKeyEnvFor, hasUsableKey, getCurrentRunStatus, cancelCurrentRun } from '../lib/pythonRunner.js';
+import { isValidProvider } from '../lib/llmKeys.js';
 
 const VALID_MODES = ['all', 'scorecard', 'resume', 'coverletter'];
 
@@ -28,7 +29,7 @@ export function createJdRunRouter({ projectRoot, jdTxtDir, timeoutMs }) {
   });
 
   router.post('/', async (req, res) => {
-    const { jdFile, llm = 'sonnet', mode = 'all', refreshBlueprint = false, generateDocx = true, resumeAdjustment = false } = req.body || {};
+    const { jdFile, llm = 'sonnet', mode = 'all', refreshBlueprint = false, generateDocx = true, resumeAdjustment = false, customModel = null } = req.body || {};
 
     if (!jdFile || typeof jdFile !== 'string') {
       return res.status(400).json({ error: 'jdFile is required' });
@@ -37,7 +38,12 @@ export function createJdRunRouter({ projectRoot, jdTxtDir, timeoutMs }) {
       return res.status(400).json({ error: `Invalid mode: ${mode}. Valid: ${VALID_MODES.join(', ')}` });
     }
     if (!isValidLlm(llm)) {
-      return res.status(400).json({ error: `Invalid llm: ${llm}. Valid: sonnet, deepseek, gemini` });
+      return res.status(400).json({ error: `Invalid llm: ${llm}. Valid: sonnet, deepseek, gemini, custom` });
+    }
+    if (llm === 'custom') {
+      if (!customModel || !isValidProvider(customModel.provider) || !customModel.slug || typeof customModel.slug !== 'string') {
+        return res.status(400).json({ error: 'llm=custom requires customModel: { provider: "openrouter"|"deepseek", slug: "<model id>" }' });
+      }
     }
 
     let jdAbsPath;
@@ -51,9 +57,11 @@ export function createJdRunRouter({ projectRoot, jdTxtDir, timeoutMs }) {
       return res.status(404).json({ error: `JD file not found: ${jdFile}` });
     }
 
-    const requiredEnv = requiredKeyEnvFor(llm);
-    if (!process.env[requiredEnv]) {
-      return res.status(400).json({ error: `${requiredEnv} is not configured. Set it in .env.local before running llm=${llm}.` });
+    if (!hasUsableKey({ projectRoot, llm, customModel })) {
+      const requiredEnv = requiredKeyEnvFor(llm, customModel);
+      return res.status(400).json({
+        error: `No API key available for this provider (${requiredEnv}). Set it in .env.local, or save your own key under API Keys in the portal.`,
+      });
     }
 
     if (runInProgress) {
@@ -66,8 +74,8 @@ export function createJdRunRouter({ projectRoot, jdTxtDir, timeoutMs }) {
     const { employer } = deriveJdMetadata(jdStem);
 
     try {
-      console.log(`🚀 [jd-api] Running JD pipeline: ${jdFile} (llm=${llm}, mode=${mode}, resumeAdjustment=${resumeAdjustment})`);
-      const result = await runJdPipeline({ projectRoot, jdAbsPath, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment, timeoutMs });
+      console.log(`🚀 [jd-api] Running JD pipeline: ${jdFile} (llm=${llm}, mode=${mode}, resumeAdjustment=${resumeAdjustment}${llm === 'custom' ? `, model=${customModel.slug} (${customModel.provider})` : ''})`);
+      const result = await runJdPipeline({ projectRoot, jdAbsPath, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment, customModel, timeoutMs });
 
       if (result.timedOut) {
         return res.status(500).json({ error: 'JD pipeline timed out', killed: true });

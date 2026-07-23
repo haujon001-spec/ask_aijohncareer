@@ -106,6 +106,45 @@
   color: var(--portal-danger);
 }
 
+.jd-key-row {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+}
+
+.jd-key-row input {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--portal-border);
+  border-radius: 8px;
+  font-size: 14px;
+  background: rgba(5, 7, 13, 0.5);
+  color: var(--portal-text-primary);
+  font-family: inherit;
+}
+
+.jd-key-row input:focus {
+  outline: none;
+  border-color: var(--portal-accent-blue);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.18);
+}
+
+.jd-key-row .jd-button,
+.jd-key-row .jd-button-secondary {
+  flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+  .jd-key-row {
+    flex-wrap: wrap;
+  }
+
+  .jd-key-row input {
+    flex-basis: 100%;
+  }
+}
+
 .jd-checkbox-field {
   display: flex;
   align-items: center;

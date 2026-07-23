@@ -41,6 +41,20 @@ Usage: identical to v1, just invoke this file instead.
   python scripts/jd_scorecard_resume_v2.py --batch --force
   python scripts/jd_scorecard_resume_v2.py --llm=sonnet|deepseek|gemini
   python scripts/jd_scorecard_resume_v2.py --ResumeAdjustment
+  python scripts/jd_scorecard_resume_v2.py --llm=custom --model=anthropic/claude-opus-4-8 --provider=openrouter
+  python scripts/jd_scorecard_resume_v2.py --llm=sonnet --api-key=sk-or-v1-...
+
+--llm=custom / --model= / --provider= (added 23 Jul 2026):
+  Run any OpenRouter or DeepSeek model id without editing LLM_CONFIGS —
+  --model=<model id> plus --provider=openrouter|deepseek together select the
+  model and endpoint/key-env, same as the portal's "Custom" LLM option.
+
+--api-key=<key> (added 23 Jul 2026):
+  Overrides the resolved API key for this run only (works with any --llm
+  choice, preset or custom) — bring your own key without touching
+  .env.local/.env.vps. Same override mechanism as the portal's "API Keys"
+  settings panel, which stores a personal key server-side and injects it into
+  just the spawned process's environment.
 
 --ResumeAdjustment (added 22 Jul 2026):
   Pulls the "6a) Resume Adjustments" recommendations out of this JD's own Match
@@ -317,7 +331,20 @@ resume_adjustment = any(f.lower() == "--resumeadjustment" for f in flags)
 
 # ── LLM selection via --llm=<name> flag ───────────────────────────────────────
 llm_flag = next((f for f in flags if f.startswith("--llm=")), "--llm=sonnet")
-llm_choice = llm_flag.split("=", 1)[1].lower()   # sonnet | deepseek | gemini
+llm_choice = llm_flag.split("=", 1)[1].lower()   # sonnet | deepseek | gemini | custom
+
+# ── Bring-your-own-key / dynamic model overrides (added 23 Jul 2026) ──────────
+# --model= and --provider= together select an arbitrary OpenRouter/DeepSeek
+# model id when --llm=custom, instead of one of the three fixed presets below.
+# --api-key= overrides the resolved API key for ANY --llm choice (preset or
+# custom) — lets this script be run with a personal key without touching
+# .env.local, same override the portal's "API Keys" settings panel uses.
+model_flag    = next((f for f in flags if f.startswith("--model=")), None)
+provider_flag = next((f for f in flags if f.startswith("--provider=")), None)
+api_key_flag  = next((f for f in flags if f.startswith("--api-key=")), None)
+custom_model_id   = model_flag.split("=", 1)[1] if model_flag else None
+custom_provider    = provider_flag.split("=", 1)[1].lower() if provider_flag else None
+cli_api_key_override = api_key_flag.split("=", 1)[1] if api_key_flag else None
 
 # ── Derive employer slug from JD filename for output naming ───────────────────
 jd_stem    = jd_path.stem                               # e.g. JD_MandarinOriental_ClusterDirectorOfIT
@@ -359,14 +386,27 @@ LLM_CONFIGS = {
     "gemini":  ("google/gemini-3.1-flash-lite-preview",     "OPENROUTER_API_KEY",  "https://openrouter.ai/api/v1/chat/completions"),
 }
 
-if llm_choice not in LLM_CONFIGS:
-    sys.exit(f"ERROR: Unknown --llm value '{llm_choice}'. Valid: sonnet, deepseek, gemini")
+# provider name -> (api_key_env, base_url), used only when --llm=custom
+PROVIDER_ENDPOINTS = {
+    "openrouter": ("OPENROUTER_API_KEY", "https://openrouter.ai/api/v1/chat/completions"),
+    "deepseek":   ("DEEPSEEK_API_KEY",   "https://api.deepseek.com/chat/completions"),
+}
 
-MODEL, api_key_env, LLM_ENDPOINT = LLM_CONFIGS[llm_choice]
+if llm_choice == "custom":
+    if not custom_model_id or not custom_provider:
+        sys.exit("ERROR: --llm=custom requires both --model=<model id> and --provider=openrouter|deepseek")
+    if custom_provider not in PROVIDER_ENDPOINTS:
+        sys.exit(f"ERROR: Unknown --provider value '{custom_provider}'. Valid: openrouter, deepseek")
+    MODEL = custom_model_id
+    api_key_env, LLM_ENDPOINT = PROVIDER_ENDPOINTS[custom_provider]
+elif llm_choice in LLM_CONFIGS:
+    MODEL, api_key_env, LLM_ENDPOINT = LLM_CONFIGS[llm_choice]
+else:
+    sys.exit(f"ERROR: Unknown --llm value '{llm_choice}'. Valid: sonnet, deepseek, gemini, custom")
 
-API_KEY = os.environ.get(api_key_env, "")
+API_KEY = cli_api_key_override or os.environ.get(api_key_env, "")
 if not API_KEY:
-    sys.exit(f"ERROR: {api_key_env} not found in .env.local / .env.vps / .env")
+    sys.exit(f"ERROR: {api_key_env} not found in .env.local / .env.vps / .env (or pass --api-key=<key>)")
 
 HEADERS = {
     "Authorization": f"Bearer {API_KEY}",
@@ -1146,3 +1186,5 @@ print(f"  python scripts/jd_scorecard_resume_v2.py --ResumeAdjustment  (apply th
 print(f"  python scripts/jd_scorecard_resume_v2.py --llm=sonnet    (default, Claude Sonnet 5)")
 print(f"  python scripts/jd_scorecard_resume_v2.py --llm=deepseek  (DeepSeek R1)")
 print(f"  python scripts/jd_scorecard_resume_v2.py --llm=gemini    (Gemini Flash Lite - cheaper)")
+print(f"  python scripts/jd_scorecard_resume_v2.py --llm=custom --model=<id> --provider=openrouter|deepseek")
+print(f"  python scripts/jd_scorecard_resume_v2.py --llm=sonnet --api-key=<key>  (bring your own key)")

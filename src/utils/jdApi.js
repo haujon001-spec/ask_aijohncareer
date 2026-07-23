@@ -38,11 +38,28 @@ export function uploadJd({ employer, role, jdText, overwrite }) {
   })
 }
 
-export function runJd({ jdFile, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment }) {
+export function runJd({ jdFile, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment, customModel }) {
   return request('/api/jd/run', {
     method: 'POST',
-    body: JSON.stringify({ jdFile, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment })
+    body: JSON.stringify({ jdFile, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment, customModel })
   })
+}
+
+// ---- Bring-your-own-key LLM settings ----
+
+export function fetchLlmKeyStatus() {
+  return request('/api/settings/llm-keys')
+}
+
+export function saveLlmKey(provider, apiKey) {
+  return request('/api/settings/llm-keys', {
+    method: 'POST',
+    body: JSON.stringify({ provider, apiKey })
+  })
+}
+
+export function clearLlmKey(provider) {
+  return request(`/api/settings/llm-keys/${provider}`, { method: 'DELETE' })
 }
 
 export function fetchRunStatus() {

@@ -103,8 +103,8 @@ Blueprint refresh, blueprint-repair, and Scorecard all completed successfully wi
 7. ~~Width follow-up (fixed-gutter fix)~~ — **done, verified 23 Jul 2026**
 8. ~~Sonnet resume-generation crash (call_llm truncation/None handling + token budgets)~~ — **done, verified 23 Jul 2026**
 9. ~~JD Portal v2 Phase B — company-grouped History accordion~~ — **done, verified 23 Jul 2026**
-10. JD Portal v2 Phase C — step-wizard redesign (Configure/JD Run/Reports) + light/dark theme toggle
-11. Dynamic width further enhancement (per-breakpoint values) — medium priority, future work (see section above)
-12. Bring-your-own-key + dynamic LLM selection (model-slug half now done; user-supplied-key UI still outstanding)
+10. ~~Bring-your-own-key + dynamic LLM selection~~ — **done, verified 23 Jul 2026** — see `docs/guides/JDPORTALBRINGYOUROWNKEY_23JUL2026.md`. Server-side gitignored key storage (`secrets/jd_portal_llm_keys.json`), optional override falling back to `.env`, curated dropdown + free-text Custom model/provider override, `--api-key=`/`--model=`/`--provider=` CLI flags. Real portal Playwright run succeeded end-to-end through the full bring-your-own-key + custom-model path.
+11. JD Portal v2 Phase C — step-wizard redesign (Configure/JD Run/Reports) + light/dark theme toggle
+12. Dynamic width further enhancement (per-breakpoint values) — medium priority, future work (see section above)
 13. Remaining JD Automation Portal phases (NLP, integration, Docker, dev env docs, deploy — deploy now also covers the new auth/view routes)
 14. LinkedIn automation scoping

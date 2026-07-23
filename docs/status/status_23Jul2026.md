@@ -39,8 +39,14 @@ Triggered by a real ~6-minute run the user reasonably read as hung. Investigated
 
 History restructured from a flat per-run accordion into **Company → Job run → Document** (one entry per employer, e.g. "Manulife — 3 runs", expanding to its individual JD runs). Single-open at every level, matching the rule already used for the flat version. Verified via Playwright: 19 flat runs now group into 10 companies, Manulife correctly nests its 3 real runs, single-open confirmed at both new levels, doc viewer still works three levels deep.
 
+## Bring-your-own-key + dynamic LLM selection (later still, 23 Jul 2026)
+
+**Status: Done and verified.** Full record: `docs/guides/JDPORTALBRINGYOUROWNKEY_23JUL2026.md`.
+
+Closes out the item carried forward since 21 Jul. Server-side key storage (`secrets/jd_portal_llm_keys.json`, gitignored, same convention as `jd_portal_auth.json`) — a saved personal OpenRouter/DeepSeek key optionally overrides the server's `.env`-based key, injected only into the spawned Python process's environment (never logged, never sent back to the browser once saved — status responses only show a redacted preview). New "Custom" LLM option in the portal (provider + free-text model id) plus matching `--model=`/`--provider=`/`--api-key=` CLI flags on `jd_scorecard_resume_v2.py`. Verified with a real end-to-end Playwright run: saved a real key via the UI, ran a custom-model job through the full new path, got a genuine successful Match Score back, then cleared the key and confirmed it reverted to the server default with nothing left on disk.
+
 ## Known open items (unchanged, carried forward)
 
-- Bring-your-own-key UI (OpenRouter/DeepSeek key input) — model-slug half of this item now done; still need user-supplied-key UI.
+- JD Portal v2 Phase C — step-wizard redesign (Configure/JD Run/Reports) + light/dark theme toggle. Largest and most design-subjective remaining piece.
 - JD Automation Portal Phases 3-7 (NLP profile-update, Docker, VPS deploy) — still outstanding, now includes wiring the new auth/view routes into the prod stack whenever that phase starts.
 - LinkedIn job-search automation scoping — not started.

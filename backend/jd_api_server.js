@@ -12,6 +12,7 @@ import { createProfileUpdateRouter } from './api/profile_update.js';
 import { createHistoryRouter } from './api/history.js';
 import { createDownloadRouter } from './api/download.js';
 import { createViewRouter } from './api/view.js';
+import { createSettingsRouter } from './api/settings.js';
 
 // Standalone entrypoint for the JD Automation Portal API — separate process
 // and port from backend/server.js (the live askcareer-ai.com chatbot app).
@@ -71,6 +72,7 @@ app.use('/api/profile/update', requireAuth, createProfileUpdateRouter());
 app.use('/api/history', requireAuth, createHistoryRouter({ projectRoot }));
 app.use('/api/download', requireAuth, createDownloadRouter({ dataProcessedRoot: DATA_PROCESSED_ROOT }));
 app.use('/api/view', requireAuth, createViewRouter({ dataProcessedRoot: DATA_PROCESSED_ROOT }));
+app.use('/api/settings', requireAuth, createSettingsRouter({ projectRoot }));
 
 app.use((req, res) => {
   res.status(404).json({ error: 'Not found' });

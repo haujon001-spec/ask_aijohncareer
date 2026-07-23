@@ -1,6 +1,7 @@
 import { spawn, spawnSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
+import { resolveUserKey, envVarForProvider, isValidProvider } from './llmKeys.js';
 
 const SCRIPT_REL_PATH = path.join('scripts', 'jd_scorecard_resume_v2.py');
 
@@ -15,6 +16,16 @@ const LLM_KEY_ENV = {
   sonnet: 'OPENROUTER_API_KEY',
   gemini: 'OPENROUTER_API_KEY',
   deepseek: 'DEEPSEEK_API_KEY',
+};
+
+// Which stored user-key provider (see llmKeys.js) backs each preset — used to
+// look up a bring-your-own-key override before falling back to the server's
+// .env-based key. "custom" isn't listed here since its provider comes from
+// the request itself (customModel.provider), not a fixed preset.
+const PROVIDER_FOR_LLM = {
+  sonnet: 'openrouter',
+  gemini: 'openrouter',
+  deepseek: 'deepseek',
 };
 
 const TYPE_DIRS = { scorecard: 'ScoreCard', resume: 'resume', coverletter: 'CoverLetter' };
@@ -64,11 +75,21 @@ export function cancelCurrentRun() {
 }
 
 export function isValidLlm(llm) {
-  return Object.prototype.hasOwnProperty.call(LLM_KEY_ENV, llm);
+  return llm === 'custom' || Object.prototype.hasOwnProperty.call(LLM_KEY_ENV, llm);
 }
 
-export function requiredKeyEnvFor(llm) {
+export function requiredKeyEnvFor(llm, customModel) {
+  if (llm === 'custom') return envVarForProvider(customModel?.provider);
   return LLM_KEY_ENV[llm];
+}
+
+// True if either the server's .env-based key or a stored bring-your-own-key
+// override (see llmKeys.js) satisfies this run's requirement.
+export function hasUsableKey({ projectRoot, llm, customModel }) {
+  const provider = llm === 'custom' ? customModel?.provider : PROVIDER_FOR_LLM[llm];
+  if (!provider || !isValidProvider(provider)) return false;
+  const envVar = envVarForProvider(provider);
+  return !!(process.env[envVar] || resolveUserKey(projectRoot, provider));
 }
 
 function resolvePythonBin(projectRoot) {
@@ -80,31 +101,46 @@ function resolvePythonBin(projectRoot) {
   return process.platform === 'win32' ? 'python' : 'python3';
 }
 
-function buildRunArgs({ jdAbsPath, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment }) {
+function buildRunArgs({ jdAbsPath, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment, customModel }) {
   const args = [jdAbsPath];
   const modeFlag = MODE_FLAGS[mode || 'all'];
   if (modeFlag) args.push(modeFlag);
   if (refreshBlueprint) args.push('--refresh-blueprint');
   if (generateDocx === false) args.push('--no-docx');
   if (resumeAdjustment) args.push('--ResumeAdjustment');
-  args.push(`--llm=${llm}`);
+  if (llm === 'custom' && customModel?.slug && customModel?.provider) {
+    args.push('--llm=custom', `--model=${customModel.slug}`, `--provider=${customModel.provider}`);
+  } else {
+    args.push(`--llm=${llm}`);
+  }
   return args;
 }
 
-export function runJdPipeline({ projectRoot, jdAbsPath, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment, timeoutMs }) {
+export function runJdPipeline({ projectRoot, jdAbsPath, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment, customModel, timeoutMs }) {
   return new Promise((resolve) => {
     const pythonBin = resolvePythonBin(projectRoot);
     const scriptPath = path.join(projectRoot, SCRIPT_REL_PATH);
-    const args = buildRunArgs({ jdAbsPath, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment });
+    const args = buildRunArgs({ jdAbsPath, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment, customModel });
 
     console.log(`🐍 [jd-api] Spawning: ${pythonBin} ${scriptPath} ${args.join(' ')}`);
+
+    // Bring-your-own-key: if the user has saved a personal key for this run's
+    // provider, inject it into just this child process's env (never written to
+    // process.env itself, never logged) — falls back to the server's own
+    // .env-sourced key (already in process.env) when no user key is stored.
+    const provider = llm === 'custom' ? customModel?.provider : PROVIDER_FOR_LLM[llm];
+    const envOverride = {};
+    if (provider && isValidProvider(provider)) {
+      const userKey = resolveUserKey(projectRoot, provider);
+      if (userKey) envOverride[envVarForProvider(provider)] = userKey;
+    }
 
     // The script prints emoji to stdout; when spawned as a piped child process on
     // Windows, Python otherwise inherits the console's cp1252 codepage and crashes
     // encoding them (this doesn't happen when a human runs it in a real terminal).
     const child = spawn(pythonBin, [scriptPath, ...args], {
       cwd: projectRoot,
-      env: { ...process.env, PYTHONIOENCODING: 'utf-8', PYTHONUTF8: '1' },
+      env: { ...process.env, PYTHONIOENCODING: 'utf-8', PYTHONUTF8: '1', ...envOverride },
     });
 
     currentRun = {

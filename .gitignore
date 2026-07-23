@@ -15,6 +15,7 @@
 # parent directory is itself excluded.
 /secrets/*
 !/secrets/jd_portal_auth.json.example
+!/secrets/jd_portal_llm_keys.json.example
 *.pem
 *.key
 *.p8

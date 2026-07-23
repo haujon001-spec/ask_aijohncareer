@@ -3,6 +3,7 @@ import TabBar from '../TabBar'
 import JDUploadForm from './JDUploadForm'
 import JDRunPanel from './JDRunPanel'
 import JDHistoryList from './JDHistoryList'
+import ApiKeySettings from './ApiKeySettings'
 import './JDPortal.css'
 
 function JDPortal() {
@@ -20,6 +21,8 @@ function JDPortal() {
         onChange={setView}
         className="tab-bar--sub"
       />
+
+      <ApiKeySettings />
 
       {view === 'new' && (
         <>

@@ -23,7 +23,7 @@ const MODE_FLAGS = {
   all: null
 }
 
-function buildCommandPreview({ jdFile, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment }) {
+function buildCommandPreview({ jdFile, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment, customProvider, customModelSlug }) {
   const parts = ['python scripts/jd_scorecard_resume_v2.py']
   parts.push(`"data_raw/jd/txt/${jdFile || '<JD file>'}"`)
   const modeFlag = MODE_FLAGS[mode || 'all']
@@ -31,13 +31,19 @@ function buildCommandPreview({ jdFile, llm, mode, refreshBlueprint, generateDocx
   if (refreshBlueprint) parts.push('--refresh-blueprint')
   if (generateDocx === false) parts.push('--no-docx')
   if (resumeAdjustment) parts.push('--ResumeAdjustment')
-  parts.push(`--llm=${llm}`)
+  if (llm === 'custom') {
+    parts.push('--llm=custom', `--model=${customModelSlug || '<model id>'}`, `--provider=${customProvider}`)
+  } else {
+    parts.push(`--llm=${llm}`)
+  }
   return parts.join(' ')
 }
 
 function JDRunPanel({ initialJdFile }) {
   const [jdFile, setJdFile] = useState(initialJdFile || '')
   const [llm, setLlm] = useState('sonnet')
+  const [customProvider, setCustomProvider] = useState('openrouter')
+  const [customModelSlug, setCustomModelSlug] = useState('')
   const [mode, setMode] = useState('all')
   const [refreshBlueprint, setRefreshBlueprint] = useState(false)
   const [generateDocx, setGenerateDocx] = useState(true)
@@ -88,8 +94,10 @@ function JDRunPanel({ initialJdFile }) {
       }
     }, STATUS_POLL_MS)
 
+    const customModel = llm === 'custom' ? { provider: customProvider, slug: customModelSlug.trim() } : undefined
+
     try {
-      const response = await runJd({ jdFile, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment })
+      const response = await runJd({ jdFile, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment, customModel })
       if (response.cancelled) {
         setCancelledMsg(`Run stopped — steps already completed before the stop were kept (${response.jdFile}).`)
       } else {
@@ -166,8 +174,42 @@ function JDRunPanel({ initialJdFile }) {
             <option value="sonnet">Sonnet</option>
             <option value="deepseek">DeepSeek</option>
             <option value="gemini">Gemini</option>
+            <option value="custom">Custom…</option>
           </select>
         </div>
+
+        {llm === 'custom' && (
+          <>
+            <div className="jd-field">
+              <label htmlFor="jd-custom-provider">Provider</label>
+              <select
+                id="jd-custom-provider"
+                value={customProvider}
+                onChange={(e) => setCustomProvider(e.target.value)}
+                disabled={running}
+              >
+                <option value="openrouter">OpenRouter</option>
+                <option value="deepseek">DeepSeek</option>
+              </select>
+            </div>
+
+            <div className="jd-field">
+              <label htmlFor="jd-custom-model">Model ID</label>
+              <input
+                id="jd-custom-model"
+                type="text"
+                value={customModelSlug}
+                onChange={(e) => setCustomModelSlug(e.target.value)}
+                placeholder={customProvider === 'openrouter' ? 'e.g. anthropic/claude-opus-4-8' : 'e.g. deepseek-chat'}
+                disabled={running}
+                required
+              />
+              <span className="jd-field-hint">
+                Any model id your {customProvider === 'openrouter' ? 'OpenRouter' : 'DeepSeek'} key can access.
+              </span>
+            </div>
+          </>
+        )}
 
         <div className="jd-field">
           <label htmlFor="jd-mode">Mode</label>
@@ -217,12 +259,16 @@ function JDRunPanel({ initialJdFile }) {
         <div className="jd-field">
           <label htmlFor="jd-command-preview">Command Preview</label>
           <pre id="jd-command-preview" className="jd-command-preview">
-            {buildCommandPreview({ jdFile, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment })}
+            {buildCommandPreview({ jdFile, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment, customProvider, customModelSlug })}
           </pre>
         </div>
 
         <div style={{ display: 'flex', gap: 10 }}>
-          <button type="submit" className="jd-button" disabled={running || !jdFile.trim()}>
+          <button
+            type="submit"
+            className="jd-button"
+            disabled={running || !jdFile.trim() || (llm === 'custom' && !customModelSlug.trim())}
+          >
             {running ? 'Running…' : 'Run'}
           </button>
           {running && (
