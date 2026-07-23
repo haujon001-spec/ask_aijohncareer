@@ -10,7 +10,9 @@
 
 ## New today (22 Jul 2026, evening) — JD Portal revamp bugs found in first real user testing
 
-User exercised the newly-built portal (enrolled, logged in, opened History) and found three UI issues. Logged here per soul.md intake workflow — **not yet fixed**, scoped for tomorrow.
+User exercised the newly-built portal (enrolled, logged in, opened History) and found three UI issues. Logged here per soul.md intake workflow.
+
+**All three fixed and verified 23 Jul 2026 — see `docs/guides/JDPORTALBUGFIXES_23JUL2026.md` for the full build/verification record.**
 
 ### 1. Vertical scroll not working in "New JD Run" and "History" tabs
 
@@ -30,9 +32,9 @@ General polish pass needed on `PortalShell.css` / `JDPortal.css` — padding, ga
 
 ## Priority order
 
-1. Fix JD Portal vertical scroll regression (item 1 above) — likely quick, self-inflicted regression from today's re-skin
-2. Redesign History/doc-view from modal to expand/collapse accordion (item 2 above) — needs scoping/plan, not a quick fix
-3. UI/UX spacing polish pass (item 3 above)
+1. ~~Fix JD Portal vertical scroll regression~~ — **done, verified 23 Jul 2026**
+2. ~~Redesign History/doc-view from modal to expand/collapse accordion~~ — **done, verified 23 Jul 2026**
+3. ~~UI/UX spacing polish pass~~ — **done, verified 23 Jul 2026**
 4. Bring-your-own-key + dynamic LLM selection
 5. Remaining JD Automation Portal phases (NLP, integration, Docker, dev env docs, deploy — deploy now also covers the new auth/view routes)
 6. LinkedIn automation scoping

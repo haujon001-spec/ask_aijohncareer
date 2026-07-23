@@ -1,9 +1,10 @@
 .jd-portal {
   flex: 1;
   min-height: 0;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 14px;
 }
 
 .jd-portal-card {
@@ -13,11 +14,11 @@
   backdrop-filter: blur(var(--portal-glass-blur));
   -webkit-backdrop-filter: blur(var(--portal-glass-blur));
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-  padding: 22px;
+  padding: 18px;
 }
 
 .jd-portal-card h3 {
-  margin: 0 0 16px 0;
+  margin: 0 0 12px 0;
   font-size: 14px;
   font-weight: 700;
   color: var(--portal-accent-cyan);
@@ -259,28 +260,72 @@
   background: rgba(5, 7, 13, 0.4);
   border: 1px solid var(--portal-border);
   border-radius: 10px;
-  padding: 16px;
-  margin-bottom: 12px;
+  padding: 14px;
+  margin-bottom: 8px;
 }
 
 .jd-history-card-header {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 8px;
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.jd-history-card-header:hover .jd-history-card-title {
+  color: var(--portal-accent-cyan);
 }
 
 .jd-history-card-title {
   font-weight: 700;
   color: var(--portal-text-primary);
   font-size: 15px;
+  transition: color 0.15s ease;
+}
+
+.jd-history-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .jd-history-card-date {
   font-size: 12px;
   color: var(--portal-text-muted);
+}
+
+.jd-history-chevron {
+  display: inline-block;
+  font-size: 14px;
+  line-height: 1;
+  color: var(--portal-text-muted);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.jd-history-chevron--open {
+  transform: rotate(180deg);
+  color: var(--portal-accent-cyan);
+}
+
+.jd-history-card-body {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--portal-border);
+}
+
+.jd-match-score--inline {
+  margin-bottom: 0;
+  padding: 4px 10px;
+  font-size: 12px;
 }
 
 .profile-update-stub {
@@ -313,13 +358,13 @@
 
 @media (max-width: 768px) {
   .jd-portal-card {
-    padding: 16px;
+    padding: 14px;
   }
 }
 
 @media (max-width: 480px) {
   .jd-portal-card {
-    padding: 14px;
+    padding: 12px;
     border-radius: 10px;
   }
 
