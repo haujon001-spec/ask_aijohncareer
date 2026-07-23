@@ -1,187 +1,214 @@
 {
-  "jd_file": "GWAM_Asia_Chief_Architect.pdf",
-  "company": "GWAM (Global Wealth and Asset Management)",
-  "company_slug": "gwam",
+  "jd_file": "GWAM_Asia_Chief_Architect_JD.pdf",
+  "company": "GWAM Asia (Global Wealth and Asset Management)",
+  "company_slug": "gwam-asia",
   "job_title": "Chief Architect, GWAM Asia Technology",
   "role_slug": "chief-architect-gwam-asia",
-  "industry": "Financial Services - Asset Management, Wealth Management & Retirement Technology",
-  "role_summary": "Senior technology strategy and architecture leadership role for GWAM Asia, acting as Chief Architect responsible for regional architecture governance via the Local Architecture Review Board (LARB), driving practical AI adoption, building shared technology service capabilities across markets, and optionally overseeing Asia operations technology. Requires strong stakeholder influence across global, regional, and market technology and business leaders.",
+  "industry": "Financial Services - Asset Management, Wealth & Retirement Technology",
+  "role_summary": "Senior technology strategy and architecture leadership role for GWAM Asia, serving as Chief Architect responsible for regional architecture governance via the Local Architecture Review Board (LARB), driving practical AI adoption, shaping shared technology capabilities across markets, and optionally overseeing Asia operations technology. Requires strong stakeholder influence across global, regional, and market teams without relying on formal authority.",
   "must_have_requirements": [
     "University degree in Computer Science, Engineering, Information Systems, or equivalent practical experience",
-    "Strong enterprise, solution, and application architecture experience spanning data, integration, cloud, and security domains",
-    "Experience leading architecture governance forums (e.g., architecture review boards) and making risk/cost/scalability trade-off decisions",
-    "Demonstrated practical application of AI in business/technology contexts (AI application delivery, agent deployment, or AI-enabled workflow transformation)",
-    "Strong knowledge of SDLC in the AI era including AI-assisted engineering, model/agent lifecycle, responsible AI controls, testing, monitoring, and production readiness",
-    "Experience designing/promoting shared technology services, reusable platforms, and engineering standards across multiple markets or business lines",
-    "Proven senior stakeholder management and influencing skills across business, technology, risk, and market leadership without relying solely on formal authority",
-    "Experience aligning regional technology strategy with global enterprise architecture direction and local market priorities",
-    "Experience in financial services technology, ideally asset management, wealth, retirement, or operations technology"
+    "Strong enterprise/solution/application architecture experience spanning data, integration, cloud, and security",
+    "Proven experience leading architecture governance forums (e.g., ARB/LARB) with decision-making across risk, cost, scalability, and business value",
+    "Demonstrated practical AI adoption experience - AI application delivery, agent-based solutions, or AI-enabled workflow transformation",
+    "Knowledge of modern SDLC including AI-assisted engineering, model/agent lifecycle, responsible AI controls, testing, and production readiness",
+    "Experience building or promoting shared/reusable technology platforms and engineering standards across multiple markets or business lines",
+    "Strong senior stakeholder management and influencing skills across business, technology, risk, and global/regional teams",
+    "Experience translating global technology strategy into regional/market-level architecture roadmaps",
+    "Experience in financial services, asset management, wealth, or retirement technology domains (preferred/likely required given seniority)"
   ],
   "nice_to_have_requirements": [
-    "Prior experience overseeing operations technology capabilities (production support, resilience, business continuity)",
-    "Experience working across Asia markets or multi-country technology operating models",
-    "Familiarity with cloud-native architecture patterns and modern engineering practices (microservices, CI/CD, DevOps)",
-    "Experience coaching or developing architects/technology leaders",
-    "Exposure to regulatory expectations in wealth/asset management technology environments",
-    "Experience with data governance and AI-ready data architecture"
+    "Experience overseeing operations technology (production stability, resilience, business continuity)",
+    "Exposure to data governance and AI-ready data architecture",
+    "Coaching/mentoring experience for architects or technology leaders",
+    "Experience working in a global matrixed organization spanning multiple Asia markets",
+    "Familiarity with regulatory expectations impacting technology in financial services across Asia markets",
+    "Experience with cloud modernization and engineering pattern standardization"
   ],
   "soft_skills_priority": [
-    "Stakeholder influence and senior leadership engagement without formal authority",
-    "Strategic thinking connecting global, regional, and local priorities",
-    "Facilitation and governance leadership (running review boards, driving consensus)",
-    "Communication and storytelling to translate technical concepts for business audiences",
-    "Conflict resolution and negotiation across competing market/business priorities",
-    "Coaching and talent development mindset",
-    "Pragmatic, outcome-focused decision-making under ambiguity",
-    "Active listening and collaborative problem-solving"
+    "Stakeholder influence without formal authority",
+    "Facilitation and governance forum leadership",
+    "Strategic and systems thinking",
+    "Conflict resolution and negotiation",
+    "Storytelling and executive communication",
+    "Coaching and talent development",
+    "Pragmatic, outcome-focused decision-making",
+    "Active listening and collaboration across diverse teams"
   ],
   "semantic_match_guidance": {
-    "enterprise_architecture": [
-      "solution architecture",
-      "application architecture",
-      "reference architecture",
-      "architecture governance",
-      "technology roadmap",
-      "target state architecture"
-    ],
-    "architecture_governance": [
+    "architecture_leadership": [
+      "chief architect",
+      "enterprise architect",
+      "solution architect",
       "architecture review board",
       "ARB",
-      "design authority",
-      "technology council",
-      "governance forum",
-      "solution approval"
+      "architecture governance",
+      "technology roadmap",
+      "reference architecture",
+      "architecture standards"
     ],
     "ai_adoption": [
-      "AI use case identification",
+      "AI adoption",
       "generative AI",
-      "AI agents",
-      "agentic workflows",
-      "AI-enabled applications",
+      "agentic AI",
+      "AI-enabled workflows",
       "responsible AI",
       "AI governance",
+      "AI use cases",
+      "LLM applications",
+      "AI-assisted engineering",
       "model lifecycle",
       "MLOps"
     ],
-    "sdlc_ai_era": [
-      "AI-assisted engineering",
-      "AI-assisted coding",
-      "model monitoring",
-      "testing frameworks",
-      "production readiness",
-      "change management",
-      "DevSecOps"
-    ],
     "shared_technology_services": [
-      "reusable platforms",
-      "common components",
+      "shared platforms",
+      "reusable components",
+      "common services",
       "engineering patterns",
       "platform standardization",
-      "operating model",
-      "shared services"
-    ],
-    "stakeholder_management": [
-      "senior leadership engagement",
-      "cross-functional influence",
-      "business partner",
-      "trusted advisor",
-      "executive communication"
-    ],
-    "financial_services_domain": [
-      "asset management",
-      "wealth management",
-      "retirement technology",
-      "operations technology",
-      "GWAM",
-      "buy-side technology"
-    ],
-    "cloud_and_integration": [
-      "cloud architecture",
-      "AWS",
-      "Azure",
-      "GCP",
-      "API integration",
-      "microservices",
-      "data integration"
+      "multi-market technology operating model"
     ],
     "operations_technology": [
       "production support",
       "operational resilience",
       "business continuity",
       "service stability",
-      "incident management"
+      "incident management",
+      "SRE",
+      "run operations"
     ],
-    "regional_strategy": [
-      "Asia technology strategy",
-      "market technology alignment",
-      "regional roadmap",
-      "global-to-local alignment"
+    "stakeholder_management": [
+      "senior stakeholder management",
+      "cross-functional influence",
+      "executive communication",
+      "trusted advisor",
+      "matrixed organization"
+    ],
+    "financial_services_domain": [
+      "asset management",
+      "wealth management",
+      "retirement",
+      "GWAM",
+      "buy-side technology",
+      "investment technology",
+      "fund operations technology"
+    ],
+    "sdlc_and_engineering": [
+      "SDLC",
+      "agile delivery",
+      "DevOps",
+      "cloud architecture",
+      "integration architecture",
+      "data architecture",
+      "security architecture"
     ]
   },
   "scoring_criteria": [
     {
       "name": "Enterprise/Solution Architecture Leadership",
       "weight": 18,
-      "why_it_matters": "Core requirement - the role is explicitly Chief Architect, requiring broad architecture expertise across applications, data, cloud, integration.",
+      "why_it_matters": "Core to the Chief Architect role - must demonstrate breadth across applications, data, integration, cloud, and security architecture.",
       "evidence_type_to_look_for": [
-        "Chief Architect or Enterprise Architect titles",
+        "Chief/Enterprise Architect titles",
         "architecture roadmap ownership",
-        "multi-domain architecture design experience"
+        "multi-domain architecture experience"
       ],
-      "gap_expected": "May lack formal 'Chief Architect' title; assess equivalent scope of ownership"
+      "gap_expected": "May lack formal 'Chief Architect' title but held equivalent scope"
     },
     {
-      "name": "Architecture Governance & Review Board Leadership",
+      "name": "Architecture Governance (LARB/ARB Leadership)",
       "weight": 14,
-      "why_it_matters": "LARB leadership is a named responsibility requiring formal governance experience and decision-making authority.",
+      "why_it_matters": "Role explicitly leads LARB; governance experience is a hard requirement.",
       "evidence_type_to_look_for": [
-        "running or chairing architecture review boards",
-        "approval authority for solution designs",
-        "risk/cost/scalability trade-off decisions"
+        "Led/chaired architecture review boards",
+        "approved solution designs",
+        "managed architectural risk registers"
       ]
     },
     {
-      "name": "Practical AI Adoption & Responsible AI Governance",
-      "weight": 15,
-      "why_it_matters": "JD heavily emphasizes AI strategy, agent-based solutions, and responsible AI controls as a differentiator for this role.",
+      "name": "Practical AI Adoption & Agentic/GenAI Delivery",
+      "weight": 16,
+      "why_it_matters": "Heavy JD emphasis on driving AI adoption, agent-based solutions, and responsible AI governance.",
       "evidence_type_to_look_for": [
         "AI use case delivery",
         "AI agent deployment",
+        "GenAI pilots",
         "responsible AI frameworks",
-        "AI-enabled workflow transformation projects"
+        "AI-enabled workflow transformation"
       ],
-      "gap_expected": "Candidates may have AI exposure but limited hands-on agent deployment or governance experience"
+      "gap_expected": "Candidate may have AI exposure without production-scale agentic deployments"
     },
     {
-      "name": "AI-Era SDLC Knowledge",
+      "name": "Modern SDLC & AI-Era Engineering Practices",
       "weight": 8,
-      "why_it_matters": "Explicit requirement for understanding AI-assisted engineering, model/agent lifecycle, testing, and production readiness.",
+      "why_it_matters": "Requires understanding of AI-assisted engineering, model/agent lifecycle, and production readiness controls.",
       "evidence_type_to_look_for": [
-        "AI-assisted development tools",
-        "model monitoring",
-        "MLOps pipelines",
-        "change management for AI systems"
+        "MLOps",
+        "AI testing/monitoring",
+        "change management for AI systems",
+        "AI-assisted SDLC"
       ]
     },
     {
-      "name": "Shared Technology Services & Reusable Platforms",
+      "name": "Shared Technology Services & Reusable Platform Strategy",
       "weight": 10,
-      "why_it_matters": "Role explicitly drives shared capabilities across Asia markets to reduce duplication and improve consistency.",
+      "why_it_matters": "Driving common platforms and reducing duplication across Asia markets is a key accountability.",
       "evidence_type_to_look_for": [
-        "multi-market platform design",
-        "reusable component libraries",
-        "engineering standards development",
-        "cross-BU platform consolidation"
+        "Built shared services",
+        "multi-market platform rollouts",
+        "engineering standards definition"
       ]
     },
     {
-      "name": "Senior Stakeholder Influence & Executive Communication",
-      "weight": 12,
-      "why_it_matters": "Role requires influencing senior stakeholders without formal authority across global, regional, market, and business lines.",
+      "name": "Operations Technology Oversight",
+      "weight": 6,
+      "why_it_matters": "Role may include oversight of Asia operations technology stability and resilience.",
       "evidence_type_to_look_for": [
-        "executive presentations",
-        "cross-functional influence without direct authority",
+        "Production support leadership",
+        "resilience/BCP initiatives",
+        "operational KPI ownership"
+      ],
+      "gap_expected": "May be a secondary/optional scope depending on candidate background"
+    },
+    {
+      "name": "Senior Stakeholder Influence & Advisory",
+      "weight": 12,
+      "why_it_matters": "Success depends on influencing senior business/tech leaders across markets without direct authority.",
+      "evidence_type_to_look_for": [
+        "Advised C-suite/senior leaders",
+        "cross-market alignment",
         "trusted advisor roles"
+      ]
+    },
+    {
+      "name": "Financial Services / GWAM Domain Relevance",
+      "weight": 8,
+      "why_it_matters": "Asset management, wealth, and retirement domain knowledge accelerates context and credibility.",
+      "evidence_type_to_look_for": [
+        "Asset management tech experience",
+        "wealth/retirement platforms",
+        "buy-side technology background"
+      ],
+      "gap_expected": "Candidate may come from adjacent financial services or broader enterprise domains"
+    },
+    {
+      "name": "Regional/Global Strategy Alignment (Asia Multi-Market)",
+      "weight": 5,
+      "why_it_matters": "Must translate global strategy into practical Asia market-level execution.",
+      "evidence_type_to_look_for": [
+        "Asia-Pacific regional technology roles",
+        "multi-country delivery",
+        "global-to-local strategy translation"
+      ]
+    },
+    {
+      "name": "Talent Coaching & Culture Building",
+      "weight": 3,
+      "why_it_matters": "Role includes coaching architects and building AI-enabled ways of working across teams.",
+      "evidence_type_to_look_for": [
+        "Mentored architects/engineers",
+        "built communities of practice",
+        "upskilling initiatives"
       ]
     }
   ],
@@ -191,6 +218,30 @@
       "AI & AUTOMATION HIGHLIGHTS",
       "CORE COMPETENCIES",
       "SOFT SKILLS"
+    ],
+    "summary_focus": [
+      "Position as senior architecture leader with cross-domain scope (application, data, integration, cloud, security)",
+      "Highlight architecture governance/board leadership experience explicitly",
+      "Emphasize hands-on practical AI adoption, not just AI awareness - name specific use cases/agents/tools",
+      "Show multi-market or multi-business-line platform/shared services experience",
+      "Demonstrate senior stakeholder influence across global and regional/local teams",
+      "If financial services background is limited, emphasize transferable regulated-industry or enterprise-scale architecture experience"
+    ],
+    "do_not_overclaim": [
+      "Do not claim 'Chief Architect' title unless explicitly held - use 'architecture leadership' or 'de facto chief architect scope' if equivalent",
+      "Do not overstate agentic AI production deployment if only pilot/PoC stage was reached - clarify maturity level",
+      "Do not imply direct operations technology ownership if role was advisory/oversight only",
+      "Do not claim Asia-specific multi-market experience if experience was single-market or global without regional nuance"
+    ]
+  },
+  "cover_letter_guidance": {
+    "tone": "Executive, strategic, confident but grounded - demonstrate command of both architecture rigor and pragmatic AI adoption",
+    "positioning": "Frame candidate as a technology strategist and architecture governance leader who bridges global enterprise standards with regional market execution, with genuine hands-on AI adoption experience rather than theoretical AI enthusiasm",
+    "bridge_gaps_honestly": [
+      "If no formal LARB/ARB chair experience, describe equivalent architecture decision authority held in prior roles",
+      "If asset management/wealth domain experience is limited, acknowledge transferable regulated financial services or complex multi-entity enterprise experience",
+      "If agentic AI production experience is limited, emphasize practical AI use case identification, governance thinking, and willingness to scale pilots responsibly",
+      "If operations technology oversight was not a core responsibility, note collaboration with ops teams on resilience and stability outcomes"
     ]
   }
 }

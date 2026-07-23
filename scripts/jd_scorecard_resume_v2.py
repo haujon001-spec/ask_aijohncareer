@@ -535,7 +535,30 @@ def call_llm(system_prompt, user_prompt, max_tokens=6000, label="", response_for
         timeout=180,
     )
     resp.raise_for_status()
-    return resp.json()["choices"][0]["message"]["content"]
+    data = resp.json()
+    choice = data["choices"][0]
+    message = choice["message"]
+    content = message.get("content")
+    finish_reason = choice.get("finish_reason")
+    if not content:
+        refusal = message.get("refusal")
+        raise RuntimeError(
+            f"OpenRouter returned empty content for '{label or 'unlabeled'}' call "
+            f"(model={MODEL}, finish_reason={finish_reason!r}, refusal={refusal!r}). "
+            "This usually means the model ran out of max_tokens before producing an "
+            "answer, or refused the request — check the values above."
+        )
+    if finish_reason == "length":
+        usage = data.get("usage", {})
+        raise RuntimeError(
+            f"OpenRouter truncated the '{label or 'unlabeled'}' response — it ran out of "
+            f"max_tokens ({max_tokens}) before finishing (model={MODEL}, "
+            f"completion_tokens={usage.get('completion_tokens')}, "
+            f"reasoning_tokens={usage.get('completion_tokens_details', {}).get('reasoning_tokens')}). "
+            "The partial output was discarded rather than silently shipped incomplete; raise "
+            "max_tokens for this call and retry."
+        )
+    return content
 
 def extract_json_object(raw_text):
     """Extract a JSON object from an LLM response, allowing for code fences and minor cleanup."""
@@ -590,7 +613,7 @@ Return only valid JSON.
     repaired = call_llm(
         REPAIR_SYS,
         REPAIR_USER,
-        max_tokens=3000,
+        max_tokens=6000,
         label=label,
         response_format={"type": "json_object"},
     )
@@ -751,7 +774,7 @@ Rules:
     raw = call_llm(
         BLUEPRINT_SYS,
         BLUEPRINT_USER,
-        max_tokens=2600,
+        max_tokens=6000,
         label="JD Blueprint",
         response_format={"type": "json_object"},
     )
@@ -859,7 +882,7 @@ Produce a comprehensive JD Match Scorecard with ALL of these sections:
    Should the candidate apply? Competitive positioning. Recommended approach.
 """
 
-    scorecard_text = call_llm(SCORECARD_SYS, SCORECARD_USER, max_tokens=6000, label="Scorecard")
+    scorecard_text = call_llm(SCORECARD_SYS, SCORECARD_USER, max_tokens=12000, label="Scorecard")
     print("  ✓  Scorecard complete")
 
     if resume_adjustment and resume_adjustments_text is None:
@@ -948,7 +971,7 @@ Layout rules:
 {"- If recruiter resume-adjustment guidance was supplied above, weave it in naturally (headline framing, which bullets/section lead) — do not quote it or add a visible heading for it (see system rule 12)" if resume_adjustments_text else ""}
 """
 
-    resume_text = call_llm(RESUME_SYS, RESUME_USER, max_tokens=4500, label="Resume")
+    resume_text = call_llm(RESUME_SYS, RESUME_USER, max_tokens=20000, label="Resume")
     resume_text = soften_experience_years(resume_text)
     resume_text = tighten_contact_header(resume_text)
     resume_text = normalize_blank_lines(resume_text)
@@ -1051,7 +1074,7 @@ Key themes to hit (using only profile facts):
 {"- If recruiter resume-adjustment guidance was supplied above, weave it into tone/emphasis only — do not quote it or add a visible heading for it (see system rule 12)" if resume_adjustments_text else ""}
 """
 
-    coverletter_text = call_llm(COVERLETTER_SYS, COVERLETTER_USER, max_tokens=2500, label="Cover Letter")
+    coverletter_text = call_llm(COVERLETTER_SYS, COVERLETTER_USER, max_tokens=8000, label="Cover Letter")
     coverletter_text = soften_experience_years(coverletter_text)
     coverletter_text = clean_coverletter_header(coverletter_text, employer_display)
     coverletter_text = normalize_blank_lines(coverletter_text)
