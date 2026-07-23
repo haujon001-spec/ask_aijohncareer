@@ -2,7 +2,7 @@ import { spawn } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 
-const SCRIPT_REL_PATH = path.join('scripts', 'jd_scorecard_resume.py');
+const SCRIPT_REL_PATH = path.join('scripts', 'jd_scorecard_resume_v2.py');
 
 const MODE_FLAGS = {
   scorecard: '--scorecard-only',
@@ -37,21 +37,22 @@ function resolvePythonBin(projectRoot) {
   return process.platform === 'win32' ? 'python' : 'python3';
 }
 
-function buildRunArgs({ jdAbsPath, llm, mode, refreshBlueprint, generateDocx }) {
+function buildRunArgs({ jdAbsPath, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment }) {
   const args = [jdAbsPath];
   const modeFlag = MODE_FLAGS[mode || 'all'];
   if (modeFlag) args.push(modeFlag);
   if (refreshBlueprint) args.push('--refresh-blueprint');
   if (generateDocx === false) args.push('--no-docx');
+  if (resumeAdjustment) args.push('--ResumeAdjustment');
   args.push(`--llm=${llm}`);
   return args;
 }
 
-export function runJdPipeline({ projectRoot, jdAbsPath, llm, mode, refreshBlueprint, generateDocx, timeoutMs }) {
+export function runJdPipeline({ projectRoot, jdAbsPath, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment, timeoutMs }) {
   return new Promise((resolve) => {
     const pythonBin = resolvePythonBin(projectRoot);
     const scriptPath = path.join(projectRoot, SCRIPT_REL_PATH);
-    const args = buildRunArgs({ jdAbsPath, llm, mode, refreshBlueprint, generateDocx });
+    const args = buildRunArgs({ jdAbsPath, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment });
 
     console.log(`🐍 [jd-api] Spawning: ${pythonBin} ${scriptPath} ${args.join(' ')}`);
 

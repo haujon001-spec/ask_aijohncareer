@@ -11,12 +11,34 @@ const OUTPUT_LABELS = {
   coverLetterDocx: 'Cover Letter (.docx)'
 }
 
+// Mirrors backend/lib/pythonRunner.js's buildRunArgs() so the preview shown
+// here always matches what actually gets spawned server-side.
+const MODE_FLAGS = {
+  scorecard: '--scorecard-only',
+  resume: '--resume-only',
+  coverletter: '--coverletter-only',
+  all: null
+}
+
+function buildCommandPreview({ jdFile, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment }) {
+  const parts = ['python scripts/jd_scorecard_resume_v2.py']
+  parts.push(`"data_raw/jd/txt/${jdFile || '<JD file>'}"`)
+  const modeFlag = MODE_FLAGS[mode || 'all']
+  if (modeFlag) parts.push(modeFlag)
+  if (refreshBlueprint) parts.push('--refresh-blueprint')
+  if (generateDocx === false) parts.push('--no-docx')
+  if (resumeAdjustment) parts.push('--ResumeAdjustment')
+  parts.push(`--llm=${llm}`)
+  return parts.join(' ')
+}
+
 function JDRunPanel({ initialJdFile }) {
   const [jdFile, setJdFile] = useState(initialJdFile || '')
   const [llm, setLlm] = useState('sonnet')
   const [mode, setMode] = useState('all')
   const [refreshBlueprint, setRefreshBlueprint] = useState(false)
   const [generateDocx, setGenerateDocx] = useState(true)
+  const [resumeAdjustment, setResumeAdjustment] = useState(false)
 
   const [running, setRunning] = useState(false)
   const [elapsedSec, setElapsedSec] = useState(0)
@@ -47,7 +69,7 @@ function JDRunPanel({ initialJdFile }) {
     timerRef.current = setInterval(() => setElapsedSec((s) => s + 1), 1000)
 
     try {
-      const response = await runJd({ jdFile, llm, mode, refreshBlueprint, generateDocx })
+      const response = await runJd({ jdFile, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment })
       setResult(response)
     } catch (err) {
       if (err.status === 409) {
@@ -140,6 +162,26 @@ function JDRunPanel({ initialJdFile }) {
             disabled={running}
           />
           <label htmlFor="jd-generate-docx">Generate .docx</label>
+        </div>
+
+        <div className="jd-checkbox-field">
+          <input
+            id="jd-resume-adjustment"
+            type="checkbox"
+            checked={resumeAdjustment}
+            onChange={(e) => setResumeAdjustment(e.target.checked)}
+            disabled={running}
+          />
+          <label htmlFor="jd-resume-adjustment">
+            Apply Resume Adjustments (uses this JD's own Match Scorecard "6a" guidance to tailor wording)
+          </label>
+        </div>
+
+        <div className="jd-field">
+          <label htmlFor="jd-command-preview">Command Preview</label>
+          <pre id="jd-command-preview" className="jd-command-preview">
+            {buildCommandPreview({ jdFile, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment })}
+          </pre>
         </div>
 
         <button type="submit" className="jd-button" disabled={running || !jdFile.trim()}>

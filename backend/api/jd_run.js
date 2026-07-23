@@ -12,7 +12,7 @@ export function createJdRunRouter({ projectRoot, jdTxtDir, timeoutMs }) {
   let runInProgress = false;
 
   router.post('/', async (req, res) => {
-    const { jdFile, llm = 'sonnet', mode = 'all', refreshBlueprint = false, generateDocx = true } = req.body || {};
+    const { jdFile, llm = 'sonnet', mode = 'all', refreshBlueprint = false, generateDocx = true, resumeAdjustment = false } = req.body || {};
 
     if (!jdFile || typeof jdFile !== 'string') {
       return res.status(400).json({ error: 'jdFile is required' });
@@ -50,8 +50,8 @@ export function createJdRunRouter({ projectRoot, jdTxtDir, timeoutMs }) {
     const { employer } = deriveJdMetadata(jdStem);
 
     try {
-      console.log(`🚀 [jd-api] Running JD pipeline: ${jdFile} (llm=${llm}, mode=${mode})`);
-      const result = await runJdPipeline({ projectRoot, jdAbsPath, llm, mode, refreshBlueprint, generateDocx, timeoutMs });
+      console.log(`🚀 [jd-api] Running JD pipeline: ${jdFile} (llm=${llm}, mode=${mode}, resumeAdjustment=${resumeAdjustment})`);
+      const result = await runJdPipeline({ projectRoot, jdAbsPath, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment, timeoutMs });
 
       if (result.timedOut) {
         return res.status(500).json({ error: 'JD pipeline timed out', killed: true });

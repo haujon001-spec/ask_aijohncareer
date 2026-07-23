@@ -30,11 +30,35 @@ User's screenshots show a dimmed/overlaid page after interacting with History, w
 
 General polish pass needed on `PortalShell.css` / `JDPortal.css` — padding, gaps, and card sizing feel oversized. Needs a design pass (tighten `.portal-main` padding, `.jd-portal` gap, `.jd-portal-card` padding) — defer exact values to a proper look at the live UI tomorrow rather than guessing blind.
 
+## New today (23 Jul 2026, later session) — JD Portal v2: company-grouped history, exposed CLI params, wizard redesign, theme toggle
+
+User has used the portal for real runs today (e.g. Manulife — AVP_Technology_Architecture_and_Operations, 82/100) and is requesting a second, larger round of changes, referencing screenshots of the live portal plus the look-and-feel of a separate project's portal (`C:\Users\haujo\projects\DEV\trading\web_portal\Unify_portal_20260628.py`, Flask-based). **Not yet scoped/implemented — clarifying questions asked before starting, per soul.md intake workflow and explicit user request.**
+
+1. **History accordion should group by company**, not by individual run — e.g. "Manulife" should be one top-level entry containing both its 22 Jul and 21 Jul job runs nested inside, rather than two separate flat rows. **Phase B — not yet done.**
+2. **Expose `jd_scorecard_resume_v2.py`'s CLI parameters in the portal UI**, referencing the trading portal's "Configure" step (strategy cards, numeric/select fields, live command preview) as the interaction pattern. `--ResumeAdjustment` now exposed (Phase A, done below); remaining CLI surface (mode/llm/refresh-blueprint/no-docx) was already exposed pre-existing.
+3. **Root cause found during scoping — confirmed and fixed (Phase A, done below).** `backend/lib/pythonRunner.js` was hardcoded to invoke `scripts/jd_scorecard_resume.py` (**v1**), never `_v2.py`. This is why the "Generated :" / "Profile :" lines the user flagged (screenshot) appeared in portal-generated resume/cover-letter output — those were only ever removed from v2, and the portal had never called v2 since it was built. Now repointed to v2.
+4. **Command preview before running — done (Phase A, see below).** Shows the exact CLI invocation before the user clicks Run.
+5. **Look-and-feel overhaul** — restructure into a step-wizard (Configure → JD Run → Report), optimized for desktop/tablet/mobile. **Phase C — not yet done, largest item, own session.**
+6. **Light/dark theme toggle** — current fintech theme is dark-only, flagged as low-contrast; new bespoke light palette (user decision, not reusing the chat app's palette). **Phase C — not yet done.**
+
+**Decisions confirmed by user (23 Jul 2026), scoping this into three phases:**
+- Phase A (correctness first): v2 backend repoint + `--ResumeAdjustment` wiring + command preview. **DONE 23 Jul 2026** — see `docs/guides/JDPORTALV2BACKEND_23JUL2026.md`.
+- Phase B: company-grouped History accordion, single-open at every level (company → job → doc), same rule as today's flat-list accordion.
+- Phase C: step-wizard redesign (Configure/JD Run/Reports, current "keep today's run behavior" — no live-streaming console output, that's an explicitly deferred separate scope) + new bespoke light theme. Largest and most design-subjective — own session.
+
+**Carried forward, still outstanding (unaffected by the above, unchanged priority):**
+- Bring-your-own-key + dynamic LLM selection (OpenRouter, confirm the exact Claude Sonnet 5 API model-slug)
+- Remaining JD Automation Portal phases (NLP, integration, Docker, dev env docs, deploy — deploy now also covers the new auth/view routes)
+- LinkedIn automation scoping
+
 ## Priority order
 
 1. ~~Fix JD Portal vertical scroll regression~~ — **done, verified 23 Jul 2026**
 2. ~~Redesign History/doc-view from modal to expand/collapse accordion~~ — **done, verified 23 Jul 2026**
 3. ~~UI/UX spacing polish pass~~ — **done, verified 23 Jul 2026**
-4. Bring-your-own-key + dynamic LLM selection
-5. Remaining JD Automation Portal phases (NLP, integration, Docker, dev env docs, deploy — deploy now also covers the new auth/view routes)
-6. LinkedIn automation scoping
+4. ~~JD Portal v2 Phase A (backend repoint to v2, --ResumeAdjustment wiring, command preview)~~ — **done, verified 23 Jul 2026**
+5. JD Portal v2 Phase B — company-grouped History accordion
+6. JD Portal v2 Phase C — step-wizard redesign (Configure/JD Run/Reports) + light/dark theme toggle
+7. Bring-your-own-key + dynamic LLM selection
+8. Remaining JD Automation Portal phases (NLP, integration, Docker, dev env docs, deploy — deploy now also covers the new auth/view routes)
+9. LinkedIn automation scoping

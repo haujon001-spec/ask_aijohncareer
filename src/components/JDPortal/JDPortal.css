@@ -70,6 +70,19 @@
   color: var(--portal-text-muted);
 }
 
+.jd-command-preview {
+  padding: 12px 14px;
+  background: rgba(5, 7, 13, 0.6);
+  border: 1px solid var(--portal-border);
+  border-radius: 8px;
+  color: var(--portal-accent-cyan);
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 12.5px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
 .jd-field-hint.jd-field-hint--error {
   color: var(--portal-danger);
 }

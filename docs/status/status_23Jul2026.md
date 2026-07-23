@@ -12,6 +12,14 @@ Full build/verification record: `docs/guides/JDPORTALBUGFIXES_23JUL2026.md`.
 
 **Verification note:** the real portal password wasn't available to Claude. With user approval, `secrets/jd_portal_auth.json` was backed up, `passwordHash` temporarily swapped to a throwaway value (TOTP secret untouched) to allow automated Playwright verification, then restored from backup immediately after — confirmed restored before this session closed.
 
+## JD Portal v2 round — Phase A: backend repoint + command preview (later same day, 23 Jul 2026)
+
+**Status: Done and verified.** Full record: `docs/guides/JDPORTALV2BACKEND_23JUL2026.md`.
+
+User requested a larger second round of portal work (company-grouped history, exposed CLI params, wizard redesign, light/dark theme), scoped per soul.md intake into three phases. Phase A (correctness): found and fixed a real bug — `backend/lib/pythonRunner.js` was still invoking `jd_scorecard_resume.py` (v1), never the `_v2.py` script built 21-22 Jul, so every portal-generated resume/cover letter has been missing all of v2's formatting fixes and `--ResumeAdjustment` support since the portal was built. Repointed to v2, wired `--ResumeAdjustment` end-to-end (backend + UI checkbox), added a live command-preview panel that mirrors the backend's exact arg-building logic. Verified via a real authenticated API run (v2 header confirmed in logs, zero `Generated :`/`Profile :` lines in output, `--ResumeAdjustment` correctly reused an existing scorecard) plus a Playwright check confirming the UI preview text matches the real spawned command.
+
+**Phase B (company-grouped History accordion) and Phase C (step-wizard redesign + light/dark theme) are scoped but not started** — Phase C is the largest and most design-subjective, planned as its own session.
+
 ## Known open items (unchanged, carried forward)
 
 - Bring-your-own-key + dynamic LLM selection (OpenRouter, Claude Sonnet 5 model-slug confirmation) — still outstanding.

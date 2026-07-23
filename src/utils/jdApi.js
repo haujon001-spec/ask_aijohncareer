@@ -38,10 +38,10 @@ export function uploadJd({ employer, role, jdText, overwrite }) {
   })
 }
 
-export function runJd({ jdFile, llm, mode, refreshBlueprint, generateDocx }) {
+export function runJd({ jdFile, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment }) {
   return request('/api/jd/run', {
     method: 'POST',
-    body: JSON.stringify({ jdFile, llm, mode, refreshBlueprint, generateDocx })
+    body: JSON.stringify({ jdFile, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment })
   })
 }
 
