@@ -64,6 +64,34 @@ User hit a real ~6-minute run today (Manulife, `--llm=sonnet`, mode=all, `--refr
 
 **All five confirmed and done 23 Jul 2026** — see `docs/guides/JDPORTALUSABILITY_23JUL2026.md` for the full build/verification record (also covers the sonnet model-slug fix, item 3 above).
 
+## New today (23 Jul 2026, real-usage follow-up after the width/caching fix)
+
+User tried the fixed portal for real (Manulife re-run, `--llm=sonnet`, mode=all, `--refresh-blueprint`). Width fix confirmed much improved but not fully done; and a real crash surfaced during the run, independent of the width/caching work.
+
+### a. Dynamic width — further enhancement (medium priority, future work)
+
+User confirms the fixed-gutter change is a big improvement but there's still some unused space on desktop. Requested: a way to dynamically adjust the width across desktop/tablet/mobile rather than a single fixed gutter/cap. **Not yet scoped or implemented** — candidate approach for a future pass: per-breakpoint gutter/max-width values (e.g. tighter gutter or higher cap at very wide desktop, current behavior kept for tablet/mobile) rather than one constant for all desktop sizes; needs a proper look at a few real intermediate widths (e.g. 1440px, 1600px laptop panels) before picking values, same "don't guess blind" approach used for the earlier spacing pass.
+
+### b. Sonnet resume generation crash — debug/fix
+
+Real crash during a live `--llm=sonnet` run (mode=all, `--refresh-blueprint`), confirmed via the portal's own debug-output panel:
+
+```
+File "jd_scorecard_resume_v2.py", line 952, in <module>
+    resume_text = soften_experience_years(resume_text)
+File "jd_scorecard_resume_v2.py", line 101, in soften_experience_years
+    return YEARS_FIGURE_RE.sub("extensive years", text)
+TypeError: expected string or bytes-like object, got 'NoneType'
+```
+
+Blueprint refresh, blueprint-repair, and Scorecard all completed successfully with `anthropic/claude-sonnet-5` (confirmed in the debug log); the crash happened on the **Resume** step specifically — `call_llm(...)` (line ~951, `scripts/jd_scorecard_resume_v2.py`) returned `None` for `resume_text`, which then crashed the very first post-processing helper (`soften_experience_years`) since it assumes a string.
+
+**Root cause — investigated, not yet confirmed with certainty (logged as a hypothesis for whoever picks this up):**
+- `call_llm()` (line ~518) returns `resp.json()["choices"][0]["message"]["content"]` directly with no null-check — if OpenRouter/Anthropic ever returns a response where `content` is `null` (e.g. a reasoning-enabled model spends its `max_tokens` budget on internal reasoning before emitting any final-answer text), this function silently returns `None` instead of raising a clear error.
+- The Resume call uses a fixed `max_tokens=4500` (line ~951). Checked `anthropic/claude-sonnet-5`'s OpenRouter listing directly: `reasoning: {"mandatory": false, "default_effort": "medium", ...}` — reasoning is optional, not forced, but if the API applies some default reasoning behavior for this model that `anthropic/claude-sonnet-4.6` didn't (the two are different model lineages), a resume-length response (~2 pages, per the prompt's own length requirement) could plausibly exceed what's left of a 4500-token budget after reasoning tokens are spent — this is the leading theory, not yet proven (would need a live test with a higher `max_tokens`/`max_completion_tokens` or an explicit `reasoning: {enabled: false}` param to confirm).
+- Independent of the exact cause: `call_llm()` and its callers have **no defensive handling for `content == None`** anywhere in the script — this should raise a clear, actionable error (e.g. "OpenRouter returned empty content for <label> — check response.finish_reason / token budget") rather than crashing three function calls later with a cryptic `TypeError` in a string-processing helper.
+- Scoped as debug/fix work, not yet implemented — logged per user's explicit request to add to the debug/fix list rather than fix immediately.
+
 ## Priority order
 
 1. ~~Fix JD Portal vertical scroll regression~~ — **done, verified 23 Jul 2026**
@@ -72,8 +100,11 @@ User hit a real ~6-minute run today (Manulife, `--llm=sonnet`, mode=all, `--refr
 4. ~~JD Portal v2 Phase A (backend repoint to v2, --ResumeAdjustment wiring, command preview)~~ — **done, verified 23 Jul 2026**
 5. ~~Sonnet model slug fix (claude-sonnet-4.6 → claude-sonnet-5)~~ — **done, verified 23 Jul 2026**
 6. ~~Collapsible sections, dynamic width, progress visibility, force-stop, JD text caching~~ — **done, verified 23 Jul 2026**
-7. JD Portal v2 Phase B — company-grouped History accordion
-8. JD Portal v2 Phase C — step-wizard redesign (Configure/JD Run/Reports) + light/dark theme toggle
-9. Bring-your-own-key + dynamic LLM selection (model-slug half now done; user-supplied-key UI still outstanding)
-10. Remaining JD Automation Portal phases (NLP, integration, Docker, dev env docs, deploy — deploy now also covers the new auth/view routes)
-11. LinkedIn automation scoping
+7. ~~Width follow-up (fixed-gutter fix)~~ — **done, verified 23 Jul 2026**
+8. **Sonnet resume-generation crash (`call_llm` returns None)** — debug/fix, not yet implemented (see section above)
+9. JD Portal v2 Phase B — company-grouped History accordion
+10. JD Portal v2 Phase C — step-wizard redesign (Configure/JD Run/Reports) + light/dark theme toggle
+11. Dynamic width further enhancement (per-breakpoint values) — medium priority, future work (see section above)
+12. Bring-your-own-key + dynamic LLM selection (model-slug half now done; user-supplied-key UI still outstanding)
+13. Remaining JD Automation Portal phases (NLP, integration, Docker, dev env docs, deploy — deploy now also covers the new auth/view routes)
+14. LinkedIn automation scoping

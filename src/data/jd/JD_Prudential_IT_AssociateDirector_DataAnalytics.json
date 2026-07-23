@@ -1,0 +1,160 @@
+{
+  "jd_file": "prudential-data-analytics-lead",
+  "company": "Prudential",
+  "company_slug": "prudential",
+  "job_title": "Data Analytics Lead",
+  "role_slug": "data-analytics-lead",
+  "industry": "Insurance and Financial Services",
+  "role_summary": "Senior leadership role focused on driving business growth and strategy through deep-dive predictive and diagnostic analytics within marketing and distribution channels.",
+  "must_have_requirements": [
+    "12+ years of experience in analytics, business intelligence, or strategy",
+    "Bachelor's degree in Business Analytics, Statistics, Mathematics, or related",
+    "Proven experience in customer segmentation and behavioral analysis",
+    "Expertise in translating complex analytical outputs into executive-level strategic recommendations",
+    "Advanced proficiency in statistical modeling and data transformation techniques"
+  ],
+  "nice_to_have_requirements": [
+    "Master's degree in a quantitative field",
+    "Domain expertise in Insurance or Financial Services industry",
+    "Experience managing external vendors and technology partners",
+    "Proven track record of driving cross-selling and retention strategies"
+  ],
+  "soft_skills_priority": [
+    "Executive Presence",
+    "Stakeholder Influence",
+    "Strategic Thinking",
+    "Communication",
+    "Innovation-driven mindset"
+  ],
+  "semantic_match_guidance": {
+    "analytics_depth": [
+      "predictive modeling",
+      "segmentation",
+      "customer lifetime value",
+      "propensity modeling",
+      "churn analysis"
+    ],
+    "business_impact": [
+      "ROI",
+      "campaign optimization",
+      "revenue growth",
+      "conversion rate",
+      "market penetration"
+    ],
+    "leadership_influence": [
+      "senior leadership communication",
+      "stakeholder management",
+      "strategic advisory",
+      "cross-functional collaboration"
+    ]
+  },
+  "scoring_criteria": [
+    {
+      "name": "Years of Experience",
+      "weight": 15,
+      "why_it_matters": "Requires high level of maturity and strategic depth to influence leadership.",
+      "evidence_type_to_look_for": [
+        "Career timeline",
+        "12+ years progressive experience"
+      ],
+      "gap_expected": "10-11 years may be considered if impact is high"
+    },
+    {
+      "name": "Strategic Insight Generation",
+      "weight": 15,
+      "why_it_matters": "Core function is to deliver actionable growth strategies, not just reporting.",
+      "evidence_type_to_look_for": [
+        "Business case successes",
+        "Impact on revenue/KPIs",
+        "Decision-support projects"
+      ],
+      "gap_expected": "None"
+    },
+    {
+      "name": "Advanced Statistical Modeling",
+      "weight": 15,
+      "why_it_matters": "Required to uncover complex patterns in digital/customer behavior.",
+      "evidence_type_to_look_for": [
+        "Machine learning projects",
+        "Regression analysis",
+        "Predictive modeling experience"
+      ],
+      "gap_expected": "None"
+    },
+    {
+      "name": "Insurance/Financial Knowledge",
+      "weight": 10,
+      "why_it_matters": "Domain expertise minimizes onboarding and improves contextual relevance.",
+      "evidence_type_to_look_for": [
+        "Industry tenure",
+        "Regulatory knowledge",
+        "Specific insurance product analytics"
+      ],
+      "gap_expected": "Manageable if other analytics skills are superior"
+    },
+    {
+      "name": "Stakeholder Influence",
+      "weight": 10,
+      "why_it_matters": "Must translate data into business language for senior leaders.",
+      "evidence_type_to_look_for": [
+        "Presentation slides for execs",
+        "Cross-functional leadership roles"
+      ],
+      "gap_expected": "None"
+    },
+    {
+      "name": "Customer Lifecycle Analytics",
+      "weight": 10,
+      "why_it_matters": "Direct focus on acquisition, retention, and upsell performance.",
+      "evidence_type_to_look_for": [
+        "Churn prediction",
+        "Customer acquisition cost optimization",
+        "CLV management"
+      ],
+      "gap_expected": "None"
+    },
+    {
+      "name": "Technical Breadth",
+      "weight": 10,
+      "why_it_matters": "Must implement innovative analytical approaches and manage technology vendors.",
+      "evidence_type_to_look_for": [
+        "Tool stack expertise",
+        "Data strategy architecture",
+        "Vendor management"
+      ],
+      "gap_expected": "None"
+    },
+    {
+      "name": "Leadership & Strategy",
+      "weight": 15,
+      "why_it_matters": "Role is lead-level and requires guiding cross-functional data initiatives.",
+      "evidence_type_to_look_for": [
+        "People leadership",
+        "Strategic roadmap creation",
+        "Change management"
+      ],
+      "gap_expected": "None"
+    }
+  ],
+  "resume_tailoring_guidance": {
+    "mandatory_sections": [
+      "PROFESSIONAL SUMMARY",
+      "AI & AUTOMATION HIGHLIGHTS",
+      "CORE COMPETENCIES",
+      "SOFT SKILLS"
+    ],
+    "summary_focus": [
+      "Highlight the 'how'—how you used data to guide business strategy, specifically in financial services or consumer retail."
+    ],
+    "do_not_overclaim": [
+      "Avoid overstating purely academic projects; focus on enterprise-grade, high-value business outcomes."
+    ]
+  },
+  "cover_letter_guidance": {
+    "tone": "Professional, executive-caliber, and forward-thinking.",
+    "positioning": "Position yourself as an analytical anchor who bridges the gap between raw data and tangible revenue growth.",
+    "bridge_gaps_honestly": [
+      "If domain experience is in a different sector, emphasize the universality of customer behavior analytics across complex, highly regulated retail environments."
+    ]
+  }
+}
