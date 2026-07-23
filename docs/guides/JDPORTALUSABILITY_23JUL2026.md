@@ -52,6 +52,15 @@ All via Playwright against the live local dev stack, authenticated with the same
 
 **Note on an earlier false negative during this verification**: an initial pass used the Playwright selector `button:has-text("Run")`, which also substring-matches the "**New JD Run**" tab button — Playwright's non-strict `page.click()` silently clicked the tab instead of the actual submit button, several times in a row, making it look like Run/Stop/progress weren't working at all. Re-tested with an exact-name locator (`getByRole('button', { name: 'Run', exact: true })`) and everything worked correctly on the first real attempt — this was a test-script bug, not an app bug, logged here in case a future session's Playwright script hits the same trap.
 
+## Follow-up (same day, 23 Jul 2026 later): width still too narrow; caching re-verified
+
+User reported after using the real portal that (a) there was still a lot of unused space on both sides at desktop width, and (b) they didn't see JD caching working even after restarting the portal.
+
+- **Width**: the `min(1400px, 94vw)` cap from earlier was still leaving ~230px of dead space per side on a typical ~1860-1920px-wide window (94vw exceeded the 1400px pixel cap, so the cap always won on any reasonably modern monitor). Changed to a **fixed-gutter** approach instead: `.portal-main { width: calc(100% - 48px); max-width: 1800px; margin: 0 auto; }` — a small, constant ~24px gutter per side on typical screens (verified: 1862px viewport → 1800px content, only 31px gutter each side; 1366px viewport → 1318px content, 24px gutter each side), with the 1800px cap only kicking in on genuinely ultrawide monitors.
+- **JD caching — re-verified, not actually broken.** A fresh Playwright test (unique employer/role/JD-text marker, save, reload) confirmed all three fields — including the JD text itself, which the first round's verification never explicitly checked — restore correctly from `localStorage`. The user's screenshot showing only Employer/Role populated (JD text empty) is consistent with the **browser's own native form-autofill** for `<input>` elements (which persists typed values across page loads independently of any app code) resurfacing values from their earlier real session — textareas aren't autofilled the same way by browsers, which is exactly why the JD text field appeared empty while the two `<input>` fields didn't. The user hadn't done a fresh type→Save JD→reload cycle since the caching feature was deployed, so there was no way to have exercised it yet. No code change needed for caching itself; recommend testing it end-to-end via a genuine save (not relying on values that predate the feature).
+
+Verified via Playwright (fresh browser context isolates from any real prior autofill state), screenshots confirm the width fix at the user's actual reported viewport width (1862px).
+
 ## Not in scope
 
 - JD Portal v2 Phase B (company-grouped History accordion) and Phase C (step-wizard redesign + light/dark theme) — unaffected, still pending, per `docs/todolist/todolist_23Jul2026.md`.

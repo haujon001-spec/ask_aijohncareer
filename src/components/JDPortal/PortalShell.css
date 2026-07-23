@@ -96,11 +96,12 @@
   display: flex;
   flex-direction: column;
   padding: 20px;
-  /* Scales with the viewport instead of a fixed cap, so wide desktop windows
-     aren't left with large dead margins — still capped for readability on
-     ultrawide monitors, and naturally narrows on tablet/mobile. */
-  max-width: min(1400px, 94vw);
-  width: 100%;
+  /* A fixed side gutter instead of a percentage/pixel cap — fills almost the
+     entire viewport on any desktop width, with just enough margin to keep
+     content off the window edges. Still capped for extreme ultrawide
+     monitors, and naturally narrows on tablet/mobile via width: 100%. */
+  width: calc(100% - 48px);
+  max-width: 1800px;
   margin: 0 auto;
 }
 
