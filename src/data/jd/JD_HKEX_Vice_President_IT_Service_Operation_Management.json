@@ -1,0 +1,258 @@
+{
+  "jd_file": "HKEX_IT_Service_Operation_Management_Lead.pdf",
+  "company": "Hong Kong Exchanges and Clearing Limited (HKEX)",
+  "company_slug": "hkex",
+  "job_title": "Head/Lead of IT Service Operation Management",
+  "role_slug": "it-service-operation-management-lead",
+  "industry": "Financial Services / Capital Markets Exchange Technology",
+  "role_summary": "Lead HKEX's enterprise IT Service Operation Management (SOM) function, driving ITIL-aligned Incident, Problem, Change, Request, Asset/Configuration, Knowledge and Identity Governance processes across a hybrid IT estate. Own the strategy and roadmap to modernize ITSM toward AIOps, predictive analytics, and agentic automation, while managing stakeholder relationships, financials, and team development.",
+  "must_have_requirements": [
+    "10+ years in Service Management, IT Operations, or Infrastructure leadership",
+    "Experience in financial institutions, global MNCs, or enterprise-scale technology organizations",
+    "Strong ITSM expertise across Service Design and Service Operation (Incident, Problem, Change, Request, Knowledge)",
+    "Experience with Account Management Lifecycle, Privileged Access Management, and Joiner-Mover-Leaver processes",
+    "Experience with hybrid infrastructure: on-prem, cloud, containers, SaaS",
+    "Strong understanding of SLA/OLA/SLI management and regulatory compliance",
+    "Exposure to SRE, DevOps, or AIOps transformation programs",
+    "Bachelor's or Master's degree in Computer Science, IT, or related discipline",
+    "Proven leadership managing diverse teams and stakeholder relationships at executive and operational levels",
+    "Accountability for IT financial management (budget, CAPEX/OPEX, headcount forecasting)"
+  ],
+  "nice_to_have_requirements": [
+    "ServiceNow platform experience (CIS-SM, CIS-CMDB, CSA, CAD certifications)",
+    "Experience with Digital Certificate Management solution implementation",
+    "Experience with SailPoint Identity Security Cloud (ISC) and IGA processes",
+    "Experience with Enterprise Monitoring/Observability platforms",
+    "Experience with Ansible Automation Platform",
+    "Experience with Chinese domestic vendor products",
+    "Exposure to AI/agentic automation or data intelligence initiatives in IT operations"
+  ],
+  "soft_skills_priority": [
+    "Strategic and forward-thinking leadership",
+    "Stakeholder communication and relationship management",
+    "Customer-centric and process-oriented mindset",
+    "Coaching and team motivation",
+    "Analytical problem-solving and willingness to challenge status quo",
+    "Change and continuous improvement advocacy",
+    "Security and governance mindset"
+  ],
+  "semantic_match_guidance": {
+    "itsm_process_management": [
+      "ITIL",
+      "Incident Management",
+      "Problem Management",
+      "Change Management",
+      "Request Fulfillment",
+      "Configuration Management",
+      "Knowledge Management",
+      "MIM",
+      "Major Incident Management"
+    ],
+    "identity_access_management": [
+      "IGA",
+      "Identity Governance and Administration",
+      "Privileged Access Management",
+      "PAM",
+      "Joiner-Mover-Leaver",
+      "JML",
+      "Account Lifecycle Management",
+      "SailPoint",
+      "CyberArk"
+    ],
+    "automation_and_aiops": [
+      "AIOps",
+      "Agentic AI",
+      "Predictive Analytics",
+      "Process Automation",
+      "Ansible",
+      "RPA",
+      "Data-driven service insights",
+      "Self-healing operations"
+    ],
+    "tooling_platforms": [
+      "ServiceNow",
+      "CIS-SM",
+      "CIS-CMDB",
+      "CSA",
+      "CAD",
+      "CMDB",
+      "Digital Certificate Management",
+      "PKI",
+      "Monitoring and Observability tools",
+      "Splunk",
+      "Dynatrace",
+      "AppDynamics"
+    ],
+    "infrastructure_exposure": [
+      "Hybrid Cloud",
+      "On-prem Infrastructure",
+      "Containers",
+      "Kubernetes",
+      "SaaS",
+      "DevOps",
+      "SRE",
+      "Site Reliability Engineering"
+    ],
+    "governance_and_compliance": [
+      "SLA",
+      "OLA",
+      "SLI",
+      "Regulatory Compliance",
+      "Audit Controls",
+      "Risk Management",
+      "IT Governance"
+    ],
+    "financial_management": [
+      "Budgeting",
+      "Reforecasting",
+      "CAPEX",
+      "OPEX",
+      "Headcount Planning",
+      "Cost Management"
+    ],
+    "leadership_experience": [
+      "Team Leadership",
+      "Cross-functional Collaboration",
+      "Executive Stakeholder Engagement",
+      "Talent Development",
+      "Vendor Management"
+    ]
+  },
+  "scoring_criteria": [
+    {
+      "name": "ITSM Process Leadership Depth",
+      "weight": 20,
+      "why_it_matters": "Core of the role is owning enterprise ITSM processes (Incident, Problem, Change, Request, Knowledge) at scale.",
+      "evidence_type_to_look_for": [
+        "ITIL certification",
+        "process ownership roles",
+        "measurable SLA/KPI improvements",
+        "process redesign initiatives"
+      ]
+    },
+    {
+      "name": "Identity & Access Governance Experience",
+      "weight": 12,
+      "why_it_matters": "Role explicitly requires strong Account Management Lifecycle, PAM, and JML process expertise.",
+      "evidence_type_to_look_for": [
+        "IGA platform experience",
+        "SailPoint",
+        "PAM tools",
+        "JML process ownership"
+      ],
+      "gap_expected": "Many ITSM leaders lack deep IGA/PAM specialization"
+    },
+    {
+      "name": "Hybrid Infrastructure & Cloud Exposure",
+      "weight": 10,
+      "why_it_matters": "Operations span on-prem, cloud, containers, and SaaS environments requiring cross-platform fluency.",
+      "evidence_type_to_look_for": [
+        "cloud migration projects",
+        "container orchestration",
+        "SaaS operations management"
+      ]
+    },
+    {
+      "name": "AIOps / Automation & Modernization Vision",
+      "weight": 12,
+      "why_it_matters": "Role demands driving transformation from traditional ITSM to AI-driven, automated service operations.",
+      "evidence_type_to_look_for": [
+        "AIOps rollout",
+        "automation platform deployment (Ansible)",
+        "predictive analytics use cases",
+        "agentic AI pilots"
+      ],
+      "gap_expected": "Agentic AI in ITSM is emerging; limited real-world case studies expected"
+    },
+    {
+      "name": "Financial & Resource Management",
+      "weight": 8,
+      "why_it_matters": "Accountable for IT budget, CAPEX/OPEX, and headcount planning for the function.",
+      "evidence_type_to_look_for": [
+        "budget ownership",
+        "cost optimization results",
+        "headcount planning experience"
+      ]
+    },
+    {
+      "name": "Stakeholder & Executive Communication",
+      "weight": 10,
+      "why_it_matters": "Requires strong engagement with business and IT executives on service risks, changes, and improvements.",
+      "evidence_type_to_look_for": [
+        "executive reporting",
+        "steering committee participation",
+        "cross-functional stakeholder management"
+      ]
+    },
+    {
+      "name": "Regulatory & Compliance Awareness (Financial Sector)",
+      "weight": 8,
+      "why_it_matters": "HKEX operates in a highly regulated capital markets environment requiring strict compliance controls.",
+      "evidence_type_to_look_for": [
+        "financial services experience",
+        "regulatory audit involvement",
+        "SLA/OLA compliance frameworks"
+      ]
+    },
+    {
+      "name": "Tooling & Platform Expertise (ServiceNow, Monitoring, Ansible)",
+      "weight": 8,
+      "why_it_matters": "Specific tool experience (ServiceNow CIS-SM/CMDB, Ansible, monitoring platforms) is explicitly listed as advantageous.",
+      "evidence_type_to_look_for": [
+        "ServiceNow certifications",
+        "monitoring/observability tool deployment",
+        "Ansible automation projects"
+      ]
+    },
+    {
+      "name": "Team Leadership & Talent Development",
+      "weight": 7,
+      "why_it_matters": "Role requires coaching diverse teams and building organizational capability.",
+      "evidence_type_to_look_for": [
+        "team size managed",
+        "mentoring programs",
+        "capability uplift initiatives"
+      ]
+    },
+    {
+      "name": "Educational & Professional Certification Fit",
+      "weight": 5,
+      "why_it_matters": "Baseline qualification requirement; certifications add credibility for enterprise ITSM leadership.",
+      "evidence_type_to_look_for": [
+        "degree in CS/IT",
+        "ITIL certification",
+        "ServiceNow CIS-SM/CMDB/CSA/CAD certifications"
+      ]
+    }
+  ],
+  "resume_tailoring_guidance": {
+    "mandatory_sections": [
+      "PROFESSIONAL SUMMARY",
+      "AI & AUTOMATION HIGHLIGHTS",
+      "CORE COMPETENCIES",
+      "SOFT SKILLS"
+    ],
+    "summary_focus": [
+      "Position as enterprise ITSM/Service Operations leader with 10+ years driving process, governance, and automation maturity",
+      "Highlight experience across Incident/Problem/Change/Request/Knowledge/Asset management at scale",
+      "Emphasize hybrid infrastructure exposure (cloud, on-prem, SaaS) and AIOps/automation transformation initiatives",
+      "Showcase stakeholder engagement, financial accountability, and team leadership in regulated or enterprise environments",
+      "Mention any identity governance, PAM, or ServiceNow platform experience explicitly"
+    ],
+    "do_not_overclaim": [
+      "Do not claim direct agentic AI implementation unless proven with specific project evidence",
+      "Do not overstate SailPoint ISC or IGA expertise if only exposure-level experience exists",
+      "Avoid implying regulatory financial exchange experience if not previously in banking/capital markets sector",
+      "Do not inflate team size or budget scope beyond documented facts"
+    ]
+  },
+  "cover_letter_guidance": {
+    "tone": "Confident, strategic, and operationally credible — reflecting a senior IT service leader comfortable engaging both executives and technical teams",
+    "positioning": "Present candidate as a transformation-oriented Service Operations leader capable of modernizing ITSM through automation, AIOps, and governance discipline within a regulated financial or enterprise context",
+    "bridge_gaps_honestly": [
+      "If lacking direct capital markets experience, emphasize enterprise-scale or regulated industry equivalence (banking, insurance, MNC IT operations)",
+      "If limited hands-on AIOps/agentic AI experience, highlight automation-first mindset and readiness to lead adoption",
+      "If IGA/PAM exposure is partial, frame as familiarity with identity lifecycle governance principles and cross-team collaboration with IAM teams"
+    ]
+  }
+}
