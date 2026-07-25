@@ -36,11 +36,27 @@ const PORT = process.env.JD_API_PORT || 3010;
 const JD_TXT_DIR = path.join(projectRoot, 'data_raw', 'jd', 'txt');
 const DATA_PROCESSED_ROOT = path.join(projectRoot, 'data_processed');
 const RUN_TIMEOUT_MS = Number(process.env.JD_RUN_TIMEOUT_MS) || 15 * 60 * 1000;
-const FRONTEND_ORIGIN = process.env.JD_PORTAL_FRONTEND_ORIGIN || 'http://localhost:5173';
+// Comma-separated list supported (JD_PORTAL_FRONTEND_ORIGIN="http://a,http://b")
+// so a stray/duplicate Vite dev server landing on a different port (5174, 5175,
+// ...) after 5173 was still occupied by an unclosed previous instance doesn't
+// silently break login with an opaque "Failed to fetch" — confirmed 25 Jul 2026
+// this exact scenario blocked /portal/enroll. Falls back to the common Vite
+// dev-server port range when the env var isn't set at all.
+const FRONTEND_ORIGINS = (process.env.JD_PORTAL_FRONTEND_ORIGIN || 'http://localhost:5173,http://localhost:5174,http://localhost:5175,http://localhost:5176')
+  .split(',')
+  .map((o) => o.trim())
+  .filter(Boolean);
 
 // credentials:true + an explicit origin (not '*') are both required for the
 // httpOnly session cookie to be sent/received across the Vite dev origin.
-app.use(cors({ origin: FRONTEND_ORIGIN, credentials: true }));
+app.use(cors({
+  origin(origin, callback) {
+    // No Origin header (e.g. curl, same-origin) — allow.
+    if (!origin || FRONTEND_ORIGINS.includes(origin)) return callback(null, true);
+    callback(new Error(`CORS: origin ${origin} not in JD_PORTAL_FRONTEND_ORIGIN allow-list`));
+  },
+  credentials: true,
+}));
 app.use(cookieParser());
 app.use(express.json({ limit: '2mb' }));
 app.use(express.urlencoded({ extended: true }));
