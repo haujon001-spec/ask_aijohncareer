@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { fetchHistory, deleteHistoryCompany, toDownloadUrl } from '../../utils/jdApi'
+import { fetchHistory, deleteHistoryCompany, deleteHistoryJob, toDownloadUrl } from '../../utils/jdApi'
 import DocViewerInline from './DocViewerInline'
 import CollapsibleCard from './CollapsibleCard'
 
@@ -58,6 +58,9 @@ function JDHistoryList() {
   const [confirmingDelete, setConfirmingDelete] = useState(null) // employer | null
   const [deleting, setDeleting] = useState(false)
   const [deleteError, setDeleteError] = useState(null)
+  const [confirmingDeleteJob, setConfirmingDeleteJob] = useState(null) // jobKey | null
+  const [deletingJob, setDeletingJob] = useState(false)
+  const [deleteJobError, setDeleteJobError] = useState(null)
 
   const load = useCallback(async () => {
     setLoading(true)
@@ -110,6 +113,24 @@ function JDHistoryList() {
     }
   }
 
+  const handleDeleteJob = async (jobKey, employer, entry) => {
+    setDeletingJob(true)
+    setDeleteJobError(null)
+    try {
+      const result = await deleteHistoryJob(employer, { roleTag: entry.roleTag, date: entry.date })
+      setHistory(result.history)
+      setConfirmingDeleteJob(null)
+      if (expandedJob === jobKey) {
+        setExpandedJob(null)
+        setExpandedDoc(null)
+      }
+    } catch (err) {
+      setDeleteJobError(err.message)
+    } finally {
+      setDeletingJob(false)
+    }
+  }
+
   const companies = groupByCompany(history)
 
   return (
@@ -123,6 +144,7 @@ function JDHistoryList() {
     >
       {error && <div className="jd-banner jd-banner--error">{error}</div>}
       {deleteError && <div className="jd-banner jd-banner--error">{deleteError}</div>}
+      {deleteJobError && <div className="jd-banner jd-banner--error">{deleteJobError}</div>}
 
       {!loading && history.length === 0 && !error && (
         <p style={{ color: 'var(--portal-text-muted)', fontSize: 14 }}>No runs yet.</p>
@@ -202,12 +224,21 @@ function JDHistoryList() {
                   const isJobOpen = expandedJob === jobKey
                   const onToggleView = toggleDoc(jobKey)
 
+                  const isConfirmingDeleteJob = confirmingDeleteJob === jobKey
+
                   return (
                     <div className="jd-history-job" key={jobKey}>
-                      <button
-                        type="button"
+                      <div
                         className="jd-history-job-header"
+                        role="button"
+                        tabIndex={0}
                         onClick={() => toggleJob(jobKey)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault()
+                            toggleJob(jobKey)
+                          }
+                        }}
                         aria-expanded={isJobOpen}
                       >
                         <span className="jd-history-job-title">{entry.roleTag || '(no role tag)'}</span>
@@ -219,9 +250,47 @@ function JDHistoryList() {
                             </span>
                           )}
                           <span className="jd-history-job-date">{entry.date}</span>
+                          <button
+                            type="button"
+                            className="jd-button-danger jd-button-danger--icon"
+                            title={`Delete this run (${entry.roleTag || employer} — ${entry.date})`}
+                            onClick={(e) => {
+                              e.stopPropagation()
+                              setDeleteJobError(null)
+                              setConfirmingDeleteJob(jobKey)
+                            }}
+                          >
+                            🗑
+                          </button>
                           <span className={`jd-history-chevron${isJobOpen ? ' jd-history-chevron--open' : ''}`}>⌄</span>
                         </span>
-                      </button>
+                      </div>
+
+                      {isConfirmingDeleteJob && (
+                        <div className="jd-banner jd-banner--warning" onClick={(e) => e.stopPropagation()}>
+                          Delete this run — <strong>{entry.roleTag || '(no role tag)'}</strong> ({entry.date})? This
+                          moves just this run's scorecard/resume/cover-letter to a trash folder; other runs for{' '}
+                          {employer} are untouched.
+                          <div style={{ marginTop: 10, display: 'flex', gap: 8 }}>
+                            <button
+                              type="button"
+                              className="jd-button-danger"
+                              disabled={deletingJob}
+                              onClick={() => handleDeleteJob(jobKey, employer, entry)}
+                            >
+                              {deletingJob ? 'Deleting…' : 'Delete'}
+                            </button>
+                            <button
+                              type="button"
+                              className="jd-button jd-button-secondary"
+                              disabled={deletingJob}
+                              onClick={() => setConfirmingDeleteJob(null)}
+                            >
+                              Cancel
+                            </button>
+                          </div>
+                        </div>
+                      )}
 
                       {isJobOpen && (
                         <div className="jd-history-job-body">

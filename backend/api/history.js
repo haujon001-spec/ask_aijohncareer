@@ -86,6 +86,104 @@ export function createHistoryRouter({ projectRoot }) {
     res.json({ success: true, employer, count, history });
   });
 
+  // Row-level soft-delete: removes only the ScoreCard/resume/CoverLetter files
+  // for one exact (employer, roleTag, date) run — e.g. deleting Manulife's
+  // "IT_Director_DigitizationAutomation_GWAM" 21JUL2026 run leaves its own
+  // 22JUL2026 run, and Manulife's other role, untouched. Kept alongside the
+  // whole-employer delete above (user decision, 25 Jul 2026) rather than
+  // replacing it — bulk-delete-a-company and delete-one-run are both useful.
+  router.delete('/:employer/run', async (req, res) => {
+    const { employer } = req.params;
+    const { date, roleTag } = req.query;
+
+    if (!date || typeof date !== 'string') {
+      return res.status(400).json({ error: 'date query param is required' });
+    }
+
+    const status = getCurrentRunStatus();
+    if (status.running) {
+      const runningEmployer = deriveJdMetadata(status.jdFile.replace(/\.txt$/, '')).employer;
+      if (runningEmployer === employer) {
+        return res.status(409).json({
+          error: `A run for ${employer} is currently in progress — try again once it finishes.`,
+        });
+      }
+    }
+
+    let employerDir;
+    try {
+      employerDir = resolveWithinRoot(dataProcessedRoot, employer);
+    } catch (err) {
+      if (err instanceof PathGuardError) {
+        return res.status(err.statusCode).json({ error: err.message });
+      }
+      throw err;
+    }
+
+    if (!fs.existsSync(employerDir) || !fs.statSync(employerDir).isDirectory()) {
+      return res.status(404).json({ error: `No history found for ${employer}` });
+    }
+
+    // Same suffix scanHistory()/findPaired() use to pair a scorecard with its
+    // resume/cover-letter — reused here so "one run" means exactly the files
+    // that appear together as one History row.
+    const suffix = roleTag ? `${employer}_${roleTag}_${date}` : `${employer}_${date}`;
+    const TYPE_PREFIXES = [
+      ['ScoreCard', 'JD_SCORECARD'],
+      ['resume', 'JohnHauResume'],
+      ['CoverLetter', 'JohnHauCoverLetter'],
+    ];
+
+    const matchedFiles = [];
+    for (const [typeDir, prefix] of TYPE_PREFIXES) {
+      for (const format of ['txt', 'docx', 'pdf']) {
+        const dir = path.join(employerDir, typeDir, format);
+        if (!fs.existsSync(dir)) continue;
+        for (const filename of fs.readdirSync(dir)) {
+          if (filename.startsWith(prefix) && filename.includes(suffix)) {
+            matchedFiles.push(path.join(dir, filename));
+          }
+        }
+      }
+    }
+
+    if (matchedFiles.length === 0) {
+      return res.status(404).json({ error: `No files found for ${employer} / ${roleTag || '(no role tag)'} / ${date}` });
+    }
+
+    const trashDir = path.join(dataProcessedRoot, '.trash', new Date().toISOString().replace(/[:.]/g, '-'));
+
+    // Same copy-then-delete-with-retry as the whole-employer delete above —
+    // a plain rename reliably EPERMs on this Windows dev box.
+    let lastErr = null;
+    for (const filePath of matchedFiles) {
+      const destination = path.join(trashDir, employer, path.relative(employerDir, filePath));
+      fs.mkdirSync(path.dirname(destination), { recursive: true });
+      for (let attempt = 1; attempt <= 5; attempt++) {
+        try {
+          fs.cpSync(filePath, destination);
+          fs.rmSync(filePath, { force: true });
+          lastErr = null;
+          break;
+        } catch (err) {
+          lastErr = err;
+          if (err.code !== 'EPERM' && err.code !== 'EBUSY') throw err;
+          if (attempt < 5) await new Promise((resolve) => setTimeout(resolve, 150 * attempt));
+        }
+      }
+      if (lastErr) break;
+    }
+
+    if (lastErr) {
+      return res.status(500).json({
+        error: `Could not move this run's files to trash — a file may still be in use. Try again in a moment. (${lastErr.code})`,
+      });
+    }
+
+    const { count, history } = scanHistory({ projectRoot, dataProcessedRoot });
+    res.json({ success: true, employer, roleTag: roleTag || null, date, filesDeleted: matchedFiles.length, count, history });
+  });
+
   return router;
 }
 
