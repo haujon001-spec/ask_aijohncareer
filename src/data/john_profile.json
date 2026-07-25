@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-30T06:02:48.406Z",
+  "timestamp": "2026-07-25T11:48:09.887525Z",
   "sourceFile": "C:\\Users\\haujo\\projects\\DEV\\ask_aijohncareer\\src\\data\\john_profile.json",
   "profile": {
     "metadata": {
@@ -21,7 +21,13 @@
         "career_break_years": 3.25,
         "actual_work_experience_years": 27.33,
         "notes": "Calculator: (1995-July 2025: 30 years 7 months) minus (Aug 2020-Nov 2023: 3 years 3 months) = 27 years 4 months"
-      }
+      },
+      "resume_sources": [
+        "JohnHauResume2025-AIA.txt",
+        "JohnHauResume2020.txt",
+        "JohnHauResume2017.txt"
+      ],
+      "last_backfilled": "2026-07-25T11:48:09.887525Z"
     },
     "summary": "Senior technology leader with extensive years of IT infrastructure experience across Virtual Desktop Infrastructure (VDI), Desktop in Data Center (DiDC), End User Computing (EUC), lifecycle management, performance engineering, and global escalation leadership across major financial institutions: Morgan Stanley, Bank of America, AIA, Edge Technology Group, and Merrill Lynch. Former VP & Asia Manager for Workspace Virtualization Engineering at Morgan Stanley, serving as the primary APAC escalation lead for VDI issues across APAC, EMEA, and NA. Architected global VDI blueprints supporting 120,000 desktops and authored 8 global white papers. Hands-on innovator with proven ability to build AI-powered automation tools, dashboards, and agentic systems, including an independently built production-grade algorithmic trading platform combining quantitative modeling, machine learning, multi-agent LLM orchestration, and live risk-managed exchange execution.",
     "ai_projects": [
@@ -491,6 +497,100 @@
         "company": "Morgan Stanley",
         "scale": "600 users in Australia (first critical production VDI)",
         "impact": "Successfully deployed and supported Citrix XenDesktop for default PC usage; expanded globally to 60,000 desktops"
+      },
+      {
+        "achievement": "EUS/Smart Hand RFP Renegotiation",
+        "company": "AIA International Ltd",
+        "cost_savings": "20% reduction in contract cost",
+        "impact": "New RFP terms approved for EUS and Smart Hand Services"
+      },
+      {
+        "achievement": "CrowdStrike BSOD Incident Response",
+        "company": "AIA International Ltd",
+        "metric": "90% of devices fixed within 1 day",
+        "duration": "Remaining devices resolved within 3 days",
+        "impact": "Minimized business impact during 2024 global outage"
+      },
+      {
+        "achievement": "Autosys Job Optimization",
+        "company": "AIA International Ltd",
+        "metric": "20% reduction in Autosys jobs",
+        "cost_savings": "USD 50K annually"
+      },
+      {
+        "achievement": "ITDR Test Program Success",
+        "company": "AIA International Ltd",
+        "scale": "Several hundred applications tested",
+        "metric": "3 DR tests per year, 100% success rate"
+      },
+      {
+        "achievement": "ITDR Infrastructure Cost Reduction",
+        "company": "AIA International Ltd",
+        "cost_savings": "USD 7.6M to USD 6.1M infrastructure cost",
+        "impact": "Approved by SMT for critical application inclusion in ITDR scope"
+      },
+      {
+        "achievement": "Data Automation Training Impact",
+        "company": "AIA International Ltd",
+        "metric": "1 day of manual work reduced to 5 minutes",
+        "impact": "Enabled via Power Query-based batch automation training"
+      },
+      {
+        "achievement": "Team Hiring Expansion",
+        "company": "AIA International Ltd",
+        "scale": "8 new hires from 40+ candidates interviewed",
+        "impact": "Standardized, objective hiring framework introduced"
+      },
+      {
+        "achievement": "No.1 Global Trading Application Revamp",
+        "company": "Morgan Stanley",
+        "metric": "US$ multi-billions daily trading volume",
+        "tech": "Citrix XenApp"
+      },
+      {
+        "achievement": "Offshore Vendor Desktop Cost Savings",
+        "company": "Morgan Stanley",
+        "scale": "10,000 offshore vendor users",
+        "cost_savings": "Multi-millions of dollars YoY",
+        "impact": "Replaced traditional local desktops in branch offices with secure cloud solutions"
+      },
+      {
+        "achievement": "Asia Datacenter Power Down & BCP Testing Management",
+        "company": "Morgan Stanley",
+        "scale": "5 countries (HK, JP, KR, AU, IN)"
+      },
+      {
+        "achievement": "Active Monitoring Tool Introduction",
+        "company": "Morgan Stanley",
+        "metric": "90% reduction in troubleshooting time",
+        "impact": "Delivered full visibility into VDI stack for global Windows team"
+      },
+      {
+        "achievement": "Citrix External Trading Support Model Offload",
+        "company": "Morgan Stanley",
+        "metric": "Up to 40% reduction in daily support tasks",
+        "impact": "Trained Asia Application Team and Windows Server team to independently support Citrix External Trading"
+      },
+      {
+        "achievement": "Career Progression at Merrill Lynch",
+        "company": "Merrill Lynch",
+        "duration": "9.5 years",
+        "impact": "Advanced from Desktop Support (3 years) to Windows Server Operations (6.5 years) to AVP Deputy Team Head"
+      },
+      {
+        "achievement": "Desktop Support Coverage",
+        "company": "Merrill Lynch",
+        "scale": "1,000 users across 11 non-trading floor departments"
+      },
+      {
+        "achievement": "Workstation OS Upgrade",
+        "company": "Siemens H.K. Ltd.",
+        "scale": "150+ workstations upgraded from Windows 3.51/95 to Windows NT 4.0"
+      },
+      {
+        "achievement": "Workstation Deployment and Support",
+        "company": "Alco Plastic Products Ltd",
+        "scale": "40+ workstations running DOS 6.11, Windows 3.11, and Windows 95"
       }
     ],
     "professional_experience": [
@@ -510,7 +610,23 @@
           "Executed HKMA-aligned DR drills ensuring full regulatory compliance",
           "Led 1,700-user office relocation with zero downtime and seamless service continuity",
           "Improved operational productivity by ~30% through automation and process optimization",
-          "Strengthened cross-team collaboration across APAC regions and global support model alignment"
+          "Strengthened cross-team collaboration across APAC regions and global support model alignment",
+          "Delivered strategic planning presentations to senior management for the 2024 and 2025 IT roadmap.",
+          "Reduced headcount by **two positions** through automation of operational workflows using PowerShell and Power Query.",
+          "Improved stakeholder communication and deliverable turnaround time by **2 days**.",
+          "Executed **3 disaster recovery drills** in 2024, achieving governance improvements through **40+ process enhancements**.",
+          "Oversaw vendor management and completed departmental budget planning for 2024/2025, including cost analysis, approvals, and SMT presentations.",
+          "Acted as subject matter expert resolving the 2024 CrowdStrike BSOD outage, restoring **90% of affected devices within the first day**.",
+          "Led root cause investigation into a CEO global messaging incident on mobile devices, presenting RCA and permanent fix to C-suite leadership.",
+          "Identified root cause of VIP client device non-compliance and implemented governance documentation and improved checkout scripts to prevent recurrence.",
+          "Provided technical direction for the design of a tier-1 resiliency and high-availability architecture to meet DR/BCP requirements.",
+          "Trained team members on data automation techniques, reducing a full day of manual work to **5 minutes** using Power Query.",
+          "Chaired ITDR governance meetings involving hundreds of colleagues across Application, Architecture, and Infrastructure teams to coordinate DR reviews.",
+          "Promoted **2 colleagues** within the Production Control team in 2025.",
+          "Built and led a standardized, objective hiring framework, interviewing over **40 candidates** and hiring **8 additional team members**.",
+          "Automated onboarding, offboarding, and move workflows by integrating Workday approvals with ServiceNow ticket assignment, partnering with Group IT and HR.",
+          "Championed Phase 1 deployment of a self-service IT catalogue for software and hardware ordering in collaboration with Group IT.",
+          "Transitioned EUS software/hardware procurement from an annual upfront cost model to a pay-as-you-go model, partnering with Finance and SMT."
         ]
       },
       {
@@ -551,7 +667,11 @@
           "Empowered subordinates through delegations, documentations, and training; improved work-life balance by 33%",
           "Facilitated local teams to align with global 24x7 support model",
           "Improved internal and external communications through RACI model and interactive meetings",
-          "Successfully presented team goals and deliverables to COO and CEO; achieved 80% Q1 2020 targets"
+          "Successfully presented team goals and deliverables to COO and CEO; achieved 80% Q1 2020 targets",
+          "Directly engaged with client **CTOs** and technical teams to spearhead the quality of IT infrastructure service delivery for Financial Services clients",
+          "Mitigated risk exposure through IT audits and **infrastructure penetration testing** engagements",
+          "Drove measurable improvement of **overall KPIs** for the Centralized Services team",
+          "Managed end-to-end IT operations via **ticketing systems**, overseeing incident and problem management workflows across teams"
         ]
       },
       {
@@ -588,7 +708,22 @@
           "Managed reclaim programs and lifecycle operations across global infrastructure",
           "Built global runbooks, RCA frameworks, and lifecycle processes",
           "Ensured 100% compliance as IT Risk Officer for virtualization domain",
-          "Engaged vendors on product roadmaps and arranged workshops for organization-wide technology awareness"
+          "Engaged vendors on product roadmaps and arranged workshops for organization-wide technology awareness",
+          "Revamped Morgan Stanley's **No.1 global trading application** (US$ multi-billions in daily trading volume) using Citrix XenApp technology",
+          "Engineered secure cloud desktop solutions for **10,000 offshore vendor users**, replacing traditional local desktops in branch offices and saving multi-millions of dollars year-over-year",
+          "Managed Asia datacenter power-down and BCP testing events across **5 countries** (Hong Kong, Japan, Korea, Australia, India)",
+          "Served as member of Morgan Stanley's virtual management committee, mentoring and coaching team members through the promotion process",
+          "Extended offloading of virtualization problem cases to Asia Winops Server team, enabling support of **30,000 desktops** and 400+ published apps globally through training and documentation",
+          "Introduced an active monitoring tool for virtualization products, cutting troubleshooting time by **90%** and delivering full visibility into the VDI stack for the global Windows team",
+          "Presented WM-AU virtual desktop optimization results to global engineering teams and senior management, enabling **NA and EU** teams to avoid similar deployment issues",
+          "Trained Asia Application Team and Windows Server team to independently support Citrix External Trading, offloading and reducing daily support tasks by **up to 40%**",
+          "Resolved a memory leakage issue in the SQL reporting tool running on Citrix XenApp by leveraging **AppSense Performance Manager**",
+          "Diagnosed and resolved multiple VDI outages across **Hong Kong, Australia, and North America**, tracing root causes to network switch failures, NetApp filer hardware failures, and improper XenDesktop patching",
+          "Successfully migrated Citrix XenApp and Softgrid infrastructure to a **new datacenter**",
+          "Drove deployment of the **first-generation ESX 3.5 farms** in Asia and stood up vCenter infrastructure for the region",
+          "Trained the Asia Floor Support team to support Virtual Desktops and collaborated with service managers to develop a new support model",
+          "Led POC and pilot testing initiatives for Virtual Desktops across **FX IT remote trading workstations**, China Application Developers, and branch offices in India, Singapore, Taiwan, and Australia",
+          "Initiated and led deployment of **Citrix XenDesktop 3 and 4 farms** across Asia, training Winops team members to build out the remaining farm infrastructure"
         ]
       },
       {
@@ -622,7 +757,41 @@
           "Designed and implemented child proxy server for WAN bandwidth optimization",
           "Managed BCP invocation architecture, server builds, and configurations",
           "Served as senior advisor on enterprise Windows infrastructure",
-          "Awarded 2006 Merrill Lynch Individual Special Achievement Award for outstanding innovative business results"
+          "Awarded 2006 Merrill Lynch Individual Special Achievement Award for outstanding innovative business results",
+          "Progressed through **9.5 years** of tenure at Merrill Lynch, advancing from Desktop Support (3 years) to Windows Server Operations (6.5 years) and ultimately to AVP Deputy Team Head",
+          "Implemented clustering solution on the Cognos application to boost **high availability** for Equity Trade performance and Research systems",
+          "Deployed Recon scheduler with terminal server solution enabling **service access for users outside Hong Kong**, alongside cluster server implementations for IBK Itrack, Eforms, GPS, and Ilink applications",
+          "Supported web application rollout and administration for **Weblogic, Cold Fusion, and Siteminder** platforms",
+          "Provided technical guidance on core-build server standardization to **team members across regional countries**",
+          "Delivered desktop engineering support to **1,000 users** across 11 non-trading floor departments in Hong Kong",
+          "Migrated **200+ NT 4.0 workstations** to Windows 2000 and contributed to Y2K desktop integration testing and SMS-based application rollout",
+          "Supported enterprise client applications spanning NT Servers, UNIX, Mainframes, AS/400, and SNA Gateways, including **SQL/Sybase/Oracle databases** and market data feeds (Reuters, Infocast, SmartCat) and internal trading applications"
+        ]
+      },
+      {
+        "company": "Siemens H.K. Ltd.",
+        "title": "IT support Officer, MIS department",
+        "period": "Apr 1997 - Apr 1998",
+        "scope": "Supported servers and desktops requiring direct interaction with business users within the MIS department",
+        "highlights": [
+          "Resolved desktop-level technical issues spanning network services, client applications, **ccMail**, Lotus Notes, and file/print systems for business users.",
+          "Delivered technical training to internal IT staff and end users, authoring supporting documentation and technical manuals.",
+          "Managed hardware and software provisioning and maintained full inventory records, while implementing **internet firewall** and anti-virus security projects alongside MS BackOffice (SQL Server, MS Exchange) installations.",
+          "Maintained core systems administration including login scripts, domain security, and backups, and coordinated with vendors on computer peripheral relocations.",
+          "Designed and implemented a new computer room, facilitating network systems, hubs, and other infrastructure devices."
+        ]
+      },
+      {
+        "company": "Alco Plastic Products Ltd",
+        "title": "PC support Engineer, EDP team",
+        "period": "Feb 1995 - Mar 1997",
+        "scope": "",
+        "highlights": [
+          "Maintained file and print services on Novell NetWare 3.12 to support daily business operations.",
+          "Supported internal accounting, invoicing, billing, and warehousing systems critical to manufacturing operations.",
+          "Installed and supported **40+ workstations** running DOS 6.11, Windows 3.11, and Windows 95.",
+          "Managed general systems backup and administered user accounts across the organization.",
+          "Delivered first-level helpdesk support for PC LAN functions and user queries."
         ]
       }
     ],
@@ -968,7 +1137,67 @@
       "Trading application performance optimization",
       "Algorithmic trading system design (backtesting, regime detection, ML signals)",
       "Live risk-managed exchange execution and multi-account trading operations",
-      "Multi-agent LLM orchestration for research, evaluation, and QA"
+      "Multi-agent LLM orchestration for research, evaluation, and QA",
+      "CrowdStrike BSOD incident response",
+      "RFP negotiation for EUS contract",
+      "Autosys job optimization",
+      "ITDR test success rate",
+      "Workday-ServiceNow integration",
+      "self-service IT catalogue",
+      "pay-as-you-go procurement model",
+      "vendor management and budgeting",
+      "hiring framework and interviews",
+      "VIP device compliance root cause analysis",
+      "CEO messaging incident RCA",
+      "tier-1 resiliency architecture",
+      "Client CTO engagement",
+      "IT audit and penetration testing",
+      "Centralized Services KPIs",
+      "Ticketing system operations management",
+      "virtual management committee",
+      "offshore vendor cost savings",
+      "datacenter power down and BCP testing",
+      "trading application revamp",
+      "knowledge transfer scale (30K desktops, 400 apps)",
+      "active monitoring tool 90% troubleshooting reduction",
+      "WM-AU virtual desktop presentation",
+      "Citrix External Trading support offload",
+      "SQL reporting tool memory leak AppSense",
+      "VDI outage root cause analysis HK AU NA",
+      "Citrix XenApp Softgrid datacenter migration",
+      "ESX 3.5 first-gen farm deployment vCenter Asia",
+      "Floor Support team training support model",
+      "POC pilot testing FX IT remote trading",
+      "XenDesktop 3 and 4 farm deployment Asia",
+      "Cognos clustering",
+      "Recon scheduler terminal server solution",
+      "IBK Itrack",
+      "Eforms",
+      "GPS",
+      "Ilink cluster servers",
+      "Weblogic",
+      "Cold Fusion",
+      "Siteminder",
+      "Y2K desktop integration testing",
+      "NT 4.0 to Windows 2000 migration",
+      "AS/400 support",
+      "SNA Gateways",
+      "market data applications",
+      "9.5 years tenure progression",
+      "Novell File Services",
+      "Windows NT 4.0",
+      "MIS department",
+      "internet firewalls",
+      "MS BackOffice",
+      "ccMail",
+      "Lotus Notes",
+      "computer room design",
+      "Novell NetWare 3.12",
+      "EDP team",
+      "PC support engineer",
+      "helpdesk support",
+      "workstation installation",
+      "manufacturing IT support"
     ]
   }
 }
