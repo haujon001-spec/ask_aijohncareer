@@ -79,6 +79,7 @@ import os
 import re
 import subprocess
 import sys
+import time
 import requests
 from pathlib import Path
 from datetime import datetime
@@ -415,6 +416,14 @@ HEADERS = {
     "X-Title": "JD Application Generator - John Hau",
 }
 
+# Retried on: connection/timeout errors, and status codes observed in practice
+# to be transient on OpenRouter's multi-provider routing (a request can 403
+# against one upstream route and succeed seconds later against another for
+# the identical key/model — confirmed 25 Jul 2026, not a real auth failure).
+LLM_MAX_ATTEMPTS = 3
+LLM_RETRY_BACKOFF_SEC = 3
+LLM_RETRYABLE_STATUS_CODES = {403, 408, 425, 429, 500, 502, 503, 504}
+
 if batch_mode:
     jd_files = sorted(DEFAULT_JD_DIR.glob("JD_*.txt"))
     if not jd_files:
@@ -568,13 +577,37 @@ def call_llm(system_prompt, user_prompt, max_tokens=6000, label="", response_for
     }
     if response_format:
         payload["response_format"] = response_format
-    resp = requests.post(
-        LLM_ENDPOINT,
-        headers=HEADERS,
-        json=payload,
-        timeout=180,
-    )
-    resp.raise_for_status()
+
+    resp = None
+    for attempt in range(1, LLM_MAX_ATTEMPTS + 1):
+        try:
+            resp = requests.post(
+                LLM_ENDPOINT,
+                headers=HEADERS,
+                json=payload,
+                timeout=180,
+            )
+        except requests.exceptions.RequestException as exc:
+            # Connection/timeout failures — always worth a retry until the last attempt.
+            if attempt < LLM_MAX_ATTEMPTS:
+                wait = LLM_RETRY_BACKOFF_SEC * attempt
+                print(
+                    f"  ⚠️  {label or 'unlabeled'} call failed ({exc}) "
+                    f"(attempt {attempt}/{LLM_MAX_ATTEMPTS}) — retrying in {wait}s..."
+                )
+                time.sleep(wait)
+                continue
+            raise
+        if resp.status_code in LLM_RETRYABLE_STATUS_CODES and attempt < LLM_MAX_ATTEMPTS:
+            wait = LLM_RETRY_BACKOFF_SEC * attempt
+            print(
+                f"  ⚠️  {resp.status_code} from {label or 'unlabeled'} call "
+                f"(attempt {attempt}/{LLM_MAX_ATTEMPTS}) — retrying in {wait}s..."
+            )
+            time.sleep(wait)
+            continue
+        resp.raise_for_status()  # raises immediately for non-retryable or attempts-exhausted errors
+        break
     data = resp.json()
     choice = data["choices"][0]
     message = choice["message"]

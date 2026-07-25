@@ -21,9 +21,18 @@ Built and verified end-to-end (real Playwright run against the live dev stack, i
 
 Also committed two items left uncommitted at the end of the 23 Jul session (hiring-manager explainer deck v2 + Live Demo slides, and their status-doc/data-file companions) before starting today's work.
 
+## New today (25 Jul 2026, later same day) — Phase C follow-up: textarea UX + pipeline retry fix
+
+User exercised the new wizard for a real run and reported two issues, logged here per soul.md intake workflow:
+
+1. **Configure step's JD-paste textarea too small** — a leftover from when it shared the screen with the Run panel below it. **Fixed 25 Jul 2026** — `min-height` raised 140px → 360px desktop (responsive: 260px/200px at 768px/480px). See `docs/guides/JDPORTALPHASECFOLLOWUP_25JUL2026.md`.
+2. **Real run failed: "JD pipeline exited with a non-zero status"** (Manulife JD, `--refresh-blueprint --ResumeAdjustment --llm=sonnet`, mode=all). **Root-caused and fixed 25 Jul 2026** — a transient 403 from OpenRouter's multi-provider routing (confirmed: same key/model worked seconds later; not an invalid key, not a wizard bug). `call_llm()` in `scripts/jd_scorecard_resume_v2.py` had zero retry logic — a single transient error killed the whole 5-call pipeline. Added retry-with-backoff (3 attempts, linear backoff) on connection errors and `{403,408,425,429,500,502,503,504}`. Re-ran the exact failing scenario end-to-end — succeeded, all 6 output files written. Full record: `docs/guides/JDPORTALPHASECFOLLOWUP_25JUL2026.md`.
+   - **Separate finding, resolved:** a stale Windows User-level `OPENROUTER_API_KEY` env var (dead key, different from the working `.env.local` one) was found during diagnosis — didn't cause this failure but was a latent landmine for anything reading `os.environ` directly. Removed per user decision.
+
 ## Priority order
 
 1. ~~JD Portal v2 Phase C~~ — **done, verified 25 Jul 2026**
-2. Dynamic width further enhancement (per-breakpoint values) — medium priority, carried forward
-3. Remaining JD Automation Portal phases (NLP, integration, Docker, dev env docs, deploy)
-4. LinkedIn automation scoping — not started
+2. ~~Phase C follow-up: textarea UX + pipeline retry fix~~ — **done, verified 25 Jul 2026**
+3. Dynamic width further enhancement (per-breakpoint values) — medium priority, carried forward
+4. Remaining JD Automation Portal phases (NLP, integration, Docker, dev env docs, deploy)
+5. LinkedIn automation scoping — not started

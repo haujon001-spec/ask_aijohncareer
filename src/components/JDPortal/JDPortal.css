@@ -86,7 +86,7 @@
 
 .jd-field textarea {
   resize: vertical;
-  min-height: 140px;
+  min-height: 360px;
   line-height: 1.5;
 }
 
@@ -501,12 +501,20 @@
   .jd-portal-card {
     padding: 14px;
   }
+
+  .jd-field textarea {
+    min-height: 260px;
+  }
 }
 
 @media (max-width: 480px) {
   .jd-portal-card {
     padding: 12px;
     border-radius: 10px;
+  }
+
+  .jd-field textarea {
+    min-height: 200px;
   }
 
   .jd-download-links {
