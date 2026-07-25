@@ -42,10 +42,19 @@ User reported three items for the backlog, clarified via questions before loggin
 
 User confirmed all three items sit above the existing carried-forward backlog in priority order; items 2 and 3 remain unimplemented by explicit user decision (scoping only), ready for a future implementation session.
 
+## History delete implementation (later still, 25 Jul 2026)
+
+**Status: Done and verified.** Full record: `docs/guides/JDPORTALHISTORYDELETE_25JUL2026.md`.
+
+Implemented item 4 from the backlog above: `DELETE /api/history/:employer` soft-deletes a company's `data_processed/<Company>/` outputs to a timestamped `data_processed/.trash/` folder (source JD text and blueprint cache left alone), guarded by a `409` if a run for that employer is currently in progress. Frontend: trash-icon button on each History company row opens an inline confirm banner (matching `JDUploadForm.jsx`'s existing conflict-banner style), company header converted from `<button>` to `<div role="button">` to allow nesting the delete control.
+
+**Notable finding:** a plain `fs.renameSync` reliably threw `EPERM` on this Windows dev box, confirmed via isolated `node -e` tests to be deterministic (not a transient lock, not the running server holding its own handle) — most likely Vite's dev-server file watcher (no `server.watch` exclusions configured) holding a directory-change handle on `data_processed/`. Fixed by switching to `fs.cpSync` (copy) + `fs.rmSync` (delete) instead of an atomic rename; retry-with-backoff kept around both calls for genuinely transient locks (e.g. AV scanning a fresh `.docx`), but that retry loop was never what fixed the actual bug.
+
+Verified via Playwright against the live dev stack (same MFA-swap technique, re-approved, `secrets/jd_portal_auth.json` restored and confirmed byte-identical after): concurrent-run guard returned `409` as expected, inline banner confirmed (not a native dialog), company row disappeared from the list post-delete, and the filesystem move landed correctly (`data_processed/DeleteTestCo2/` gone, full tree present under `.trash/<timestamp>/DeleteTestCo2/`). `npm run build` clean. All throwaway test artifacts (trash folder, source JD text, blueprint cache JSON) deleted afterward — none were git-tracked.
+
 ## Known open items
 
-- History delete capability — **scoped**, ready to implement. `docs/guides/JDPORTALHISTORYDELETE_SCOPING_25JUL2026.md`.
-- Authoritative `john_profile.json` update capability — **scoped**, larger epic, ready to implement. Includes the `/api/consolidate` security fix. `docs/guides/JOHNPROFILEUPDATE_SCOPING_25JUL2026.md`.
+- Authoritative `john_profile.json` update capability — **scoped**, larger epic, next up to implement. Includes the `/api/consolidate` security fix. `docs/guides/JOHNPROFILEUPDATE_SCOPING_25JUL2026.md`.
 - Dynamic width further enhancement (per-breakpoint values) — medium priority.
 - JD Automation Portal Phases 3-7 (NLP profile-update — now superseded by the profile-update epic above, Docker, VPS deploy) — still outstanding, includes wiring the new auth/view/settings routes and both `secrets/jd_portal_auth.json` + `secrets/jd_portal_llm_keys.json` provisioning onto the VPS whenever that phase starts.
 - LinkedIn job-search automation scoping — not started.

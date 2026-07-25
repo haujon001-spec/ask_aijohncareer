@@ -78,6 +78,10 @@ export function fetchHistory({ employer, limit } = {}) {
   return request(`/api/history${qs ? `?${qs}` : ''}`)
 }
 
+export function deleteHistoryCompany(employer) {
+  return request(`/api/history/${encodeURIComponent(employer)}`, { method: 'DELETE' })
+}
+
 // Normalizes the two download-path shapes returned by the API:
 //  - /api/jd/run's downloadUrls are already-prefixed: "/api/download/Acme/ScoreCard/txt/x.txt"
 //  - /api/history's scorecard/resume/coverLetter fields are repo-relative: "data_processed/Acme/ScoreCard/txt/x.txt"

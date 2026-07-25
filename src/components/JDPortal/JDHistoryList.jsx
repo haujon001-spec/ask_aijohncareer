@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { fetchHistory, toDownloadUrl } from '../../utils/jdApi'
+import { fetchHistory, deleteHistoryCompany, toDownloadUrl } from '../../utils/jdApi'
 import DocViewerInline from './DocViewerInline'
 import CollapsibleCard from './CollapsibleCard'
 
@@ -55,6 +55,9 @@ function JDHistoryList() {
   const [expandedCompany, setExpandedCompany] = useState(null)
   const [expandedJob, setExpandedJob] = useState(null) // jobKey | null
   const [expandedDoc, setExpandedDoc] = useState(null) // { key, jobKey, path, label } | null
+  const [confirmingDelete, setConfirmingDelete] = useState(null) // employer | null
+  const [deleting, setDeleting] = useState(false)
+  const [deleteError, setDeleteError] = useState(null)
 
   const load = useCallback(async () => {
     setLoading(true)
@@ -88,6 +91,25 @@ function JDHistoryList() {
     setExpandedDoc((prev) => (prev?.key === docKey ? null : { key: docKey, jobKey, path, label }))
   }
 
+  const handleDelete = async (employer) => {
+    setDeleting(true)
+    setDeleteError(null)
+    try {
+      const result = await deleteHistoryCompany(employer)
+      setHistory(result.history)
+      setConfirmingDelete(null)
+      if (expandedCompany === employer) {
+        setExpandedCompany(null)
+        setExpandedJob(null)
+        setExpandedDoc(null)
+      }
+    } catch (err) {
+      setDeleteError(err.message)
+    } finally {
+      setDeleting(false)
+    }
+  }
+
   const companies = groupByCompany(history)
 
   return (
@@ -100,6 +122,7 @@ function JDHistoryList() {
       }
     >
       {error && <div className="jd-banner jd-banner--error">{error}</div>}
+      {deleteError && <div className="jd-banner jd-banner--error">{deleteError}</div>}
 
       {!loading && history.length === 0 && !error && (
         <p style={{ color: 'var(--portal-text-muted)', fontSize: 14 }}>No runs yet.</p>
@@ -108,12 +131,21 @@ function JDHistoryList() {
       {companies.map(({ employer, jobs }) => {
         const isCompanyOpen = expandedCompany === employer
 
+        const isConfirmingDelete = confirmingDelete === employer
+
         return (
           <div className="jd-history-card" key={employer}>
-            <button
-              type="button"
+            <div
               className="jd-history-card-header"
+              role="button"
+              tabIndex={0}
               onClick={() => toggleCompany(employer)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault()
+                  toggleCompany(employer)
+                }
+              }}
               aria-expanded={isCompanyOpen}
             >
               <span className="jd-history-card-title">{employer}</span>
@@ -121,9 +153,47 @@ function JDHistoryList() {
                 <span className="jd-history-card-date">
                   {jobs.length} run{jobs.length === 1 ? '' : 's'}
                 </span>
+                <button
+                  type="button"
+                  className="jd-button-danger jd-button-danger--icon"
+                  title={`Delete all history for ${employer}`}
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    setDeleteError(null)
+                    setConfirmingDelete(employer)
+                  }}
+                >
+                  🗑
+                </button>
                 <span className={`jd-history-chevron${isCompanyOpen ? ' jd-history-chevron--open' : ''}`}>⌄</span>
               </span>
-            </button>
+            </div>
+
+            {isConfirmingDelete && (
+              <div className="jd-banner jd-banner--warning" onClick={(e) => e.stopPropagation()}>
+                Delete all {jobs.length} run{jobs.length === 1 ? '' : 's'} for <strong>{employer}</strong>? This
+                moves the generated scorecards/resumes/cover-letters to a trash folder (source JD text and the
+                blueprint cache are kept).
+                <div style={{ marginTop: 10, display: 'flex', gap: 8 }}>
+                  <button
+                    type="button"
+                    className="jd-button-danger"
+                    disabled={deleting}
+                    onClick={() => handleDelete(employer)}
+                  >
+                    {deleting ? 'Deleting…' : 'Delete'}
+                  </button>
+                  <button
+                    type="button"
+                    className="jd-button jd-button-secondary"
+                    disabled={deleting}
+                    onClick={() => setConfirmingDelete(null)}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            )}
 
             {isCompanyOpen && (
               <div className="jd-history-card-body">
