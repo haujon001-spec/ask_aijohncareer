@@ -29,20 +29,23 @@ User exercised the new wizard for real and reported two issues:
 
 Verified via Playwright against the live dev stack (same MFA-swap technique, re-approved, `secrets/jd_portal_auth.json` restored and confirmed byte-identical after) — textarea renders at exactly 360px/200px as specified in both themes; `npm run build` and `py_compile` both clean.
 
-## Backlog intake: Reports view bug, History delete, profile-update capability (later still, 25 Jul 2026)
+## Backlog intake + scoping: Reports view bug, History delete, profile-update capability (later still, 25 Jul 2026)
 
-**Status: Logged only — nothing implemented.** Full detail in `docs/todolist/todolist_25Jul2026.md`'s "New backlog items" section.
+**Status: Reports bug fixed and verified. History delete and profile-update epic scoped (not implemented) at user's explicit request.**
 
-User reported three items for the backlog, clarified via questions before logging (per soul.md intake — one item, "History > ", was initially incomplete and needed a follow-up question):
+User reported three items for the backlog, clarified via questions before logging (per soul.md intake — one item, "History > ", was initially incomplete and needed a follow-up question), then asked to start scoping immediately. Ran three parallel investigation passes (one per item), presented findings, and got decisions on the open questions each surfaced before proceeding.
 
-1. Reports step — top of a viewed Resume/Scorecard/Cover Letter is cut off/hidden. Not yet root-caused.
-2. History — ability to delete run files at the `[Company]` level. Scope (soft vs. hard delete, granularity, confirmation UX, new backend route) not yet defined.
-3. Authoritative `john_profile.json` update capability — 4-part epic: manual bullet-point addition, NLP-assisted resume-diff-and-merge (overlaps the existing "NLP `update_profile_json`" backlog item, needs reconciling), versioned restore (`john_profile_[date].json`), and a diff/compare view.
+1. **Reports step — top of viewed document cut off/hidden.** **Root-caused and fixed.** `.jd-portal-card`'s `backdrop-filter` was establishing a new CSS containing block for `DocViewer`'s `position: fixed` modal, breaking it out of full-viewport coverage — content bled above the (much smaller) card and was permanently unreachable since scroll can't go negative. Fixed by portaling `DocViewer` to `document.body` via `createPortal`, with `data-portal-theme` re-applied directly on the portaled root (it's now outside `.portal-shell`'s themed subtree). `DocViewer.jsx` backed up first (`.20260725_V1.bak`). Verified via Playwright: modal title/content fully visible at mount, stays fixed when the underlying page is scrolled (the exact original symptom), and correctly re-themes on toggle (`data-portal-theme` confirmed `fintech`→`daylight`). History's separate `DocViewerInline` component was confirmed unaffected (not a fixed-position element, no equivalent bug).
+2. **History — ability to delete run files.** **Scoped, not implemented** (explicit user request: scoping only for this and item 3). Company-level delete confirmed scoped to `data_processed/<Company>/` outputs only — source JD text and blueprint cache are left alone. Full architecture and open questions (header-button restructure needed since rows are literal `<button>`s, no trash/undo pattern anywhere in this codebase, no stable run ID, concurrent-run guard needed): `docs/guides/JDPORTALHISTORYDELETE_SCOPING_25JUL2026.md`.
+3. **Authoritative `john_profile.json` update capability.** **Scoped, not implemented.** 4-part epic; user confirmed LLM-merged changes require an approval/preview step before writing. Full scoping: `docs/guides/JOHNPROFILEUPDATE_SCOPING_25JUL2026.md`.
+   - **Security finding surfaced during scoping:** a live, unauthenticated `POST /api/consolidate` route already exists on production (`backend/server.js`, port 3000, `askcareer-ai.com`) — dead code (no frontend caller) but would corrupt `john_profile.json` if ever triggered (wrong nesting level, wrong key names, no backup, no rate limit). User decided to fold its removal into the profile-update epic's implementation rather than patch it separately now.
 
-User confirmed these sit above the existing carried-forward backlog in priority order.
+User confirmed all three items sit above the existing carried-forward backlog in priority order; items 2 and 3 remain unimplemented by explicit user decision (scoping only), ready for a future implementation session.
 
-## Known open items (unchanged, carried forward)
+## Known open items
 
+- History delete capability — **scoped**, ready to implement. `docs/guides/JDPORTALHISTORYDELETE_SCOPING_25JUL2026.md`.
+- Authoritative `john_profile.json` update capability — **scoped**, larger epic, ready to implement. Includes the `/api/consolidate` security fix. `docs/guides/JOHNPROFILEUPDATE_SCOPING_25JUL2026.md`.
 - Dynamic width further enhancement (per-breakpoint values) — medium priority.
-- JD Automation Portal Phases 3-7 (NLP profile-update, Docker, VPS deploy) — still outstanding, includes wiring the new auth/view/settings routes and both `secrets/jd_portal_auth.json` + `secrets/jd_portal_llm_keys.json` provisioning onto the VPS whenever that phase starts.
+- JD Automation Portal Phases 3-7 (NLP profile-update — now superseded by the profile-update epic above, Docker, VPS deploy) — still outstanding, includes wiring the new auth/view/settings routes and both `secrets/jd_portal_auth.json` + `secrets/jd_portal_llm_keys.json` provisioning onto the VPS whenever that phase starts.
 - LinkedIn job-search automation scoping — not started.

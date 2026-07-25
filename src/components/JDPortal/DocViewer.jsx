@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import DOMPurify from 'dompurify'
 import { viewDoc } from '../../utils/jdApi'
 import './DocViewer.css'
@@ -37,8 +38,15 @@ function DocViewer({ path, label, onClose }) {
     return () => document.removeEventListener('keydown', onKeyDown)
   }, [onClose])
 
-  return (
-    <div className="doc-viewer-overlay" onClick={onClose}>
+  // Portaled to document.body (see below) to escape .jd-portal-card's
+  // backdrop-filter, which otherwise breaks this modal's position:fixed
+  // containing block. That also takes it outside .portal-shell's themed
+  // subtree, so the data-portal-theme attribute (and the --portal-* CSS
+  // vars it defines) is re-applied directly on the portaled root here.
+  const portalTheme = document.querySelector('.portal-shell')?.getAttribute('data-portal-theme') || 'fintech'
+
+  return createPortal(
+    <div className="doc-viewer-overlay" data-portal-theme={portalTheme} onClick={onClose}>
       <div className="doc-viewer-modal" onClick={(e) => e.stopPropagation()}>
         <div className="doc-viewer-header">
           <span className="doc-viewer-title">{label}</span>
@@ -54,7 +62,8 @@ function DocViewer({ path, label, onClose }) {
           )}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   )
 }
 
