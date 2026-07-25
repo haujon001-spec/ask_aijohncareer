@@ -88,6 +88,22 @@ export function deleteHistoryJob(employer, { roleTag, date }) {
   return request(`/api/history/${encodeURIComponent(employer)}/run?${params.toString()}`, { method: 'DELETE' })
 }
 
+export function fetchTrash() {
+  return request('/api/history/trash')
+}
+
+export function restoreTrash(trashId, employer) {
+  return request(`/api/history/trash/${encodeURIComponent(trashId)}/${encodeURIComponent(employer)}/restore`, { method: 'POST' })
+}
+
+export function fetchProfile() {
+  return request('/api/profile-view')
+}
+
+export function profileExportUrl(format) {
+  return `${JD_API_BASE}/api/profile-view/export?format=${format}`
+}
+
 // Normalizes the two download-path shapes returned by the API:
 //  - /api/jd/run's downloadUrls are already-prefixed: "/api/download/Acme/ScoreCard/txt/x.txt"
 //  - /api/history's scorecard/resume/coverLetter fields are repo-relative: "data_processed/Acme/ScoreCard/txt/x.txt"

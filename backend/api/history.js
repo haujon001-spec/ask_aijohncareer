@@ -184,6 +184,89 @@ export function createHistoryRouter({ projectRoot }) {
     res.json({ success: true, employer, roleTag: roleTag || null, date, filesDeleted: matchedFiles.length, count, history });
   });
 
+  // Restore support: list what's sitting in data_processed/.trash/ (each
+  // <trashId>/<Employer>/ subfolder is the output of exactly one prior delete,
+  // whole-company or single-run — see the two delete routes above), and a
+  // restore route that moves one such entry back to data_processed/<Employer>/.
+  const trashRoot = path.join(dataProcessedRoot, '.trash');
+
+  router.get('/trash', (req, res) => {
+    if (!fs.existsSync(trashRoot)) {
+      return res.json({ success: true, entries: [] });
+    }
+
+    const entries = [];
+    for (const trashId of fs.readdirSync(trashRoot)) {
+      const trashIdDir = path.join(trashRoot, trashId);
+      if (!fs.statSync(trashIdDir).isDirectory()) continue;
+      for (const employer of fs.readdirSync(trashIdDir)) {
+        const employerDir = path.join(trashIdDir, employer);
+        if (!fs.statSync(employerDir).isDirectory()) continue;
+        const files = listFilesRecursive(employerDir).map((f) => path.relative(employerDir, f).split(path.sep).join('/'));
+        entries.push({
+          trashId,
+          employer,
+          deletedAt: fs.statSync(employerDir).birthtime.toISOString(),
+          fileCount: files.length,
+          files,
+        });
+      }
+    }
+    entries.sort((a, b) => b.trashId.localeCompare(a.trashId));
+    res.json({ success: true, entries });
+  });
+
+  router.post('/trash/:trashId/:employer/restore', (req, res) => {
+    const { trashId, employer } = req.params;
+
+    let trashEmployerDir;
+    let liveEmployerDir;
+    try {
+      trashEmployerDir = resolveWithinRoot(trashRoot, path.join(trashId, employer));
+      liveEmployerDir = resolveWithinRoot(dataProcessedRoot, employer);
+    } catch (err) {
+      if (err instanceof PathGuardError) {
+        return res.status(err.statusCode).json({ error: err.message });
+      }
+      throw err;
+    }
+
+    if (!fs.existsSync(trashEmployerDir) || !fs.statSync(trashEmployerDir).isDirectory()) {
+      return res.status(404).json({ error: `Trash entry not found: ${trashId}/${employer}` });
+    }
+
+    const files = listFilesRecursive(trashEmployerDir);
+
+    // Refuse-and-report on any collision with a live file — restoring an old
+    // trashed run must never silently clobber newer work (user decision, 25 Jul 2026).
+    const conflicts = files
+      .map((f) => path.relative(trashEmployerDir, f))
+      .filter((rel) => fs.existsSync(path.join(liveEmployerDir, rel)))
+      .map((rel) => rel.split(path.sep).join('/'));
+
+    if (conflicts.length > 0) {
+      return res.status(409).json({
+        error: `Restore blocked — ${conflicts.length} file(s) already exist live. Remove or rename them first, or leave this trash entry alone.`,
+        conflicts,
+      });
+    }
+
+    for (const filePath of files) {
+      const rel = path.relative(trashEmployerDir, filePath);
+      const dest = path.join(liveEmployerDir, rel);
+      fs.mkdirSync(path.dirname(dest), { recursive: true });
+      fs.cpSync(filePath, dest);
+    }
+    fs.rmSync(trashEmployerDir, { recursive: true, force: true });
+    const trashIdDir = path.join(trashRoot, trashId);
+    if (fs.existsSync(trashIdDir) && fs.readdirSync(trashIdDir).length === 0) {
+      fs.rmSync(trashIdDir, { recursive: true, force: true });
+    }
+
+    const { count, history } = scanHistory({ projectRoot, dataProcessedRoot });
+    res.json({ success: true, employer, restoredFiles: files.length, count, history });
+  });
+
   return router;
 }
 
@@ -267,4 +350,17 @@ function findPaired(projectRoot, employer, typeDir, prefix, roleTag, date) {
 function findSibling(projectRoot, employer, typeDir, txtFilename) {
   const docxPath = path.join(projectRoot, 'data_processed', employer, typeDir, 'docx', txtFilename.replace(/\.txt$/, '.docx'));
   return fs.existsSync(docxPath) ? toRepoRelativePath(projectRoot, docxPath) : null;
+}
+
+function listFilesRecursive(dir) {
+  const results = [];
+  for (const name of fs.readdirSync(dir)) {
+    const full = path.join(dir, name);
+    if (fs.statSync(full).isDirectory()) {
+      results.push(...listFilesRecursive(full));
+    } else {
+      results.push(full);
+    }
+  }
+  return results;
 }

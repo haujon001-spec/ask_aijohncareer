@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import TabBar from '../TabBar'
 import JDWizard from './JDWizard'
 import JDHistoryList from './JDHistoryList'
+import ProfileView from './ProfileView'
 import ApiKeySettings from './ApiKeySettings'
 import './JDPortal.css'
 
@@ -13,7 +14,8 @@ function JDPortal() {
       <TabBar
         tabs={[
           { id: 'new', label: 'New JD Run' },
-          { id: 'history', label: 'History' }
+          { id: 'history', label: 'History' },
+          { id: 'profile', label: 'Profile' }
         ]}
         activeTab={view}
         onChange={setView}
@@ -26,13 +28,17 @@ function JDPortal() {
 
       {view === 'history' && <JDHistoryList />}
 
-      <button
-        className="profile-update-stub"
-        disabled
-        title="Coming in Phase 3 (NLP profile updates)"
-      >
-        🔒 Update Profile from JD (Coming Soon)
-      </button>
+      {view === 'profile' && <ProfileView />}
+
+      {view === 'new' && (
+        <button
+          className="profile-update-stub"
+          disabled
+          title="Coming in Phase 3 (NLP profile updates)"
+        >
+          🔒 Update Profile from JD (Coming Soon)
+        </button>
+      )}
     </div>
   )
 }

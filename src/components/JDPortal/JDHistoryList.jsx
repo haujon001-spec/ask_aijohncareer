@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { fetchHistory, deleteHistoryCompany, deleteHistoryJob, toDownloadUrl } from '../../utils/jdApi'
 import DocViewerInline from './DocViewerInline'
 import CollapsibleCard from './CollapsibleCard'
+import JDHistoryTrash from './JDHistoryTrash'
 
 function DownloadLink({ label, path }) {
   if (!path) return null
@@ -134,6 +135,7 @@ function JDHistoryList() {
   const companies = groupByCompany(history)
 
   return (
+    <>
     <CollapsibleCard
       title="Run History"
       headerExtra={
@@ -339,6 +341,8 @@ function JDHistoryList() {
         )
       })}
     </CollapsibleCard>
+    <JDHistoryTrash onRestored={load} />
+    </>
   )
 }
 

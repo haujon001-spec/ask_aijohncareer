@@ -513,6 +513,23 @@
   font-size: 12px;
 }
 
+.jd-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.jd-tag {
+  padding: 4px 10px;
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--portal-accent-blue);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  border-radius: 14px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
 .jd-details pre {
   white-space: pre-wrap;
   word-break: break-word;
