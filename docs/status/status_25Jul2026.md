@@ -29,6 +29,18 @@ User exercised the new wizard for real and reported two issues:
 
 Verified via Playwright against the live dev stack (same MFA-swap technique, re-approved, `secrets/jd_portal_auth.json` restored and confirmed byte-identical after) — textarea renders at exactly 360px/200px as specified in both themes; `npm run build` and `py_compile` both clean.
 
+## Backlog intake: Reports view bug, History delete, profile-update capability (later still, 25 Jul 2026)
+
+**Status: Logged only — nothing implemented.** Full detail in `docs/todolist/todolist_25Jul2026.md`'s "New backlog items" section.
+
+User reported three items for the backlog, clarified via questions before logging (per soul.md intake — one item, "History > ", was initially incomplete and needed a follow-up question):
+
+1. Reports step — top of a viewed Resume/Scorecard/Cover Letter is cut off/hidden. Not yet root-caused.
+2. History — ability to delete run files at the `[Company]` level. Scope (soft vs. hard delete, granularity, confirmation UX, new backend route) not yet defined.
+3. Authoritative `john_profile.json` update capability — 4-part epic: manual bullet-point addition, NLP-assisted resume-diff-and-merge (overlaps the existing "NLP `update_profile_json`" backlog item, needs reconciling), versioned restore (`john_profile_[date].json`), and a diff/compare view.
+
+User confirmed these sit above the existing carried-forward backlog in priority order.
+
 ## Known open items (unchanged, carried forward)
 
 - Dynamic width further enhancement (per-breakpoint values) — medium priority.
