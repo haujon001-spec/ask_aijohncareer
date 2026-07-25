@@ -52,6 +52,24 @@ Closes out the item carried forward since 21 Jul. Server-side key storage (`secr
 - [x] GitHub updated before session close.
 - Nothing left broken or half-finished from today — every item logged under "New today" is done and verified except the two explicitly-deferred future-work items below.
 
+## Hiring-manager explainer deck updated (later still, 23 Jul 2026)
+
+**Status: Done and verified.** `docs/guides/JDSCORECARDRESUMEV2_EXPLAINER_22JUL2026.pptx` → new dated version `docs/guides/JDSCORECARDRESUMEV2_EXPLAINER_23JUL2026.pptx` (original 22 Jul file left untouched, per soul.md golden-rule — new dated version created instead of editing in place).
+
+- Read `docs/todolist/todolist_23Jul2026.md` plus every `docs/guides/*_23JUL2026.md` guide and `docs/status/status_23Jul2026.md` first, per soul.md §8.1 intake, to pull together everything shipped today (JD Portal bug fixes, v2 Phase A/B, usability round, bring-your-own-key, sonnet crash fix) into hiring-manager-facing language.
+- Added one new slide, "The Portal — From Script to Self-Service Web App" (now slide 5 of 7 numbered slides), inserted after the existing "Resume & Cover Letter" deep-dive and before "The Trust Layer" — visually matched to the deck's existing card style (same navy header, colored-top-strip light-blue cards, footer format), just extended from 3 cards to a 2x2 grid of 4. Covers, in plain terms with no internal jargon (no "Phase A/B/C", no tool names): paste-and-run with no command line, history organized by employer, model choice + command preview shown before running, and secure login + encrypted personal API key storage.
+- Page numbers renumbered across all 7 content slides (`1/6`→`1/7` ... `6/6`→`7/7`) and every footer date bumped `22 Jul 2026` → `23 Jul 2026`.
+- **Verified, not just written:** `markitdown` content dump checked for placeholder/leftover text (none found); `scripts/office/validate.py --original` passed with zero errors; converted to PDF/JPEG and visually inspected every slide (new slide plus the two it sits between) — no text overflow, overlap, or misalignment; new slide's zip integrity independently confirmed (`zipfile.testzip()` clean, 64 entries).
+
+## Deck follow-up: Live Demo slides added (later still, 23 Jul 2026)
+
+User shared two screenshots of the JD Automation Portal in real use (Configure form for a real FWD run, and the History tab showing the FWD scorecard result, 52/100) and asked for them to be added as a "demo session" at the end of `JDSCORECARDRESUMEV2_EXPLAINER_23JUL2026.pptx`.
+
+**Important caveat, disclosed to the user:** the pasted screenshots were not reachable as files in this sandbox (checked `uploads/`, confirmed empty, both before and after the user re-shared/attached them) — there is no tool available here to save an inline pasted image to disk. Rather than silently faking a literal screenshot, two new slides (8/9, 9/9 — "Live Demo 1 of 2" / "2 of 2") were built as **vector recreations** of the two screens: same real values observed in the screenshots (Employer: FWD, Role: IT_Director_ResilienceModernization, the exact command-preview string, the 52/100 Partial Match badge, the FWD scorecard excerpt text, Prudential/Manulife history rows), redrawn in the portal's actual dark/cyan/blue theme — deliberately distinct from the explainer deck's navy/light card style, so it reads as "leaving the explainer, entering the real app." This was disclosed to the user as a recreation, not a pixel-exact embed.
+- All page numbers renumbered again (`X/7` → `X/9`) across the 7 existing slides.
+- **Verified:** `scripts/office/validate.py --original` passed with zero errors; `markitdown` content-QA grep found no placeholder/leftover text; converted to PDF/JPEG and visually inspected both new slides at full resolution — first pass caught two real overflow bugs (the "JD" logo text wrapping to two lines in its badge, and the run date "23JUL2026" wrapping/crowding the match-score badge in the History row); both fixed (widened/repositioned the text boxes) and re-verified visually before treating this as done, per soul.md §3.1/§14.
+- Zip integrity independently confirmed (`zipfile.testzip()` clean, 68 entries) after each rebuild.
+
 ## Known open items (unchanged, carried forward)
 
 - JD Portal v2 Phase C — step-wizard redesign (Configure/JD Run/Reports) + light/dark theme toggle. Largest and most design-subjective remaining piece — tomorrow's top priority.
