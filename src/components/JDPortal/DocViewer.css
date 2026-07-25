@@ -83,7 +83,7 @@
 }
 
 .doc-viewer-content strong {
-  color: #fff;
+  color: var(--portal-text-primary);
   font-weight: 700;
 }
 

@@ -1,18 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { runJd, toDownloadUrl, fetchRunStatus, cancelRun } from '../../utils/jdApi'
-import DocViewer from './DocViewer'
+import { runJd, fetchRunStatus, cancelRun } from '../../utils/jdApi'
 import CollapsibleCard from './CollapsibleCard'
 
 const STATUS_POLL_MS = 2000
-
-const OUTPUT_LABELS = {
-  scorecardTxt: 'Scorecard (.txt)',
-  scorecardDocx: 'Scorecard (.docx)',
-  resumeTxt: 'Resume (.txt)',
-  resumeDocx: 'Resume (.docx)',
-  coverLetterTxt: 'Cover Letter (.txt)',
-  coverLetterDocx: 'Cover Letter (.docx)'
-}
 
 // Mirrors backend/lib/pythonRunner.js's buildRunArgs() so the preview shown
 // here always matches what actually gets spawned server-side.
@@ -39,7 +29,7 @@ function buildCommandPreview({ jdFile, llm, mode, refreshBlueprint, generateDocx
   return parts.join(' ')
 }
 
-function JDRunPanel({ initialJdFile }) {
+function JDRunStep({ initialJdFile, onComplete }) {
   const [jdFile, setJdFile] = useState(initialJdFile || '')
   const [llm, setLlm] = useState('sonnet')
   const [customProvider, setCustomProvider] = useState('openrouter')
@@ -54,11 +44,9 @@ function JDRunPanel({ initialJdFile }) {
   const [progressStep, setProgressStep] = useState(null)
   const [cancelling, setCancelling] = useState(false)
   const [cancelledMsg, setCancelledMsg] = useState(null)
-  const [result, setResult] = useState(null)
   const [error, setError] = useState(null)
   const [errorDetails, setErrorDetails] = useState(null)
   const [runConflict, setRunConflict] = useState(false)
-  const [viewing, setViewing] = useState(null) // { path, label } | null
 
   const timerRef = useRef(null)
   const pollRef = useRef(null)
@@ -80,7 +68,6 @@ function JDRunPanel({ initialJdFile }) {
     setError(null)
     setErrorDetails(null)
     setRunConflict(false)
-    setResult(null)
     setCancelledMsg(null)
     setElapsedSec(0)
     setProgressStep(null)
@@ -101,7 +88,7 @@ function JDRunPanel({ initialJdFile }) {
       if (response.cancelled) {
         setCancelledMsg(`Run stopped — steps already completed before the stop were kept (${response.jdFile}).`)
       } else {
-        setResult(response)
+        onComplete(response)
       }
     } catch (err) {
       if (err.status === 409) {
@@ -290,66 +277,8 @@ function JDRunPanel({ initialJdFile }) {
           </div>
         )}
       </form>
-
-      {result && (
-        <div style={{ marginTop: 20 }}>
-          {result.outputs?.scorecard?.matchScore && (
-            <div className="jd-match-score">
-              Match Score: {result.outputs.scorecard.matchScore.score} / {result.outputs.scorecard.matchScore.maxScore} —{' '}
-              {result.outputs.scorecard.matchScore.verdict}
-            </div>
-          )}
-
-          {result.outputs?.scorecard?.strengths && (
-            <div className="jd-details">
-              <strong>Strengths</strong>
-              <pre>{result.outputs.scorecard.strengths}</pre>
-            </div>
-          )}
-
-          {result.outputs?.scorecard?.gaps && (
-            <div className="jd-details">
-              <strong>Gaps</strong>
-              <pre>{result.outputs.scorecard.gaps}</pre>
-            </div>
-          )}
-
-          {result.downloadUrls && Object.keys(result.downloadUrls).length > 0 && (
-            <div className="jd-download-links">
-              {Object.entries(result.downloadUrls).map(([key, url]) => {
-                const label = OUTPUT_LABELS[key] || key
-                if (key.endsWith('Docx')) {
-                  return (
-                    <span className="jd-download-group" key={key}>
-                      <a href={toDownloadUrl(url)} target="_blank" rel="noreferrer">
-                        {label}
-                      </a>
-                      <button
-                        type="button"
-                        className="jd-button-view"
-                        onClick={() => setViewing({ path: url, label })}
-                      >
-                        View
-                      </button>
-                    </span>
-                  )
-                }
-                return (
-                  <a key={key} href={toDownloadUrl(url)} target="_blank" rel="noreferrer">
-                    {label}
-                  </a>
-                )
-              })}
-            </div>
-          )}
-        </div>
-      )}
-
-      {viewing && (
-        <DocViewer path={viewing.path} label={viewing.label} onClose={() => setViewing(null)} />
-      )}
     </CollapsibleCard>
   )
 }
 
-export default JDRunPanel
+export default JDRunStep

@@ -44,7 +44,7 @@
 
 .portal-field input {
   padding: 11px 14px;
-  background: rgba(5, 7, 13, 0.5);
+  background: rgb(var(--portal-sunken-rgb) / 0.5);
   border: 1px solid var(--portal-border);
   border-radius: 8px;
   color: var(--portal-text-primary);

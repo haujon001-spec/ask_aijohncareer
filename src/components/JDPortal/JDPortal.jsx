@@ -1,14 +1,12 @@
 import React, { useState } from 'react'
 import TabBar from '../TabBar'
-import JDUploadForm from './JDUploadForm'
-import JDRunPanel from './JDRunPanel'
+import JDWizard from './JDWizard'
 import JDHistoryList from './JDHistoryList'
 import ApiKeySettings from './ApiKeySettings'
 import './JDPortal.css'
 
 function JDPortal() {
   const [view, setView] = useState('new')
-  const [lastUpload, setLastUpload] = useState(null)
 
   return (
     <div className="jd-portal">
@@ -24,12 +22,7 @@ function JDPortal() {
 
       <ApiKeySettings />
 
-      {view === 'new' && (
-        <>
-          <JDUploadForm onUploaded={setLastUpload} />
-          <JDRunPanel initialJdFile={lastUpload?.filename} />
-        </>
-      )}
+      {view === 'new' && <JDWizard />}
 
       {view === 'history' && <JDHistoryList />}
 

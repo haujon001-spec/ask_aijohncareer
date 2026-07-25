@@ -7,6 +7,12 @@
   gap: 14px;
 }
 
+.jd-wizard {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
 .jd-portal-card {
   background: var(--portal-glass-bg);
   border: 1px solid var(--portal-glass-border);
@@ -65,7 +71,7 @@
   border: 1px solid var(--portal-border);
   border-radius: 8px;
   font-size: 14px;
-  background: rgba(5, 7, 13, 0.5);
+  background: rgb(var(--portal-sunken-rgb) / 0.5);
   color: var(--portal-text-primary);
   font-family: inherit;
 }
@@ -91,7 +97,7 @@
 
 .jd-command-preview {
   padding: 12px 14px;
-  background: rgba(5, 7, 13, 0.6);
+  background: rgb(var(--portal-sunken-rgb) / 0.6);
   border: 1px solid var(--portal-border);
   border-radius: 8px;
   color: var(--portal-accent-cyan);
@@ -119,7 +125,7 @@
   border: 1px solid var(--portal-border);
   border-radius: 8px;
   font-size: 14px;
-  background: rgba(5, 7, 13, 0.5);
+  background: rgb(var(--portal-sunken-rgb) / 0.5);
   color: var(--portal-text-primary);
   font-family: inherit;
 }
@@ -334,7 +340,7 @@
 }
 
 .jd-history-card {
-  background: rgba(5, 7, 13, 0.4);
+  background: rgb(var(--portal-sunken-rgb) / 0.4);
   border: 1px solid var(--portal-border);
   border-radius: 10px;
   padding: 14px;
@@ -400,7 +406,7 @@
 }
 
 .jd-history-job {
-  background: rgba(5, 7, 13, 0.35);
+  background: rgb(var(--portal-sunken-rgb) / 0.35);
   border: 1px solid var(--portal-border);
   border-radius: 8px;
   padding: 12px;
@@ -483,7 +489,7 @@
 .jd-details pre {
   white-space: pre-wrap;
   word-break: break-word;
-  background: rgba(5, 7, 13, 0.5);
+  background: rgb(var(--portal-sunken-rgb) / 0.5);
   color: var(--portal-text-secondary);
   padding: 10px;
   border-radius: 6px;
