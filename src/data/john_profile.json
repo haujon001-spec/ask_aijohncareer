@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-25T11:48:09.887525Z",
+  "timestamp": "2026-07-25T12:21:19.981688Z",
   "sourceFile": "C:\\Users\\haujo\\projects\\DEV\\ask_aijohncareer\\src\\data\\john_profile.json",
   "profile": {
     "metadata": {
@@ -25,9 +25,10 @@
       "resume_sources": [
         "JohnHauResume2025-AIA.txt",
         "JohnHauResume2020.txt",
-        "JohnHauResume2017.txt"
+        "JohnHauResume2017.txt",
+        "JohnHauResumeBofa_Edge.txt"
       ],
-      "last_backfilled": "2026-07-25T11:48:09.887525Z"
+      "last_backfilled": "2026-07-25T12:21:19.981688Z"
     },
     "summary": "Senior technology leader with extensive years of IT infrastructure experience across Virtual Desktop Infrastructure (VDI), Desktop in Data Center (DiDC), End User Computing (EUC), lifecycle management, performance engineering, and global escalation leadership across major financial institutions: Morgan Stanley, Bank of America, AIA, Edge Technology Group, and Merrill Lynch. Former VP & Asia Manager for Workspace Virtualization Engineering at Morgan Stanley, serving as the primary APAC escalation lead for VDI issues across APAC, EMEA, and NA. Architected global VDI blueprints supporting 120,000 desktops and authored 8 global white papers. Hands-on innovator with proven ability to build AI-powered automation tools, dashboards, and agentic systems, including an independently built production-grade algorithmic trading platform combining quantitative modeling, machine learning, multi-agent LLM orchestration, and live risk-managed exchange execution.",
     "ai_projects": [
@@ -591,6 +592,12 @@
         "achievement": "Workstation Deployment and Support",
         "company": "Alco Plastic Products Ltd",
         "scale": "40+ workstations running DOS 6.11, Windows 3.11, and Windows 95"
+      },
+      {
+        "achievement": "Outlook Hang Issue Resolution",
+        "company": "Bank of America",
+        "scale": "200+ users impacted across APAC",
+        "impact": "Proactively led cross-team remediation effort"
       }
     ],
     "professional_experience": [
@@ -644,7 +651,13 @@
           "Standardized patching communications, reducing user complaints by 40%",
           "Presented restructuring recommendations to global leadership; 2 were adopted globally",
           "Improved data processing efficiency by ~70% through automation of manual workflows",
-          "Deep dive analysis of India ODC 10K users VPC performance issues"
+          "Led APAC virtual SME team of **9 FTEs** to drive VDI 'get well' remediation program across the region",
+          "Authored in-depth VDI Top-N issue analysis with actionable recommendations, presented directly to senior management",
+          "Proactively coordinated cross-team resolution of Outlook hang issue impacting **over 200 users** across APAC",
+          "Collaborated with global technology team to evaluate and recommend emerging VDI solutions (Turbonomics, LoginVSI, HPE Moonshot) for power-user workload optimization",
+          "Managed a patching and deployment team of **6 FTEs and 1 contractor** delivering APAC security patching operations",
+          "Generated **10** Operational Excellence improvement ideas for APAC and global teams, driving automation and process refinement initiatives",
+          "Strengthened team collaboration and skill development by mentoring direct reports, setting SMART goals, and implementing staff recognition programs"
         ]
       },
       {
@@ -683,8 +696,10 @@
           "APAC escalation lead for VDI and Virtual App issues (APAC/EMEA/NA coverage)",
           "Managed global virtual team of 8 people with 2 directs in region",
           "Authored 8 global white papers on AppSense, Citrix policy, load testing, HDX technology, user density, trading performance, and Storefront capacity analysis (became firm-wide VDI blueprints)",
+          "Revamped Morgan Stanley's **No.1 global trading application** (US$ multi-billions in daily trading volume) using Citrix XenApp technology",
           "Led global engineering team supporting 120,000 desktops with blueprint adoption globally",
           "Introduced LoginVSI for global performance benchmarking and load testing of VDI/SBC environments",
+          "Deep dive analysis of India ODC 10K users VPC performance issues",
           "Reduced OPEX by US$1.4M through VM environment optimization and resource utilization analysis",
           "Avoided US$640K in vendor costs by identifying 9,800 unassigned/spare/reclaimed virtual desktops for reuse",
           "Generated US$1M additional monthly trade volume in China by improving stability (low latency) for Citrix XenApp trading apps",
@@ -709,7 +724,6 @@
           "Built global runbooks, RCA frameworks, and lifecycle processes",
           "Ensured 100% compliance as IT Risk Officer for virtualization domain",
           "Engaged vendors on product roadmaps and arranged workshops for organization-wide technology awareness",
-          "Revamped Morgan Stanley's **No.1 global trading application** (US$ multi-billions in daily trading volume) using Citrix XenApp technology",
           "Engineered secure cloud desktop solutions for **10,000 offshore vendor users**, replacing traditional local desktops in branch offices and saving multi-millions of dollars year-over-year",
           "Managed Asia datacenter power-down and BCP testing events across **5 countries** (Hong Kong, Japan, Korea, Australia, India)",
           "Served as member of Morgan Stanley's virtual management committee, mentoring and coaching team members through the promotion process",
@@ -1197,7 +1211,15 @@
       "PC support engineer",
       "helpdesk support",
       "workstation installation",
-      "manufacturing IT support"
+      "manufacturing IT support",
+      "VDI get well program",
+      "Outlook hang issue",
+      "Turbonomics",
+      "LoginVSI",
+      "HPE Moonshot",
+      "Operational Excellence ideas",
+      "Patching team management",
+      "SME virtual team leadership"
     ]
   }
 }
