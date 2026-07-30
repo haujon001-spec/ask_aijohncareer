@@ -985,11 +985,12 @@ if run_resume:
         "7. Make the resume balanced: show both technical depth and leadership/soft skills supported by the profile.\n"
         "8. Every achievement bullet must be written in SMART form (Specific, Measurable, Achievable, Relevant, Time-bound). Wrap EVERY distinct quantifiable figure in the bullet in double asterisks — percentages, dollar/HK$ amounts, headcounts, device/user counts, time savings, etc. — no cap on how many per bullet; bold every one that appears, but never wrap overlapping or adjacent text as a single run. The reference template shows this convention in a few of its bullets; follow that pattern for every bullet you write.\n"
         "9. Within each role, order bullets by impact — lead with the most quantified, highest-impact achievements first, descending to more routine/supporting bullets last.\n"
-        "10. Preserve the exact company order from the candidate profile's `professional_experience` array (most recent role first, exactly as listed) — never reorder, merge, or resequence companies relative to that array.\n"
-        "11. Never state an exact number of years of experience (e.g. do not write '27 years' or '27+ years'). Use wording like 'extensive years' or 'extensive experience' instead.\n"
-        "12. Weave visible people-management evidence into the most recent 2-3 roles specifically (not just a generic soft-skills line) — team leadership, mentoring/coaching, hiring or onboarding, performance management, career development, org design — using only what the profile actually documents (e.g. leading a team of 50+, coaching teams across multiple countries, mentorship and team development).\n"
-        "13. Output ONLY the resume text — no preamble, no explanation, no markdown code fences (the ** bold markers from rule 8 are the one exception — those are expected).\n"
-        + ("14. Recruiter resume-adjustment guidance (below) may be supplied — it comes from this JD's own Match Scorecard. Apply it ONLY to wording, emphasis, section framing, and which existing facts get foregrounded. It must NEVER be used to introduce a fact, figure, project, or claim that is not already present in the candidate profile data — the guidance changes how real facts are presented, never what the facts are. Never print the guidance verbatim or add a visible \"Resume Adjustments\" heading.\n" if resume_adjustment else "")
+        "10. When choosing which achievements fill a company's fixed bullet budget, JD relevance is the primary filter — but when multiple candidate highlights are comparably relevant to the JD, prefer the ones with larger quantified impact (bigger $ savings/revenue, larger user/team/device counts, wider organizational scope) over more routine ones. Never include a highly-quantified but JD-irrelevant bullet ahead of a genuinely JD-relevant one just because its number is bigger — relevance always wins ties in the other direction too.\n"
+        "11. Preserve the exact company order from the candidate profile's `professional_experience` array (most recent role first, exactly as listed) — never reorder, merge, or resequence companies relative to that array.\n"
+        "12. Never state an exact number of years of experience (e.g. do not write '27 years' or '27+ years'). Use wording like 'extensive years' or 'extensive experience' instead.\n"
+        "13. Weave visible people-management evidence into the most recent 2-3 roles specifically (not just a generic soft-skills line) — team leadership, mentoring/coaching, hiring or onboarding, performance management, career development, org design — using only what the profile actually documents (e.g. leading a team of 50+, coaching teams across multiple countries, mentorship and team development).\n"
+        "14. Output ONLY the resume text — no preamble, no explanation, no markdown code fences (the ** bold markers from rule 8 are the one exception — those are expected).\n"
+        + ("15. Recruiter resume-adjustment guidance (below) may be supplied — it comes from this JD's own Match Scorecard. Apply it ONLY to wording, emphasis, section framing, and which existing facts get foregrounded. It must NEVER be used to introduce a fact, figure, project, or claim that is not already present in the candidate profile data — the guidance changes how real facts are presented, never what the facts are. Never print the guidance verbatim or add a visible \"Resume Adjustments\" heading.\n" if resume_adjustment else "")
     )
 
     resume_adjustment_block = (
@@ -1031,8 +1032,8 @@ Layout rules:
     * 4th company:                exactly 10 bullets
     * 5th company:                exactly 8 bullets
     * Any earlier roles:          3-4 bullets combined
-- Company order must match `professional_experience` exactly, most recent first — never resequence (see system rule 10)
-- Choose the bullets most relevant to the JD — reword to echo JD language without distorting facts
+- Company order must match `professional_experience` exactly, most recent first — never resequence (see system rule 11)
+- Choose the bullets most relevant to the JD — reword to echo JD language without distorting facts. Among comparably JD-relevant candidates within a company, prefer larger quantified impact ($ savings/revenue, user/team/device counts, scope) over routine ones (see system rule 10)
 - Within each company's bullets, lead with the most quantified/highest-impact achievements first (see system rule 9)
 - Use semantic matching to connect related evidence from `john_profile.json` to the JD. Example: cybersecurity ↔ IT security / audit / risk / DR / compliance;
   stakeholder management ↔ executive presentations / business partnering; operational excellence ↔ SLA, uptime, automation, service quality improvements
@@ -1045,10 +1046,10 @@ Layout rules:
 - Keep EDUCATION & CERTIFICATIONS, LANGUAGES, and AVAILABILITY sections unchanged from profile data
 - Total length: equivalent to the reference template (~2 pages of content)
 - Every achievement bullet: SMART form, every distinct quantifiable figure **bolded** (see system rule 8)
-- Weave people-management evidence into the most recent roles (see system rule 12)
-- Do not state an exact years-of-experience number anywhere (see system rule 11)
+- Weave people-management evidence into the most recent roles (see system rule 13)
+- Do not state an exact years-of-experience number anywhere (see system rule 12)
 - Keep spacing tight: a single blank line between sections is enough, no blank line directly under a section header before its content, and NO blank lines at all between the name/address/LinkedIn/website lines at the very top of the resume
-{"- If recruiter resume-adjustment guidance was supplied above, weave it in naturally (headline framing, which bullets/section lead) — do not quote it or add a visible heading for it (see system rule 14)" if resume_adjustments_text else ""}
+{"- If recruiter resume-adjustment guidance was supplied above, weave it in naturally (headline framing, which bullets/section lead) — do not quote it or add a visible heading for it (see system rule 15)" if resume_adjustments_text else ""}
 """
 
     resume_text = call_llm(RESUME_SYS, RESUME_USER, max_tokens=20000, label="Resume")

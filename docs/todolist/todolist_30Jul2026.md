@@ -121,6 +121,14 @@ Read `scripts/jd_scorecard_resume_v2.py`'s actual `BULLET COUNT RULES` (~line 10
 
 **So: selection is JD-relevance-first under a fixed per-company bullet ceiling, with impact-based ordering only among whatever gets selected — not a pure "biggest number wins" ranking.** Whether this is the desired behavior going forward, or whether a dollar-value/scale weighting should also factor into *which* bullets get chosen (not just their order), is an open design question for tomorrow — see questions below.
 
+## New today (30 Jul 2026, later session) — soul.md reconfirmed to memory + intake + items 6/7 resolved
+
+New session opened per the user's explicit request: (1) re-confirm soul.md's strict rules into Claude's persistent memory so they're applied every session going forward (saved as `feedback_soul_md_operating_rules` in the memory system), (2) read this todolist and implement by priority, (3) ask clarifying questions before proceeding.
+
+**Reconciliation before implementing anything:** intake found the working tree had uncommitted, undocumented state not covered by this todolist's "Note" section — a substantial pipeline-refreshed diff to `JD_Manulife_AVP_Technology_Architecture_and_Operations.json`, a brand-new untracked `JD_Manulife_Senior_Director_Director_AI_Data_Strategy_Transformation_Lead.json` blueprint, and a small manual reorder in `john_profile.json`'s Merrill Lynch highlights. Asked the user rather than guessing; confirmed all three are legitimate pipeline/manual output to commit as-is. Also found item 6 (landing-page staleness) was already fixed and committed (`6981181`) but this doc's priority-order line was never updated to reflect it — corrected below (doc-only fix, no code change needed).
+
+**Item 7 resolved — user decided: yes, add $-value/scale weighting to bullet selection** (not just ordering). Implemented as new `RESUME_SYS` rule 10 in `jd_scorecard_resume_v2.py`: among comparably JD-relevant candidate highlights within a company's fixed bullet budget, prefer larger quantified impact; JD relevance still wins as the primary filter and as the tiebreaker in the other direction. Backed up first (`scripts/jd_scorecard_resume_v2.py.20260730_V2.bak`), `py_compile` clean, verified with a real end-to-end run (`--resume-only --llm=sonnet --force` against the HKEX JD) — output complete, correctly ordered, high-impact bullets well-represented. Cover letter left unchanged (no equivalent fixed-budget selection step). Full record: `docs/guides/JDSCORECARDRESUMEV2_BULLETSELECTIONWEIGHTING_30JUL2026.md`.
+
 ## Priority order
 
 1. ~~`jd_scorecard_resume_v2.py` output-quality round (a–e)~~ — **done, verified 30 Jul 2026**
@@ -128,8 +136,8 @@ Read `scripts/jd_scorecard_resume_v2.py`'s actual `BULLET COUNT RULES` (~line 10
 3. ~~`john_profile.json` findings 4 & 5 (LoginVSI overlap; Cutting-Edge Trading System wording)~~ — **done, resolved 30 Jul 2026** (finding 4: kept both; finding 5: reworded)
 4. ~~Edge/Bank of America backfill from `JohnHauResumeBofa_Edge_V2ToAppend.txt`~~ — **done, verified 30 Jul 2026** (5 of 21 items appended, 16 skipped as duplicates)
 5. ~~Profile-update JD Portal + script-level skill (full 4-part epic + security fix)~~ — **done, verified 30 Jul 2026.** See `docs/guides/JDPORTALPROFILEUPDATE_30JUL2026.md`.
-6. **Landing-page profile staleness gap** — real finding, not yet fixed; `backend/server.js` caches `john_profile.json` at boot and never reloads (the only reload path was deleted today as a security fix). Fix approach pending a decision (see questions below).
-7. **Resume/cover-letter bullet-selection mechanism** — investigated and explained (see finding c above); whether to add a $-value/scale weighting to *which* bullets get selected (not just their order) is an open design question, pending a decision (see questions below).
+6. ~~Landing-page profile staleness gap~~ — **done, fixed and verified 30 Jul 2026** (commit `6981181`). `buildSystemPrompt()` in `backend/server.js` now re-reads `john_profile.json` fresh on every chat request (matching the portal's own pattern), falling back to the boot-time snapshot on a transient read error. This priority-order line was left unmarked when the fix landed — corrected 30 Jul 2026 (later session) during intake.
+7. ~~Resume/cover-letter bullet-selection mechanism — $-value/scale weighting~~ — **done, implemented and verified 30 Jul 2026 (later session).** User decided: yes, add it. New `RESUME_SYS` rule 10 makes larger quantified impact ($-value/scale) a tiebreaker among comparably JD-relevant candidates within a company's fixed bullet budget — JD relevance still wins as the primary filter. Cover letter left unchanged (no analogous fixed-budget selection step; its existing "most relevant, quantified" instruction already covers this). See `docs/guides/JDSCORECARDRESUMEV2_BULLETSELECTIONWEIGHTING_30JUL2026.md`.
 8. Dynamic width further enhancement — medium priority
 9. Remaining JD Automation Portal phases (integration, Docker, dev-env docs, VPS deploy)
 10. `PortalEnroll.jsx` silent-fail hardening — small, flagged 25 Jul
