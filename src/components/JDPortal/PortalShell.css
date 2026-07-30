@@ -118,11 +118,34 @@
   padding: 20px;
   /* A fixed side gutter instead of a percentage/pixel cap — fills almost the
      entire viewport on any desktop width, with just enough margin to keep
-     content off the window edges. Still capped for extreme ultrawide
-     monitors, and naturally narrows on tablet/mobile via width: 100%. */
+     content off the window edges. Naturally narrows on tablet/mobile via
+     width: 100%. The max-width cap itself is raised at wider breakpoints
+     below (measured 30 Jul 2026: uncapped gutter formula alone left 380px
+     of empty margin per side at 2560px against the old flat 1800px cap). */
   width: calc(100% - 48px);
   max-width: 1800px;
   margin: 0 auto;
+}
+
+/* Wide/ultrawide desktop: raise the cap in steps so content keeps using more
+   of the available width instead of one flat 1800px ceiling. Measured
+   (chromium, /portal/login, .portal-main bounding box) before picking these:
+     1440px viewport -> 24px/side gutter (base rule, already tight)
+     1600px viewport -> 24px/side gutter (base rule, already tight)
+     1920px viewport -> 60px/side gutter (base rule, acceptable)
+     2560px viewport -> 380px/side gutter with the old flat 1800px cap (the
+                         reported "unused space") -> 80px/side with the
+                         2400px cap below */
+@media (min-width: 1921px) {
+  .portal-main {
+    max-width: 2000px;
+  }
+}
+
+@media (min-width: 2560px) {
+  .portal-main {
+    max-width: 2400px;
+  }
 }
 
 .portal-loading {
