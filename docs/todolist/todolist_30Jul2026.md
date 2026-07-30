@@ -151,13 +151,20 @@ New session opened per the user's explicit request: (1) re-confirm soul.md's str
 11. ~~Portal login password~~ — **resolved 30 Jul 2026**, user confirmed the new password works as expected
 12. LinkedIn automation — **scoped 30 Jul 2026 (later session), not implemented.** User selected two capabilities (auto-discover matching postings + applied-role tracker; auto-fill/submit application forms explicitly declined). Real blocker surfaced: LinkedIn's ToS prohibits scraping/automated access — needs an explicit decision on discovery approach (manual-paste / email-alert-parsing / licensed third-party API / direct scraping-with-accepted-risk) before any code is written. See `docs/guides/LINKEDINAUTOMATION_SCOPING_30JUL2026.md`.
 
-## Tomorrow (31 Jul 2026) — carried forward, pending today's clarifying questions
+## Session closed 30 Jul 2026 — everything pushed to GitHub
 
-- Decide and implement a fix for the landing-page profile-staleness gap (item 6 above) — options range from "always re-read per chat request" (simplest, matches the portal's own pattern) to a periodic/manual reload.
-- Decide whether the resume-generation bullet-selection mechanism should weight $-value/scale into *which* highlights get chosen (not just their order) — if yes, this becomes a `jd_scorecard_resume_v2.py` prompt-engineering change, following the golden-rule backup-first practice used all session.
-- Consider whether to regenerate the Manulife `_25JUL2026.txt` resume now that the profile has grown (5 days of backfill + the $12.7M figure) — not decided yet, only surfaced as a possibility during investigation.
-- Then continue down the confirmed backlog order: dynamic-width tuning → remaining JD Automation Portal phases (Docker/VPS) → `PortalEnroll.jsx` hardening → LinkedIn scoping.
+All 10 commits from today's later session (soul.md memory reconfirmation through the app-container staleness follow-up fix) pushed to `origin/main` (`6981181..d62ae50`). Working tree clean except the pre-existing, intentionally-untracked `src/data/jd/JD_DBS_IT_SVP_HeadOfTechnology_OpsRisk.json`. Full session record: `docs/status/status_30Jul2026.md`.
+
+**Everything on today's priority list (items 6–12) is done** — landing-page staleness (and its production follow-up), bullet-selection weighting, dynamic width, the full VPS deploy, `PortalEnroll` hardening, portal password, and LinkedIn scoping.
+
+## Tomorrow (31 Jul 2026) — priority order
+
+1. **LinkedIn automation — discovery-path decision needed** before any build: manual-paste / email-alert-parsing / licensed third-party API / accept-scraping-risk. See `docs/guides/LINKEDINAUTOMATION_SCOPING_30JUL2026.md` for the tradeoffs already written up. Once decided, the applied-role tracker half (no blocker) can also be scoped further.
+2. **Exercise a real JD run through the live production portal** (upload a JD, run scorecard-only or full mode, download output) — not done yet; everything up to and including enrollment was verified, but a real pipeline run on the VPS (Python venv confirmed working in isolation, not yet proven through a real end-user click-through) is the natural next real-world check now that the user has enrolled.
+3. **Consider whether to regenerate the Manulife `_25JUL2026.txt` resume** now that the profile has grown further (backfill + the bullet-selection weighting change) — surfaced as a possibility earlier, not decided.
+4. Minor flagged-not-urgent items from the VPS deploy, pick up opportunistically: VPS firewall (`ufw`) posture was never audited; the pre-existing `app` service's `3000:3000` host port publish (comment claims Caddy-only, worth a deliberate yes/no); `JD_RUN_TIMEOUT_MS=900000` is the repo's example default, not tuned for the VPS's 2 vCPU/4GB — watch real run times once item 2 above happens.
+5. Dev-env docs for the JD Automation Portal (the "dev-env docs" part of the old item 9 line) — still not written; the Docker/VPS-deploy parts are done and documented, but a "how to run this locally" guide for a new contributor doesn't exist yet.
 
 ## Note
 
-An untracked JD blueprint (`src/data/jd/JD_DBS_IT_SVP_HeadOfTechnology_OpsRisk.json`) and a pre-existing, unrelated modification to `src/data/jd/JD_Manulife_AVP_Technology_Architecture_and_Operations.json` remain in the working tree, unrelated to this session's work — left untouched.
+The Manulife AVP JD blueprint modification mentioned here earlier was committed this session (`4837980`), along with a new Manulife Senior Director/AI-Data-Strategy JD blueprint that was also found uncommitted at session start. `src/data/jd/JD_DBS_IT_SVP_HeadOfTechnology_OpsRisk.json` remains untracked, unrelated to any session's work — left untouched as established practice.
