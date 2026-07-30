@@ -63,8 +63,17 @@ Per "let's go through the next priorities now," this (the item logged above as n
 
 **Real mistake made and disclosed:** first restore-test targeted the *oldest* backup in the list rather than the one the test itself created, silently reverting the working file to a 25-Jul snapshot and wiping this session's earlier dedup/backfill work in the working tree. Caught immediately via `git diff`, fixed via `git show HEAD:... > file` (confirmed clean after). Logged to memory: always restore-test against a backup the test itself just created.
 
+## Three findings from live portal usage, investigated + one fix shipped (later still, 30 Jul 2026)
+
+User raised three items after using the live `/portal`. Investigated all three same session (per soul.md intake), one required and received a real fix.
+
+1. **Landing-page profile staleness — real gap found and fixed.** `/portal`'s routes re-read `john_profile.json` fresh per request; the public chat backend (`backend/server.js`) loaded it once at boot and never refreshed (the only reload path was on the just-deleted `/api/consolidate` route). **Fixed:** `buildSystemPrompt()` now re-reads the file fresh on every chat request (falling back to the boot-time snapshot on a transient read error). Backed up first (`backend/server.js.20260730_V2.bak`). **Verified live:** booted the server once, injected a uniquely-tagged marker directly into `john_profile.json` with *no restart*, then confirmed a real chat call to `/api/deepseek` echoed the marker back — proving the fix works without needing a process restart. Cleaned up the test marker afterward (`git diff` confirmed 0 lines).
+2. **Why the Manulife `_25JUL2026.txt` resume omits the "$12.7M TCO" achievement — investigated, not a bug.** Confirmed against the actual 25 Jul 12:21 backup: the profile still had the old combined "$640K" wording at generation time — the "$12.7M TCO" split didn't exist until this morning's manual edit. The resume simply predates the fact; regenerating would pick it up. User decided **not** to regenerate tonight.
+3. **Is bullet selection driven by $-value/scale? — investigated, answered no.** `jd_scorecard_resume_v2.py`'s `BULLET COUNT RULES` impose a fixed per-company bullet budget (12/12/10/10/8), with bullets chosen by JD-relevance, not dollar size — the impact-ordering rule added earlier today only sequences already-selected bullets. User deferred a decision on whether to add $-weighting to *selection* itself — open question for tomorrow.
+
 ## Known open items
 
+- Whether to add a $-value/scale weighting to *which* resume bullets get selected (not just their order) — open design question, deferred to tomorrow.
 - Dynamic width further enhancement (per-breakpoint values) — medium priority, next in the confirmed backlog order.
 - Remaining JD Automation Portal phases (Docker packaging, dev-env docs, VPS deploy — now also covering `/api/auth/*`, `/api/view/*`, `/api/settings/*` routes and both `secrets/jd_portal_auth.json` + `secrets/jd_portal_llm_keys.json` provisioning).
 - `PortalEnroll.jsx` silent-fail hardening (flagged 25 Jul, small).

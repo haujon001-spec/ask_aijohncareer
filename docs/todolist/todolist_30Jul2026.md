@@ -97,6 +97,30 @@ Per "let's go through the next priorities now," the profile-update epic was pick
 - Security-fix regression confirmed above.
 - Full cleanup: all test backups/pending-proposal files removed, `secrets/jd_portal_auth.json` restored byte-identical, test servers killed, `git diff src/data/john_profile.json` confirmed 0 lines, `npm run build` clean throughout.
 
+## New today (30 Jul 2026, later still) — three items raised after seeing the live portal, investigated same session
+
+User was looking at the live `/portal` (screenshot: "New JD Run" step 2, Manulife re-run with DeepSeek) and raised three items. Logged per soul.md intake workflow; (a) is a genuine new backlog item, (b) and (c) were investigated and answered directly this session (not deferred) since they were concrete, bounded questions about existing behavior.
+
+### a. askcareer-ai.com landing page vs. `/portal` — do they share a *live* profile source? **Investigated — real gap found, not yet fixed.**
+
+Both read the exact same file (`src/data/john_profile.json`), but **not with the same freshness guarantee**:
+- `/portal`'s routes (`backend/api/profile_view.js`, and this session's new `backend/api/profile.js`) call `fs.readFileSync(PROFILE_PATH, ...)` **fresh on every request** — always current.
+- The public chat landing page's backend (`backend/server.js`, port 3000) loads `johnProfile` **once at process boot** (line 66-68) and keeps it in a closure used by every chat request thereafter (`buildSystemPrompt()`) — **it never re-reads the file.** The only reload path that existed (`/api/consolidate`'s post-consolidation reload) was deleted today as part of the security fix, since it was itself broken/unauthenticated — so there is now **no** way to refresh the landing page's in-memory profile short of restarting `backend/server.js`.
+
+**Practical impact:** any edit made through today's new `/portal` profile-update epic (or a manual JSON edit) will show up immediately in `/portal`'s own Profile view, but the public chat landing page will keep answering from the stale, pre-edit profile until that process is restarted. In production this is less acute (a VPS deploy already restarts the container, which naturally re-reads the file) — the practical gap is for local dev, where both processes run side-by-side. **Not fixed yet** — candidate fix: make `backend/server.js` re-read the file per-request (matching the portal's pattern) or add a lightweight periodic/on-demand reload, gated behind a question below.
+
+### b. Why does the Manulife `_25JUL2026.txt` resume omit "Avoided US$12.7M TCO through Center of excellence by identifying 9,800 unassigned/spare/reclaimed virtual desktops for reuse" — a bigger number than the HK$3.5M Windows-11 savings or the US$1.4M OPEX reduction that *are* included? **Investigated and answered — not a selection bug.**
+
+Confirmed directly against the 25 Jul 2026 12:21 backup (`backup/backup-2026-07-25T12-21-19-980689.json`, the last snapshot before that resume was generated): the profile's wording at that time was still the **old, combined** line — `"Avoided US$640K in vendor costs by identifying 9,800 unassigned/spare/reclaimed virtual desktops for reuse"` — there was no "$12.7M TCO" figure anywhere in the profile yet. That figure was only created **this morning (30 Jul)**, when the user's manual edit split the old combined `$640K` line into two separate facts (`"Avoided US$640K in vendor costs on consultancy analysis"` + the new `"Avoided US$12.7M TCO through Center of excellence..."`).
+
+**In short: the resume can only ever draw from what's in the profile at the moment it's generated — this one is simply 5 days older than the fact in question, not a case of the algorithm judging it less important.** The $640K precursor fact *was* correctly included in that resume (merged into the Morgan Stanley OPEX bullet, confirmed present at line 126 of the generated `.txt`) — regenerating this resume today (`--resume-only --force`) would pick up the new $12.7M figure automatically.
+
+### c. Is bullet/achievement selection based on the most impactful events by scale/$ savings? **Investigated and answered — no, not primarily.**
+
+Read `scripts/jd_scorecard_resume_v2.py`'s actual `BULLET COUNT RULES` (~line 1027): each company gets a **fixed, non-negotiable bullet budget** by recency tier — 12/12/10/10/8 bullets for the 1st–5th companies, 3-4 combined for earlier roles — regardless of how many highlights exist or how large their dollar figures are. Within that fixed budget, the instruction is **"choose the bullets most relevant to the JD"** (semantic match to the job description) — not "choose the highest-dollar-value ones." Today's earlier-session addition (system rule 9) only governs **ordering** among the bullets *already selected* (lead with the most quantified/highest-impact first) — it does not influence which highlights make the cut in the first place. Confirmed empirically in the Manulife resume: Morgan Stanley (10-bullet budget) hit exactly 10 by merging the OPEX + vendor-cost facts into one combined bullet rather than dropping either — i.e. compression to fit the budget, not impact-based exclusion.
+
+**So: selection is JD-relevance-first under a fixed per-company bullet ceiling, with impact-based ordering only among whatever gets selected — not a pure "biggest number wins" ranking.** Whether this is the desired behavior going forward, or whether a dollar-value/scale weighting should also factor into *which* bullets get chosen (not just their order), is an open design question for tomorrow — see questions below.
+
 ## Priority order
 
 1. ~~`jd_scorecard_resume_v2.py` output-quality round (a–e)~~ — **done, verified 30 Jul 2026**
@@ -104,11 +128,20 @@ Per "let's go through the next priorities now," the profile-update epic was pick
 3. ~~`john_profile.json` findings 4 & 5 (LoginVSI overlap; Cutting-Edge Trading System wording)~~ — **done, resolved 30 Jul 2026** (finding 4: kept both; finding 5: reworded)
 4. ~~Edge/Bank of America backfill from `JohnHauResumeBofa_Edge_V2ToAppend.txt`~~ — **done, verified 30 Jul 2026** (5 of 21 items appended, 16 skipped as duplicates)
 5. ~~Profile-update JD Portal + script-level skill (full 4-part epic + security fix)~~ — **done, verified 30 Jul 2026.** See `docs/guides/JDPORTALPROFILEUPDATE_30JUL2026.md`.
-6. Dynamic width further enhancement — medium priority, next up per confirmed backlog order
-7. Remaining JD Automation Portal phases (integration, Docker, dev-env docs, VPS deploy)
-8. `PortalEnroll.jsx` silent-fail hardening — small, flagged 25 Jul
-9. ~~Portal login password~~ — **resolved 30 Jul 2026**, user confirmed the new password works as expected
-10. LinkedIn automation scoping — not started
+6. **Landing-page profile staleness gap** — real finding, not yet fixed; `backend/server.js` caches `john_profile.json` at boot and never reloads (the only reload path was deleted today as a security fix). Fix approach pending a decision (see questions below).
+7. **Resume/cover-letter bullet-selection mechanism** — investigated and explained (see finding c above); whether to add a $-value/scale weighting to *which* bullets get selected (not just their order) is an open design question, pending a decision (see questions below).
+8. Dynamic width further enhancement — medium priority
+9. Remaining JD Automation Portal phases (integration, Docker, dev-env docs, VPS deploy)
+10. `PortalEnroll.jsx` silent-fail hardening — small, flagged 25 Jul
+11. ~~Portal login password~~ — **resolved 30 Jul 2026**, user confirmed the new password works as expected
+12. LinkedIn automation scoping — not started
+
+## Tomorrow (31 Jul 2026) — carried forward, pending today's clarifying questions
+
+- Decide and implement a fix for the landing-page profile-staleness gap (item 6 above) — options range from "always re-read per chat request" (simplest, matches the portal's own pattern) to a periodic/manual reload.
+- Decide whether the resume-generation bullet-selection mechanism should weight $-value/scale into *which* highlights get chosen (not just their order) — if yes, this becomes a `jd_scorecard_resume_v2.py` prompt-engineering change, following the golden-rule backup-first practice used all session.
+- Consider whether to regenerate the Manulife `_25JUL2026.txt` resume now that the profile has grown (5 days of backfill + the $12.7M figure) — not decided yet, only surfaced as a possibility during investigation.
+- Then continue down the confirmed backlog order: dynamic-width tuning → remaining JD Automation Portal phases (Docker/VPS) → `PortalEnroll.jsx` hardening → LinkedIn scoping.
 
 ## Note
 

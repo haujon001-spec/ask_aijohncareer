@@ -72,8 +72,20 @@ try {
   process.exit(1);
 }
 
-// Build system prompt
+// Build system prompt — re-reads john_profile.json fresh on every call rather
+// than relying on the boot-time johnProfile snapshot, so edits made via the
+// JD Portal's profile-update epic (backend/api/profile.js, a separate
+// process) are reflected immediately without restarting this server. Falls
+// back to the boot-time snapshot if a transient read/parse error occurs, so
+// a live chat request never crashes because of it.
 function buildSystemPrompt() {
+  let profileForPrompt = johnProfile;
+  try {
+    profileForPrompt = JSON.parse(fs.readFileSync(profilePath, 'utf-8'));
+  } catch (err) {
+    console.error('⚠️  Failed to re-read john_profile.json for this request, using last-known copy:', err.message);
+  }
+
   return `You are "John's Career Copilot", an AI assistant that answers questions about John Hau's professional experience, achievements, AI projects, and leadership.
 
 RULES:
@@ -84,7 +96,7 @@ RULES:
 5. Reference specific roles, companies, and dates when relevant.
 
 Resume Context:
-${JSON.stringify(johnProfile, null, 2)}`;
+${JSON.stringify(profileForPrompt, null, 2)}`;
 }
 
 // LLM Provider Configs - 2 MODELS ONLY: Google Gemini 3.1 Flash + DeepSeek R1
