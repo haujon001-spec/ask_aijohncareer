@@ -83,6 +83,22 @@
   cursor: not-allowed;
 }
 
+.portal-button + .portal-button {
+  margin-top: 10px;
+}
+
+.portal-button--secondary {
+  background: transparent;
+  color: var(--portal-text-primary);
+  border: 1px solid var(--portal-border, rgba(148, 163, 184, 0.35));
+  box-shadow: none;
+}
+
+.portal-button--secondary:hover:not(:disabled) {
+  background: rgba(148, 163, 184, 0.12);
+  transform: none;
+}
+
 .portal-banner {
   padding: 12px 14px;
   border-radius: 8px;

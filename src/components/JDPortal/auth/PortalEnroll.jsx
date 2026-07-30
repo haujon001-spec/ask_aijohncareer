@@ -15,8 +15,11 @@ function PortalEnroll() {
   const [totpCode, setTotpCode] = useState('')
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState(null)
+  const [checkError, setCheckError] = useState(null)
 
-  useEffect(() => {
+  const runStatusCheck = () => {
+    setChecking(true)
+    setCheckError(null)
     fetchAuthStatus()
       .then((res) => {
         if (res.enrolled) {
@@ -25,7 +28,18 @@ function PortalEnroll() {
         }
         setChecking(false)
       })
-      .catch(() => setChecking(false))
+      .catch((err) => {
+        // Don't fail open into "First-time Portal Setup" — a connectivity/CORS
+        // error looks identical to genuinely-not-enrolled otherwise, and this
+        // form re-enrolling over an existing account would be destructive.
+        setCheckError(err.message || 'Could not reach the portal server')
+        setChecking(false)
+      })
+  }
+
+  useEffect(() => {
+    runStatusCheck()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navigate])
 
   const handlePasswordSubmit = async (e) => {
@@ -70,6 +84,31 @@ function PortalEnroll() {
     return (
       <div className="portal-auth-shell">
         <div className="portal-loading">Loading…</div>
+      </div>
+    )
+  }
+
+  if (checkError) {
+    return (
+      <div className="portal-auth-shell">
+        <div className="portal-card portal-auth-card">
+          <h2 className="portal-auth-title">Couldn't verify portal status</h2>
+          <p className="portal-auth-subtitle">
+            We couldn't confirm whether this portal is already enrolled — this usually means the
+            portal server isn't reachable, not that setup hasn't happened yet.
+          </p>
+          <div className="portal-banner portal-banner--danger">{checkError}</div>
+          <button type="button" className="portal-button" onClick={runStatusCheck}>
+            Retry
+          </button>
+          <button
+            type="button"
+            className="portal-button portal-button--secondary"
+            onClick={() => navigate('/portal/login')}
+          >
+            Already enrolled? Go to Sign-in
+          </button>
+        </div>
       </div>
     )
   }
