@@ -21,9 +21,25 @@ Backed up first: `scripts/jd_scorecard_resume_v2.py.20260730_V1.bak` (soul.md go
 
 **Verification (soul.md §3.1):** real end-to-end run against a live JD (HKEX Vice President IT Service Operation Management, `--resume-only --llm=sonnet --force`) — deliberately **without** `--refresh-blueprint`, to avoid repeating the 25 Jul incident where a blueprint refresh overwrote a pending manual edit to a different employer's JD JSON. Confirmed via direct re-execution of the context-builder logic (70,532 chars / 13 sections / no truncation), via reading the generated resume text (role order matches profile array exactly: AIA→BofA→Edge→Morgan Stanley→Merrill Lynch→Siemens/Alco; each role's bullets lead with its most quantified achievement), and via `python-docx` inspection of the output (181 paragraphs, 88 bold runs, 0 stray asterisks, no Generated/Profile lines, no "27 years"). Test output (`data_processed/HKEX/`) deleted afterward — not real user data, doesn't collide with any prior run.
 
+## Manual `john_profile.json` edit — syntax fix + duplicate review (later, 30 Jul 2026)
+
+User manually added new content to `src/data/john_profile.json` (new `major_achievements` entries + new `professional_experience` highlights, mostly Morgan Stanley), backing it up first to `src/data/john_profile.json.20260730.bak`.
+
+**Fixed:** a missing comma between two consecutive strings in the Morgan Stanley `highlights` array made the file invalid JSON (`json.loads` failed at line 732). Confirmed no other syntax errors exist after the fix (file parses cleanly end-to-end: 50 `major_achievements`, 7 `professional_experience` entries).
+
+**Reported, not merged** (data judgment calls, left for the user):
+1. New `major_achievements` entry "Citrix Virtual Applications Revamp for No.1 Trading Platform" duplicates the pre-existing "No.1 Global Trading Application Revamp" — same fact (Citrix XenApp revamp of the #1 trading platform, multi-billion-dollar daily volume).
+2. The newly-added `professional_experience` highlight "Led redesign and performance revamp of Citrix virtual applications supporting Morgan Stanley's No.1 trading platform..." duplicates the pre-existing highlight "Revamped Morgan Stanley's **No.1 global trading application**..." two lines below it in the same list (this pair is what caused the missing-comma syntax error).
+3. The older highlight "Deep dive analysis of India ODC 10K users VPC performance issues" is now redundant next to two newly-added, richer highlights covering the same India ODC 10K remediation.
+4. Lower-confidence: new "Scientific Load Testing & User Density Validation" vs. pre-existing "LoginVSI Performance Load Test Tool Introduction" — both Morgan Stanley/LoginVSI, possibly distinct facets rather than a true duplicate.
+5. This edit deleted the highlight that used to back the still-open "Cutting-Edge Trading System Implementation" achievement (from earlier today's review) — the standalone achievement entry itself was untouched, so this should be resolved together with finding 1.
+
+**Not committed** — syntax fix is verified but merge decisions are the user's call; commit deferred until resolved.
+
 ## Known open items
 
-- Major-achievements duplicate/inconsistency findings (above) — awaiting user decision, not yet resolved.
+- `john_profile.json` duplicate/inconsistency cluster (5 findings above, all Morgan Stanley trading-app/team-offload facts) — awaiting user decision; blocks committing today's manual edit.
+- Portal login password — user was asked 25 Jul whether they remember the existing password or want a full reset (`docs/guides/JDPORTALPASSWORDROTATION_25JUL2026.md`, Method B); no answer recorded since.
 - Authoritative `john_profile.json` update capability (full UI epic: manual editor, in-portal multi-file "Update from Resume", version history, diff view) — plan drafted (`sprightly-enchanting-hare.md`), paused for user questions since 25 Jul, still not approved/implemented.
 - Dynamic width further enhancement (per-breakpoint values) — medium priority.
 - Remaining JD Automation Portal phases (Docker packaging, dev-env docs, VPS deploy — now also covering `/api/auth/*`, `/api/view/*`, `/api/settings/*` routes and both `secrets/jd_portal_auth.json` + `secrets/jd_portal_llm_keys.json` provisioning).

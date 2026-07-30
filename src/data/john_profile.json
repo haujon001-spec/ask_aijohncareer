@@ -335,6 +335,30 @@
         "scale": "120,000 desktops",
         "impact": "$1.4M OPEX reduction, $640K vendor cost avoidance"
       },
+      
+      {
+       "achievement": "India ODC 10K Contractor VDI Remediation",
+       "company": "Morgan Stanley",
+       "scale": "10,000 offshore vendor users",
+       "impact": "Core architect for full-stack performance remediation; resolved VM bottlenecks through SPLUNK-driven analysis, live demo interrogations with app owners, and multi-team collaboration; presented findings and mitigation   plan to lead engineers, product managers, and MD-level senior management"
+      },
+      {
+       "achievement": "Citrix Virtual Applications Revamp for No.1 Trading Platform",
+       "company": "Morgan Stanley",
+       "metric": "US$ multi-billions daily trading volume",
+       "impact": "Led architecture and redesign of Citrix XenApp trading environment; improved stability, latency, and scalability for mission-critical trading workloads"
+      },
+      {
+       "achievement": "Global Virtual Desktop & Application Get-Well Program",
+       "company": "Morgan Stanley",
+       "impact": "Served as lead architect for Citrix, Virtual Desktop, and cloud environments; drove global remediation program improving stability, performance, and user experience across APAC/EMEA/NA"
+      },
+      {
+       "achievement": "Scientific Load Testing & User Density Validation",
+       "company": "Morgan Stanley",
+       "tech": "LoginVSI, SPLUNK, custom load models",
+       "impact": "Performed scientific load tests validating user density and cost optimization for cloud VDI and Citrix XenApp plants; produced white papers and presented recommendations to senior managers"
+      },
       {
         "achievement": "Resolved Multi-Year Patching Backlog",
         "company": "AIA International Ltd",
@@ -615,7 +639,7 @@
           "Built PowerBI dashboards for SLA, KPI, and operational performance monitoring across APAC",
           "Standardized SOPs, escalation flows, and communication guidelines, improving service quality by one full grade",
           "Executed HKMA-aligned DR drills ensuring full regulatory compliance",
-          "Led 1,700-user office relocation with zero downtime and seamless service continuity",
+          "Led 1,700-user relocation to 3 new offices with zero downtime and seamless service continuity",
           "Improved operational productivity by ~30% through automation and process optimization",
           "Strengthened cross-team collaboration across APAC regions and global support model alignment",
           "Delivered strategic planning presentations to senior management for the 2024 and 2025 IT roadmap.",
@@ -640,7 +664,7 @@
         "company": "Bank of America",
         "title": "APAC Security Patching - 7 directs / SME VDI Team Lead - 15 APAC virtual team",
         "period": "Nov 2022 – Nov 2023",
-        "scope": "Primary escalation lead for VDI/desktop issues, APAC region | 80,000 users on stateless VDI",
+        "scope": "Primary escalation lead for VDI/desktop issues, APAC region | 80,000 users on private clould - VDI",
         "highlights": [
           "Served as primary escalation lead for VDI and desktop issues for MDs, traders, VVIP, and end-users across APAC",
           "Supported ~80,000 users on next-gen stateless VDI; conducted deep performance analysis and remediation",
@@ -651,13 +675,13 @@
           "Standardized patching communications, reducing user complaints by 40%",
           "Presented restructuring recommendations to global leadership; 2 were adopted globally",
           "Improved data processing efficiency by ~70% through automation of manual workflows",
-          "Led APAC virtual SME team of **9 FTEs** to drive VDI 'get well' remediation program across the region",
+          "Led APAC virtual SME team of **15 FTEs** to drive VDI 'get well' remediation program across the region",
           "Authored in-depth VDI Top-N issue analysis with actionable recommendations, presented directly to senior management",
-          "Proactively coordinated cross-team resolution of Outlook hang issue impacting **over 200 users** across APAC",
-          "Collaborated with global technology team to evaluate and recommend emerging VDI solutions (Turbonomics, LoginVSI, HPE Moonshot) for power-user workload optimization",
+          "Major Incident Management - to proactively coordinated cross-team resolution of Outlook hang issue impacting **over 200 users** across APAC",
+          "Innovation -  Collaborated with global technology team to evaluate and recommend emerging VDI solutions (Turbonomics, LoginVSI, HPE Moonshot) for power-user workload optimization",
           "Managed a patching and deployment team of **6 FTEs and 1 contractor** delivering APAC security patching operations",
-          "Generated **10** Operational Excellence improvement ideas for APAC and global teams, driving automation and process refinement initiatives",
-          "Strengthened team collaboration and skill development by mentoring direct reports, setting SMART goals, and implementing staff recognition programs"
+          "Championed **10** Operational Excellence improvement ideas for APAC and global teams, driving automation and process refinement initiatives",
+          "People management -Strengthened team collaboration and skill development by mentoring direct reports, setting SMART goals, and implementing staff recognition programs"
         ]
       },
       {
@@ -696,16 +720,21 @@
           "APAC escalation lead for VDI and Virtual App issues (APAC/EMEA/NA coverage)",
           "Managed global virtual team of 8 people with 2 directs in region",
           "Authored 8 global white papers on AppSense, Citrix policy, load testing, HDX technology, user density, trading performance, and Storefront capacity analysis (became firm-wide VDI blueprints)",
-          "Revamped Morgan Stanley's **No.1 global trading application** (US$ multi-billions in daily trading volume) using Citrix XenApp technology",
+	  "Reduced OPEX by US$1.4M through VM environment optimization and resource utilization analysis",
+          "Avoided US$640K in vendor costs on consultancy analysis",
+	  "Avoided US$12.7M TCO through Center of excellence by identifying 9,800 unassigned/spare/reclaimed virtual desktops for reuse",
+          "Generated US$1M additional monthly trade volume in China by improving stability (low latency) for Citrix XenApp trading apps",	  
+	  "Core architect for India ODC 10K contractor VDI remediation, identifying VM bottlenecks through SPLUNK-driven analysis, live demo interrogations with app owners and users, and multi-team collaboration",
+  	  "Presented full remediation plan, root cause analysis, and mitigation strategy to lead engineers, product managers, and MD-level senior management",
+	  "Led redesign and performance revamp of Citrix virtual applications supporting Morgan Stanley’s No.1 trading platform (multi-billion USD daily volume)",
+	  "Served as global lead architect for Citrix, Virtual Desktop, and cloud environments, driving the global VDI/Citrix get-well program",
+	  "Performed scientific load testing and user density validation using LoginVSI and SPLUNK data analysis; authored white papers and presented findings to senior managers",
+	  "Revamped Morgan Stanley's **No.1 global trading application** (US$ multi-billions in daily trading volume) using Citrix XenApp technology",
           "Led global engineering team supporting 120,000 desktops with blueprint adoption globally",
           "Introduced LoginVSI for global performance benchmarking and load testing of VDI/SBC environments",
           "Deep dive analysis of India ODC 10K users VPC performance issues",
-          "Reduced OPEX by US$1.4M through VM environment optimization and resource utilization analysis",
-          "Avoided US$640K in vendor costs by identifying 9,800 unassigned/spare/reclaimed virtual desktops for reuse",
-          "Generated US$1M additional monthly trade volume in China by improving stability (low latency) for Citrix XenApp trading apps",
           "Engineered secure Citrix StoreFront remote access portal for 70,000 users globally",
           "Improved latency for 800+ China developers by 40% and reduced hosted desktop load time from issues to optimal performance",
-          "Implemented cutting-edge electronic trading system facilitating US$1M first year revenue",
           "Designed Desktop Transformation Strategy (Flex Desk) with 4,000 users, created white paper validating VDI vs HDI user density",
           "Accelerated M&A for Wealth Management division (16,000 financial advisers, 600+ branch offices) through virtual desktop solutions",
           "Identified and resolved VDI stability issues for 8,000 vendor users through deep workload analysis and stakeholder engagement",
@@ -713,7 +742,7 @@
           "Explored hyper-convergence computing technology to move away from costly traditional NAS/SAN storage",
           "Improved operational stability reducing user calls by 40% through proactive monitoring integration (SCOM, ServiceNow APIs, SPLUNK dashboards)",
           "Introduced capacity management load test tool adopted globally across operations teams",
-          "Deployed AppSense Performance Manager to 50% of Citrix XenApp farm, reducing server hardware footprint by 15%",
+          "Led the architecture and pioneered the deployment AppSense Performance Manager to 50% of Citrix XenApp farm, reducing server hardware footprint by 15%",
           "Deployed Japan External Citrix XenApp Trading plant (complete build: OS, apps, configuration, coordination)",
           "Led Hong Kong and Japan WAR Project deploying 1,000+ virtual desktops for BCP users",
           "Optimized user experience for remote offices using Citrix HDX technology (flash/media, printing, multi-monitor issues)",
