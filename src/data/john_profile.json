@@ -381,6 +381,22 @@
         "impact": "Eliminated data loss incidents"
       },
       {
+        "achievement": "Trading System Migration from Unsupported CentOS to RedHat",
+        "company": "Edge Technology Group",
+        "impact": "Eliminated compliance and stability risks for financial services clients by migrating critical trading systems from unsupported CentOS to enterprise-grade RedHat"
+      },
+      {
+        "achievement": "Syslog-NG High Availability Logging Architecture",
+        "company": "Edge Technology Group",
+        "impact": "Implemented HA logging architecture to close audit gaps and strengthen operational observability"
+      },
+      {
+        "achievement": "ISO27001 Gap Identification and Remediation Architecture",
+        "company": "Edge Technology Group",
+        "cost_savings": "HKD 1.8M in new revenue",
+        "impact": "Identified ISO27001 compliance gaps and designed remediation architecture, generating HKD 1.8M in new revenue"
+      },
+      {
         "achievement": "VDI Performance Optimization",
         "company": "Morgan Stanley",
         "improvement": "40% latency reduction for China developers (800+ users)",
@@ -400,10 +416,10 @@
         "adoption": "Firm-wide VDI blueprints"
       },
       {
-        "achievement": "Cutting-Edge Trading System Implementation",
+        "achievement": "Client-Facing Electronic Trading System Launch",
         "company": "Morgan Stanley",
-        "metric": "US$1M first year revenue",
-        "impact": "High-regarded electronic trading system, led to integration of additional trading apps"
+        "metric": "US$1M first-year revenue",
+        "impact": "Delivered a new client-facing electronic trading system for the Equity business, highly regarded internally and leading to integration of additional trading applications (distinct from the separate Citrix XenApp infrastructure revamp recorded under \"No.1 Global Trading Application Revamp\")"
       },
       {
         "achievement": "Desktop Transformation Strategy",
@@ -617,6 +633,17 @@
         "company": "Bank of America",
         "scale": "200+ users impacted across APAC",
         "impact": "Proactively led cross-team remediation effort"
+      },
+      {
+        "achievement": "Deep Performance Forensics for 10,000 VPC Users",
+        "company": "Bank of America",
+        "scale": "10,000 vendor VPC users",
+        "impact": "Performed SPLUNK-driven performance forensics for 10,000 vendor VPC users, identifying latency bottlenecks and driving remediation"
+      },
+      {
+        "achievement": "Trading Platform Stability Remediation",
+        "company": "Bank of America",
+        "impact": "Led remediation for latency-sensitive trading workloads, improving stability and reducing escalations from MDs and traders"
       }
     ],
     "professional_experience": [
@@ -676,7 +703,9 @@
           "Innovation -  Collaborated with global technology team to evaluate and recommend emerging VDI solutions (Turbonomics, LoginVSI, HPE Moonshot) for power-user workload optimization",
           "Managed a patching and deployment team of **6 FTEs and 1 contractor** delivering APAC security patching operations",
           "Championed **10** Operational Excellence improvement ideas for APAC and global teams, driving automation and process refinement initiatives",
-          "People management -Strengthened team collaboration and skill development by mentoring direct reports, setting SMART goals, and implementing staff recognition programs"
+          "People management -Strengthened team collaboration and skill development by mentoring direct reports, setting SMART goals, and implementing staff recognition programs",
+          "Performed SPLUNK-driven performance forensics for 10,000 vendor VPC users, identifying latency bottlenecks and driving remediation",
+          "Led remediation for latency-sensitive trading workloads, improving stability and reducing escalations from MDs and traders"
         ]
       },
       {
@@ -703,7 +732,10 @@
           "Directly engaged with client **CTOs** and technical teams to spearhead the quality of IT infrastructure service delivery for Financial Services clients",
           "Mitigated risk exposure through IT audits and **infrastructure penetration testing** engagements",
           "Drove measurable improvement of **overall KPIs** for the Centralized Services team",
-          "Managed end-to-end IT operations via **ticketing systems**, overseeing incident and problem management workflows across teams"
+          "Managed end-to-end IT operations via **ticketing systems**, overseeing incident and problem management workflows across teams",
+          "Led migration of critical trading systems from unsupported CentOS to enterprise-grade RedHat, eliminating compliance and stability risks",
+          "Implemented syslog-NG high availability logging architecture to close audit gaps and strengthen observability",
+          "Identified ISO27001 compliance gaps and designed remediation architecture generating HKD 1.8M in new revenue"
         ]
       },
       {

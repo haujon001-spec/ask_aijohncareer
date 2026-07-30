@@ -40,11 +40,24 @@ User manually added new content to `src/data/john_profile.json` (new `major_achi
 
 User decided findings 1–3: merge the two "No.1 trading platform" duplicates (kept the pre-existing `major_achievements` entry + highlight, folded in the new entry's extra detail as a new `impact` field, deleted the duplicate achievement + highlight), and remove the now-redundant "Deep dive analysis of India ODC 10K users VPC performance issues" highlight. Findings 4 (Scientific Load Testing vs. LoginVSI Tool Introduction) and 5 (Cutting-Edge Trading System Implementation) were **not** extended to this decision — still open. Applied, verified (JSON parses cleanly, 49 `major_achievements` down from 50, Morgan Stanley highlights de-duplicated, `py_compile` clean), and committed as a follow-up.
 
+## Findings 4 & 5 resolved + Edge/Bank of America backfill (later still, 30 Jul 2026)
+
+User supplied `data_raw/resume/txt/JohnHauResumeBofa_Edge_V2ToAppend.txt` (pre-structured JSON achievements + highlight strings for Edge Technology Group and Bank of America) and asked to resolve findings 4/5.
+
+- **Finding 4:** kept both entries as distinct facts, no change.
+- **Finding 5:** reworded "Cutting-Edge Trading System Implementation" → "Client-Facing Electronic Trading System Launch," with its `impact` field now explicitly disambiguating it from "No.1 Global Trading Application Revamp" — same underlying facts (US$1M first-year revenue, `JohnHauResume2017.txt:39`), clarified wording only.
+
+**Cross-checked the append file against existing data before writing anything** — found ~16 of 21 new items substantially restated existing highlights/achievements (e.g. Outlook-hang, PowerShell training, Operational Excellence, VDI-tech evaluation, restructuring recommendations already captured for Bank of America; client-CTO engagement, penetration testing, observability/MTTR, 24x7 alignment, RACI already captured for Edge). Per user decision, appended only the 5 genuinely-new items: Edge — CentOS→RedHat trading-system migration, Syslog-NG HA logging, ISO27001 gap-remediation with a new HKD 1.8M revenue figure; Bank of America — 10,000-VPC-user SPLUNK forensics, trading-platform stability remediation. Verified: JSON parses cleanly (54 `major_achievements`, up from 49), Edge highlights 22 lines, Bank of America highlights 18 lines, `py_compile` clean, profile context re-measured at 74,817 chars (still under the 100,000 cap).
+
+## Profile-update JD Portal + script-level skill — logged as next priority, not started
+
+User wants today's manual workflow (backup → append → cross-check duplicates → verify → commit) turned into a reusable JD Portal UI feature + script-level capability going forward. Per user decision, logged as next priority only — not scoped or built this session. Natural continuation of the already-paused profile-update UI epic (`sprightly-enchanting-hare.md`) plus `scripts/update_profile_from_resume.py`'s existing `is_near_duplicate()` dedup mechanism (0.72 similarity threshold) — next session should scope: (1) accepting pre-structured JSON input (today's format) as an alternative to raw-prose-plus-LLM-extraction, (2) surfacing duplicate-detection as an approve/skip step rather than silent all-or-nothing, (3) wiring either mode into the portal UI via `pythonRunner.js`.
+
 ## Known open items
 
-- `john_profile.json` — 2 remaining findings (Scientific Load Testing vs. LoginVSI Tool Introduction; Cutting-Edge Trading System Implementation) — awaiting a decision, lower priority now that the main duplicate cluster is resolved.
+- Profile-update JD Portal + script-level skill (above) — next priority, not started.
+- Authoritative `john_profile.json` update capability (full UI epic: manual editor, in-portal multi-file "Update from Resume", version history, diff view) — same epic as above, plan drafted (`sprightly-enchanting-hare.md`), paused for user questions since 25 Jul, still not approved/implemented.
 - Portal login password — user was asked 25 Jul whether they remember the existing password or want a full reset (`docs/guides/JDPORTALPASSWORDROTATION_25JUL2026.md`, Method B); no answer recorded since.
-- Authoritative `john_profile.json` update capability (full UI epic: manual editor, in-portal multi-file "Update from Resume", version history, diff view) — plan drafted (`sprightly-enchanting-hare.md`), paused for user questions since 25 Jul, still not approved/implemented.
 - Dynamic width further enhancement (per-breakpoint values) — medium priority.
 - Remaining JD Automation Portal phases (Docker packaging, dev-env docs, VPS deploy — now also covering `/api/auth/*`, `/api/view/*`, `/api/settings/*` routes and both `secrets/jd_portal_auth.json` + `secrets/jd_portal_llm_keys.json` provisioning).
 - `PortalEnroll.jsx` silent-fail hardening (flagged 25 Jul, small).

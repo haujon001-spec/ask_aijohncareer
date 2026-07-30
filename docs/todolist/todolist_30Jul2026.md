@@ -54,17 +54,42 @@ User manually edited `src/data/john_profile.json` (added new `major_achievements
 - Finding 4 (Scientific Load Testing vs. LoginVSI Tool Introduction) and finding 5 (Cutting-Edge Trading System Implementation, tied to this morning's earlier review) — **not addressed**, user did not extend the merge decision to these; still open for a future pass.
 - Verified: JSON parses cleanly (49 `major_achievements`, down from 50; Morgan Stanley `professional_experience` highlights now 48 lines with no "No.1 trading platform" or India-ODC-VPC duplicates remaining), `py_compile` clean on the resume script (unaffected, just confirming nothing else broke).
 
+## New today (30 Jul 2026, later still) — findings 4 & 5 resolved + Edge/BofA backfill from `JohnHauResumeBofa_Edge_V2ToAppend.txt`
+
+User supplied a pre-structured append file (`data_raw/resume/txt/JohnHauResumeBofa_Edge_V2ToAppend.txt`) with 4 sections: new `major_achievements` + new `professional_experience` highlights for both Edge Technology Group and Bank of America, and asked to resolve findings 4/5 from earlier today. Clarifying questions asked and answered before writing anything to the golden data file:
+
+**Findings 4 & 5 resolved:**
+- Finding 4 (Scientific Load Testing & User Density Validation vs. LoginVSI Performance Load Test Tool Introduction): **kept both, as distinct facts** — no change made.
+- Finding 5 (Cutting-Edge Trading System Implementation): **reworded for clarity**. Renamed to "Client-Facing Electronic Trading System Launch," `impact` field now explicitly notes it's distinct from the separate Citrix XenApp infrastructure revamp recorded under "No.1 Global Trading Application Revamp" — same underlying facts (US$1M first-year revenue, Equity business, led to integration of additional trading apps, sourced from `JohnHauResume2017.txt:39`), just disambiguated wording, nothing invented.
+
+**Edge/BofA append — cross-checked against existing data before writing, not appended blindly.** Comparing all 21 new achievements + 21 new highlights in the append file against what `john_profile.json` already held: ~16 of the 21 items substantially restated existing highlights/achievements almost verbatim (e.g. "Major Incident Management – Outlook Hang Issue" duplicating the existing "Outlook Hang Issue Resolution"; "Standardized Technical Communications" duplicating an existing 40%-complaint-reduction highlight; similar for PowerShell training, Operational Excellence, VDI tech evaluation, restructuring recommendations, RACI, client-CTO engagement, penetration testing, observability/MTTR, 24x7 alignment). User confirmed: **only append genuinely-new items**, skip the duplicates.
+
+**Appended (5 new achievements + 5 new highlights, verified real new facts not previously captured):**
+- Edge Technology Group: "Trading System Migration from Unsupported CentOS to RedHat," "Syslog-NG High Availability Logging Architecture," "ISO27001 Gap Identification and Remediation Architecture" (adds a new HKD 1.8M revenue figure to a previously-unquantified compliance fact) — 3 achievements + 3 matching highlights.
+- Bank of America: "Deep Performance Forensics for 10,000 VPC Users," "Trading Platform Stability Remediation" — 2 achievements + 2 matching highlights.
+
+**Verified:** JSON parses cleanly (54 `major_achievements`, up from 49), Edge highlights 22 lines, Bank of America highlights 18 lines, `py_compile` clean on both `jd_scorecard_resume_v2.py` and `update_profile_from_resume.py`, and `build_profile_context()`'s output re-measured at 74,817 chars — still comfortably under the 100,000-char cap raised earlier today.
+
+## New today (30 Jul 2026, later still) — profile-update JD Portal + script-level skill, logged as next priority (not started)
+
+User wants today's manual-append workflow (backup → edit/append → duplicate-check → verify → commit) turned into a proper, reusable capability: a JD Portal UI feature *and* a Python-script-level capability for updating `john_profile.json` with new resume achievements going forward, rather than a one-off manual process each time. Per user decision, **this is logged as the clear next priority, not started this session** — it's a natural continuation of the already-paused profile-update UI epic (`docs/guides/JOHNPROFILEUPDATE_SCOPING_25JUL2026.md`, plan file `sprightly-enchanting-hare.md`) and of the existing `scripts/update_profile_from_resume.py` (built 25 Jul for raw-prose resume backfills, with its own near-duplicate safety net via `difflib.SequenceMatcher`). Next session should scope how today's two new patterns fold in:
+- **Pre-structured JSON input** (today's `_V2ToAppend.txt` format: ready-to-paste achievement objects + highlight strings) as an alternative input mode alongside `update_profile_from_resume.py`'s existing raw-prose-plus-LLM-extraction mode.
+- **Duplicate-detection-before-write** as a first-class step (today's manual cross-check found ~16 of 21 items were near-duplicates) — the script's existing `is_near_duplicate()` (0.72 similarity threshold) is the natural mechanism to reuse/expose here, surfaced to the user as an approve/skip list rather than a silent all-or-nothing write.
+- Wiring either mode into the JD Portal UI (spawning the script the same way `pythonRunner.js` already spawns `jd_scorecard_resume_v2.py`) is still gated on the same paused-plan questions as before (manual editor form, approval granularity, version history/diff view).
+
 ## Priority order
 
 1. ~~`jd_scorecard_resume_v2.py` output-quality round (a–e)~~ — **done, verified 30 Jul 2026**
 2. ~~`john_profile.json` No.1-trading-platform duplicate + India-ODC-highlight redundancy (findings 1–3)~~ — **done, merged/removed and verified 30 Jul 2026**
-3. **`john_profile.json` — 2 remaining open findings (4: Scientific Load Testing vs. LoginVSI Tool Introduction; 5: Cutting-Edge Trading System Implementation, tied to this morning's earlier review)** — still awaiting a decision, lower priority than the resolved cluster above
-4. Authoritative `john_profile.json` update capability (full UI epic, widened scope per 25 Jul decisions) — plan paused, not yet approved
-5. Dynamic width further enhancement — medium priority
-6. Remaining JD Automation Portal phases (integration, Docker, dev-env docs, VPS deploy)
-7. `PortalEnroll.jsx` silent-fail hardening — small, flagged 25 Jul
-8. Portal login password — open question, never answered (remember existing password vs. full reset)
-9. LinkedIn automation scoping — not started
+3. ~~`john_profile.json` findings 4 & 5 (LoginVSI overlap; Cutting-Edge Trading System wording)~~ — **done, resolved 30 Jul 2026** (finding 4: kept both; finding 5: reworded)
+4. ~~Edge/Bank of America backfill from `JohnHauResumeBofa_Edge_V2ToAppend.txt`~~ — **done, verified 30 Jul 2026** (5 of 21 items appended, 16 skipped as duplicates)
+5. **Profile-update JD Portal + script-level skill** — logged as next priority this session, **not started**; builds on the paused UI epic + `scripts/update_profile_from_resume.py`'s existing dedup mechanism (see section above)
+6. Authoritative `john_profile.json` update capability (full UI epic, widened scope per 25 Jul decisions) — plan paused, not yet approved; effectively the same epic as item 5, to be scoped together
+7. Dynamic width further enhancement — medium priority
+8. Remaining JD Automation Portal phases (integration, Docker, dev-env docs, VPS deploy)
+9. `PortalEnroll.jsx` silent-fail hardening — small, flagged 25 Jul
+10. Portal login password — open question, never answered (remember existing password vs. full reset)
+11. LinkedIn automation scoping — not started
 
 ## Note
 
