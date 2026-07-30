@@ -48,18 +48,23 @@ User manually edited `src/data/john_profile.json` (added new `major_achievements
 4. **Possible `major_achievements` overlap, lower confidence:** new entry "Scientific Load Testing & User Density Validation" (LoginVSI/SPLUNK, methodology-focused) vs. pre-existing "LoginVSI Performance Load Test Tool Introduction" (tool-adoption-focused) — both Morgan Stanley, both LoginVSI-centric. Could be two genuinely distinct facets of the same initiative (introducing the tool vs. using it for load-test analysis) rather than a true duplicate — flagged for a look, not as confidently a duplicate as 1–3 above.
 5. **Still-open from earlier today, unaffected by this edit:** the two findings from the output-quality-round review above (Cutting-Edge Trading System vs. an earlier version of the No.1 Trading Application entry; Knowledge Transfer 70% vs. Citrix External Trading 40%) are still open — note that this edit **deleted** the professional_experience highlight that used to back "Cutting-Edge Trading System Implementation" ("Implemented cutting-edge electronic trading system facilitating US$1M first year revenue" no longer appears in the Morgan Stanley highlights), while the standalone `major_achievements` entry for it was left untouched — worth deciding together with finding 1 above, since all of these concern the same cluster of Morgan Stanley trading-application facts.
 
-**Not committed yet** — the syntax fix is verified (JSON parses cleanly) but the duplicate-merge decisions above are the user's call; committing is deferred until those are resolved (or the user says to commit the syntax fix alone first).
+**Syntax fix committed separately** (`e085a48`) per user decision. **Duplicate-merge decisions received and applied (follow-up commit):**
+- Findings 1 & 2 (Morgan Stanley "No.1 trading platform" duplicate, both as a `major_achievements` entry and as a `professional_experience` highlight): merged — kept the pre-existing "No.1 Global Trading Application Revamp" achievement and its matching highlight, folded in the new entry's extra detail ("improved stability, latency, and scalability for mission-critical trading workloads") as a new `impact` field, deleted the newly-added duplicate achievement entry and duplicate highlight line.
+- Finding 3 (redundant India ODC 10K highlight): removed the older, thinner "Deep dive analysis of India ODC 10K users VPC performance issues" line, keeping the two newer, more detailed highlights.
+- Finding 4 (Scientific Load Testing vs. LoginVSI Tool Introduction) and finding 5 (Cutting-Edge Trading System Implementation, tied to this morning's earlier review) — **not addressed**, user did not extend the merge decision to these; still open for a future pass.
+- Verified: JSON parses cleanly (49 `major_achievements`, down from 50; Morgan Stanley `professional_experience` highlights now 48 lines with no "No.1 trading platform" or India-ODC-VPC duplicates remaining), `py_compile` clean on the resume script (unaffected, just confirming nothing else broke).
 
 ## Priority order
 
 1. ~~`jd_scorecard_resume_v2.py` output-quality round (a–e)~~ — **done, verified 30 Jul 2026**
-2. **`john_profile.json` duplicate/inconsistency cluster (Morgan Stanley trading-app + team-offload facts)** — **flagged, awaiting user decision** (merge / reword / confirm as distinct); blocks committing today's manual profile edit
-3. Authoritative `john_profile.json` update capability (full UI epic, widened scope per 25 Jul decisions) — plan paused, not yet approved
-4. Dynamic width further enhancement — medium priority
-5. Remaining JD Automation Portal phases (integration, Docker, dev-env docs, VPS deploy)
-6. `PortalEnroll.jsx` silent-fail hardening — small, flagged 25 Jul
-7. Portal login password — open question, never answered (remember existing password vs. full reset)
-8. LinkedIn automation scoping — not started
+2. ~~`john_profile.json` No.1-trading-platform duplicate + India-ODC-highlight redundancy (findings 1–3)~~ — **done, merged/removed and verified 30 Jul 2026**
+3. **`john_profile.json` — 2 remaining open findings (4: Scientific Load Testing vs. LoginVSI Tool Introduction; 5: Cutting-Edge Trading System Implementation, tied to this morning's earlier review)** — still awaiting a decision, lower priority than the resolved cluster above
+4. Authoritative `john_profile.json` update capability (full UI epic, widened scope per 25 Jul decisions) — plan paused, not yet approved
+5. Dynamic width further enhancement — medium priority
+6. Remaining JD Automation Portal phases (integration, Docker, dev-env docs, VPS deploy)
+7. `PortalEnroll.jsx` silent-fail hardening — small, flagged 25 Jul
+8. Portal login password — open question, never answered (remember existing password vs. full reset)
+9. LinkedIn automation scoping — not started
 
 ## Note
 

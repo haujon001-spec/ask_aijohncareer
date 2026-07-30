@@ -34,11 +34,15 @@ User manually added new content to `src/data/john_profile.json` (new `major_achi
 4. Lower-confidence: new "Scientific Load Testing & User Density Validation" vs. pre-existing "LoginVSI Performance Load Test Tool Introduction" — both Morgan Stanley/LoginVSI, possibly distinct facets rather than a true duplicate.
 5. This edit deleted the highlight that used to back the still-open "Cutting-Edge Trading System Implementation" achievement (from earlier today's review) — the standalone achievement entry itself was untouched, so this should be resolved together with finding 1.
 
-**Not committed** — syntax fix is verified but merge decisions are the user's call; commit deferred until resolved.
+**Syntax fix committed separately** (`e085a48`), per user decision, before the merge decisions were finalized.
+
+## Duplicate resolution (later still, 30 Jul 2026)
+
+User decided findings 1–3: merge the two "No.1 trading platform" duplicates (kept the pre-existing `major_achievements` entry + highlight, folded in the new entry's extra detail as a new `impact` field, deleted the duplicate achievement + highlight), and remove the now-redundant "Deep dive analysis of India ODC 10K users VPC performance issues" highlight. Findings 4 (Scientific Load Testing vs. LoginVSI Tool Introduction) and 5 (Cutting-Edge Trading System Implementation) were **not** extended to this decision — still open. Applied, verified (JSON parses cleanly, 49 `major_achievements` down from 50, Morgan Stanley highlights de-duplicated, `py_compile` clean), and committed as a follow-up.
 
 ## Known open items
 
-- `john_profile.json` duplicate/inconsistency cluster (5 findings above, all Morgan Stanley trading-app/team-offload facts) — awaiting user decision; blocks committing today's manual edit.
+- `john_profile.json` — 2 remaining findings (Scientific Load Testing vs. LoginVSI Tool Introduction; Cutting-Edge Trading System Implementation) — awaiting a decision, lower priority now that the main duplicate cluster is resolved.
 - Portal login password — user was asked 25 Jul whether they remember the existing password or want a full reset (`docs/guides/JDPORTALPASSWORDROTATION_25JUL2026.md`, Method B); no answer recorded since.
 - Authoritative `john_profile.json` update capability (full UI epic: manual editor, in-portal multi-file "Update from Resume", version history, diff view) — plan drafted (`sprightly-enchanting-hare.md`), paused for user questions since 25 Jul, still not approved/implemented.
 - Dynamic width further enhancement (per-breakpoint values) — medium priority.

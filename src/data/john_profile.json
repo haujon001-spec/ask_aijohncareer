@@ -343,12 +343,6 @@
        "impact": "Core architect for full-stack performance remediation; resolved VM bottlenecks through SPLUNK-driven analysis, live demo interrogations with app owners, and multi-team collaboration; presented findings and mitigation   plan to lead engineers, product managers, and MD-level senior management"
       },
       {
-       "achievement": "Citrix Virtual Applications Revamp for No.1 Trading Platform",
-       "company": "Morgan Stanley",
-       "metric": "US$ multi-billions daily trading volume",
-       "impact": "Led architecture and redesign of Citrix XenApp trading environment; improved stability, latency, and scalability for mission-critical trading workloads"
-      },
-      {
        "achievement": "Global Virtual Desktop & Application Get-Well Program",
        "company": "Morgan Stanley",
        "impact": "Served as lead architect for Citrix, Virtual Desktop, and cloud environments; drove global remediation program improving stability, performance, and user experience across APAC/EMEA/NA"
@@ -570,7 +564,8 @@
         "achievement": "No.1 Global Trading Application Revamp",
         "company": "Morgan Stanley",
         "metric": "US$ multi-billions daily trading volume",
-        "tech": "Citrix XenApp"
+        "tech": "Citrix XenApp",
+        "impact": "Led architecture and redesign of the Citrix XenApp trading environment; improved stability, latency, and scalability for mission-critical trading workloads"
       },
       {
         "achievement": "Offshore Vendor Desktop Cost Savings",
@@ -726,13 +721,11 @@
           "Generated US$1M additional monthly trade volume in China by improving stability (low latency) for Citrix XenApp trading apps",	  
 	  "Core architect for India ODC 10K contractor VDI remediation, identifying VM bottlenecks through SPLUNK-driven analysis, live demo interrogations with app owners and users, and multi-team collaboration",
   	  "Presented full remediation plan, root cause analysis, and mitigation strategy to lead engineers, product managers, and MD-level senior management",
-	  "Led redesign and performance revamp of Citrix virtual applications supporting Morgan Stanley’s No.1 trading platform (multi-billion USD daily volume)",
 	  "Served as global lead architect for Citrix, Virtual Desktop, and cloud environments, driving the global VDI/Citrix get-well program",
 	  "Performed scientific load testing and user density validation using LoginVSI and SPLUNK data analysis; authored white papers and presented findings to senior managers",
 	  "Revamped Morgan Stanley's **No.1 global trading application** (US$ multi-billions in daily trading volume) using Citrix XenApp technology",
           "Led global engineering team supporting 120,000 desktops with blueprint adoption globally",
           "Introduced LoginVSI for global performance benchmarking and load testing of VDI/SBC environments",
-          "Deep dive analysis of India ODC 10K users VPC performance issues",
           "Engineered secure Citrix StoreFront remote access portal for 70,000 users globally",
           "Improved latency for 800+ China developers by 40% and reduced hosted desktop load time from issues to optimal performance",
           "Designed Desktop Transformation Strategy (Flex Desk) with 4,000 users, created white paper validating VDI vs HDI user density",
