@@ -496,18 +496,6 @@
   font-size: 12px;
 }
 
-.profile-update-stub {
-  align-self: flex-start;
-  padding: 10px 18px;
-  background: transparent;
-  border: 1px dashed var(--portal-border-strong);
-  border-radius: 8px;
-  color: var(--portal-text-muted);
-  font-size: 13px;
-  cursor: not-allowed;
-  opacity: 0.8;
-}
-
 .jd-details {
   margin-top: 10px;
   font-size: 12px;

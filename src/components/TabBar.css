@@ -41,6 +41,26 @@
   font-size: 13px;
 }
 
+/* Nested one level deeper than --sub, e.g. View/Edit/Update/History inside
+   the Profile tab's own sub-tab bar — slightly more compact so it doesn't
+   visually compete with the parent JD Portal tab bar above it. */
+.tab-bar.tab-bar--sub-nested {
+  padding: 4px 0 12px;
+  background: transparent;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 12px;
+}
+
+.tab-bar.tab-bar--sub-nested .tab-bar-button {
+  padding: 6px 14px;
+  font-size: 12.5px;
+}
+
+[data-portal-theme="fintech"] .tab-bar.tab-bar--sub-nested,
+[data-portal-theme="daylight"] .tab-bar.tab-bar--sub-nested {
+  border-bottom: 1px solid var(--portal-border);
+}
+
 @media (max-width: 768px) {
   .tab-bar {
     padding: 8px 12px;

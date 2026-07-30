@@ -19,6 +19,8 @@ const projectRoot = path.resolve(__dirname, '..');
 const PROFILE_PATH = path.join(projectRoot, 'src/data/john_profile.json');
 const BACKUP_DIR = path.join(projectRoot, 'backup');
 
+export { PROFILE_PATH, BACKUP_DIR };
+
 // Ensure backup directory exists
 if (!fs.existsSync(BACKUP_DIR)) {
   fs.mkdirSync(BACKUP_DIR, { recursive: true });
@@ -226,12 +228,37 @@ export function getLatestBackup() {
 }
 
 /**
+ * Read and parse one backup snapshot, for the Version History / diff view.
+ * backupData.profile is the ENTIRE original {timestamp, sourceFile, profile}
+ * envelope (see backupProfile() above) — this unwraps it one level further
+ * to return the same {timestamp, profile} shape GET /api/profile-view
+ * already uses, so the frontend can treat "current" and "a past version"
+ * identically.
+ * @param {string} filename - Filename of the backup to read
+ * @returns {{timestamp: string, profile: object}|null}
+ */
+export function getBackup(filename) {
+  const backupPath = path.join(BACKUP_DIR, filename);
+  if (!fs.existsSync(backupPath)) {
+    return null;
+  }
+  const backupData = JSON.parse(fs.readFileSync(backupPath, 'utf-8'));
+  const envelope = backupData.profile; // the whole original envelope
+  return { timestamp: envelope.timestamp, profile: envelope.profile };
+}
+
+/**
  * Create automatic backup before modification
  * Useful to call before any profile changes
  */
 export async function ensureBackup() {
   console.log('🔄 Creating pre-modification backup...');
-  return await backupProfile();
+  const result = await backupProfile();
+  // Snapshots are now taken far more often (every manual save, every
+  // approved merge) than the occasional Python backfill run this default
+  // was originally sized for — auto-prune so backup/ doesn't grow unbounded.
+  cleanupOldBackups(10);
+  return result;
 }
 
 export default {
@@ -241,5 +268,8 @@ export default {
   displayBackups,
   cleanupOldBackups,
   getLatestBackup,
-  ensureBackup
+  getBackup,
+  ensureBackup,
+  PROFILE_PATH,
+  BACKUP_DIR
 };

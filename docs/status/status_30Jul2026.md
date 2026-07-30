@@ -49,20 +49,27 @@ User supplied `data_raw/resume/txt/JohnHauResumeBofa_Edge_V2ToAppend.txt` (pre-s
 
 **Cross-checked the append file against existing data before writing anything** — found ~16 of 21 new items substantially restated existing highlights/achievements (e.g. Outlook-hang, PowerShell training, Operational Excellence, VDI-tech evaluation, restructuring recommendations already captured for Bank of America; client-CTO engagement, penetration testing, observability/MTTR, 24x7 alignment, RACI already captured for Edge). Per user decision, appended only the 5 genuinely-new items: Edge — CentOS→RedHat trading-system migration, Syslog-NG HA logging, ISO27001 gap-remediation with a new HKD 1.8M revenue figure; Bank of America — 10,000-VPC-user SPLUNK forensics, trading-platform stability remediation. Verified: JSON parses cleanly (54 `major_achievements`, up from 49), Edge highlights 22 lines, Bank of America highlights 18 lines, `py_compile` clean, profile context re-measured at 74,817 chars (still under the 100,000 cap).
 
-## Profile-update JD Portal + script-level skill — logged as next priority, not started
+## Profile-update JD Portal epic — scoped, planned, and built in full (later still, 30 Jul 2026)
 
-User wants today's manual workflow (backup → append → cross-check duplicates → verify → commit) turned into a reusable JD Portal UI feature + script-level capability going forward. Per user decision, logged as next priority only — not scoped or built this session. Natural continuation of the already-paused profile-update UI epic (`sprightly-enchanting-hare.md`) plus `scripts/update_profile_from_resume.py`'s existing `is_near_duplicate()` dedup mechanism (0.72 similarity threshold) — next session should scope: (1) accepting pre-structured JSON input (today's format) as an alternative to raw-prose-plus-LLM-extraction, (2) surfacing duplicate-detection as an approve/skip step rather than silent all-or-nothing, (3) wiring either mode into the portal UI via `pythonRunner.js`.
+**Status: Done, verified end-to-end.** Full record: `docs/guides/JDPORTALPROFILEUPDATE_30JUL2026.md`. Plan file: `C:\Users\haujo\.claude\plans\ancient-dancing-rocket.md`.
+
+Per "let's go through the next priorities now," this (the item logged above as next priority) was picked up. Confirmed scope via 4 clarifying questions (full 4-part epic in one push; portal always requires explicit approve, never auto-write; manual-only LLM exclusion for `metadata`/`summary`; paste-text-only; client-side diff; auto-prune backups). Used Plan Mode given the size: 2 parallel Explore agents grounded current backend/frontend state, 1 Plan agent synthesized a concrete file-by-file plan, reviewed and finalized before approval.
+
+**Security fix (shipped first):** deleted the dead `backend/consolidation.js`/`src/utils/consolidation.js`/`scripts/test_consolidation.js` and the unauthenticated `POST /api/consolidate` route from `backend/server.js`. Verified the URL now falls through to the pre-existing generic chat-model route, rejecting it — no write path reachable.
+
+**Built:** `shared/profileSchema.js`, `backend/lib/profileOps.js` (11 unit tests passed against real data before any route existed), `backend/lib/textSimilarity.js`, `backend/lib/llmClient.js`, `backend/backup.js` extensions, `backend/api/profile.js` (manual/versions/propose/approve routes, replacing the retired `profile_update.js` stub), and 5 new frontend components (`JDProfile.jsx`, `ProfileEditForm.jsx`, `ProfileUpdateFromResume.jsx`, `ProfileVersionHistory.jsx`, `ProfileDiff.jsx`) plus a new `diff` npm dependency.
+
+**Verified (soul.md §3.1), real dev stack/auth/LLM, no mocks:** backend curl pass (route collisions, auth/path-traversal negatives, manual-edit round-trip), Playwright pass for parts (a)/(c)/(d) (real add-skill → save → history → diff → restore, zero console errors), backend + Playwright pass for part (b) (real `anthropic/claude-sonnet-5` calls producing grounded proposals across 6 different profile sections, confirmed never-auto-write, confirmed partial-approval precision, confirmed self-dedup on a repeat-fact test, unit-tested all 3 validation gates), security-fix regression confirmed, full cleanup (test backups/pending files removed, `secrets/jd_portal_auth.json` restored byte-identical, `git diff` on the profile confirmed 0 lines, `npm run build` clean throughout).
+
+**Real mistake made and disclosed:** first restore-test targeted the *oldest* backup in the list rather than the one the test itself created, silently reverting the working file to a 25-Jul snapshot and wiping this session's earlier dedup/backfill work in the working tree. Caught immediately via `git diff`, fixed via `git show HEAD:... > file` (confirmed clean after). Logged to memory: always restore-test against a backup the test itself just created.
 
 ## Known open items
 
-- Profile-update JD Portal + script-level skill (above) — next priority, not started.
-- Authoritative `john_profile.json` update capability (full UI epic: manual editor, in-portal multi-file "Update from Resume", version history, diff view) — same epic as above, plan drafted (`sprightly-enchanting-hare.md`), paused for user questions since 25 Jul, still not approved/implemented.
-- Portal login password — user was asked 25 Jul whether they remember the existing password or want a full reset (`docs/guides/JDPORTALPASSWORDROTATION_25JUL2026.md`, Method B); no answer recorded since.
-- Dynamic width further enhancement (per-breakpoint values) — medium priority.
+- Dynamic width further enhancement (per-breakpoint values) — medium priority, next in the confirmed backlog order.
 - Remaining JD Automation Portal phases (Docker packaging, dev-env docs, VPS deploy — now also covering `/api/auth/*`, `/api/view/*`, `/api/settings/*` routes and both `secrets/jd_portal_auth.json` + `secrets/jd_portal_llm_keys.json` provisioning).
 - `PortalEnroll.jsx` silent-fail hardening (flagged 25 Jul, small).
 - LinkedIn job-search automation scoping — not started.
 
 ## Working-tree note
 
-`src/data/john_profile.json` has an uncommitted user edit and `src/data/jd/JD_DBS_IT_SVP_HeadOfTechnology_OpsRisk.json` is untracked — both left as-is, consistent with the established practice of never touching the user's own pending profile/JD edits mid-session.
+`src/data/jd/JD_DBS_IT_SVP_HeadOfTechnology_OpsRisk.json` (untracked) and `src/data/jd/JD_Manulife_AVP_Technology_Architecture_and_Operations.json` (a pre-existing, unrelated modification) remain in the working tree — both left as-is, consistent with the established practice of never touching the user's own pending profile/JD edits mid-session. `src/data/john_profile.json` itself is clean (0-line diff against the last commit) after this session's testing.

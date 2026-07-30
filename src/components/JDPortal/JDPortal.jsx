@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import TabBar from '../TabBar'
 import JDWizard from './JDWizard'
 import JDHistoryList from './JDHistoryList'
-import ProfileView from './ProfileView'
+import JDProfile from './JDProfile'
 import ApiKeySettings from './ApiKeySettings'
 import './JDPortal.css'
 
@@ -28,17 +28,7 @@ function JDPortal() {
 
       {view === 'history' && <JDHistoryList />}
 
-      {view === 'profile' && <ProfileView />}
-
-      {view === 'new' && (
-        <button
-          className="profile-update-stub"
-          disabled
-          title="Coming in Phase 3 (NLP profile updates)"
-        >
-          🔒 Update Profile from JD (Coming Soon)
-        </button>
-      )}
+      {view === 'profile' && <JDProfile />}
     </div>
   )
 }

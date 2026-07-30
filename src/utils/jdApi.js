@@ -104,6 +104,41 @@ export function profileExportUrl(format) {
   return `${JD_API_BASE}/api/profile-view/export?format=${format}`
 }
 
+// ---- Profile edit / version history / Update-from-Resume ----
+
+export function saveProfileManual({ ops, expectedTimestamp }) {
+  return request('/api/profile/manual', {
+    method: 'POST',
+    body: JSON.stringify({ ops, expectedTimestamp })
+  })
+}
+
+export function fetchProfileVersions() {
+  return request('/api/profile/versions')
+}
+
+export function fetchProfileVersion(filename) {
+  return request(`/api/profile/versions/${encodeURIComponent(filename)}`)
+}
+
+export function restoreProfileVersion(filename) {
+  return request(`/api/profile/versions/${encodeURIComponent(filename)}/restore`, { method: 'POST' })
+}
+
+export function proposeProfileUpdate({ sources, llm, customModel }) {
+  return request('/api/profile/update-from-resume/propose', {
+    method: 'POST',
+    body: JSON.stringify({ sources, llm, customModel })
+  })
+}
+
+export function approveProfileUpdate({ proposalId, approvedItemIds }) {
+  return request('/api/profile/update-from-resume/approve', {
+    method: 'POST',
+    body: JSON.stringify({ proposalId, approvedItemIds })
+  })
+}
+
 // Normalizes the two download-path shapes returned by the API:
 //  - /api/jd/run's downloadUrls are already-prefixed: "/api/download/Acme/ScoreCard/txt/x.txt"
 //  - /api/history's scorecard/resume/coverLetter fields are repo-relative: "data_processed/Acme/ScoreCard/txt/x.txt"

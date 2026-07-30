@@ -77,20 +77,39 @@ User wants today's manual-append workflow (backup → edit/append → duplicate-
 - **Duplicate-detection-before-write** as a first-class step (today's manual cross-check found ~16 of 21 items were near-duplicates) — the script's existing `is_near_duplicate()` (0.72 similarity threshold) is the natural mechanism to reuse/expose here, surfaced to the user as an approve/skip list rather than a silent all-or-nothing write.
 - Wiring either mode into the JD Portal UI (spawning the script the same way `pythonRunner.js` already spawns `jd_scorecard_resume_v2.py`) is still gated on the same paused-plan questions as before (manual editor form, approval granularity, version history/diff view).
 
+## New today (30 Jul 2026, later still) — Profile-update JD Portal epic, built in full (all 4 parts)
+
+Per "let's go through the next priorities now," the profile-update epic was picked up as the top priority. Given its size (full paused epic, widened scope, security-fix folded in), used Plan Mode: two parallel Explore agents grounded the current backend/frontend state (confirmed `backend/backup.js`'s format already matches `scripts/update_profile_from_resume.py`'s own backups; confirmed `ProfileView.jsx`/the "Profile" tab already exist and are read-only, live since 25 Jul — a design update from the original paused plan), then a Plan agent synthesized a concrete file-by-file plan, refined via 4 clarifying questions (LLM scope: manual-only for `summary`/`metadata`; paste-text-only, no PDF/DOCX; client-side diff computation; auto-prune old backups). Plan approved, then built and verified in full this session. Full record: `docs/guides/JDPORTALPROFILEUPDATE_30JUL2026.md`, plan file `C:\Users\haujo\.claude\plans\ancient-dancing-rocket.md`.
+
+**Security fix (shipped first, independent):** deleted `backend/consolidation.js` + `src/utils/consolidation.js` + `scripts/test_consolidation.js` (confirmed dead/broken — wrong nesting, no auth, no backup) and the `POST /api/consolidate` route + import from `backend/server.js`. Verified: the URL now falls through to the pre-existing generic `POST /api/:model` chat route, rejecting `consolidate` as an unknown model — the dangerous write path is unreachable.
+
+**Shared foundation:** `shared/profileSchema.js` (new top-level dir — 13-section schema, `LLM_PROPOSABLE_SECTIONS` excludes `metadata`/`summary`/`linkedin_recommendations`), `backend/lib/profileOps.js` (shared op engine — `replaceText`/`updateObject`/`upsertEntry`/`removeEntry`/`appendStrings`/`removeStrings`, verified with 11 standalone test cases against real data), `backend/lib/textSimilarity.js` (JS port of the Python script's `is_near_duplicate()`), `backend/lib/llmClient.js` (Node-native LLM call, no Python spawn), `backend/backup.js` extended (exported `BACKUP_DIR`, added `getBackup()`, wired `cleanupOldBackups(10)` to run after every write).
+
+**Backend routes** (`backend/api/profile.js`, new, replaces the retired `backend/api/profile_update.js` 501 stub): `POST /manual` (part a, optimistic-concurrency 409), `POST /update-from-resume/propose` + `/approve` (part b, never auto-writes, validates section allowlist + operation allowlist + verbatim groundingQuote + near-dup), `GET /versions`, `GET /versions/:filename`, `POST /versions/:filename/restore` (parts c/d).
+
+**Frontend:** `JDProfile.jsx` (new container resolving coexistence with the untouched `ProfileView.jsx` via a nested View/Edit/Update-from-Resume/History sub-tab bar), `ProfileEditForm.jsx` (schema-driven typed editors, dynamic key/value rows for `major_achievements`), `ProfileUpdateFromResume.jsx` (multi-source paste, propose/approve checklist with a "Rejected (N)" section), `ProfileVersionHistory.jsx` + `ProfileDiff.jsx` (new `diff` npm dependency, client-side word/entry diff), `JDPortal.jsx` updated, dead `profile-update-stub` button + CSS removed, new `.tab-bar--sub-nested` CSS variant added.
+
+**Verified end-to-end (soul.md §3.1), real dev stack, real MFA auth (credential-swap technique), real LLM calls, no mocks:**
+- Backend curl pass: route-collision, auth-negative (401), path-traversal-negative (400), manual-edit round-trip.
+  - **Real mistake made and caught:** first restore test targeted the *oldest* backup instead of the one the test itself created, silently reverting the working file to a 25-Jul snapshot and wiping this session's earlier dedup/backfill work in the working tree. Caught via `git diff` immediately after, fixed via `git show HEAD:... > file` (confirmed 0-line diff after). Lesson logged to memory: always restore-test against a backup the test itself just created, never an arbitrary list entry.
+- Playwright pass, parts (a)/(c)/(d): real login → add throwaway skill → Save → History shows new version → Compare correctly highlights it → Restore removes it → confirmed in Edit tab → confirmed untouched `ProfileView` still renders. Zero console errors.
+- Backend + Playwright pass, part (b): real `anthropic/claude-sonnet-5` call against a fabricated throwaway resume snippet produced 6 well-grounded proposals across 6 different sections (confirming cross-section semantic routing genuinely works); confirmed file byte-unchanged after propose; partial-approved 2 of 6 (then separately, via Playwright, 1 of 4) — confirmed exactly the approved subset landed each time; a repeat-fact test correctly returned 0 proposals (LLM self-deduped); directly unit-tested all 3 validation gates.
+- Security-fix regression confirmed above.
+- Full cleanup: all test backups/pending-proposal files removed, `secrets/jd_portal_auth.json` restored byte-identical, test servers killed, `git diff src/data/john_profile.json` confirmed 0 lines, `npm run build` clean throughout.
+
 ## Priority order
 
 1. ~~`jd_scorecard_resume_v2.py` output-quality round (a–e)~~ — **done, verified 30 Jul 2026**
 2. ~~`john_profile.json` No.1-trading-platform duplicate + India-ODC-highlight redundancy (findings 1–3)~~ — **done, merged/removed and verified 30 Jul 2026**
 3. ~~`john_profile.json` findings 4 & 5 (LoginVSI overlap; Cutting-Edge Trading System wording)~~ — **done, resolved 30 Jul 2026** (finding 4: kept both; finding 5: reworded)
 4. ~~Edge/Bank of America backfill from `JohnHauResumeBofa_Edge_V2ToAppend.txt`~~ — **done, verified 30 Jul 2026** (5 of 21 items appended, 16 skipped as duplicates)
-5. **Profile-update JD Portal + script-level skill** — logged as next priority this session, **not started**; builds on the paused UI epic + `scripts/update_profile_from_resume.py`'s existing dedup mechanism (see section above)
-6. Authoritative `john_profile.json` update capability (full UI epic, widened scope per 25 Jul decisions) — plan paused, not yet approved; effectively the same epic as item 5, to be scoped together
-7. Dynamic width further enhancement — medium priority
-8. Remaining JD Automation Portal phases (integration, Docker, dev-env docs, VPS deploy)
-9. `PortalEnroll.jsx` silent-fail hardening — small, flagged 25 Jul
-10. Portal login password — open question, never answered (remember existing password vs. full reset)
-11. LinkedIn automation scoping — not started
+5. ~~Profile-update JD Portal + script-level skill (full 4-part epic + security fix)~~ — **done, verified 30 Jul 2026.** See `docs/guides/JDPORTALPROFILEUPDATE_30JUL2026.md`.
+6. Dynamic width further enhancement — medium priority, next up per confirmed backlog order
+7. Remaining JD Automation Portal phases (integration, Docker, dev-env docs, VPS deploy)
+8. `PortalEnroll.jsx` silent-fail hardening — small, flagged 25 Jul
+9. ~~Portal login password~~ — **resolved 30 Jul 2026**, user confirmed the new password works as expected
+10. LinkedIn automation scoping — not started
 
 ## Note
 
-An untracked JD blueprint (`src/data/jd/JD_DBS_IT_SVP_HeadOfTechnology_OpsRisk.json`) remains in the working tree, unrelated to this session's work — left untouched.
+An untracked JD blueprint (`src/data/jd/JD_DBS_IT_SVP_HeadOfTechnology_OpsRisk.json`) and a pre-existing, unrelated modification to `src/data/jd/JD_Manulife_AVP_Technology_Architecture_and_Operations.json` remain in the working tree, unrelated to this session's work — left untouched.
