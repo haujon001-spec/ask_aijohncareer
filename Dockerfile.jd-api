@@ -1,0 +1,48 @@
+# JD Automation Portal API — separate image from the chat app (Dockerfile).
+# Node + Python (via venv, required on Alpine's PEP-668-enforcing Python) +
+# the minimal pip deps scripts/jd_scorecard_resume_v2.py needs. Kept apart
+# from the chat app's image so that image and its already-verified container
+# stay untouched by this feature (soul.md golden-rule: don't touch what's
+# already working).
+
+FROM node:18-alpine
+WORKDIR /app
+
+# Python 3 + venv for the JD pipeline script. Alpine's system Python enforces
+# PEP 668 (externally-managed-environment) so a bare `pip install` fails
+# without --break-system-packages; a venv sidesteps this cleanly and matches
+# backend/lib/pythonRunner.js's own venv-preference resolution order.
+RUN apk add --no-cache python3 py3-pip && \
+    python3 -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Node deps
+COPY package*.json ./
+RUN npm ci --only=production
+
+# App code — only what jd_api_server.js and its imports actually touch.
+COPY backend/ ./backend/
+COPY shared/ ./shared/
+COPY scripts/jd_scorecard_resume_v2.py ./scripts/jd_scorecard_resume_v2.py
+COPY src/data/ ./src/data/
+
+# Runtime state dirs — overridden by bind mounts at compose/run time in
+# production; created here only so a bare `docker run` without mounts
+# doesn't crash on fs.mkdirSync/readdir calls against a missing path.
+RUN mkdir -p data_raw/jd/txt data_processed secrets backup && \
+    addgroup -g 1001 -S nodejs && adduser -S nodejs -u 1001 && \
+    chown -R nodejs:nodejs /app /opt/venv
+
+ENV PYTHON_BIN=/opt/venv/bin/python3
+ENV NODE_ENV=production
+
+USER nodejs
+
+HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
+    CMD node -e "require('http').get('http://localhost:3010/api/health', (r) => {if (r.statusCode !== 200) throw new Error(r.statusCode)})"
+
+EXPOSE 3010
+CMD ["node", "backend/jd_api_server.js"]

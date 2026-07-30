@@ -30,6 +30,42 @@ services:
     #       cpus: '0.5'
     #       memory: 512M
 
+  # JD Automation Portal API (Node + Python pipeline) — separate image/service
+  # from `app` so the already-verified chat-app container stays untouched.
+  jd-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.jd-api
+    container_name: john-career-copilot-jd-api
+    environment:
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY}
+      DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY}
+      JD_API_PORT: 3010
+      JD_PORTAL_JWT_SECRET: ${JD_PORTAL_JWT_SECRET}
+      JD_PORTAL_FRONTEND_ORIGIN: ${JD_PORTAL_FRONTEND_ORIGIN}
+      JD_RUN_TIMEOUT_MS: ${JD_RUN_TIMEOUT_MS:-900000}
+      NODE_ENV: production
+    volumes:
+      # Bind mounts, not named volumes — these already hold real data on the
+      # deploy host (JD blueprints, per-employer run history, profile
+      # backups) that must persist across redeploys, not start empty.
+      - ./data_raw:/app/data_raw
+      - ./data_processed:/app/data_processed
+      - ./secrets:/app/secrets
+      - ./backup:/app/backup
+      - ./src/data:/app/src/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3010/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+      - careers
+    # Deliberately no `ports:` — reachable only via the `careers` network
+    # (Caddy -> john-career-copilot-jd-api:3010), not published to the host.
+
   # Caddy reverse proxy with automatic HTTPS
   caddy:
     image: caddy:2-alpine
@@ -46,6 +82,7 @@ services:
     restart: unless-stopped
     depends_on:
       - app
+      - jd-api
     networks:
       - careers
     # Optional: custom logging

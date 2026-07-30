@@ -1,7 +1,10 @@
 // Client for the standalone JD Automation API (backend/jd_api_server.js, default port 3010).
 // Kept separate from the main chat backend calls in App.jsx since it's a different server/process.
 
-export const JD_API_BASE = import.meta.env.VITE_JD_API_BASE || 'http://localhost:3010'
+// In production the JD API is reached via Caddy's same-origin /jd-api/* path
+// route (see Caddyfile) rather than a separate host:port — import.meta.env.PROD
+// is a Vite build-time constant, true whenever `vite build` runs.
+export const JD_API_BASE = import.meta.env.VITE_JD_API_BASE || (import.meta.env.PROD ? '/jd-api' : 'http://localhost:3010')
 
 async function request(path, options = {}) {
   const resp = await fetch(`${JD_API_BASE}${path}`, {

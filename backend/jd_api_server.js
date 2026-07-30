@@ -32,6 +32,7 @@ console.log(`   OpenRouter: ${openrouterKey ? openrouterKey.substring(0, 20) + '
 console.log(`   DeepSeek: ${deepseekKey ? deepseekKey.substring(0, 20) + '...' : 'NOT SET'}`);
 
 const app = express();
+app.set('trust proxy', 1); // behind Caddy in production — req.secure must reflect the real client scheme for the session cookie's `secure` flag
 const PORT = process.env.JD_API_PORT || 3010;
 const JD_TXT_DIR = path.join(projectRoot, 'data_raw', 'jd', 'txt');
 const DATA_PROCESSED_ROOT = path.join(projectRoot, 'data_processed');
