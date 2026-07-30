@@ -48,6 +48,20 @@ All four modified files were backed up first per soul.md golden-rule (`*.2026073
 
 `secrets/jd_portal_auth.json` (local dev MFA password/TOTP) and `jd_portal_llm_keys.json` (stored LLM API keys) exist locally with real values. Asked the user explicitly rather than guessing: confirmed production should **not** inherit these — it gets a fresh, empty `secrets/` directory and self-provisions on first real use, keeping dev and prod credentials fully separate. The deploy tarball excluded `secrets/` entirely; the directory was created empty, directly on the VPS.
 
+## Follow-up fix, same day: `app` container still couldn't see live profile edits
+
+After the user completed real portal enrollment and asked directly whether `john_profile.json` edits reach the main chat page or need a restart, checked rather than assumed — and found a real remaining gap.
+
+**Root cause:** `Dockerfile` (chat app) bakes `john_profile.json` into the image at build time (`COPY src/data/john_profile.json ./src/data/`), and `docker-compose.prod.yml`'s `app` service had **no volume** for `src/data/` — only the new `jd-api` service did. So the earlier same-day fix (commit `6981181`, "re-read the file fresh on every chat request") is correct in **local dev**, where both processes share one filesystem, but in **this production topology** it was re-reading `app`'s own frozen, build-time copy — genuinely invisible to any live edit, restart or not.
+
+**Proven, not assumed:** wrote a marker file directly to the host's `src/data/`; confirmed `jd-api` saw it instantly (bind-mounted) and `app` did not (`No such file or directory`).
+
+**Fix:** added the same bind mount `jd-api` already had to the `app` service too — `./src/data:/app/src/data` in `docker-compose.prod.yml` (commit `1cd1efb`). Deployed by copying just the one file to the VPS and `docker compose up -d app` (Compose detected the volume-config change and recreated the container on its own).
+
+**Verified end-to-end for real, not just structurally:**
+1. Marker-file test repeated post-fix — `app` now sees host writes instantly.
+2. **Real LLM round-trip**: asked the live chat a question probing for a planted secret string. Answered "NOT FOUND" before the edit. Appended a marker (`STALENESS-TEST-MARKER-XYZQWERTY99`) directly to the live `profile.summary` on the host, no restart. Asked the exact same question again — the live chat answered with the planted string, proving the running `app` container's next request genuinely read the edited file. Restored the profile from a pre-test backup taken before the edit; `md5sum` after restore matches the original exactly, confirming a clean revert with zero residual test data in the real profile.
+
 ## Not verified by this session — requires the user
 
-The actual authenticated flow (enroll a real production password + TOTP, log in, run a real JD pipeline through the live portal, download a generated `.docx`) was **deliberately left for the user** rather than done by this session, since enrolling would mean this session would come to know John's live production credential. Everything up to and including the unauthenticated surface (`/jd-api/api/health`, `/jd-api/api/auth/status`, the enroll page's real API call) is verified working; the next step is for the user to visit `https://www.askcareer-ai.com/portal/enroll` and complete real enrollment, then exercise a real JD run to close out the very last mile of end-to-end verification.
+The actual authenticated flow (enroll a real production password + TOTP, log in, run a real JD pipeline through the live portal, download a generated `.docx`) was **deliberately left for the user** rather than done by this session, since enrolling would mean this session would come to know John's live production credential. User completed real enrollment same day and confirmed the live `/portal` UI looks good.
