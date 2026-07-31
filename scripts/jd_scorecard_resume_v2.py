@@ -746,13 +746,37 @@ def add_docx_text_block(doc, line):
     add_runs_with_markup(para, stripped)
 
 
+def _is_effectively_blank(line):
+    """Blank line OR a ---/===/___ separator — both collapse to one gap in the docx."""
+    stripped = line.strip()
+    if not stripped:
+        return True
+    return set(stripped) <= {"=", "_", "-"} and len(stripped) >= 8
+
+
 def convert_text_file_to_docx(txt_path):
     if not DOCX_AVAILABLE:
         raise RuntimeError("python-docx is not installed")
 
     doc = Document()
     style_docx_document(doc)
+
+    # A section boundary is "blank line, separator, blank line" in the .txt —
+    # each of those independently would add its own empty paragraph, doubling
+    # the visual gap in Word. Collapse any run of blank/separator lines into
+    # a single blank paragraph between real content lines.
+    normalized_lines = []
+    blank_pending = False
     for line in txt_path.read_text(encoding="utf-8").splitlines():
+        if _is_effectively_blank(line):
+            blank_pending = True
+            continue
+        if blank_pending and normalized_lines:
+            normalized_lines.append("")
+        blank_pending = False
+        normalized_lines.append(line)
+
+    for line in normalized_lines:
         add_docx_text_block(doc, line)
 
     target_dir = txt_path.parent.parent / "docx"
@@ -990,7 +1014,8 @@ if run_resume:
         "12. Never state an exact number of years of experience (e.g. do not write '27 years' or '27+ years'). Use wording like 'extensive years' or 'extensive experience' instead.\n"
         "13. Weave visible people-management evidence into the most recent 2-3 roles specifically (not just a generic soft-skills line) — team leadership, mentoring/coaching, hiring or onboarding, performance management, career development, org design — using only what the profile actually documents (e.g. leading a team of 50+, coaching teams across multiple countries, mentorship and team development).\n"
         "14. Output ONLY the resume text — no preamble, no explanation, no markdown code fences (the ** bold markers from rule 8 are the one exception — those are expected).\n"
-        + ("15. Recruiter resume-adjustment guidance (below) may be supplied — it comes from this JD's own Match Scorecard. Apply it ONLY to wording, emphasis, section framing, and which existing facts get foregrounded. It must NEVER be used to introduce a fact, figure, project, or claim that is not already present in the candidate profile data — the guidance changes how real facts are presented, never what the facts are. Never print the guidance verbatim or add a visible \"Resume Adjustments\" heading.\n" if resume_adjustment else "")
+        "15. Professional Summary company references: (a) when naming companies in a list (e.g. \"...financial institutions including X, Y, Z...\"), list them in the exact same order as `professional_experience` in the candidate profile (most recent first) — do NOT copy the reference template's fixed company order verbatim. (b) The reference template's summary includes a dedicated 'spotlight' sentence naming one company and its flagship achievement (e.g. the Morgan Stanley VP / Workspace Virtualization / 120,000 desktops line) — do NOT default to spotlighting Morgan Stanley in every resume regardless of the JD. Instead, choose the spotlight company dynamically: pick whichever role's achievements are most relevant to THIS JD's themes, breaking ties in favor of the most recent role. Rewrite that sentence using that company's own title, scope, and achievements from the profile — only reuse the template's Morgan Stanley wording if Morgan Stanley is genuinely the best fit for this specific JD.\n"
+        + ("16. Recruiter resume-adjustment guidance (below) may be supplied — it comes from this JD's own Match Scorecard. Apply it ONLY to wording, emphasis, section framing, and which existing facts get foregrounded. It must NEVER be used to introduce a fact, figure, project, or claim that is not already present in the candidate profile data — the guidance changes how real facts are presented, never what the facts are. Never print the guidance verbatim or add a visible \"Resume Adjustments\" heading.\n" if resume_adjustment else "")
     )
 
     resume_adjustment_block = (
@@ -1023,6 +1048,7 @@ Layout rules:
 - The `AI & AUTOMATION HIGHLIGHTS` section from the template is mandatory and must never be omitted, because it demonstrates current innovation capability with vivid examples
 - First infer the 5-8 most important themes from THIS JD (technical, leadership, business, industry, and interpersonal)
 - Replace the Professional Summary to foreground those JD-specific themes using only evidence from the profile
+- Follow system rule 15 for the summary's company list order and spotlight-company selection — do not blindly copy the reference template's Morgan Stanley-centric company order or spotlight sentence
 - Add a dynamic bridging section immediately before PROFESSIONAL EXPERIENCE. The section title and content must fit the JD nature
   (for example: "HOSPITALITY RELEVANCE", "ROLE RELEVANCE", or "ENTERPRISE ARCHITECTURE RELEVANCE") and should never be hardcoded
 - BULLET COUNT RULES (non-negotiable):
