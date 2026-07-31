@@ -345,7 +345,7 @@
       {
        "achievement": "Global Virtual Desktop & Application Get-Well Program",
        "company": "Morgan Stanley",
-       "impact": "Served as lead architect for Citrix, Virtual Desktop, and cloud environments; drove global remediation program improving stability, performance, and user experience across APAC/EMEA/NA"
+       "impact": "Served as global SME and lead architect for Citrix, Virtual Desktop, and cloud environments; authored onboarding guidelines and workload-analysis standards for migrating traditional desktops and fat-client applications to VDI/Virtual Apps; drove global remediation program improving stability, performance, and user experience across APAC/EMEA/NA"
       },
       {
        "achievement": "Scientific Load Testing & User Density Validation",
@@ -644,6 +644,31 @@
         "achievement": "Trading Platform Stability Remediation",
         "company": "Bank of America",
         "impact": "Led remediation for latency-sensitive trading workloads, improving stability and reducing escalations from MDs and traders"
+      },
+      {
+        "achievement": "APAC Infrastructure Budget Ownership",
+        "company": "AIA International Ltd",
+        "scale": "HKD 28M annual budget",
+        "impact": "Full accountability for infrastructure budget planning, vendor governance, and cost optimization across APAC IT operations"
+      },
+      {
+        "achievement": "Enterprise Resiliency & High-Availability Architecture",
+        "company": "Merrill Lynch",
+        "tech": "MSCS clustering, RAID 5/6/10, NIC teaming, load balancing",
+        "impact": "Architected and validated resiliency and high-availability design across file/print clusters, SQL clustering, and web service load balancers; led cross-datacenter failover testing to validate hardware and software failure scenarios"
+      },
+      {
+        "achievement": "M&A Virtual Desktop Migration — Wealth Management",
+        "company": "Morgan Stanley",
+        "scale": "600 Financial Advisors converted in Asia; 15,000+ FAs globally",
+        "impact": "Led Asia-region VDI conversion for Financial Advisors as part of a global M&A integration, validating business-critical application workloads for zero-disruption cutover"
+      },
+      {
+        "achievement": "Citrix StoreFront Global Resiliency & Failover Architecture",
+        "company": "Morgan Stanley",
+        "scale": "70,000 users globally",
+        "tech": "Citrix StoreFront native failover grouping, F5 LTM/GTM, Citrix NetScaler, Akamai Kona",
+        "impact": "Architected and validated multi-tier local, regional, and global failover for Citrix StoreFront remote access, ensuring continuity of trading-floor access during regional or global outage scenarios"
       }
     ],
     "professional_experience": [
@@ -669,6 +694,7 @@
           "Improved stakeholder communication and deliverable turnaround time by **2 days**.",
           "Executed **3 disaster recovery drills** in 2024, achieving governance improvements through **40+ process enhancements**.",
           "Oversaw vendor management and completed departmental budget planning for 2024/2025, including cost analysis, approvals, and SMT presentations.",
+          "Managed HKD 28M infrastructure budget, driving vendor governance and cost optimization across APAC IT operations.",
           "Acted as subject matter expert resolving the 2024 CrowdStrike BSOD outage, restoring **90% of affected devices within the first day**.",
           "Led root cause investigation into a CEO global messaging incident on mobile devices, presenting RCA and permanent fix to C-suite leadership.",
           "Identified root cause of VIP client device non-compliance and implemented governance documentation and improved checkout scripts to prevent recurrence.",
@@ -748,20 +774,20 @@
           "Managed global virtual team of 8 people with 2 directs in region",
           "Authored 8 global white papers on AppSense, Citrix policy, load testing, HDX technology, user density, trading performance, and Storefront capacity analysis (became firm-wide VDI blueprints)",
 	  "Reduced OPEX by US$1.4M through VM environment optimization and resource utilization analysis",
-          "Avoided US$640K in vendor costs on consultancy analysis",
-	  "Avoided US$12.7M TCO through Center of excellence by identifying 9,800 unassigned/spare/reclaimed virtual desktops for reuse",
-          "Generated US$1M additional monthly trade volume in China by improving stability (low latency) for Citrix XenApp trading apps",	  
+	  "Avoided US$12.7M TCO through Center of excellence by identifying 9,800 unassigned/spare/reclaimed virtual desktops for reuse",          
+	  "Avoided US$640K in vendor costs on consultancy analysis",
+	  "Generated US$1M additional monthly trade volume in China by improving stability (low latency) for Citrix XenApp trading apps",	  
 	  "Core architect for India ODC 10K contractor VDI remediation, identifying VM bottlenecks through SPLUNK-driven analysis, live demo interrogations with app owners and users, and multi-team collaboration",
   	  "Presented full remediation plan, root cause analysis, and mitigation strategy to lead engineers, product managers, and MD-level senior management",
-	  "Served as global lead architect for Citrix, Virtual Desktop, and cloud environments, driving the global VDI/Citrix get-well program",
+	  "Served as global SME and lead architect for Citrix, Virtual Desktop, and cloud environments, authoring onboarding guidelines and workload-analysis standards for migrating traditional desktops and fat-client applications to VDI/Virtual Apps and driving the global get-well program",
 	  "Performed scientific load testing and user density validation using LoginVSI and SPLUNK data analysis; authored white papers and presented findings to senior managers",
 	  "Revamped Morgan Stanley's **No.1 global trading application** (US$ multi-billions in daily trading volume) using Citrix XenApp technology",
           "Led global engineering team supporting 120,000 desktops with blueprint adoption globally",
           "Introduced LoginVSI for global performance benchmarking and load testing of VDI/SBC environments",
-          "Engineered secure Citrix StoreFront remote access portal for 70,000 users globally",
+          "Architected and validated resiliency and high availability for a global Citrix StoreFront remote-access portal (70,000 users), engineering multi-tier failover across local, regional, and global scenarios via Citrix StoreFront native failover grouping, F5 LTM/GTM load balancing, and Citrix NetScaler with Akamai Kona for external DNS failover",
           "Improved latency for 800+ China developers by 40% and reduced hosted desktop load time from issues to optimal performance",
           "Designed Desktop Transformation Strategy (Flex Desk) with 4,000 users, created white paper validating VDI vs HDI user density",
-          "Accelerated M&A for Wealth Management division (16,000 financial advisers, 600+ branch offices) through virtual desktop solutions",
+          "Led Asia-region conversion of 600 Financial Advisors from traditional to virtual desktops as part of a global M&A integration spanning 15,000+ financial advisers and 600+ branch offices, validating business-critical application workloads for zero-disruption cutover",
           "Identified and resolved VDI stability issues for 8,000 vendor users through deep workload analysis and stakeholder engagement",
           "Implemented 24/7 End User Experience monitoring tool (separate from system monitoring) to reduce support man-hours and improve customer satisfaction",
           "Explored hyper-convergence computing technology to move away from costly traditional NAS/SAN storage",
@@ -817,7 +843,8 @@
           "Managed Data Centre Relocations with proper BCP testing and systems migration",
           "Implemented server hardware refreshes and application migrations",
           "Managed server OS and software upgrades with cross-silo application remediation",
-          "Redesigned server architecture to increase resiliency and achieve high availability",
+          "Architected high-availability and resiliency solutions across MSCS file/print clusters, MSCS SQL Server environments, and Microsoft web service load-balancing infrastructures to ensure fault-tolerant, enterprise-grade service continuity",
+          "Developed and validated HA/DR failover scenarios—including NIC teaming, RAID 5/6/10, and cross-datacenter MSCS node failover—to ensure predictable recovery and infrastructure robustness",
           "Analyzed and streamlined operational work, reducing team workload by 20%",
           "Enforced documentation processes improving operational efficiency",
           "Served as Level 3 support (most complicated issues) for APR Region",

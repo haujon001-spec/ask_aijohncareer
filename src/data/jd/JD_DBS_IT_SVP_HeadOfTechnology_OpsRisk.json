@@ -1,0 +1,249 @@
+{
+  "jd_file": "T&O_COO_Office_Team_Head_Tech_Op_Risk_Management.pdf",
+  "company": "DBS Bank (Hong Kong)",
+  "company_slug": "dbs-bank-hk",
+  "job_title": "Team Head, Technology and Operational Risk Management (T&O COO Office)",
+  "role_slug": "team-head-technology-operational-risk-management",
+  "industry": "Banking & Financial Services - Technology & Operations Risk",
+  "role_summary": "Senior risk leadership role converging Operational Risk Management and Technology Risk Management within the T&O COO Office of a major bank in Hong Kong. The role owns strategy, governance, and execution for enterprise operational and technology risk, including RCSA, KRI reporting, third-party/vendor risk, operational resilience, New Product Approval, and regulatory engagement with HKMA (TM-E-1, TM-G-1, SA-2, C-RAF). The Team Head leads and develops risk teams, champions risk culture across T&O, and advises senior stakeholders on emerging technology risks such as Generative AI and Public Cloud.",
+  "must_have_requirements": [
+    "Senior leadership experience in risk management within financial services/banking, overseeing both operational and technology risk functions",
+    "Proven track record leading and developing risk teams and influencing senior stakeholders in a complex organization",
+    "Hands-on expertise in operational risk and technology risk frameworks (RCSA, KRI development, incident management) at a large financial institution",
+    "Deep knowledge of operational processes, controls, and technology infrastructure in banking",
+    "Extensive regulatory engagement experience, particularly with HKMA requirements (TM-E-1, TM-G-1, SA-2, C-RAF) or equivalent regulators",
+    "Experience managing third-party/vendor risk and ensuring resilience of critical business services",
+    "Experience overseeing New Product Approval or similar new-product risk assessment processes",
+    "Strong understanding of information security, system resiliency/availability, and software development practices",
+    "Knowledge of emerging technology risks - Generative AI and Public Cloud",
+    "Degree in Risk Management, Information Systems, Finance, Business Administration, or related field"
+  ],
+  "nice_to_have_requirements": [
+    "Professional certifications: CISA, CISSP, CISM, CRISC, ECF-ORM",
+    "Experience with Site Reliability Engineering risk domains",
+    "Experience leading risk governance forums/committees at regional or group level",
+    "Familiarity with operational resilience frameworks encompassing critical business services",
+    "Experience liaising with internal/external auditors, legal, compliance, and regulators",
+    "Exposure to data analytics-driven risk control frameworks"
+  ],
+  "soft_skills_priority": [
+    "Strategic thinking and executive leadership",
+    "Stakeholder influence and senior executive communication",
+    "Risk culture championing and change leadership",
+    "People management and team development",
+    "Cross-functional collaboration (Technology, Operations, Business Units)",
+    "Problem-solving under complexity and ambiguity",
+    "Integrity and ethical judgment",
+    "Ability to manage multiple priorities in a fast-paced environment"
+  ],
+  "semantic_match_guidance": {
+    "operational_risk_management": [
+      "RCSA",
+      "risk and control self-assessment",
+      "key risk indicators",
+      "KRI reporting",
+      "risk governance",
+      "operational risk framework",
+      "risk event investigation",
+      "root cause analysis",
+      "control environment"
+    ],
+    "technology_risk_management": [
+      "technology risk assessment",
+      "IT risk posture",
+      "cybersecurity risk",
+      "system resiliency",
+      "availability management",
+      "technology incident management",
+      "IT general controls",
+      "emerging technology risk"
+    ],
+    "regulatory_compliance": [
+      "HKMA",
+      "TM-E-1",
+      "TM-G-1",
+      "SA-2",
+      "C-RAF",
+      "regulatory submissions",
+      "compliance reviews",
+      "audit engagement",
+      "regulator liaison"
+    ],
+    "third_party_vendor_risk": [
+      "vendor due diligence",
+      "outsourcing risk",
+      "third-party risk management",
+      "critical business services",
+      "vendor monitoring",
+      "incident response for vendors"
+    ],
+    "emerging_technology": [
+      "Generative AI",
+      "GenAI risk",
+      "Public Cloud",
+      "cloud risk management",
+      "AI governance",
+      "cloud security"
+    ],
+    "new_product_approval": [
+      "NPA process",
+      "new product risk assessment",
+      "product governance",
+      "BU/SU stakeholder collaboration"
+    ],
+    "leadership_and_culture": [
+      "risk culture champion",
+      "team leadership",
+      "people management",
+      "executive presence",
+      "stakeholder management",
+      "senior committee representation"
+    ],
+    "certifications": [
+      "CISA",
+      "CISSP",
+      "CISM",
+      "CRISC",
+      "ECF-ORM"
+    ]
+  },
+  "scoring_criteria": [
+    {
+      "name": "Senior Risk Leadership Experience (Banking/FSI)",
+      "weight": 18,
+      "why_it_matters": "Role requires a proven senior leader capable of setting strategy and representing the unit at executive/regulatory forums",
+      "evidence_type_to_look_for": [
+        "Head of Risk / Director / VP titles",
+        "P&L or team size managed",
+        "experience presenting to risk committees or regulators"
+      ],
+      "gap_expected": "May lack exact 'Team Head' title but equivalent scope acceptable"
+    },
+    {
+      "name": "Operational Risk Management Expertise (RCSA/KRI)",
+      "weight": 14,
+      "why_it_matters": "Core deliverable is oversight of RCSA and KRI programmes across the unit",
+      "evidence_type_to_look_for": [
+        "RCSA design/execution",
+        "KRI dashboards",
+        "control testing",
+        "risk reporting to senior management"
+      ]
+    },
+    {
+      "name": "Technology Risk Management Expertise",
+      "weight": 14,
+      "why_it_matters": "Role converges ORM and TRM, requiring technical risk knowledge across infrastructure, security, and resilience",
+      "evidence_type_to_look_for": [
+        "IT risk assessments",
+        "cybersecurity risk oversight",
+        "system resiliency programs",
+        "technology audit findings remediation"
+      ]
+    },
+    {
+      "name": "Regulatory Engagement (HKMA or equivalent)",
+      "weight": 12,
+      "why_it_matters": "Extensive regulatory dialogue is explicitly required, especially HKMA technology/operational risk guidelines",
+      "evidence_type_to_look_for": [
+        "Direct HKMA engagement",
+        "regulatory submission ownership",
+        "familiarity with TM-E-1/TM-G-1/SA-2/C-RAF or similar frameworks (e.g., MAS, FCA)"
+      ],
+      "gap_expected": "Candidates from non-HK markets may show equivalent regulator experience instead of HKMA specifically"
+    },
+    {
+      "name": "Third-Party/Vendor Risk & Operational Resilience",
+      "weight": 10,
+      "why_it_matters": "Explicit responsibility for third-party risk and critical business service resilience",
+      "evidence_type_to_look_for": [
+        "Vendor risk frameworks",
+        "outsourcing governance",
+        "business continuity planning",
+        "critical service resilience programs"
+      ]
+    },
+    {
+      "name": "Emerging Technology Risk (GenAI, Cloud)",
+      "weight": 8,
+      "why_it_matters": "Role explicitly covers Generative AI and Public Cloud risk oversight, a differentiator for modern TRM leaders",
+      "evidence_type_to_look_for": [
+        "AI governance frameworks",
+        "cloud risk assessments",
+        "GenAI policy development",
+        "cloud migration risk reviews"
+      ],
+      "gap_expected": "Many senior risk leaders may have limited hands-on GenAI experience; assess via adjacent cloud/tech risk exposure"
+    },
+    {
+      "name": "New Product Approval / Product Risk Governance",
+      "weight": 6,
+      "why_it_matters": "Role directly oversees NPA team ensuring rigorous risk assessment for new offerings",
+      "evidence_type_to_look_for": [
+        "New product risk sign-off",
+        "product governance committee participation",
+        "cross-functional NPA process design"
+      ]
+    },
+    {
+      "name": "Team Leadership & Risk Culture Building",
+      "weight": 10,
+      "why_it_matters": "Role requires inspiring and developing teams while embedding a proactive risk culture across the organization",
+      "evidence_type_to_look_for": [
+        "Team size managed",
+        "staff development initiatives",
+        "risk culture campaigns",
+        "change management leadership"
+      ]
+    },
+    {
+      "name": "Stakeholder Management & Executive Communication",
+      "weight": 6,
+      "why_it_matters": "Must influence senior leaders across Technology, Operations, and Business Units, and represent unit externally",
+      "evidence_type_to_look_for": [
+        "Executive committee presentations",
+        "cross-functional collaboration examples",
+        "negotiation with regulators/auditors"
+      ]
+    },
+    {
+      "name": "Certifications & Education Fit",
+      "weight": 2,
+      "why_it_matters": "Relevant degree and certifications (CISA, CISSP, CISM, CRISC, ECF-ORM) support technical credibility though not strictly mandatory",
+      "evidence_type_to_look_for": [
+        "Degree in Risk/IS/Finance/Business",
+        "Listed certifications on resume"
+      ],
+      "gap_expected": "Certification absence is common and should not heavily penalize otherwise strong candidates"
+    }
+  ],
+  "resume_tailoring_guidance": {
+    "mandatory_sections": [
+      "PROFESSIONAL SUMMARY",
+      "AI & AUTOMATION HIGHLIGHTS",
+      "CORE COMPETENCIES",
+      "SOFT SKILLS"
+    ],
+    "summary_focus": [
+      "Position candidate as a senior risk leader bridging operational and technology risk in banking/FSI",
+      "Highlight scale of teams led, regulatory bodies engaged, and frameworks implemented (RCSA, KRI, TPRM)",
+      "Emphasize exposure to emerging tech risk (cloud, AI) and resilience/third-party risk programs",
+      "Quantify impact: risk reduction, audit findings closed, incidents mitigated, regulatory submissions delivered"
+    ],
+    "do_not_overclaim": [
+      "Do not claim direct HKMA regulatory relationship if experience is with a different regulator - state the actual regulator",
+      "Do not overstate hands-on Generative AI risk expertise if experience is limited to general cloud/tech risk - clarify scope",
+      "Do not claim ownership of New Product Approval process unless directly responsible - specify contributing vs owning role",
+      "Avoid implying larger team size or budget than actually managed"
+    ]
+  },
+  "cover_letter_guidance": {
+    "tone": "Executive, authoritative, and risk-culture-driven, reflecting gravitas expected of a senior banking risk leader",
+    "positioning": "Position candidate as a strategic convergence leader who can unify operational and technology risk disciplines, drive regulatory confidence, and modernize risk frameworks for emerging tech (AI, cloud) within a complex banking environment",
+    "bridge_gaps_honestly": [
+      "If lacking direct HKMA experience, highlight equivalent regulatory engagement (e.g., MAS, FCA, OCC) and transferable regulatory acumen",
+      "If GenAI/cloud risk exposure is limited, emphasize broader technology risk governance and willingness/capability to rapidly upskill in emerging tech domains",
+      "If New Product Approval ownership is partial, clarify collaborative role and risk assessment contributions rather than full ownership"
+    ]
+  }
+}

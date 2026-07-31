@@ -1,0 +1,158 @@
+{
+  "jd_file": "HKEX-IT-Infrastructure-Manager",
+  "company": "HKEX",
+  "company_slug": "hkex",
+  "job_title": "IT Infrastructure Support Lead",
+  "role_slug": "infra-support-lead",
+  "industry": "Financial Services / Capital Markets",
+  "role_summary": "Lead the support team for critical IT infrastructure, ensuring operational stability, robust change control, and continuous improvement through automation within a large-scale enterprise environment.",
+  "must_have_requirements": [
+    "University degree in IT or related field",
+    "Minimum 15 years of IT infrastructure support experience",
+    "Minimum 5 years in management/supervisory positions",
+    "Proven experience in production incident management",
+    "Expertise in IT risk management, compliance, and change control procedures",
+    "Experience managing vendor relationships and internal stakeholder communication"
+  ],
+  "nice_to_have_requirements": [
+    "Prior experience in Capital Markets or highly regulated financial environments",
+    "Demonstrated track record of infrastructure automation/enhancement projects",
+    "Direct experience managing enterprise infrastructure budgets"
+  ],
+  "soft_skills_priority": [
+    "Leadership and team development",
+    "Meticulous attention to detail",
+    "Conflict resolution and stakeholder management",
+    "Strategic communication and presentation",
+    "Integrity and professional trust-building"
+  ],
+  "semantic_match_guidance": {
+    "Infrastructure Leadership": [
+      "Service Delivery Manager",
+      "Infrastructure Operations Manager",
+      "IT Director",
+      "Head of IT Infrastructure"
+    ],
+    "Technical Governance": [
+      "ITIL",
+      "Incident Management",
+      "Change Management",
+      "Risk and Compliance",
+      "SLA management"
+    ],
+    "Vendor/Stakeholder": [
+      "Vendor Management",
+      "Stakeholder Engagement",
+      "Executive Reporting",
+      "Relationship Management"
+    ]
+  },
+  "scoring_criteria": [
+    {
+      "name": "Total IT Experience",
+      "weight": 20,
+      "why_it_matters": "Requires high level of technical maturity to manage critical capital market infrastructure.",
+      "evidence_type_to_look_for": [
+        "Career history length (15+ years)"
+      ],
+      "gap_expected": "12-14 years may be acceptable if highly relevant"
+    },
+    {
+      "name": "Leadership Tenure",
+      "weight": 15,
+      "why_it_matters": "Must demonstrate direct experience managing teams in an enterprise setting.",
+      "evidence_type_to_look_for": [
+        "Management experience (5+ years)",
+        "Team size managed"
+      ],
+      "gap_expected": "None"
+    },
+    {
+      "name": "Production Incident Management",
+      "weight": 15,
+      "why_it_matters": "System stability is critical in capital markets.",
+      "evidence_type_to_look_for": [
+        "SLA maintenance",
+        "Post-mortem reports",
+        "Incident response leadership"
+      ],
+      "gap_expected": "None"
+    },
+    {
+      "name": "Governance & Compliance",
+      "weight": 10,
+      "why_it_matters": "Essential for regulatory adherence in financial markets.",
+      "evidence_type_to_look_for": [
+        "Audit participation",
+        "Risk register",
+        "Change control governance"
+      ],
+      "gap_expected": "None"
+    },
+    {
+      "name": "Budget & Resource Planning",
+      "weight": 10,
+      "why_it_matters": "Responsibility for managing departmental financial and human capital.",
+      "evidence_type_to_look_for": [
+        "Budget responsibility",
+        "Resource forecasting"
+      ],
+      "gap_expected": "Optional"
+    },
+    {
+      "name": "Infrastructure Automation",
+      "weight": 10,
+      "why_it_matters": "Matches requirement for continuous enhancement plans.",
+      "evidence_type_to_look_for": [
+        "CI/CD pipelines",
+        "Automation roadmap",
+        "Efficiency metrics"
+      ],
+      "gap_expected": "Optional"
+    },
+    {
+      "name": "Stakeholder Management",
+      "weight": 10,
+      "why_it_matters": "Needs to unify divergent teams and manage C-suite expectations.",
+      "evidence_type_to_look_for": [
+        "Internal stakeholder communication",
+        "Cross-functional team leadership"
+      ],
+      "gap_expected": "None"
+    },
+    {
+      "name": "Communication & Presence",
+      "weight": 10,
+      "why_it_matters": "Critical for presenting risks and strategy to senior management.",
+      "evidence_type_to_look_for": [
+        "Executive-level reporting",
+        "Presentation experience"
+      ],
+      "gap_expected": "None"
+    }
+  ],
+  "resume_tailoring_guidance": {
+    "mandatory_sections": [
+      "PROFESSIONAL SUMMARY",
+      "INFRASTRUCTURE LEADERSHIP & OPERATIONS",
+      "RISK MANAGEMENT & GOVERNANCE",
+      "KEY ACHIEVEMENTS",
+      "CORE COMPETENCIES",
+      "SOFT SKILLS"
+    ],
+    "summary_focus": [
+      "Highlight 15+ years of IT operations leadership in large-scale environments",
+      "Mention experience handling high-availability systems with critical SLAs"
+    ],
+    "do_not_overclaim": [
+      "Avoid claiming direct software development background if the primary focus was SRE/Infrastructure support"
+    ]
+  },
+  "cover_letter_guidance": {
+    "tone": "Professional, authoritative, yet service-oriented",
+    "positioning": "Position yourself as an stabilizer and optimizer who aligns infrastructure performance with business purpose",
+    "bridge_gaps_honestly": [
+      "Emphasize how past leadership roles transformed operational culture if specific financial tech experience is limited"
+    ]
+  }
+}
