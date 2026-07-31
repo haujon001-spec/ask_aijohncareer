@@ -55,8 +55,23 @@ Backed up first: `scripts/jd_scorecard_resume_v2.py.20260731_V3.bak`, plus a dat
 ### Verification
 Regenerated the HKEX `.docx` (same standalone-converter approach as Bug 2, no LLM re-call). Checked programmatically with `python-docx`: for all 5 companies, the header line is immediately followed by its date-range paragraph with zero blank paragraphs in between, and the single blank row before the first bullet is preserved.
 
+## Bug 4: every paragraph silently carried a 10pt default "space after"
+
+Follow-up audit request, same session: "check all the paragraphs for the before and after row spacing," specifically flagging the area around AIA. Requested a full sweep, not just the two specific spots already fixed.
+
+**Root cause:** python-docx's built-in default template defines a document-wide default in `styles.xml`'s `w:docDefaults/w:pPrDefault/w:pPr/w:spacing` — `w:after="200"` (10pt) applied to **every paragraph that doesn't explicitly override it**. `style_docx_document()` only ever set the `Normal` style's font (Calibri 11pt), never its paragraph spacing, so this 10pt default silently applied everywhere except the ~20 paragraphs (contact lines, company headers, date lines, body text) that `add_docx_text_block()` explicitly overrides with `Pt(3)`/`Pt(4)`. That left **150 of 170 paragraphs** — every blank spacer, every ALL-CAPS section title, and every bullet — carrying an unaccounted extra 10pt gap on top of whatever blank-line-based spacing Bugs 2 and 3 already controlled. This is what was still visible as "extra spacing" even after those two fixes.
+
+### Fix
+Backed up first: `scripts/jd_scorecard_resume_v2.py.20260731_V4.bak`, plus a dated `.bak` of the HKEX `.docx`.
+
+- `style_docx_document()` now also sets `normal.paragraph_format.space_before = Pt(0)` and `space_after = Pt(0)` on the `Normal` style. Since `List Bullet` is based on `Normal` and doesn't define its own spacing, this zeroes the inherited default for both styles used in every generated resume/scorecard/cover letter.
+- The existing explicit `Pt(3)`/`Pt(4)` paragraph-level overrides (company header line, date line, generic body paragraphs) are untouched — direct paragraph formatting always wins over style-level formatting, so those intentional small gaps are preserved.
+
+### Verification
+Regenerated the HKEX `.docx` (standalone converter, no LLM re-call). Confirmed via `python-docx`: `Normal` style `space_after`/`space_before` now read `0` (previously inherited `None` → resolved to the template's 200-twip/10pt default); the same 150 paragraphs that previously had no paragraph-level override now report an *effective* 0pt instead of 10pt. Spot-checked the region around "PROFESSIONAL EXPERIENCE" → blank → "AIA International Ltd — ..." → date → blank → first bullet: only the two intentional overrides (3pt on the company header, 4pt on the date line) remain; the two blank spacer paragraphs and the section title now carry zero extra spacing beyond their own line height.
+
 ## Files touched
-- `scripts/jd_scorecard_resume_v2.py` (all three fixes)
+- `scripts/jd_scorecard_resume_v2.py` (all four fixes)
 - `data_processed/HKEX/resume/txt/JohnHauResume2026_HKEX_IT_Infrastructure_CriticalService_31JUL2026.txt` (regenerated)
 - `data_processed/HKEX/resume/docx/JohnHauResume2026_HKEX_IT_Infrastructure_CriticalService_31JUL2026.docx` (regenerated)
-- Backups left alongside originals: `scripts/jd_scorecard_resume_v2.py.20260731_V1.bak` / `_V2.bak` / `_V3.bak`; matching dated `.bak` files for the HKEX txt/docx outputs.
+- Backups left alongside originals: `scripts/jd_scorecard_resume_v2.py.20260731_V1.bak` / `_V2.bak` / `_V3.bak` / `_V4.bak`; matching dated `.bak` files for the HKEX txt/docx outputs.

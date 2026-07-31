@@ -706,6 +706,15 @@ def style_docx_document(doc):
     normal = doc.styles["Normal"]
     normal.font.name = "Calibri"
     normal.font.size = Pt(11)
+    # python-docx's default template applies a document-wide 10pt "space after"
+    # (w:docDefaults/w:pPrDefault) to every paragraph that doesn't explicitly
+    # override it — including every blank spacer paragraph, section-title
+    # line, and bullet. That silently stacked extra air on top of the blank
+    # rows this converter deliberately inserts. Zero it at the Normal-style
+    # level (List Bullet is based on Normal) so only the explicit Pt(3)/Pt(4)
+    # overrides below ever add spacing.
+    normal.paragraph_format.space_before = Pt(0)
+    normal.paragraph_format.space_after = Pt(0)
 
 
 def add_docx_text_block(doc, line):
