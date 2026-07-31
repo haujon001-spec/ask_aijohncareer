@@ -41,8 +41,22 @@ Backed up first: `scripts/jd_scorecard_resume_v2.py.20260731_V2.bak` (script), p
 ### Verification
 Regenerated the HKEX resume `.docx` from the already-verified `.txt` (via a standalone converter script reusing the exact same `add_docx_text_block`/`style_docx_document`/`add_runs_with_markup` logic, to avoid an unnecessary second LLM call). Checked programmatically with `python-docx`: **max consecutive blank paragraphs = 1** across all 175 paragraphs (previously 2 at every section boundary).
 
+## Bug 3: blank row between each company's header line and its date line
+
+Follow-up request, same session: in every Professional Experience entry, the bold "Company — Title" line and the "Mon YYYY – Mon YYYY" date line below it had a blank paragraph between them (a real single blank line in the `.txt`, not a collapsed-separator artifact from Bug 2) — user wanted these two rows adjacent with no gap.
+
+### Fix
+Backed up first: `scripts/jd_scorecard_resume_v2.py.20260731_V3.bak`, plus a dated `.bak` of the HKEX `.docx` before regenerating.
+
+- Added `_COMPANY_HEADER_RE` (`^\S.*\s—\s\S`, matches the bold-dash "Company — Title" header line) and `_DATE_RANGE_RE` (`Mon YYYY – Mon YYYY` / `Mon YYYY – Present`) to `scripts/jd_scorecard_resume_v2.py`.
+- `convert_text_file_to_docx()` now runs a second normalization pass after the Bug 2 blank/separator collapse: any blank-line marker sitting between a line matching `_COMPANY_HEADER_RE` and the next line matching `_DATE_RANGE_RE` is dropped entirely (not collapsed to one — removed to zero), so the company header and its date range render as consecutive paragraphs with no blank row. The date-to-first-bullet gap is untouched (not part of this request).
+- Applies to every future Resume `.docx` this script generates, across all Professional Experience entries (AIA, Bank of America, Edge Technology Group, Morgan Stanley, Merrill Lynch, and any future roles), not just the HKEX file.
+
+### Verification
+Regenerated the HKEX `.docx` (same standalone-converter approach as Bug 2, no LLM re-call). Checked programmatically with `python-docx`: for all 5 companies, the header line is immediately followed by its date-range paragraph with zero blank paragraphs in between, and the single blank row before the first bullet is preserved.
+
 ## Files touched
-- `scripts/jd_scorecard_resume_v2.py` (both fixes)
+- `scripts/jd_scorecard_resume_v2.py` (all three fixes)
 - `data_processed/HKEX/resume/txt/JohnHauResume2026_HKEX_IT_Infrastructure_CriticalService_31JUL2026.txt` (regenerated)
 - `data_processed/HKEX/resume/docx/JohnHauResume2026_HKEX_IT_Infrastructure_CriticalService_31JUL2026.docx` (regenerated)
-- Backups left alongside originals: `scripts/jd_scorecard_resume_v2.py.20260731_V1.bak`, `.20260731_V2.bak`; matching dated `.bak` files for the HKEX txt/docx outputs.
+- Backups left alongside originals: `scripts/jd_scorecard_resume_v2.py.20260731_V1.bak` / `_V2.bak` / `_V3.bak`; matching dated `.bak` files for the HKEX txt/docx outputs.

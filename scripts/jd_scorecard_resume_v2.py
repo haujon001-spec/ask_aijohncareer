@@ -754,6 +754,16 @@ def _is_effectively_blank(line):
     return set(stripped) <= {"=", "_", "-"} and len(stripped) >= 8
 
 
+# "Company — Title" header line, as used for each Professional Experience entry.
+_COMPANY_HEADER_RE = re.compile(r"^\S.*\s—\s\S")
+
+# "Mon YYYY – Mon YYYY" / "Mon YYYY – Present" date-range line that follows
+# each company header line.
+_DATE_RANGE_RE = re.compile(
+    r"^[A-Za-z]{3,9}\.?\s+\d{4}\s*[–—-]\s*(?:[A-Za-z]{3,9}\.?\s+\d{4}|Present)$"
+)
+
+
 def convert_text_file_to_docx(txt_path):
     if not DOCX_AVAILABLE:
         raise RuntimeError("python-docx is not installed")
@@ -761,20 +771,38 @@ def convert_text_file_to_docx(txt_path):
     doc = Document()
     style_docx_document(doc)
 
-    # A section boundary is "blank line, separator, blank line" in the .txt —
-    # each of those independently would add its own empty paragraph, doubling
-    # the visual gap in Word. Collapse any run of blank/separator lines into
-    # a single blank paragraph between real content lines.
-    normalized_lines = []
+    # Pass 1: a section boundary is "blank line, separator, blank line" in the
+    # .txt — each of those independently would add its own empty paragraph,
+    # doubling the visual gap in Word. Collapse any run of blank/separator
+    # lines into a single blank paragraph between real content lines.
+    collapsed_lines = []
     blank_pending = False
     for line in txt_path.read_text(encoding="utf-8").splitlines():
         if _is_effectively_blank(line):
             blank_pending = True
             continue
-        if blank_pending and normalized_lines:
-            normalized_lines.append("")
+        if blank_pending and collapsed_lines:
+            collapsed_lines.append("")
         blank_pending = False
+        collapsed_lines.append(line)
+
+    # Pass 2: within a Professional Experience entry, drop the blank-line gap
+    # between the "Company — Title" header and its date-range line right
+    # below it, so those two rows sit adjacent with no spacing.
+    normalized_lines = []
+    i = 0
+    while i < len(collapsed_lines):
+        line = collapsed_lines[i]
+        if (
+            line == ""
+            and 0 < i < len(collapsed_lines) - 1
+            and _COMPANY_HEADER_RE.match(collapsed_lines[i - 1].strip())
+            and _DATE_RANGE_RE.match(collapsed_lines[i + 1].strip())
+        ):
+            i += 1
+            continue
         normalized_lines.append(line)
+        i += 1
 
     for line in normalized_lines:
         add_docx_text_block(doc, line)
