@@ -67,6 +67,18 @@ Backed up first: `scripts/jd_scorecard_resume_v2.py.20260731_V4.bak`, plus a dat
 - `style_docx_document()` now also sets `normal.paragraph_format.space_before = Pt(0)` and `space_after = Pt(0)` on the `Normal` style. Since `List Bullet` is based on `Normal` and doesn't define its own spacing, this zeroes the inherited default for both styles used in every generated resume/scorecard/cover letter.
 - The existing explicit `Pt(3)`/`Pt(4)` paragraph-level overrides (company header line, date line, generic body paragraphs) are untouched — direct paragraph formatting always wins over style-level formatting, so those intentional small gaps are preserved.
 
+## Production deployment (31 Jul 2026)
+
+Pushed local commits `6ea31fd`, `580d163`, `11863a4` to `origin/main` on GitHub. Since `/opt/john-career-copilot/` on the VPS is **not** a git checkout (per the 30 Jul deploy guide, populated via tarball/scp) and `Dockerfile.jd-api` `COPY`s `scripts/jd_scorecard_resume_v2.py` into the image at build time rather than bind-mounting it, GitHub alone doesn't reach production — the running `jd-api` container needed its own image rebuilt.
+
+- Hit an SSH `known_hosts` host-key mismatch connecting to `askcareer-ai.com`. Verified before doing anything about it: `ssh-keyscan` showed the *live* key from the hostname, `www.` hostname, and the raw IP `152.42.214.111` were all identical to each other and matched the already-trusted IP-keyed `known_hosts` entry from the 30 Jul deployment session — only the bare-hostname entry was stale (predates the VPS repurposing). Not a MITM; corrected the stale entry with `ssh-keygen -R` + `ssh-keyscan` rather than disabling strict host-key checking.
+- Backed up the VPS's own copy first: `scripts/jd_scorecard_resume_v2.py.20260731_pre_deploy.bak`.
+- Recorded all 3 container IDs before touching anything (`app`, `caddy`, `jd-api`).
+- `scp`'d the fixed script to the VPS, `docker compose build jd-api` (picks up the new `COPY` layer), `docker compose up -d jd-api` (recreates only that service).
+- Verified: `jd-api` came up healthy on a new container ID; `app` and `caddy` container IDs were byte-for-byte unchanged (untouched, per soul.md's don't-touch-what-works practice) throughout.
+- Verified the fix is actually in the running container: `docker exec ... grep` confirmed rule 15 (summary spotlight), `_COMPANY_HEADER_RE`, and `space_before = Pt(0)` are all present in the container's copy of the script.
+- Verified live through the real domain (not just container-internal): `https://askcareer-ai.com/jd-api/api/health` → 301 to `https://www.askcareer-ai.com/jd-api/api/health` → 200 `{"status":"ok",...}`; main chat app `https://www.askcareer-ai.com/` → 200, confirming the deploy didn't disturb the already-working chat service.
+
 ### Verification
 Regenerated the HKEX `.docx` (standalone converter, no LLM re-call). Confirmed via `python-docx`: `Normal` style `space_after`/`space_before` now read `0` (previously inherited `None` → resolved to the template's 200-twip/10pt default); the same 150 paragraphs that previously had no paragraph-level override now report an *effective* 0pt instead of 10pt. Spot-checked the region around "PROFESSIONAL EXPERIENCE" → blank → "AIA International Ltd — ..." → date → blank → first bullet: only the two intentional overrides (3pt on the company header, 4pt on the date line) remain; the two blank spacer paragraphs and the section title now carry zero extra spacing beyond their own line height.
 
