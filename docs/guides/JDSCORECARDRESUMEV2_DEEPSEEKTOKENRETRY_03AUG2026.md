@@ -134,6 +134,28 @@ issue.
   completes within the 900s timeout. This is the open item carried into
   `docs/todolist/todolist_03Aug2026.md`.
 
+## Deployed to production (`askcareer-ai.com`, VPS `152.42.214.111`), same day
+
+Both files (`scripts/jd_scorecard_resume_v2.py`, `backend/lib/llmClient.js`) are `COPY`'d into the
+`jd-api` image at build time (`Dockerfile.jd-api`) — not bind-mounted like `src/data/` — so this
+required an image rebuild, unlike the 31 Jul `john_profile.json` deploy.
+
+1. VPS's existing copies backed up first (`scripts/jd_scorecard_resume_v2.py.20260803_pre_deploy.bak`,
+   `backend/lib/llmClient.js.20260803_pre_deploy.bak`), per soul.md golden rule.
+2. `scp`'d the two updated files to the VPS, confirmed `sha256sum` matched the local versions.
+3. `docker compose -f docker-compose.prod.yml build jd-api` then `up -d jd-api` — only the `jd-api`
+   service touched; `app` and `caddy` left running untouched (confirmed via `docker ps` uptime
+   unchanged at 3 days for both, before and after).
+4. Verified for real, not assumed: `docker exec`'d into the freshly recreated container and
+   confirmed `sha256sum` of both files matches the local fixed versions exactly, and `grep`'d for
+   the fix markers (`deepseek-v4-flash`, `LLM_DEEPSEEK_REASONING_EFFORT`, `reasoning_effort`) —
+   present in both files inside the running container.
+5. Live health checks: `https://www.askcareer-ai.com/` → 200, `https://www.askcareer-ai.com/jd-api/api/health` → 200.
+
+**Still not done**: an actual live DeepSeek pipeline run through the production portal to confirm
+the fix resolves the real truncation/timeout end-to-end — code-level deployment is verified, a
+live functional rerun (either locally or against prod) is not.
+
 ## Not fixed / out of scope
 
 - `JD_RUN_TIMEOUT_MS` (900s default) left untouched — the user chose to address the root cause

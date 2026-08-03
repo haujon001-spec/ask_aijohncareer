@@ -91,9 +91,22 @@ DeepSeek API to confirm it now completes within the 900s timeout. `JD_RUN_TIMEOU
 left untouched pending that result — user chose to fix the root cause (reasoning effort) first
 rather than just extend the timeout window.
 
+## Committed and deployed (same session, after the fixes above)
+
+- Committed locally: `eab9dfa` (the DeepSeek fix itself) and `7630a2a` (two `--refresh-blueprint`
+  test-run JD blueprint JSONs — Invesco, FWD — validated as well-formed before including). Not yet
+  pushed to `origin/main`.
+- Deployed to production (`askcareer-ai.com`): `jd-api` image rebuilt (both changed files are
+  baked in at build time, not bind-mounted) and container recreated; `app`/`caddy` untouched.
+  Checksums + fix markers verified inside the running container; live health checks 200 on both
+  `/` and `/jd-api/api/health`. Full record in the guide's new "Deployed to production" section.
+
 ## Priority order for today
 
-1. **Live-verify both DeepSeek fixes** (truncation-retry + reasoning-effort/model-id migration)
-   with a real rerun of `JD_Invesco_IT_AssociateDirector.txt --refresh-blueprint --llm=deepseek`.
-2. Carry forward items 2–8 from `todolist_31Jul2026.md`'s priority order (listed above under
+1. **Live-verify the DeepSeek fix functionally** — a real pipeline run (locally or through the
+   production portal) with `--llm=deepseek` on `JD_Invesco_IT_AssociateDirector.txt
+   --refresh-blueprint`, confirming it completes within the timeout and the Resume step doesn't
+   truncate. Deployment is verified at the code level; a live functional result is still open.
+2. Decide whether to `git push` the two local commits to `origin/main`.
+3. Carry forward items 2–8 from `todolist_31Jul2026.md`'s priority order (listed above under
    Intake) — unchanged, none actioned today.
