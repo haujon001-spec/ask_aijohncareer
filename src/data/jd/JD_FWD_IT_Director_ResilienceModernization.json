@@ -1,259 +1,244 @@
 {
-  "jd_file": "fwd_group_it_sre_resilience_leader.txt",
+  "jd_file": "fwd_group_sre_head.json",
   "company": "FWD Group",
   "company_slug": "fwd-group",
-  "job_title": "Group Head of IT Resilience & Site Reliability Engineering (SRE)",
+  "job_title": "Group Head of IT Resilience & SRE",
   "role_slug": "group-head-it-resilience-sre",
-  "industry": "Life & Health Insurance (Pan-Asian, Tech-Enabled)",
-  "role_summary": "Group-level executive owning enterprise IT resilience, service reliability, and platform modernization across infrastructure, multi-cloud, and core system applications for a pan-Asian insurer. Sets reliability objectives, governs error-budget policy and production change risk for new business and customer-facing services, chairs the Group Resilience Council, and drives a federated SRE operating model across Group Office and Business Units. Leads legacy modernization, DR/HA strategy, observability/AIOps platform ownership, executive reporting to GMT, and SRE capability building.",
+  "industry": "Insurance (Life & Health)",
+  "role_summary": "Own enterprise-wide IT resilience, SRE strategy, and platform modernization across FWD Group's infrastructure, cloud and core systems. Set reliability standards, govern error budgets, chair the Group Resilience Council, lead legacy modernization, and drive a federated SRE operating model across Group and Business Units. Act as executive escalation point for P1/P2 incidents and embed SRE culture globally.",
   "must_have_requirements": [
-    "Bachelor's or Master's in Computer Science, IT, Engineering, or related field",
-    "15+ years in large-scale infrastructure/platform/SRE",
-    "8-10+ years leading managers across multi-region operations",
-    "Proven track record leading enterprise resilience and modernization transformations (legacy remediation, cloud adoption, platform standardization, operating model change)",
-    "SRE practices at scale: SLO/SLI design, error budgets, chaos engineering, capacity management",
-    "Deep expertise with multi-cloud (AWS/Azure/GCP), Kubernetes, CI/CD, OpenTelemetry, enterprise observability",
-    "Experience with HA architecture, DR planning (RTO/RPO tiers), and failover strategy",
-    "Budget ownership, vendor/commercial leadership, and FinOps targets",
-    "Executive-level reporting to senior management (GMT/Exco) on production risk and major incidents",
-    "P1/P2 incident command, escalation protocol design, RCA leadership, and MTTR reduction",
-    "Observability & AIOps platforms (Elastic, Datadog, Dynatrace; anomaly detection/correlation)",
-    "Excellent communication and stakeholder management fluent in English"
+    "Bachelor's or Master's degree in Computer Science, IT, Engineering or related field",
+    "15+ years in large-scale infrastructure/platform/SRE, with 8-10+ years leading managers across multi-region operations",
+    "Proven track record leading enterprise resilience and modernization transformations (legacy remediation, cloud adoption, platform standardization, operating model change) in multinational environments",
+    "Deep expertise in multi-cloud (AWS/Azure/GCP), Kubernetes, CI/CD, OpenTelemetry, and enterprise observability stacks",
+    "Hands-on knowledge of SRE practices at scale: SLO/SLI design, error budgets, chaos engineering, capacity management",
+    "Experience with incident response frameworks (e.g., NIST 800-61) and post-incident reviews",
+    "Strong understanding of IT operations in regulated environments (insurance/financial services), BCP/DR, and regulatory expectations",
+    "Excellent communication and stakeholder management skills across Group and BUs; fluent in English",
+    "Ability to influence C-level executives and translate technical risk into business impact",
+    "Demonstrated financial acumen: budget ownership, vendor management, FinOps",
+    "Experience chairing governance councils or steering committees",
+    "Strategic mindset with hands-on engineering capability when needed"
   ],
   "nice_to_have_requirements": [
-    "Familiarity with ITIL 4, ISO 22301/27001, NIST 800-61 incident response",
-    "Understanding of IT operations, BCP/DR, and regulatory expectations in insurance",
-    "Experience building embedded/federated SRE chapters across business units",
-    "Chinese written proficiency",
-    "Experience running an internal SRE Academy / capability program",
-    "Infrastructure-as-code and modernization patterns (refactoring, replatforming, legacy decomposition)"
+    "Chinese written proficiency (preferred)",
+    "Familiarity with ITIL 4, ISO 22301/27001, and audit frameworks",
+    "Experience with AIOps platforms (Elastic, Datadog, Dynatrace) and anomaly detection",
+    "Experience building SRE academies or capability-building programs",
+    "Prior experience in insurance or financial services industry",
+    "Experience implementing follow-the-sun on-call models",
+    "Track record of reducing MTTR and improving SLO coverage to 90%+",
+    "Experience with legacy system decomposition (refactoring, replatforming)"
   ],
   "soft_skills_priority": [
-    "Executive stakeholder management and influence",
-    "Cross-functional leadership across Group and BUs",
-    "Strategic thinking and thought leadership",
-    "Decisiveness under production incident pressure",
-    "Communication and executive presentation",
-    "Blameless culture building and mentoring",
-    "Collaboration in federated/matrixed environments"
+    "Executive presence and ability to present to GMT (Group Management Team) and Excos",
+    "Strong leadership and team building across distributed and global teams",
+    "Exceptional stakeholder management and influence without authority",
+    "Strategic thinking with hands-on technical credibility",
+    "Excellent written and verbal communication in English",
+    "Crisis management and calm under pressure during P1/P2 incidents",
+    "Collaborative and inclusive, promotes blameless culture",
+    "Change management skills to drive modernization across multiple BUs",
+    "Ability to navigate political environments in multinational corporations",
+    "Decision-making and risk-taking balanced with data-driven insights"
   ],
   "semantic_match_guidance": {
-    "sre_reliability": [
-      "SRE",
-      "site reliability",
-      "SLO",
-      "SLI",
-      "error budget",
-      "reliability engineering",
-      "MTTR",
-      "uptime",
-      "availability targets",
-      "toil reduction"
-    ],
-    "resilience_dr": [
-      "disaster recovery",
-      "high availability",
-      "failover",
-      "RTO",
-      "RPO",
-      "business continuity",
-      "BCP",
-      "DR tiers",
+    "SRE & Reliability": [
+      "SLO/SLI design",
+      "error budgets",
       "chaos engineering",
-      "resilience-by-design"
+      "capacity management",
+      "reliability-by-design",
+      "MTTR reduction",
+      "incident recurrence prevention"
     ],
-    "modernization": [
-      "platform modernization",
-      "legacy remediation",
-      "technical debt",
-      "replatforming",
-      "refactoring",
-      "cloud migration",
-      "target-state architecture",
-      "platform standardization",
-      "decommissioning"
-    ],
-    "cloud_platforms": [
+    "Cloud & Infrastructure": [
       "AWS",
       "Azure",
       "GCP",
-      "multi-cloud",
       "Kubernetes",
       "container orchestration",
-      "cloud-native",
       "infrastructure-as-code",
-      "Terraform"
+      "multi-cloud architecture",
+      "cloud-native"
     ],
-    "observability_aiops": [
-      "observability",
-      "AIOps",
+    "Observability & Automation": [
       "OpenTelemetry",
-      "Datadog",
-      "Dynatrace",
-      "Elastic",
-      "telemetry",
-      "anomaly detection",
-      "monitoring",
-      "correlation"
+      "telemetry standards",
+      "AIOps",
+      "prometheus",
+      "grafana",
+      "datadog",
+      "dynatrace",
+      "automated release gates",
+      "CI/CD pipelines"
     ],
-    "cicd_delivery": [
-      "CI/CD",
-      "release engineering",
-      "release gates",
-      "deployment automation",
-      "pipeline",
-      "change management",
-      "production change control"
+    "Modernization & Transformation": [
+      "legacy remediation",
+      "platform standardization",
+      "refactoring",
+      "replatforming",
+      "technical debt reduction",
+      "architecture fitness",
+      "decommission planning",
+      "cloud adoption"
     ],
-    "incident_management": [
-      "incident command",
-      "P1",
-      "P2",
+    "Incident & Troubleshooting": [
+      "P1/P2 incidents",
       "root cause analysis",
-      "RCA",
-      "post-incident review",
-      "PIR",
-      "escalation protocol",
-      "on-call"
+      "tiered escalation protocol",
+      "incident command framework",
+      "post-incident reviews",
+      "troubleshooting direction",
+      "code-level fixing"
     ],
-    "leadership_governance": [
-      "technology leadership",
-      "governance framework",
-      "operating model",
-      "federated teams",
-      "resilience council",
-      "policy ownership",
-      "standards",
-      "org building"
+    "Governance & Policy": [
+      "SRE standards",
+      "error budget policy",
+      "release gates",
+      "on-call framework",
+      "DR tiers (RTO/RPO)",
+      "chaos exercises",
+      "cyber-resilience",
+      "ITIL 4",
+      "ISO 22301/27001"
     ],
-    "financials_vendor": [
+    "Leadership & Stakeholder Management": [
+      "executive reporting",
+      "GMT presentations",
+      "council chair",
+      "stakeholder engagement",
+      "follow-the-sun model",
+      "global team leadership",
       "budget ownership",
-      "FinOps",
-      "vendor management",
-      "SLA",
-      "commercial leadership",
-      "cost optimization"
+      "vendor management"
     ],
-    "insurance_compliance": [
-      "insurance",
-      "ITIL",
-      "ISO 27001",
-      "ISO 22301",
-      "NIST 800-61",
-      "regulatory compliance",
-      "audit",
-      "data security"
+    "Financial & Operational Management": [
+      "FinOps",
+      "budget ownership",
+      "vendor SLA outcomes",
+      "cost optimization",
+      "capacity planning",
+      "resource allocation"
     ]
   },
   "scoring_criteria": [
     {
-      "name": "SRE at Scale & Reliability Engineering",
-      "weight": 18,
-      "why_it_matters": "Core of the role is owning Group-wide reliability objectives, SLO/SLI design, and error-budget governance.",
-      "evidence_type_to_look_for": [
-        "SLO/SLI frameworks implemented",
-        "error budget policy",
-        "MTTR reduction metrics",
-        "chaos engineering programs",
-        "capacity management"
-      ]
-    },
-    {
-      "name": "Enterprise Resilience & DR/HA Transformation",
+      "name": "SRE & Reliability Engineering Expertise",
       "weight": 15,
-      "why_it_matters": "Must strategize, enforce, and govern HA/DR/failover standards across all systems.",
+      "why_it_matters": "Core of the role: defining SLOs, error budgets, and reliability practices across the group. Must have deep hands-on and strategic SRE experience.",
       "evidence_type_to_look_for": [
-        "DR tier design (RTO/RPO)",
-        "HA architecture",
-        "failover implementations",
-        "DR/chaos exercises led",
-        "BCP ownership"
-      ]
-    },
-    {
-      "name": "Platform Modernization & Legacy Remediation",
-      "weight": 14,
-      "why_it_matters": "Leads modernization roadmaps, target-state architecture, and technical debt reduction for core systems.",
-      "evidence_type_to_look_for": [
-        "modernization roadmaps",
-        "legacy decomposition",
-        "replatforming/refactoring",
-        "technical debt reduction",
-        "cloud-native adoption"
-      ]
-    },
-    {
-      "name": "Multi-Cloud, Kubernetes & Observability Depth",
-      "weight": 12,
-      "why_it_matters": "Deep hands-on/architectural expertise across AWS/Azure/GCP, K8s, CI/CD, and observability/AIOps stacks is required.",
-      "evidence_type_to_look_for": [
-        "multi-cloud platforms",
-        "Kubernetes at scale",
-        "CI/CD pipelines",
-        "OpenTelemetry",
-        "Datadog/Dynatrace/Elastic",
-        "AIOps"
-      ]
-    },
-    {
-      "name": "Senior Leadership & Multi-Region Org Building",
-      "weight": 12,
-      "why_it_matters": "Requires 8-10+ years leading managers across regions and building a global SRE bench in a federated model.",
-      "evidence_type_to_look_for": [
-        "leading managers/leaders",
-        "multi-region teams",
-        "follow-the-sun model",
-        "org design",
-        "capability/academy programs"
+        "Implemented SLO/SLI frameworks",
+        "Managed error budgets",
+        "Conducted chaos engineering exercises",
+        "Reduced MTTR/incident recurrence",
+        "Defined incident command frameworks"
       ],
-      "gap_expected": "Candidates may lack the specific federated 'embedded chapters' model but have equivalent matrixed leadership."
+      "gap_expected": "Candidates may have strong SRE in one area but not enterprise-depth; look for breadth and depth."
     },
     {
-      "name": "Incident Command, RCA & Escalation Governance",
+      "name": "Leadership & Team Management",
+      "weight": 15,
+      "why_it_matters": "Requires leading managers across multi-region operations, building global SRE leadership bench, and running SRE Academy. Must have proven leadership at scale.",
+      "evidence_type_to_look_for": [
+        "Managed leaders/managers in multiple regions",
+        "Built and scaled SRE teams",
+        "Created training programs/academies",
+        "Implemented follow-the-sun on-call",
+        "Succession planning and talent development"
+      ],
+      "gap_expected": "Some may have strong leadership but not multi-region; look for global scope."
+    },
+    {
+      "name": "Cloud & Infrastructure Architecture",
+      "weight": 12,
+      "why_it_matters": "Expertise in multi-cloud, Kubernetes, and cloud-native patterns is essential for modernization. Must be able to architect resilience at infrastructure layer.",
+      "evidence_type_to_look_for": [
+        " Multi-cloud design (AWS/Azure/GCP)",
+        "Kubernetes cluster management",
+        "Infrastructure-as-Code (Terraform, etc.)",
+        "CI/CD pipeline implementation",
+        "Cloud migration/replatforming"
+      ],
+      "gap_expected": "Candidates may have single-cloud dominance; look for documented multi-cloud exposure."
+    },
+    {
+      "name": "Modernization & Transformation",
+      "weight": 12,
+      "why_it_matters": "Central to the role: driving legacy modernization, platform standardization, and resilience-by-design. Need track record of leading such initiatives in large enterprises.",
+      "evidence_type_to_look_for": [
+        "Led legacy system modernization projects",
+        "Created modernization roadmaps",
+        "Reduced technical debt",
+        "Standardized platforms across subsidiaries",
+        "Implemented cloud adoption strategies"
+      ],
+      "gap_expected": "May have modernization in simpler environments; insurance domain complexity is a plus."
+    },
+    {
+      "name": "Incident Management & Troubleshooting",
       "weight": 10,
-      "why_it_matters": "Owns P1/P2 escalation protocol, drives RCA/troubleshooting, and reduces incident recurrence.",
+      "why_it_matters": "Owns P1/P2 escalation protocol, provides troubleshooting direction, and stops recurrence. Must be hands-on with incident leadership.",
       "evidence_type_to_look_for": [
-        "incident command frameworks",
-        "P1/P2 escalation design",
-        "RCA leadership",
-        "PIR/blameless reviews",
-        "recurrence reduction"
-      ]
-    },
-    {
-      "name": "Executive Reporting & Stakeholder Engagement",
-      "weight": 8,
-      "why_it_matters": "Reports production risk and major incidents to GMT/Exco and drives cross-Group stakeholder alignment.",
-      "evidence_type_to_look_for": [
-        "executive dashboards",
-        "board/C-suite reporting",
-        "cross-BU stakeholder management",
-        "thought leadership"
-      ]
-    },
-    {
-      "name": "Budget, FinOps & Vendor/SLA Ownership",
-      "weight": 6,
-      "why_it_matters": "Owns SRE platform budget, FinOps targets, and vendor SLA outcomes.",
-      "evidence_type_to_look_for": [
-        "budget ownership",
-        "FinOps/cost optimization",
-        "vendor management",
-        "SLA governance"
-      ]
-    },
-    {
-      "name": "Insurance/Regulated Domain & Compliance Frameworks",
-      "weight": 5,
-      "why_it_matters": "Familiarity with insurance IT operations, BCP/DR regulation, ITIL 4, ISO 22301/27001, and NIST 800-61.",
-      "evidence_type_to_look_for": [
-        "insurance/financial services",
-        "ITIL 4",
-        "ISO 22301/27001",
-        "NIST 800-61",
-        "audit/regulatory compliance"
+        "Led major incident responses",
+        "Performed root cause analyses",
+        "Designed escalation protocols",
+        "Implemented post-incident review processes",
+        "Directly troubleshooted code/infrastructure issues"
       ],
-      "gap_expected": "Adjacent regulated industries (banking, fintech, healthcare) can substitute for insurance-specific experience."
+      "gap_expected": "Some may have managed incidents but not at enterprise scale; look for executive-level incident communication."
+    },
+    {
+      "name": "Governance & Policy Development",
+      "weight": 10,
+      "why_it_matters": "Must create and enforce group-wide standards, error budgets, release gates, and DR policies. Ensures RTO/RPO alignment and regulatory compliance.",
+      "evidence_type_to_look_for": [
+        "Authored enterprise standards/policies",
+        "Implemented release governance",
+        "Defined DR tiers and tested failover",
+        "Familiarity with ISO 22301/27001",
+        "Designed chaos exercises"
+      ],
+      "gap_expected": "Candidates may have policy experience but not across multiple BUs; look for global governance."
+    },
+    {
+      "name": "Stakeholder & Executive Communication",
+      "weight": 10,
+      "why_it_matters": "Regularly presents to GMT and Excos, chairs council, and influences across Group and BUs. Must be able to translate technical risk into business language.",
+      "evidence_type_to_look_for": [
+        "Prepared executive dashboards",
+        "Presented to C-level executives",
+        "Chaired steering committees",
+        "Managed cross-functional stakeholder expectations",
+        "Strong English presentation skills"
+      ],
+      "gap_expected": "Some may have technical depth but lack executive presence; look for examples of influencing up."
+    },
+    {
+      "name": "Observability & Automation",
+      "weight": 8,
+      "why_it_matters": "Drives modernization through observability platforms and AIOps. Must have experience with OpenTelemetry, telemetry standards, and automated release controls.",
+      "evidence_type_to_look_for": [
+        "Implemented observability stacks (Datadog, Dynatrace, etc.)",
+        "Set up OpenTelemetry instrumentation",
+        "Automated release gates",
+        "Used AIOps for anomaly detection",
+        "Defined telemetry standards"
+      ],
+      "gap_expected": "Some may have used tools but not designed enterprise-wide observability; look for architecture-level experience."
+    },
+    {
+      "name": "Financial & Budget Management",
+      "weight": 8,
+      "why_it_matters": "Owns SRE platform budget, FinOps targets, and vendor SLA outcomes. Must demonstrate fiscal responsibility and cost optimization.",
+      "evidence_type_to_look_for": [
+        "Managed budgets over $X million",
+        "Owned FinOps/cloud cost optimization",
+        "Negotiated vendor contracts and SLAs",
+        "Implemented zero-based budgeting",
+        "Reported on cost efficiency metrics"
+      ],
+      "gap_expected": "Candidates may have budget experience but not at enterprise level; look for specific figures."
     }
   ],
   "resume_tailoring_guidance": {
@@ -264,28 +249,30 @@
       "SOFT SKILLS"
     ],
     "summary_focus": [
-      "Group/enterprise-scale SRE and IT resilience leadership across multi-region operations",
-      "Quantified reliability outcomes (SLO coverage, MTTR reduction, availability improvements)",
-      "Modernization transformations: legacy remediation, cloud adoption, platform standardization",
-      "Multi-cloud, Kubernetes, observability/AIOps, and CI/CD depth",
-      "Executive-level reporting and federated operating model leadership"
+      "Over 15 years of IT infrastructure and SRE leadership in multinational corporations",
+      "Expert in building and modernizing resilience platforms, with deep cloud and automation expertise",
+      "Proven track record of leading global SRE teams and driving cultural change toward reliability",
+      "Strategic visionary able to influence C-level executives and shape enterprise standards",
+      "Hands-on approach to troubleshooting and incident management, with a focus on prevention"
     ],
     "do_not_overclaim": [
-      "Do not claim insurance-specific experience if from an adjacent industry; state the transferable domain",
-      "Do not fabricate GMT/Exco/board reporting if experience is at a lower tier; specify actual audience",
-      "Do not claim Chinese written proficiency unless genuinely held",
-      "Do not overstate scale (customer/market counts) beyond verifiable roles",
-      "Do not claim ownership of specific tools (Dynatrace/Datadog/Elastic) unless actually used"
+      "Do not claim direct experience with insurance-specific systems unless actually worked in insurance",
+      "Avoid stating 'chaos engineering' if only familiar with concept, mention specific exercises led",
+      "Do not exaggerate multi-cloud expertise if only deeply experienced in one cloud; be honest about depth",
+      "Avoid claiming 'SRE Academy' creation unless actually built a training program",
+      "Do not overstate financial ownership without concrete budget numbers",
+      "Be truthful about follow-the-sun model experience; mention if implemented in previous roles"
     ]
   },
   "cover_letter_guidance": {
-    "tone": "Executive, confident, and outcome-driven with measured humility",
-    "positioning": "Position as a senior technology leader who translates reliability and modernization strategy into governed, measurable outcomes across a federated multi-region enterprise, balancing engineering rigor with executive stakeholder influence.",
+    "tone": "Professional, assertive, and strategic. Demonstrate leadership presence and ability to operate at C-level. Use concrete examples of resilience transformations and executive communication.",
+    "positioning": "Position as a senior SRE leader with enterprise-wide influence, capable of modernizing legacy systems while setting governance. Highlight experience in driving cultural change and building high-performing teams. Emphasize business impact of reliability and transparency in reporting to executives.",
     "bridge_gaps_honestly": [
-      "If not from insurance, cite comparable regulated/high-availability industries and readiness to learn insurance-specific compliance",
-      "If Chinese proficiency is absent, emphasize strong English communication and prior cross-cultural APAC experience",
-      "If federated 'embedded chapters' model is new, map to equivalent matrixed/CoE leadership experience",
-      "If specific certs (ITIL 4, ISO, NIST) are informal, note applied working knowledge rather than formal certification"
+      "If lacking insurance domain knowledge, acknowledge it and emphasize transferable skills from other regulated industries.",
+      "If not certified in ITIL/ISO, mention familiarity and willingness to adopt FWD's frameworks.",
+      "If Chinese proficiency is limited, express eagerness to learn and highlight ability to work with diverse teams.",
+      "If experience is more regional than global, focus on managing distributed teams and remote operations.",
+      "If budget ownership was smaller, highlight financial stewardship and operational cost savings achieved."
     ]
   }
 }

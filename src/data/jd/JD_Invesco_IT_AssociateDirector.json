@@ -1,0 +1,222 @@
+{
+  "jd_file": "invesco_hongkong_technology_lead.json",
+  "company": "Invesco",
+  "company_slug": "invesco",
+  "job_title": "Head of Technology, Hong Kong",
+  "role_slug": "head-of-technology-hong-kong",
+  "industry": "Asset Management / Financial Services Technology",
+  "role_summary": "Lead the Hong Kong Technology Team, serving as the bridge between local business stakeholders, regional leadership, and global technology functions. Responsible for aligning local business needs with global technology standards, driving delivery of technology services, embedding emerging technologies (AI, DLT), managing cyber security and business continuity, supporting regulatory and client due diligence engagements, and leading a diverse local technology team.",
+  "must_have_requirements": [
+    "10+ years of relevant technology experience in global financial services",
+    "Proven leadership experience managing technology teams",
+    "Track record delivering large-scale technology, digital transformation, and change management initiatives",
+    "Understanding of investment management business processes",
+    "Experience aligning local/regional technology delivery with global standards and policies",
+    "Experience managing stakeholder relationships with senior business leaders",
+    "Knowledge of technology delivery best practices (agile, governance, execution)",
+    "Experience supporting regulatory engagements, DDQs, and RFPs",
+    "Bachelor's degree in Computer Science, Information Technology, Engineering, or related field"
+  ],
+  "nice_to_have_requirements": [
+    "Awareness of emerging technologies: AI, Distributed Ledger Technology (DLT), Quantum Computing",
+    "Experience with cyber security and business continuity management in financial services",
+    "Experience working within a matrixed global organization",
+    "Experience managing diverse, multicultural technology talent",
+    "Familiarity with Hong Kong/APAC regulatory environment for financial services"
+  ],
+  "soft_skills_priority": [
+    "Stakeholder management and relationship-building",
+    "Cross-functional communication (business-technology bridge)",
+    "Leadership and talent management",
+    "Problem-solving and agile mindset",
+    "Influencing without direct authority",
+    "Adaptability across global/regional priorities",
+    "Executive presence and negotiation"
+  ],
+  "semantic_match_guidance": {
+    "leadership_experience": [
+      "Head of Technology",
+      "IT Director",
+      "VP Technology",
+      "Technology Lead",
+      "managed team of X engineers",
+      "built and led technology function"
+    ],
+    "financial_services_context": [
+      "asset management",
+      "investment management",
+      "wealth management",
+      "banking",
+      "fintech",
+      "capital markets"
+    ],
+    "digital_transformation": [
+      "led digital transformation",
+      "change management initiative",
+      "technology modernization",
+      "platform migration",
+      "process automation"
+    ],
+    "regulatory_client_engagement": [
+      "Due Diligence Questionnaire",
+      "DDQ",
+      "RFP",
+      "regulatory audit",
+      "compliance liaison",
+      "client onboarding technology support"
+    ],
+    "emerging_technology_awareness": [
+      "AI adoption",
+      "machine learning pilot",
+      "blockchain",
+      "distributed ledger technology",
+      "DLT",
+      "quantum computing awareness",
+      "GenAI use case"
+    ],
+    "cyber_security_bcp": [
+      "business continuity planning",
+      "BCP",
+      "disaster recovery",
+      "cyber security governance",
+      "incident response",
+      "information security"
+    ],
+    "stakeholder_management": [
+      "business partner",
+      "executive stakeholders",
+      "cross-regional collaboration",
+      "global-local alignment",
+      "technology governance committee"
+    ]
+  },
+  "scoring_criteria": [
+    {
+      "name": "Financial Services Technology Leadership Experience",
+      "weight": 18,
+      "why_it_matters": "Core requirement to lead a regional technology function within global financial services context",
+      "evidence_type_to_look_for": [
+        "Job titles like Head of Technology/IT Director",
+        "10+ years tenure in financial services technology",
+        "team size managed"
+      ],
+      "gap_expected": "May lack Hong Kong/APAC-specific market experience"
+    },
+    {
+      "name": "Large-Scale Technology & Digital Transformation Delivery",
+      "weight": 15,
+      "why_it_matters": "JD explicitly requires proven delivery of large-scale transformation and change initiatives",
+      "evidence_type_to_look_for": [
+        "named transformation programs",
+        "budget/scope of projects",
+        "before/after business impact metrics"
+      ]
+    },
+    {
+      "name": "Stakeholder & Business Relationship Management",
+      "weight": 13,
+      "why_it_matters": "Role is positioned as a bridge between business, regional, and global teams",
+      "evidence_type_to_look_for": [
+        "examples of managing senior stakeholder relationships",
+        "cross-functional alignment stories",
+        "executive communication experience"
+      ]
+    },
+    {
+      "name": "Alignment of Local Business with Global Technology Standards",
+      "weight": 10,
+      "why_it_matters": "Key responsibility to harmonize local needs with global policy/governance",
+      "evidence_type_to_look_for": [
+        "global-local governance experience",
+        "policy implementation across regions"
+      ]
+    },
+    {
+      "name": "Emerging Technology Awareness (AI, DLT, Quantum)",
+      "weight": 10,
+      "why_it_matters": "JD calls for advocating and embedding AI/DLT/emerging tech into solutions",
+      "evidence_type_to_look_for": [
+        "AI pilot projects",
+        "blockchain/DLT initiatives",
+        "innovation lab participation"
+      ],
+      "gap_expected": "Quantum computing exposure likely minimal industry-wide"
+    },
+    {
+      "name": "Cyber Security & Business Continuity Collaboration",
+      "weight": 8,
+      "why_it_matters": "Explicit responsibility to safeguard cyber security and BCP with global teams",
+      "evidence_type_to_look_for": [
+        "BCP planning experience",
+        "cyber risk governance",
+        "incident management involvement"
+      ]
+    },
+    {
+      "name": "Regulatory & Client Due Diligence Support (DDQ/RFP)",
+      "weight": 8,
+      "why_it_matters": "Role requires seamless handling of regulatory engagements and client RFPs/DDQs",
+      "evidence_type_to_look_for": [
+        "experience responding to DDQs/RFPs",
+        "regulator liaison experience",
+        "audit support"
+      ]
+    },
+    {
+      "name": "Talent Management & Team Leadership",
+      "weight": 8,
+      "why_it_matters": "JD requires managing diverse talent and cultivating agile, problem-solving skills",
+      "evidence_type_to_look_for": [
+        "team development initiatives",
+        "agile coaching",
+        "diversity of managed teams"
+      ]
+    },
+    {
+      "name": "Investment Management Domain Knowledge",
+      "weight": 6,
+      "why_it_matters": "Understanding of investment management business processes is explicitly required",
+      "evidence_type_to_look_for": [
+        "asset/wealth management domain experience",
+        "front/middle/back office technology exposure"
+      ]
+    },
+    {
+      "name": "Education & Foundational Qualifications",
+      "weight": 4,
+      "why_it_matters": "Bachelor's degree in relevant technical field is a baseline requirement",
+      "evidence_type_to_look_for": [
+        "degree in Computer Science, IT, Engineering, or related field"
+      ]
+    }
+  ],
+  "resume_tailoring_guidance": {
+    "mandatory_sections": [
+      "PROFESSIONAL SUMMARY",
+      "AI & AUTOMATION HIGHLIGHTS",
+      "CORE COMPETENCIES",
+      "SOFT SKILLS"
+    ],
+    "summary_focus": [
+      "Position as a senior technology leader bridging business and global technology functions in financial services",
+      "Highlight large-scale transformation delivery with quantifiable outcomes",
+      "Emphasize stakeholder management across regional/global structures",
+      "Showcase emerging technology (AI/DLT) advocacy and adoption experience",
+      "Reflect regulatory/client engagement exposure (DDQs, RFPs) if applicable"
+    ],
+    "do_not_overclaim": [
+      "Do not claim direct quantum computing implementation unless explicitly done",
+      "Do not overstate Hong Kong/APAC regulatory expertise if experience is elsewhere",
+      "Do not inflate team size or scope of transformation programs beyond actual role"
+    ]
+  },
+  "cover_letter_guidance": {
+    "tone": "Confident, executive, relationship-oriented, and globally-minded",
+    "positioning": "Frame candidate as a bridge-builder who translates global technology strategy into local execution, with strong delivery track record and emerging tech fluency",
+    "bridge_gaps_honestly": [
+      "If lacking direct APAC/Hong Kong experience, emphasize adaptability and global stakeholder management skills",
+      "If limited DLT/quantum exposure, frame as strong awareness and willingness to lead adoption",
+      "If DDQ/RFP experience is indirect, highlight related compliance or client-facing technology work"
+    ]
+  }
+}
