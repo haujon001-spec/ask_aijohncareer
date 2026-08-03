@@ -44,12 +44,57 @@ User supplied 8 draft achievement bullets (AIA budget ×1, Merrill Lynch resilie
 
 **Deployed live to `askcareer-ai.com` (VPS `152.42.214.111`)**, same day: VPS's existing `src/data/john_profile.json` backed up first (`john_profile.json.20260731_pre_deploy.bak`) per soul.md golden rule, then the new file `scp`'d over (bind-mounted into both `app` and `jd-api` containers per the 30 Jul deploy architecture — no image rebuild or container restart required). Verified: sha256 checksum identical between local and VPS copy; `docker exec` into both `app` and `jd-api` confirmed the new content (`"APAC Infrastructure Budget Ownership"`) is visible inside each running container's filesystem view; live domain checks `https://www.askcareer-ai.com/` and `https://www.askcareer-ai.com/jd-api/api/health` both return 200.
 
+## New today (31 Jul 2026) — Job Tracker status fields requested for JD Portal History section, not yet scoped
+
+User referenced LinkedIn's own "Job tracker" UI (Saved / In Progress / Applied / Interview / Archived columns, per-job "Did you hear back? Yes/No" toggle, freeform notes) as the model, and asked for equivalent tracking to be added inside the JD Automation Portal's existing **History** tab (the `RUN HISTORY` list — HKEX, Manulife, etc. — where each JD run currently shows scorecard/resume/cover-letter output links).
+
+Requested, verbatim:
+1. Mark each entry's status — Applied (with a date), then "Did you hear back?" → Yes → Interview — with notes that can be updated.
+2. This lives inside the historical section (i.e. attached to existing Run History / company entries, not a separate page).
+
+**Scope clarified 31 Jul 2026 (questions asked, answers below) — not yet implemented:**
+- Granularity: attach status fields to each individual Run History entry (not per-company) — e.g. Manulife's `Senior_Director_...Lead` run gets its own tracker, separate from `AVP_Technology_Architecture...` under the same company.
+- Stage list: full LinkedIn-style pipeline — Saved / In Progress / Applied / Interview / Archived.
+- Notes: single freeform editable text field per entry (like LinkedIn's "+ Add note"), not per-stage.
+- Auto-fill: when a run/entry is first marked "Applied," default the Applied date to that run's existing run date (e.g. 30JUL2026), but leave it user-editable; all other fields are manual.
+
+Still open before build: exact UI placement within each Run History row, and whether this needs new backend/DB fields or can be stored client-side/JSON alongside existing run metadata. Not yet built — awaiting go-ahead to implement.
+
+## New (3 Aug 2026) — DeepSeek "out of tokens" fix on the Resume step, portal debug output
+
+Live portal run (`JD_Invesco_IT_AssociateDirector.txt`, `--llm=deepseek`, mode=all,
+`--ResumeAdjustment`) surfaced this in the "RUN JD PIPELINE" debug panel:
+
+```
+RuntimeError: OpenRouter returned empty content for 'Resume' call
+(model=deepseek-reasoner, finish_reason='length', refusal=None).
+```
+
+**Root cause:** `deepseek-reasoner` bills hidden chain-of-thought against the same `max_tokens`
+budget as the visible answer, so a complex JD can burn the entire 20000-token Resume budget on
+reasoning alone, leaving `content: null`. Unlike the 23 Jul Sonnet-5 truncation fix (a verbosity
+issue, `reasoning_tokens: 0`), a single static `max_tokens` bump isn't reliable here since
+reasoning length varies per JD.
+
+**Fixed (`scripts/jd_scorecard_resume_v2.py`, `call_llm()`):** auto-retry on
+`finish_reason == "length"` — doubles `max_tokens` and retries (up to 2 extra attempts, capped at
+64000; Resume's case: 20000 → 40000 → 64000) instead of failing on the first truncation. Also
+fixed the error message hardcoding "OpenRouter" even when calling DeepSeek directly. Backed up
+first (`jd_scorecard_resume_v2.py.20260803_V1.bak`). Verified by extracting the real edited
+function and running it against mocked HTTP responses reproducing the exact failure shape
+(truncate-then-succeed and truncate-exhausted scenarios both passed) — **not yet verified with a
+live DeepSeek rerun of the original failing JD**, which is the next step before closing this out.
+Full record: `docs/guides/JDSCORECARDRESUMEV2_DEEPSEEKTOKENRETRY_03AUG2026.md`.
+
 ## Priority order for today
 
-1. Resolve the two untracked JD blueprint files (confirm commit-worthy or discard).
-2. Profile achievement rewrite + append (today's new request) — pending scope answers.
-3. LinkedIn automation discovery-path decision.
-4. Real JD run through the live production portal.
-5. Manulife resume regeneration decision.
-6. Minor VPS hardening items.
-7. Dev-env docs for the JD Automation Portal.
+1. **Live-verify the DeepSeek token-retry fix above** by rerunning the original failing JD
+   (`JD_Invesco_IT_AssociateDirector.txt`, `--llm=deepseek`) through the portal or CLI.
+2. Resolve the two untracked JD blueprint files (confirm commit-worthy or discard).
+3. Profile achievement rewrite + append (today's new request) — pending scope answers.
+4. LinkedIn automation discovery-path decision.
+5. Real JD run through the live production portal.
+6. Manulife resume regeneration decision.
+7. Minor VPS hardening items.
+8. Dev-env docs for the JD Automation Portal.
+9. Job Tracker status fields in Portal History section (new today) — pending scope answers below.

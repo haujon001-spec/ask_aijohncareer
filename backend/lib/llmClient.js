@@ -6,11 +6,23 @@
 // set, same defensive ```json fence-stripping, same model triples.
 import { resolveUserKey, envVarForProvider } from './llmKeys.js';
 
+// "deepseek-reasoner" was a legacy alias DeepSeek retired 24 Jul 2026 (still
+// routed transparently to deepseek-v4-flash's thinking mode, but reliance on a
+// retired alias risked breaking without notice) — migrated to the current
+// official model id 3 Aug 2026, alongside the same fix in
+// scripts/jd_scorecard_resume_v2.py's call_llm().
 const LLM_CONFIGS = {
   sonnet: { model: 'anthropic/claude-sonnet-5', provider: 'openrouter', endpoint: 'https://openrouter.ai/api/v1/chat/completions' },
   gemini: { model: 'google/gemini-3.1-flash-lite-preview', provider: 'openrouter', endpoint: 'https://openrouter.ai/api/v1/chat/completions' },
-  deepseek: { model: 'deepseek-reasoner', provider: 'deepseek', endpoint: 'https://api.deepseek.com/chat/completions' },
+  deepseek: { model: 'deepseek-v4-flash', provider: 'deepseek', endpoint: 'https://api.deepseek.com/chat/completions' },
 };
+
+// DeepSeek defaults to thinking mode enabled with reasoning_effort="high" when
+// unspecified — "low" keeps reasoning on but brings latency/token spend back
+// in line with the other providers (see scripts/jd_scorecard_resume_v2.py's
+// LLM_DEEPSEEK_REASONING_EFFORT for the full rationale). Safe for v4-pro too:
+// it currently treats "low" as "high" rather than rejecting it.
+const DEEPSEEK_REASONING_EFFORT = 'low';
 
 const RETRYABLE_STATUS_CODES = new Set([403, 408, 425, 429, 500, 502, 503, 504]);
 const MAX_ATTEMPTS = 3;
@@ -66,6 +78,9 @@ export async function callLlmJson({ projectRoot, llm, customModel, systemPrompt,
     ],
     response_format: { type: 'json_object' },
   };
+  if (provider === 'deepseek') {
+    payload.reasoning_effort = DEEPSEEK_REASONING_EFFORT;
+  }
 
   const headers = {
     Authorization: `Bearer ${apiKey}`,

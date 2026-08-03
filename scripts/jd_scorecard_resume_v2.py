@@ -380,10 +380,16 @@ for env_file in [ROOT / ".env.local", ROOT / ".env.vps", ROOT / ".env"]:
         break
 
 # ── Resolve API key and model based on LLM selection ─────────────────────────
+# "deepseek-reasoner" was a legacy alias DeepSeek retired 24 Jul 2026 (it kept
+# routing transparently to deepseek-v4-flash's thinking mode, but reliance on a
+# retired alias risked breaking without notice) — migrated to the current
+# official model id 3 Aug 2026. See LLM_DEEPSEEK_REASONING_EFFORT below for why
+# runs were also timing out/truncating under this model's default high-effort
+# thinking mode.
 LLM_CONFIGS = {
     # name          model_id                                     api_key_env            base_url
     "sonnet":  ("anthropic/claude-sonnet-5",                "OPENROUTER_API_KEY",  "https://openrouter.ai/api/v1/chat/completions"),
-    "deepseek":("deepseek-reasoner",                        "DEEPSEEK_API_KEY",    "https://api.deepseek.com/chat/completions"),
+    "deepseek":("deepseek-v4-flash",                        "DEEPSEEK_API_KEY",    "https://api.deepseek.com/chat/completions"),
     "gemini":  ("google/gemini-3.1-flash-lite-preview",     "OPENROUTER_API_KEY",  "https://openrouter.ai/api/v1/chat/completions"),
 }
 
@@ -423,6 +429,26 @@ HEADERS = {
 LLM_MAX_ATTEMPTS = 3
 LLM_RETRY_BACKOFF_SEC = 3
 LLM_RETRYABLE_STATUS_CODES = {403, 408, 425, 429, 500, 502, 503, 504}
+
+# Reasoning models (e.g. DeepSeek's "deepseek-reasoner") spend part of the
+# max_tokens budget on hidden chain-of-thought before writing the visible
+# answer, so a call can hit finish_reason="length" with empty content even
+# at a generous-looking max_tokens — the whole budget went to reasoning.
+# Observed live 3 Aug 2026 on a Resume call (max_tokens=20000, deepseek-reasoner,
+# portal ran out of tokens and surfaced the raw RuntimeError to the user).
+# Instead of failing immediately, retry with a larger budget first.
+LLM_LENGTH_RETRY_ATTEMPTS = 2
+LLM_LENGTH_RETRY_MULTIPLIER = 2
+LLM_MAX_TOKENS_CEILING = 64000
+
+# DeepSeek's v4-flash/v4-pro default to thinking mode enabled with
+# reasoning_effort="high" when the request doesn't specify otherwise — this is
+# what made a --refresh-blueprint run (4 sequential DeepSeek calls) exceed the
+# portal's 900s timeout on 3 Aug 2026, and was a contributing factor in the
+# same day's max_tokens truncation bug. "low" keeps thinking mode on (still a
+# reasoning model, unlike Sonnet/Gemini) while cutting reasoning-token spend
+# enough to bring per-call latency back in line with the other providers.
+LLM_DEEPSEEK_REASONING_EFFORT = "low"
 
 if batch_mode:
     jd_files = sorted(DEFAULT_JD_DIR.glob("JD_*.txt"))
@@ -580,8 +606,17 @@ def call_llm(system_prompt, user_prompt, max_tokens=6000, label="", response_for
     }
     if response_format:
         payload["response_format"] = response_format
+    if "deepseek.com" in LLM_ENDPOINT:
+        # Safe for both v4-flash and v4-pro: v4-pro currently only supports
+        # high/max and treats "low" as "high" rather than rejecting it.
+        payload["reasoning_effort"] = LLM_DEEPSEEK_REASONING_EFFORT
 
     resp = None
+    message = {}
+    content = None
+    finish_reason = None
+    usage = {}
+    length_retries = 0
     for attempt in range(1, LLM_MAX_ATTEMPTS + 1):
         try:
             resp = requests.post(
@@ -610,29 +645,50 @@ def call_llm(system_prompt, user_prompt, max_tokens=6000, label="", response_for
             time.sleep(wait)
             continue
         resp.raise_for_status()  # raises immediately for non-retryable or attempts-exhausted errors
+
+        data = resp.json()
+        choice = data["choices"][0]
+        message = choice["message"]
+        content = message.get("content")
+        finish_reason = choice.get("finish_reason")
+        usage = data.get("usage", {})
+
+        # Truncated on reasoning-token overrun: bump the budget and retry
+        # rather than failing the whole pipeline run on the first hit.
+        if finish_reason == "length" and length_retries < LLM_LENGTH_RETRY_ATTEMPTS:
+            old_max = payload["max_tokens"]
+            new_max = min(old_max * LLM_LENGTH_RETRY_MULTIPLIER, LLM_MAX_TOKENS_CEILING)
+            if new_max > old_max and attempt < LLM_MAX_ATTEMPTS:
+                length_retries += 1
+                payload["max_tokens"] = new_max
+                reasoning_tokens = usage.get("completion_tokens_details", {}).get("reasoning_tokens")
+                print(
+                    f"  ⚠️  {label or 'unlabeled'} call truncated (finish_reason='length', "
+                    f"max_tokens={old_max}, reasoning_tokens={reasoning_tokens}) — retrying with "
+                    f"max_tokens={new_max} (length retry {length_retries}/{LLM_LENGTH_RETRY_ATTEMPTS})..."
+                )
+                continue
         break
-    data = resp.json()
-    choice = data["choices"][0]
-    message = choice["message"]
-    content = message.get("content")
-    finish_reason = choice.get("finish_reason")
+
     if not content:
         refusal = message.get("refusal")
         raise RuntimeError(
-            f"OpenRouter returned empty content for '{label or 'unlabeled'}' call "
-            f"(model={MODEL}, finish_reason={finish_reason!r}, refusal={refusal!r}). "
-            "This usually means the model ran out of max_tokens before producing an "
-            "answer, or refused the request — check the values above."
+            f"{MODEL} returned empty content for '{label or 'unlabeled'}' call "
+            f"(finish_reason={finish_reason!r}, refusal={refusal!r}, "
+            f"max_tokens={payload['max_tokens']}). This usually means the model ran out of "
+            "max_tokens before producing an answer (reasoning models can spend the whole "
+            "budget on hidden reasoning before writing a visible answer), or refused the "
+            "request — check the values above."
         )
     if finish_reason == "length":
-        usage = data.get("usage", {})
         raise RuntimeError(
-            f"OpenRouter truncated the '{label or 'unlabeled'}' response — it ran out of "
-            f"max_tokens ({max_tokens}) before finishing (model={MODEL}, "
-            f"completion_tokens={usage.get('completion_tokens')}, "
+            f"{MODEL} truncated the '{label or 'unlabeled'}' response — it ran out of "
+            f"max_tokens ({payload['max_tokens']}) before finishing even after "
+            f"{length_retries} automatic retry/retries at a higher budget "
+            f"(completion_tokens={usage.get('completion_tokens')}, "
             f"reasoning_tokens={usage.get('completion_tokens_details', {}).get('reasoning_tokens')}). "
             "The partial output was discarded rather than silently shipped incomplete; raise "
-            "max_tokens for this call and retry."
+            "the base max_tokens for this call and retry."
         )
     return content
 
