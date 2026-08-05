@@ -110,3 +110,9 @@ rather than just extend the timeout window.
 2. Decide whether to `git push` the two local commits to `origin/main`.
 3. Carry forward items 2–8 from `todolist_31Jul2026.md`'s priority order (listed above under
    Intake) — unchanged, none actioned today.
+
+## Note
+
+A new session opened 5 Aug 2026 — logged and carried forward in `todolist_05Aug2026.md` per
+soul.md's one-dated-file-per-session convention (an earlier pass briefly appended it here first,
+at the user's literal instruction, then moved it out on the user's follow-up decision).

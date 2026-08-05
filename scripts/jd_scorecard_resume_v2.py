@@ -593,15 +593,35 @@ def build_blueprint_context(blueprint):
 jd_blueprint_context = build_blueprint_context(jd_blueprint)
 
 # ── LLM call helper ────────────────────────────────────────────────────────────
-def call_llm(system_prompt, user_prompt, max_tokens=6000, label="", response_format=None):
+# Anthropic models support explicit prompt caching (via OpenRouter's pass-through of
+# Anthropic's `cache_control` field). DeepSeek and Gemini already cache repeated
+# prefixes automatically/implicitly on the provider side, so no explicit marker is
+# needed (or supported the same way) for those.
+CACHEABLE_MODEL_PREFIXES = ("anthropic/",)
+
+
+def call_llm(system_prompt, user_prompt, max_tokens=6000, label="", response_format=None, cacheable_prefix=None):
     if label:
         print(f"  ↳ Calling OpenRouter ({MODEL}) — {label}")
+
+    if cacheable_prefix and MODEL.startswith(CACHEABLE_MODEL_PREFIXES):
+        # Mark the large, byte-identical context block (JD + blueprint + profile) as an
+        # ephemeral cache breakpoint. Scorecard/Resume/Cover Letter all send this exact
+        # same block in one run — after the first call it's served from cache instead
+        # of being reprocessed from scratch, cutting repeated cost/latency.
+        user_content = [
+            {"type": "text", "text": cacheable_prefix, "cache_control": {"type": "ephemeral"}},
+            {"type": "text", "text": user_prompt},
+        ]
+    else:
+        user_content = (cacheable_prefix or "") + user_prompt
+
     payload = {
         "model": MODEL,
         "max_tokens": max_tokens,
         "messages": [
             {"role": "system", "content": system_prompt},
-            {"role": "user",   "content": user_prompt},
+            {"role": "user",   "content": user_content},
         ],
     }
     if response_format:
@@ -652,6 +672,13 @@ def call_llm(system_prompt, user_prompt, max_tokens=6000, label="", response_for
         content = message.get("content")
         finish_reason = choice.get("finish_reason")
         usage = data.get("usage", {})
+        # OpenRouter reports Anthropic prompt-cache stats under prompt_tokens_details
+        # (cached_tokens = served from cache, cache_write_tokens = newly cached this call).
+        prompt_token_details = usage.get("prompt_tokens_details", {}) or {}
+        cache_read = prompt_token_details.get("cached_tokens")
+        cache_write = prompt_token_details.get("cache_write_tokens")
+        if cache_read or cache_write:
+            print(f"  ↳ Cache — read: {cache_read or 0} tokens, written: {cache_write or 0} tokens (cost: ${usage.get('cost', 0):.4f})")
 
         # Truncated on reasoning-token overrun: bump the budget and retry
         # rather than failing the whole pipeline run on the first hit.
@@ -1002,6 +1029,98 @@ if refresh_blueprint or not jd_blueprint:
         print(f"  ⚠️  JD blueprint generation skipped: {exc}")
         jd_blueprint_context = build_blueprint_context(jd_blueprint)
 
+# Byte-identical across the Scorecard/Resume/Cover Letter calls below in this run — built
+# once (after any blueprint refresh above) so it can be passed as `cacheable_prefix` to
+# call_llm() and cache-hit on the 2nd/3rd/4th call instead of being reprocessed from scratch.
+def build_shared_context_block(jd_text, jd_blueprint_context, profile_context):
+    return f"""=== JOB DESCRIPTION ===
+{jd_text}
+
+=== OPTIONAL JD BLUEPRINT (use this if present, otherwise infer from JD text) ===
+{jd_blueprint_context}
+
+=== CANDIDATE PROFILE (single source of truth — all facts from here only, never invent) ===
+{profile_context}
+"""
+
+SHARED_CONTEXT_BLOCK = build_shared_context_block(jd_text, jd_blueprint_context, profile_context)
+
+# Anthropic prompt caching hashes the FULL prefix up to a cache_control breakpoint —
+# system prompt included — so a byte-identical SHARED_CONTEXT_BLOCK only cache-hits
+# across calls if the system message is ALSO byte-identical. Scorecard/Resume/Cover
+# Letter each need different task rules, so those rules move into each call's own
+# user-turn content (after the cache breakpoint) instead of living in the system
+# message, which is now this one shared, generic string for all three calls.
+SHARED_SYSTEM_PROMPT = (
+    "You are an expert executive career-document assistant for candidate John Hau — "
+    "acting as recruiter/analyst, resume writer, or cover-letter writer depending on the "
+    "task rules given in the user message. Follow those task-specific rules exactly. "
+    "ALL facts, figures, dates, and claims must come ONLY from the candidate profile data "
+    "provided in the user message — never invent or embellish."
+)
+
+# ── v2-only: pre-computed recommendations summary (added 5 Aug 2026, moved out of the
+# Cover Letter section 5 Aug 2026 so the Resume can use it too) ────────────────────
+# Ground the "social proof" line in real, computed data instead of letting the LLM
+# eyeball/re-derive it from 16 raw paragraphs each run — count and theme frequency are
+# computed here in Python, not by the model.
+RECOMMENDATION_THEME_KEYWORDS = {
+    "client-focused":     ["client-focus", "client focus", "client first", "client-first", "put client", "clients first"],
+    "detail-oriented":    ["detail-mind", "detailed-mind", "detail oriented", "attention to detail", "detailed,"],
+    "dedicated / driven": ["dedicat"],
+    "collaborative / strong communicator": ["communicat", "collaborat", "coordinat", "facilitat"],
+    "innovative / creative": ["innovat", "creativ"],
+    "result-oriented":    ["result-oriented", "result oriented"],
+    "trusted / knowledgeable expert": ["knowledgeable", "invaluable", "expertise", " expert"],
+}
+
+
+def build_recommendations_summary(profile):
+    recs = profile.get("linkedin_recommendations", [])
+    if not recs:
+        return None
+    count = len(recs)
+
+    def _bucket(relationship):
+        rel_l = (relationship or "").lower()
+        if "vendor" in rel_l:
+            return "vendor"
+        if "client" in rel_l:
+            return "client"
+        return "colleague"
+
+    buckets = {"colleague": 0, "client": 0, "vendor": 0}
+    for r in recs:
+        buckets[_bucket(r.get("relationship", ""))] += 1
+
+    theme_counts = {}
+    for r in recs:
+        text_l = (r.get("recommendation") or "").lower()
+        for theme, keywords in RECOMMENDATION_THEME_KEYWORDS.items():
+            if any(kw in text_l for kw in keywords):
+                theme_counts[theme] = theme_counts.get(theme, 0) + 1
+    ranked_themes = sorted(theme_counts.items(), key=lambda kv: kv[1], reverse=True)
+
+    relationship_parts = []
+    if buckets["colleague"]:
+        relationship_parts.append(f"{buckets['colleague']} colleagues/team members")
+    if buckets["client"]:
+        relationship_parts.append(f"{buckets['client']} clients")
+    if buckets["vendor"]:
+        relationship_parts.append(f"{buckets['vendor']} vendors")
+
+    theme_lines = "\n".join(f"- {name}: mentioned in {n} of {count}" for name, n in ranked_themes)
+    return (
+        f"Total recommendations: {count}\n"
+        f"Relationship mix: {', '.join(relationship_parts)}\n"
+        f"Recurring themes, ranked by how many of the {count} recommendations mention them "
+        f"(computed from the actual recommendation text — pick whichever 2-3 are most relevant "
+        f"to THIS JD, not always the same fixed set):\n"
+        f"{theme_lines}\n"
+    )
+
+recommendations_summary = build_recommendations_summary(profile)
+
 # ══════════════════════════════════════════════════════════════════════════════
 # TASK 1 — JD SCORECARD (unchanged from v1)
 # ══════════════════════════════════════════════════════════════════════════════
@@ -1009,24 +1128,15 @@ scorecard_text = ""
 if run_scorecard:
     print("🔍  [1/3] Generating JD Scorecard...")
 
-    SCORECARD_SYS = (
-        "You are an expert executive recruiter and talent analyst. "
-        "Produce a detailed, honest, structured scorecard comparing the candidate to the JD. "
-        "Be evidence-based and professional. Never invent facts not present in the profile data. "
-        "Use plain text with clear section headers. Derive the scoring criteria dynamically from the specific JD, "
-        "focus only on materially relevant requirements, and compute a weighted overall score. "
-        "When evidence is adjacent or transferable rather than exact, say so explicitly and do not present it as direct hands-on experience."
-    )
-
     SCORECARD_USER = f"""
-=== JOB DESCRIPTION ===
-{jd_text}
-
-=== OPTIONAL JD BLUEPRINT (use this if present, otherwise infer from JD text) ===
-{jd_blueprint_context}
-
-=== CANDIDATE PROFILE (source of truth — do not invent facts outside this data) ===
-{profile_context}
+=== ROLE & TASK RULES (moved out of the system message so it stays a shared, cacheable
+    prefix across the Scorecard/Resume/Cover Letter calls in this run — see SHARED_SYSTEM_PROMPT) ===
+You are an expert executive recruiter and talent analyst for this task.
+Produce a detailed, honest, structured scorecard comparing the candidate to the JD.
+Be evidence-based and professional. Never invent facts not present in the profile data.
+Use plain text with clear section headers. Derive the scoring criteria dynamically from the specific JD,
+focus only on materially relevant requirements, and compute a weighted overall score.
+When evidence is adjacent or transferable rather than exact, say so explicitly and do not present it as direct hands-on experience.
 
 === INSTRUCTIONS ===
 Produce a comprehensive JD Match Scorecard with ALL of these sections:
@@ -1075,7 +1185,10 @@ Produce a comprehensive JD Match Scorecard with ALL of these sections:
    Should the candidate apply? Competitive positioning. Recommended approach.
 """
 
-    scorecard_text = call_llm(SCORECARD_SYS, SCORECARD_USER, max_tokens=12000, label="Scorecard")
+    scorecard_text = call_llm(
+        SHARED_SYSTEM_PROMPT, SCORECARD_USER, max_tokens=12000, label="Scorecard",
+        cacheable_prefix=SHARED_CONTEXT_BLOCK,
+    )
     print("  ✓  Scorecard complete")
 
     if resume_adjustment and resume_adjustments_text is None:
@@ -1090,58 +1203,65 @@ resume_text = ""
 if run_resume:
     print("📝  [2/3] Generating Tailored Resume...")
 
-    RESUME_SYS = (
-        "You are a professional executive resume writer specialising in senior IT leadership roles. "
+    RESUME_TASK_RULES = (
+        "=== ROLE & TASK RULES (moved out of the system message so it stays a shared, cacheable\n"
+        "    prefix across the Scorecard/Resume/Cover Letter calls in this run — see SHARED_SYSTEM_PROMPT) ===\n"
+        "You are a professional executive resume writer specialising in senior IT leadership roles for this task. "
         "Rules you MUST follow:\n"
         "1. ALL facts, figures, dates, and claims come ONLY from the candidate profile — never invent or embellish.\n"
         "2. Mirror the reference template layout EXACTLY: same section headers, same ___ separators, same bullet style.\n"
         "3. Tailor bullet wording to echo the JD language without distorting facts.\n"
         "4. Use semantic alignment for related skills, but NEVER claim direct hands-on experience with named systems, standards, tools, or industries unless they appear explicitly in the profile data.\n"
         "5. If the JD asks for hospitality/PMS/POS/PCI or other domain-specific items not explicitly in the profile, position John's background as transferable or adjacent experience only.\n"
-        "6. The `AI & AUTOMATION HIGHLIGHTS` section is mandatory in every resume output. Preserve it and populate it with vivid, concrete examples from the profile/template only.\n"
+        "6. The `AI & AUTOMATION HIGHLIGHTS` section is mandatory in every resume output. Populate it ONLY from `profile.ai_projects` — never from the reference template's own AI/Automation bullets, which are a LAYOUT example only, not a content source. Select and order the `ai_projects` entries most relevant to THIS JD's themes (e.g. a trading-automation JD should favor the trading/ML projects; an EUC/VDI-heavy JD should favor the automation/dashboard projects), same JD-relevance-first principle as rule 10 below — do not just reproduce the template's fixed example list regardless of the JD.\n"
         "7. Make the resume balanced: show both technical depth and leadership/soft skills supported by the profile.\n"
         "8. Every achievement bullet must be written in SMART form (Specific, Measurable, Achievable, Relevant, Time-bound). Wrap EVERY distinct quantifiable figure in the bullet in double asterisks — percentages, dollar/HK$ amounts, headcounts, device/user counts, time savings, etc. — no cap on how many per bullet; bold every one that appears, but never wrap overlapping or adjacent text as a single run. The reference template shows this convention in a few of its bullets; follow that pattern for every bullet you write.\n"
         "9. Within each role, order bullets by impact — lead with the most quantified, highest-impact achievements first, descending to more routine/supporting bullets last.\n"
         "10. When choosing which achievements fill a company's fixed bullet budget, JD relevance is the primary filter — but when multiple candidate highlights are comparably relevant to the JD, prefer the ones with larger quantified impact (bigger $ savings/revenue, larger user/team/device counts, wider organizational scope) over more routine ones. Never include a highly-quantified but JD-irrelevant bullet ahead of a genuinely JD-relevant one just because its number is bigger — relevance always wins ties in the other direction too.\n"
         "11. Preserve the exact company order from the candidate profile's `professional_experience` array (most recent role first, exactly as listed) — never reorder, merge, or resequence companies relative to that array.\n"
-        "12. Never state an exact number of years of experience (e.g. do not write '27 years' or '27+ years'). Use wording like 'extensive years' or 'extensive experience' instead.\n"
+        "12. Do not state the exact computed years-of-experience figure (e.g. '27 years' or '27.33 years'). A rounded, approximate figure like '25+ years' is acceptable if it strengthens positioning, but default to 'extensive years'/'extensive experience' when no rounding is natural. For any SINGLE role's tenure (e.g. one company), never use a precise decimal duration (e.g. '9.5 years') — use a rounded phrase like 'nearly a decade' or a whole-number-plus figure instead.\n"
         "13. Weave visible people-management evidence into the most recent 2-3 roles specifically (not just a generic soft-skills line) — team leadership, mentoring/coaching, hiring or onboarding, performance management, career development, org design — using only what the profile actually documents (e.g. leading a team of 50+, coaching teams across multiple countries, mentorship and team development).\n"
         "14. Output ONLY the resume text — no preamble, no explanation, no markdown code fences (the ** bold markers from rule 8 are the one exception — those are expected).\n"
         "15. Professional Summary company references: (a) when naming companies in a list (e.g. \"...financial institutions including X, Y, Z...\"), list them in the exact same order as `professional_experience` in the candidate profile (most recent first) — do NOT copy the reference template's fixed company order verbatim. (b) The reference template's summary includes a dedicated 'spotlight' sentence naming one company and its flagship achievement (e.g. the Morgan Stanley VP / Workspace Virtualization / 120,000 desktops line) — do NOT default to spotlighting Morgan Stanley in every resume regardless of the JD. Instead, choose the spotlight company dynamically: pick whichever role's achievements are most relevant to THIS JD's themes, breaking ties in favor of the most recent role. Rewrite that sentence using that company's own title, scope, and achievements from the profile — only reuse the template's Morgan Stanley wording if Morgan Stanley is genuinely the best fit for this specific JD.\n"
-        + ("16. Recruiter resume-adjustment guidance (below) may be supplied — it comes from this JD's own Match Scorecard. Apply it ONLY to wording, emphasis, section framing, and which existing facts get foregrounded. It must NEVER be used to introduce a fact, figure, project, or claim that is not already present in the candidate profile data — the guidance changes how real facts are presented, never what the facts are. Never print the guidance verbatim or add a visible \"Resume Adjustments\" heading.\n" if resume_adjustment else "")
+        + ("16. A RECOMMENDATIONS SUMMARY block may be supplied below (pre-computed, real counts — never invent a different number or theme). If present, weave ONE brief sentence of social proof into the Professional Summary (2nd or 3rd sentence) citing the exact total-recommendations count and choosing whichever 2-3 listed themes are most relevant to THIS JD's priorities — do not always pick the same fixed themes across different JDs, and do not name individual recommenders or quote a specific recommendation verbatim unless the block explicitly provides a quotable line.\n" if recommendations_summary else "")
+        + ("17. Recruiter resume-adjustment guidance (below) may be supplied — it comes from this JD's own Match Scorecard. Apply it ONLY to wording, emphasis, section framing, and which existing facts get foregrounded. It must NEVER be used to introduce a fact, figure, project, or claim that is not already present in the candidate profile data — the guidance changes how real facts are presented, never what the facts are. Never print the guidance verbatim or add a visible \"Resume Adjustments\" heading.\n" if resume_adjustment else "")
     )
 
     resume_adjustment_block = (
         f"""
-=== RECRUITER RESUME-ADJUSTMENT GUIDANCE (from this JD's own Match Scorecard — apply per system rule 14; never invent a fact to satisfy it) ===
+=== RECRUITER RESUME-ADJUSTMENT GUIDANCE (from this JD's own Match Scorecard — apply per rule 17; never invent a fact to satisfy it) ===
 {resume_adjustments_text}
 """
         if resume_adjustments_text else ""
     )
 
-    RESUME_USER = f"""
-=== REFERENCE RESUME TEMPLATE (replicate this layout exactly) ===
+    resume_recommendations_summary_block = (
+        f"""
+=== RECOMMENDATIONS SUMMARY (pre-computed from profile.linkedin_recommendations — apply per rule 16; never invent a different count or theme) ===
+{recommendations_summary}
+"""
+        if recommendations_summary else ""
+    )
+
+    RESUME_USER_PREFIX = f"""
+{RESUME_TASK_RULES}
+{resume_recommendations_summary_block}
+=== REFERENCE RESUME TEMPLATE (layout/format exemplar ONLY — headers, separators, bullet style; never a source of facts or which achievements to include, see rule 6 for the one section this is called out on explicitly) ===
 {template_txt}
+"""
 
-=== JOB DESCRIPTION (tailor content for this role) ===
-{jd_text}
-
-=== OPTIONAL JD BLUEPRINT (use this if present, otherwise infer from JD text) ===
-{jd_blueprint_context}
-
-=== CANDIDATE PROFILE (single source of truth — all facts from here only) ===
-{profile_context}
-{resume_adjustment_block}
+    RESUME_USER = f"""{resume_adjustment_block}
 === INSTRUCTIONS ===
 Write a complete tailored resume for John Hau targeting the role above.
 
 Layout rules:
 - Keep the identical header format, ________ separators, and bullet style from the reference template
 - Respect and preserve any existing soft-skills section already present in the reference template, while tailoring it to this JD using only profile facts
-- The `AI & AUTOMATION HIGHLIGHTS` section from the template is mandatory and must never be omitted, because it demonstrates current innovation capability with vivid examples
+- The `AI & AUTOMATION HIGHLIGHTS` section is mandatory and must never be omitted — populate it from `profile.ai_projects` selected/ordered for JD relevance, not from the template's own example bullets (see rule 6)
 - First infer the 5-8 most important themes from THIS JD (technical, leadership, business, industry, and interpersonal)
 - Replace the Professional Summary to foreground those JD-specific themes using only evidence from the profile
-- Follow system rule 15 for the summary's company list order and spotlight-company selection — do not blindly copy the reference template's Morgan Stanley-centric company order or spotlight sentence
+- Follow rule 15 for the summary's company list order and spotlight-company selection — do not blindly copy the reference template's Morgan Stanley-centric company order or spotlight sentence
+{"- If a RECOMMENDATIONS SUMMARY block was supplied above, weave one brief social-proof sentence into the Professional Summary using its real count and whichever themes best fit this JD (see rule 16)" if recommendations_summary else ""}
 - Add a dynamic bridging section immediately before PROFESSIONAL EXPERIENCE. The section title and content must fit the JD nature
   (for example: "HOSPITALITY RELEVANCE", "ROLE RELEVANCE", or "ENTERPRISE ARCHITECTURE RELEVANCE") and should never be hardcoded
 - BULLET COUNT RULES (non-negotiable):
@@ -1151,9 +1271,9 @@ Layout rules:
     * 4th company:                exactly 10 bullets
     * 5th company:                exactly 8 bullets
     * Any earlier roles:          3-4 bullets combined
-- Company order must match `professional_experience` exactly, most recent first — never resequence (see system rule 11)
-- Choose the bullets most relevant to the JD — reword to echo JD language without distorting facts. Among comparably JD-relevant candidates within a company, prefer larger quantified impact ($ savings/revenue, user/team/device counts, scope) over routine ones (see system rule 10)
-- Within each company's bullets, lead with the most quantified/highest-impact achievements first (see system rule 9)
+- Company order must match `professional_experience` exactly, most recent first — never resequence (see rule 11)
+- Choose the bullets most relevant to the JD — reword to echo JD language without distorting facts. Among comparably JD-relevant candidates within a company, prefer larger quantified impact ($ savings/revenue, user/team/device counts, scope) over routine ones (see rule 10)
+- Within each company's bullets, lead with the most quantified/highest-impact achievements first (see rule 9)
 - Use semantic matching to connect related evidence from `john_profile.json` to the JD. Example: cybersecurity ↔ IT security / audit / risk / DR / compliance;
   stakeholder management ↔ executive presentations / business partnering; operational excellence ↔ SLA, uptime, automation, service quality improvements
 - Do NOT convert adjacent evidence into unsupported exact claims. Example: do not say John has direct `PCI-DSS`, `Opera PMS`, or hotel `POS/CRM` experience unless the profile explicitly says so
@@ -1164,14 +1284,17 @@ Layout rules:
 - If the template includes a competencies/skills section, ensure it reflects a mix of technical and soft skills
 - Keep EDUCATION & CERTIFICATIONS, LANGUAGES, and AVAILABILITY sections unchanged from profile data
 - Total length: equivalent to the reference template (~2 pages of content)
-- Every achievement bullet: SMART form, every distinct quantifiable figure **bolded** (see system rule 8)
-- Weave people-management evidence into the most recent roles (see system rule 13)
-- Do not state an exact years-of-experience number anywhere (see system rule 12)
+- Every achievement bullet: SMART form, every distinct quantifiable figure **bolded** (see rule 8)
+- Weave people-management evidence into the most recent roles (see rule 13)
+- Do not state an exact years-of-experience number anywhere (see rule 12)
 - Keep spacing tight: a single blank line between sections is enough, no blank line directly under a section header before its content, and NO blank lines at all between the name/address/LinkedIn/website lines at the very top of the resume
-{"- If recruiter resume-adjustment guidance was supplied above, weave it in naturally (headline framing, which bullets/section lead) — do not quote it or add a visible heading for it (see system rule 15)" if resume_adjustments_text else ""}
+{"- If recruiter resume-adjustment guidance was supplied above, weave it in naturally (headline framing, which bullets/section lead) — do not quote it or add a visible heading for it (see rule 15)" if resume_adjustments_text else ""}
 """
 
-    resume_text = call_llm(RESUME_SYS, RESUME_USER, max_tokens=20000, label="Resume")
+    resume_text = call_llm(
+        SHARED_SYSTEM_PROMPT, RESUME_USER_PREFIX + RESUME_USER, max_tokens=20000, label="Resume",
+        cacheable_prefix=SHARED_CONTEXT_BLOCK,
+    )
     resume_text = soften_experience_years(resume_text)
     resume_text = tighten_contact_header(resume_text)
     resume_text = normalize_blank_lines(resume_text)
@@ -1194,27 +1317,31 @@ if run_coverletter:
     website  = "https://askcareer-ai.com"
     today    = datetime.now().strftime("%d %B %Y")
 
-    COVERLETTER_SYS = (
-        "You are a professional executive cover letter writer with deep expertise in senior technology leadership roles. "
+    COVERLETTER_TASK_RULES = (
+        "=== ROLE & TASK RULES (moved out of the system message so it stays a shared, cacheable\n"
+        "    prefix across the Scorecard/Resume/Cover Letter calls in this run — see SHARED_SYSTEM_PROMPT) ===\n"
+        "You are a professional executive cover letter writer with deep expertise in senior technology leadership roles for this task. "
         "Adapt the tone and emphasis to the specific JD and company context provided. "
         "Rules:\n"
         "1. ALL claims and achievements must come ONLY from the candidate profile data provided — no fabrication.\n"
         "2. Write in first person, confident executive tone, not generic or templated.\n"
-        "3. The letter must be 4-5 substantive paragraphs:\n"
-        "   Para 1 — Why this role at this company based on the JD/company context provided.\n"
-        "   Para 2 — Most relevant leadership & operational experience (quantified from profile).\n"
-        "   Para 3 — How the candidate's enterprise background translates to this specific role context.\n"
-        "   Para 4 — Innovation, transformation, and people leadership as differentiators.\n"
-        "   Para 5 — Closing: call to action, enthusiasm, availability.\n"
+        "3. The letter must be 5-6 substantive paragraphs, and must reference EVERY company in the candidate profile's `professional_experience` array with at least one concrete, quantified achievement — never silently drop a company for space, even under the paragraph budget below:\n"
+        "   Para 1 — Declarative opening: name ALL companies from `professional_experience`, in the exact same order as that array (most recent first) — e.g. 'Across [Company A], [Company B], [Company C], [Company D], and [Company E], I have led global infrastructure teams, stabilized mission-critical environments, and delivered measurable business impact across APAC, EMEA, and North America.' State cross-career impact directly. Do NOT open with a 'why this role at this company' framing or restate what the role/company does — the reader already knows that.\n"
+        "   Para 2 — The two most recent companies' leadership & operational experience (quantified from profile).\n"
+        "   Para 3 — The next two companies chronologically — do not skip any (quantified from profile); how this deeper enterprise background translates to this specific role context.\n"
+        "   Para 4 — Optional but encouraged if the profile documents an early notable recognition/award: the single oldest/earliest company may be used here as a brief 'leadership foundation' origin story (e.g. an early achievement award), even though it appears out of chronological sequence — this does not excuse dropping it from Para 2/3 if it would otherwise belong there.\n"
+        "   Para 5 — Innovation, transformation, and people leadership as differentiators.\n"
+        "   Para 6 — Closing: call to action, enthusiasm, availability.\n"
         "4. Use semantic matching to connect adjacent experience from the profile to the JD without overstating direct domain experience.\n"
         "5. Never claim direct experience with named domain-specific tools, standards, or industries unless they are explicitly present in the profile data.\n"
         "6. Do NOT use generic phrases like 'I am writing to apply for'. Open with impact.\n"
         "7. Wrap EVERY distinct quantifiable figure mentioned anywhere in the letter in double asterisks — percentages, dollar amounts, headcounts, user/device counts, time savings, etc., e.g. '**delivering HK$3.5M in savings**' or '**supporting 80,000 users**' — no cap on how many, bold every one that appears, but never bold a whole sentence.\n"
         "8. Whenever a specific job title is named together with a company (e.g. 'Associate Director of Infrastructure Services at AIA', 'VP, Asia Manager at Morgan Stanley'), wrap the title phrase itself in double asterisks too — do this consistently for every company/title mention in the letter, not just one.\n"
-        "9. Never state an exact number of years of experience (e.g. do not write '27 years' or '27+ years'). Use wording like 'extensive years' or 'extensive experience' instead.\n"
+        "9. Do not state the exact computed years-of-experience figure (e.g. '27 years' or '27.33 years'). A rounded, approximate figure like '25+ years' is acceptable if it strengthens positioning, but default to 'extensive years'/'extensive experience' when no rounding is natural. For any SINGLE company's tenure, never use a precise decimal duration (e.g. '9.5 years') — use a rounded phrase like 'nearly a decade' or a whole-number-plus figure instead.\n"
         "10. The header block is ONLY: candidate name, location, phone | email, LinkedIn, website — one line each, no blank lines between them. Do NOT include a date line, a recipient name line ('Hiring Manager'), or a company name line anywhere before the salutation. Go directly from the header block to 'Dear Hiring Manager,'.\n"
         "11. Output ONLY the cover letter text — no preamble, no commentary (the ** bold markers from rules 7-8 are the one exception — those are expected).\n"
-        + ("12. Recruiter resume-adjustment guidance (below) may be supplied — it comes from this JD's own Match Scorecard. Apply it ONLY to tone, emphasis, and which existing achievements get foregrounded. It must NEVER be used to introduce a fact, figure, project, or claim that is not already present in the candidate profile data. Never print the guidance verbatim or add a visible heading for it.\n" if resume_adjustment else "")
+        + ("12. A RECOMMENDATIONS SUMMARY block may be supplied below (pre-computed, real counts — never invent a different number or theme). If present, weave ONE brief sentence of social proof into Para 2 (right after the opening) citing the exact total-recommendations count and choosing whichever 2-3 listed themes are most relevant to THIS JD's priorities — do not always pick the same fixed themes across different JDs, and do not name individual recommenders or quote a specific recommendation verbatim unless the block explicitly provides a quotable line.\n" if recommendations_summary else "")
+        + ("13. Recruiter resume-adjustment guidance (below) may be supplied — it comes from this JD's own Match Scorecard. Apply it ONLY to tone, emphasis, and which existing achievements get foregrounded. It must NEVER be used to introduce a fact, figure, project, or claim that is not already present in the candidate profile data. Never print the guidance verbatim or add a visible heading for it.\n" if resume_adjustment else "")
     )
 
     # Derive employer display name from employer slug (e.g. MandarinOriental -> Mandarin Oriental)
@@ -1224,22 +1351,23 @@ if run_coverletter:
 
     coverletter_adjustment_block = (
         f"""
-=== RECRUITER RESUME-ADJUSTMENT GUIDANCE (from this JD's own Match Scorecard — apply per system rule 12; never invent a fact to satisfy it) ===
+=== RECRUITER RESUME-ADJUSTMENT GUIDANCE (from this JD's own Match Scorecard — apply per rule 13; never invent a fact to satisfy it) ===
 {resume_adjustments_text}
 """
         if resume_adjustments_text else ""
     )
 
+    recommendations_summary_block = (
+        f"""
+=== RECOMMENDATIONS SUMMARY (pre-computed from profile.linkedin_recommendations — apply per rule 12; never invent a different count or theme) ===
+{recommendations_summary}
+"""
+        if recommendations_summary else ""
+    )
+
     COVERLETTER_USER = f"""
-=== JOB DESCRIPTION ===
-{jd_text}
-
-=== OPTIONAL JD BLUEPRINT (use this if present, otherwise infer from JD text) ===
-{jd_blueprint_context}
-
-=== CANDIDATE PROFILE (single source of truth — all facts from here only) ===
-{profile_context}
-{coverletter_adjustment_block}
+{COVERLETTER_TASK_RULES}
+{coverletter_adjustment_block}{recommendations_summary_block}
 === LETTER HEADER DETAILS ===
 Name     : {name}
 Location : {location}
@@ -1257,7 +1385,7 @@ Structure:
 - Letter header block, exactly these lines with no blank lines between them: Name / Location / Phone | Email / LinkedIn / Website
 - No date line, no recipient name line, no company name line
 - Salutation: Dear Hiring Manager,
-- 4-5 focused paragraphs as described in the system instructions
+- 5-6 focused paragraphs as described in the rules above — every company in `professional_experience` must appear with a real achievement, none silently dropped (see rule 3)
 - Professional sign-off
 
 Key themes to hit (using only profile facts):
@@ -1268,13 +1396,17 @@ Key themes to hit (using only profile facts):
 - AI/automation innovation as a differentiator when it genuinely supports the role
 - Immediate availability, Hong Kong-based, and Cantonese-speaking only if helpful and supported by the profile
 - Use semantic alignment: connect adjacent evidence honestly rather than waiting for exact keyword matches
-- Bold every distinct quantified achievement and every company/title mention (see system rules 7-8)
-- Do not state an exact years-of-experience number anywhere (see system rule 9)
-- No date/recipient-name/company lines before the salutation (see system rule 10)
-{"- If recruiter resume-adjustment guidance was supplied above, weave it into tone/emphasis only — do not quote it or add a visible heading for it (see system rule 12)" if resume_adjustments_text else ""}
+- Bold every distinct quantified achievement and every company/title mention (see rules 7-8)
+- Do not state an exact years-of-experience number anywhere (see rule 9)
+- No date/recipient-name/company lines before the salutation (see rule 10)
+{"- If a RECOMMENDATIONS SUMMARY block was supplied above, weave one brief social-proof sentence into Para 2 using its real count and whichever themes best fit this JD (see rule 12)" if recommendations_summary else ""}
+{"- If recruiter resume-adjustment guidance was supplied above, weave it into tone/emphasis only — do not quote it or add a visible heading for it (see rule 13)" if resume_adjustments_text else ""}
 """
 
-    coverletter_text = call_llm(COVERLETTER_SYS, COVERLETTER_USER, max_tokens=8000, label="Cover Letter")
+    coverletter_text = call_llm(
+        SHARED_SYSTEM_PROMPT, COVERLETTER_USER, max_tokens=8000, label="Cover Letter",
+        cacheable_prefix=SHARED_CONTEXT_BLOCK,
+    )
     coverletter_text = soften_experience_years(coverletter_text)
     coverletter_text = clean_coverletter_header(coverletter_text, employer_display)
     coverletter_text = normalize_blank_lines(coverletter_text)
