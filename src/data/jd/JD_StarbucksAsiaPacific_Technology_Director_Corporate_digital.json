@@ -1,0 +1,258 @@
+{
+  "jd_file": "starbucks_apac_director_corporate_digital_technology.md",
+  "company": "Starbucks",
+  "company_slug": "starbucks",
+  "job_title": "Director, Corporate & Digital Technology",
+  "role_slug": "director-corporate-digital-technology",
+  "industry": "Food and Beverage / Retail / Technology",
+  "role_summary": "Lead digital and corporate technology across Starbucks Asia Pacific, with end-to-end accountability for digital & loyalty platforms, corporate product & delivery, Technology PMO, end-user management, service operations, and supply chain systems. Ensure alignment with global standards, drive governance and delivery discipline, and foster operational excellence across all active markets.",
+  "must_have_requirements": [
+    "12+ years of experience in digital technology, enterprise systems, or IT leadership",
+    "Proven track record leading digital platforms (e.g., loyalty, customer engagement) and corporate technology delivery",
+    "Strong experience leading PMO and portfolio governance functions",
+    "Experience working across multiple countries in a regional or global technology role",
+    "Strong leadership and stakeholder management in a highly matrixed global environment",
+    "Balance of innovation mindset and operational discipline",
+    "Commercial acumen with ownership of budgets and vendor partnerships",
+    "Customer- and partner-first mindset across digital and internal service experiences",
+    "Excellent problem-solving, decision-making, and communication skills"
+  ],
+  "nice_to_have_requirements": [
+    "Experience with supply chain systems and optimization",
+    "Exposure to GenAI technologies and their application for productivity improvement",
+    "Experience in the retail or franchise industry",
+    "Knowledge of Starbucks Global Licensing Framework"
+  ],
+  "soft_skills_priority": [
+    "Leadership",
+    "Stakeholder Management",
+    "Communication & Influencing",
+    "Problem-Solving",
+    "Adaptability & Innovation",
+    "Operational Discipline",
+    "Decision-Making",
+    "Commercial Acumen"
+  ],
+  "semantic_match_guidance": {
+    "Digital Platform Leadership": [
+      "loyalty program",
+      "customer engagement platform",
+      "mobile app",
+      "digital transformation",
+      "customer-facing technology",
+      "e-commerce"
+    ],
+    "Corporate Technology Delivery": [
+      "enterprise systems",
+      "ERP",
+      "internal platforms",
+      "product delivery",
+      "project management",
+      "agile",
+      "vendor management"
+    ],
+    "PMO Governance": [
+      "PMO",
+      "portfolio management",
+      "governance",
+      "prioritization",
+      "resource allocation",
+      "project management office",
+      "program management"
+    ],
+    "Multi-country Experience": [
+      "regional role",
+      "APAC",
+      "global",
+      "multiple markets",
+      "cross-border",
+      "multinational",
+      "franchise"
+    ],
+    "Operational Excellence": [
+      "service desk",
+      "IT support",
+      "SLA",
+      "operational efficiency",
+      "service delivery",
+      "continuous improvement"
+    ],
+    "Stakeholder Management": [
+      "matrix organization",
+      "influencing",
+      "executive communication",
+      "cross-functional",
+      "alignment"
+    ],
+    "Innovation & Operational Balance": [
+      "innovation",
+      "operational stability",
+      "reliability",
+      "scalability",
+      "forward-thinking"
+    ],
+    "Budget & Vendor Management": [
+      "budget ownership",
+      "P&L",
+      "vendor partnerships",
+      "cost management",
+      "procurement"
+    ],
+    "Supply Chain Systems": [
+      "supply chain",
+      "logistics",
+      "inventory systems",
+      "demand planning",
+      "SCM"
+    ],
+    "GenAI Integration": [
+      "generative AI",
+      "AI solutions",
+      "productivity tools",
+      "automation",
+      "machine learning",
+      "LLM"
+    ]
+  },
+  "scoring_criteria": [
+    {
+      "name": "Digital Platform Leadership",
+      "weight": 15,
+      "why_it_matters": "Core responsibility to lead customer-facing digital platforms like loyalty and engagement.",
+      "evidence_type_to_look_for": [
+        "Led development/launch of digital platforms",
+        "Managed loyalty programs",
+        "Improved digital customer experience metrics"
+      ],
+      "gap_expected": "No direct retail loyalty experience may be offset by platform leadership in other industries"
+    },
+    {
+      "name": "Corporate Technology Delivery",
+      "weight": 15,
+      "why_it_matters": "Own enterprise systems and internal platform delivery to meet business needs.",
+      "evidence_type_to_look_for": [
+        "Managed ERP implementations",
+        "Delivered corporate applications",
+        "Oversaw internal tooling"
+      ],
+      "gap_expected": "May need to show experience with enterprise systems in complex environments"
+    },
+    {
+      "name": "PMO Leadership",
+      "weight": 15,
+      "why_it_matters": "Lead Technology PMO, governance, prioritization, and delivery discipline.",
+      "evidence_type_to_look_for": [
+        "Established PMO",
+        "Portfolio governance",
+        "Created delivery frameworks",
+        "Managed program budgets"
+      ],
+      "gap_expected": "If no formal PMO role, evidence of governance in project leadership is needed"
+    },
+    {
+      "name": "Multi-country/Regional Experience",
+      "weight": 10,
+      "why_it_matters": "Worked across multiple markets; must handle regional complexity and global alignment.",
+      "evidence_type_to_look_for": [
+        "Responsible for multiple geographies",
+        "APAC or global scope",
+        "Cross-border initiatives"
+      ],
+      "gap_expected": "If limited to one country, highlight regional interactions and global projects"
+    },
+    {
+      "name": "Stakeholder Management & Influence",
+      "weight": 10,
+      "why_it_matters": "Align regional delivery to global strategy in a matrixed environment.",
+      "evidence_type_to_look_for": [
+        "Influenced executives",
+        "Managed internal relationships",
+        "Led cross-functional steering committees"
+      ],
+      "gap_expected": ""
+    },
+    {
+      "name": "Operational Excellence",
+      "weight": 10,
+      "why_it_matters": "Ensure service desk and end-user management deliver consistent quality.",
+      "evidence_type_to_look_for": [
+        "Improved service desk metrics",
+        "Implemented ITIL",
+        "Managed SLAs",
+        "Enhanced end-user support"
+      ],
+      "gap_expected": ""
+    },
+    {
+      "name": "Innovation & Operational Balance",
+      "weight": 10,
+      "why_it_matters": "Need to evolve digital platforms while maintaining reliability.",
+      "evidence_type_to_look_for": [
+        "Introduced new technologies while maintaining uptime",
+        "Balanced innovation projects with risk management"
+      ],
+      "gap_expected": ""
+    },
+    {
+      "name": "Commercial Acumen",
+      "weight": 10,
+      "why_it_matters": "Own budgets and vendor partnerships; drive cost-effective tech solutions.",
+      "evidence_type_to_look_for": [
+        "Managed technology budgets",
+        "Negotiated vendor contracts",
+        "Reduced costs",
+        "ROI analysis"
+      ],
+      "gap_expected": ""
+    },
+    {
+      "name": "Supply Chain Systems Experience",
+      "weight": 5,
+      "why_it_matters": "Partner to deliver technology opportunities in supply chain.",
+      "evidence_type_to_look_for": [
+        "Worked on supply chain systems",
+        "Implemented SCM tools",
+        "Optimized logistics technology"
+      ],
+      "gap_expected": "This is a plus; if not direct, show adjacent experience"
+    },
+    {
+      "name": "GenAI and Advanced Tech Exposure",
+      "weight": 5,
+      "why_it_matters": "Leverage GenAI to improve productivity; forward-looking tech adoption.",
+      "evidence_type_to_look_for": [
+        "Implemented AI/ML solutions",
+        "Piloted generative AI",
+        "Used AI for productivity"
+      ],
+      "gap_expected": "Not mandatory but preferred; relevant if present"
+    }
+  ],
+  "resume_tailoring_guidance": {
+    "mandatory_sections": [
+      "PROFESSIONAL SUMMARY",
+      "AI & AUTOMATION HIGHLIGHTS",
+      "CORE COMPETENCIES",
+      "SOFT SKILLS"
+    ],
+    "summary_focus": [
+      "12+ years leading digital and enterprise technology across complex regional environments",
+      "Proven track record in digital platform strategy, PMO governance, and service operations",
+      "Expertise in aligning regional tech with global standards and driving innovation with reliability"
+    ],
+    "do_not_overclaim": [
+      "Do not claim direct loyalty platform experience if not specific",
+      "Avoid exaggerating budget size or vendor scope without evidence",
+      "Do not overstate PMO leadership unless you owned governance and prioritization"
+    ]
+  },
+  "cover_letter_guidance": {
+    "tone": "Professional, confident, and strategic",
+    "positioning": "Position as a senior technology leader who blends innovative digital delivery with operational rigor, capable of navigating multi-market complexity and aligning with global frameworks.",
+    "bridge_gaps_honestly": [
+      "If lacking loyalty platform experience, emphasize transferable customer engagement tech and scaling digital products",
+      "If PMO experience is informal, describe governance processes you shaped",
+      "If GenAI exposure is limited, highlight learning curiosity and any AI-related initiatives"
+    ]
+  }
+}

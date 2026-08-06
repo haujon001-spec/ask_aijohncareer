@@ -1,0 +1,236 @@
+{
+  "jd_file": "IT_Operations_Head_Insurance.pdf",
+  "company": "Confidential Insurance Company",
+  "company_slug": "confidential-insurance",
+  "job_title": "Head of IT Operations / Technology Delivery (Insurance)",
+  "role_slug": "head-it-operations-insurance",
+  "industry": "Insurance / Financial Services",
+  "role_summary": "Senior operational technology leader reporting to the COO, responsible for IT operations, application management, and service delivery across the insurance technology landscape. Drives execution of technology initiatives and regulatory change, ensures production stability and operational resilience, maintains technology governance/risk/compliance, and manages vendor-delivered services and budgets, while building high-performing teams.",
+  "must_have_requirements": [
+    "15+ years IT experience with leadership exposure in insurance/financial services",
+    "Proven experience in IT strategy, transformation, and governance",
+    "Bachelor's degree in IT or related discipline",
+    "ITIL, COBIT, TOGAF or equivalent IT governance/architecture certification",
+    "Deep understanding of insurance business operations (underwriting, policy admin, distribution, claims)",
+    "Strong knowledge of IT governance frameworks, technology risk management, and regulatory requirements (Insurance Authority, cybersecurity standards)",
+    "Extensive experience in IT operations, application management, and service delivery within financial services/insurance",
+    "Proven track record leading system implementation, modernization, or core platform transformation projects",
+    "Hands-on exposure to IT governance, audit, cybersecurity, and regulatory compliance",
+    "Strong leadership managing large IT teams and complex transformation programs",
+    "Vendor management, contract negotiation, and third-party service oversight experience",
+    "Strong financial acumen managing IT budgets, cost optimization, investment prioritization"
+  ],
+  "nice_to_have_requirements": [
+    "Information security certifications (CISSP, CISM)",
+    "Familiarity with cloud platforms (AWS, Azure) and Agile/DevOps practices",
+    "Experience working with regional or global IT teams and cross-border delivery models",
+    "Enterprise architecture, data platforms, and system integration experience in financial services",
+    "Experience driving digital transformation in a regulated environment"
+  ],
+  "soft_skills_priority": [
+    "Stakeholder management and executive influence",
+    "Leadership and team development",
+    "Analytical and problem-solving skills",
+    "Change management and transformation leadership",
+    "Communication and cross-functional collaboration",
+    "Accountability and ownership culture-building",
+    "Negotiation skills (vendor/contract)"
+  ],
+  "semantic_match_guidance": {
+    "it_operations_leadership": [
+      "IT operations head",
+      "technology operations director",
+      "service delivery manager",
+      "production support leadership",
+      "IT operations governance"
+    ],
+    "insurance_domain_knowledge": [
+      "policy administration",
+      "claims processing",
+      "underwriting systems",
+      "distribution platforms",
+      "insurance core systems",
+      "life/P&C insurance IT"
+    ],
+    "governance_frameworks": [
+      "ITIL certified",
+      "COBIT framework",
+      "TOGAF architecture",
+      "IT governance model",
+      "control frameworks",
+      "operating model design"
+    ],
+    "risk_compliance_regulatory": [
+      "Insurance Authority compliance",
+      "regulatory change management",
+      "internal audit remediation",
+      "technology risk management",
+      "control testing"
+    ],
+    "cybersecurity_resilience": [
+      "CISSP",
+      "CISM",
+      "information security management",
+      "business continuity planning",
+      "disaster recovery",
+      "operational resilience"
+    ],
+    "vendor_management": [
+      "outsourced service providers",
+      "SLA management",
+      "vendor governance",
+      "contract negotiation",
+      "third-party risk oversight"
+    ],
+    "delivery_transformation": [
+      "core system transformation",
+      "platform modernization",
+      "system implementation",
+      "program delivery governance",
+      "Agile/DevOps adoption"
+    ],
+    "financial_resource_management": [
+      "IT budget management",
+      "cost optimization",
+      "resource planning",
+      "workforce planning",
+      "succession planning"
+    ],
+    "cloud_and_architecture": [
+      "AWS",
+      "Azure",
+      "enterprise architecture",
+      "system integration",
+      "data platforms"
+    ]
+  },
+  "scoring_criteria": [
+    {
+      "name": "Insurance IT Domain Expertise",
+      "weight": 15,
+      "why_it_matters": "Role requires deep understanding of insurance operations (policy, claims, underwriting, distribution) to manage applications effectively.",
+      "evidence_type_to_look_for": [
+        "Insurance company IT roles",
+        "policy admin/claims system ownership",
+        "underwriting or distribution platform experience"
+      ],
+      "gap_expected": "Candidates from generic financial services may lack insurance-specific systems knowledge"
+    },
+    {
+      "name": "IT Operations & Application Management Leadership",
+      "weight": 15,
+      "why_it_matters": "Core responsibility is owning end-to-end application management and ensuring production stability across business-critical systems.",
+      "evidence_type_to_look_for": [
+        "Head of IT Operations title",
+        "application portfolio ownership",
+        "incident/problem/change management leadership"
+      ]
+    },
+    {
+      "name": "IT Governance & Risk/Compliance Management",
+      "weight": 15,
+      "why_it_matters": "Strong governance, risk, and regulatory compliance (Insurance Authority, audit) are explicit requirements.",
+      "evidence_type_to_look_for": [
+        "ITIL/COBIT/TOGAF certification",
+        "regulatory compliance projects",
+        "audit remediation leadership",
+        "control framework design"
+      ]
+    },
+    {
+      "name": "Technology Delivery & Transformation Execution",
+      "weight": 15,
+      "why_it_matters": "Role demands disciplined execution of transformation, modernization, and regulatory change programs.",
+      "evidence_type_to_look_for": [
+        "core platform transformation",
+        "system implementation programs",
+        "delivery governance frameworks",
+        "project/program management track record"
+      ]
+    },
+    {
+      "name": "Vendor & Third-Party Service Management",
+      "weight": 10,
+      "why_it_matters": "Managing outsourced providers and strategic vendors is central to service delivery accountability.",
+      "evidence_type_to_look_for": [
+        "vendor governance",
+        "SLA/contract negotiation",
+        "outsourcing oversight",
+        "escalation management"
+      ]
+    },
+    {
+      "name": "Cybersecurity & Operational Resilience",
+      "weight": 10,
+      "why_it_matters": "Oversight of cybersecurity, BCP/DR, and information security risk mitigation is a key accountability.",
+      "evidence_type_to_look_for": [
+        "CISSP/CISM certification",
+        "BCP/DR ownership",
+        "cybersecurity risk programs"
+      ],
+      "gap_expected": "May be partial if candidate has governance but not hands-on security certs"
+    },
+    {
+      "name": "Leadership & Team Development",
+      "weight": 8,
+      "why_it_matters": "Role requires building and leading large, high-performing IT teams with succession planning.",
+      "evidence_type_to_look_for": [
+        "team size managed",
+        "org design",
+        "talent development programs"
+      ]
+    },
+    {
+      "name": "Financial & Budget Management",
+      "weight": 7,
+      "why_it_matters": "Accountability for IT budgets, cost optimization, and resource planning.",
+      "evidence_type_to_look_for": [
+        "IT budget ownership",
+        "cost optimization initiatives",
+        "resource planning outcomes"
+      ]
+    },
+    {
+      "name": "Cloud & Modern Technology Familiarity",
+      "weight": 5,
+      "why_it_matters": "Familiarity with cloud platforms and Agile/DevOps supports modernization efforts, though secondary to governance/operations focus.",
+      "evidence_type_to_look_for": [
+        "AWS/Azure exposure",
+        "Agile/DevOps adoption",
+        "cloud migration involvement"
+      ],
+      "gap_expected": "Likely limited hands-on cloud experience given operations-heavy background"
+    }
+  ],
+  "resume_tailoring_guidance": {
+    "mandatory_sections": [
+      "PROFESSIONAL SUMMARY",
+      "AI & AUTOMATION HIGHLIGHTS",
+      "CORE COMPETENCIES",
+      "SOFT SKILLS"
+    ],
+    "summary_focus": [
+      "Position as senior IT operations/technology leader with insurance or financial services background",
+      "Highlight application management, production stability, and service delivery ownership",
+      "Emphasize governance, risk, and regulatory compliance track record",
+      "Showcase vendor management and budget/resource accountability",
+      "Quantify team size led and scale of technology portfolio managed"
+    ],
+    "do_not_overclaim": [
+      "Do not claim insurance-specific system expertise if experience is from unrelated financial services without insurance context",
+      "Do not overstate hands-on cybersecurity certification if not formally certified (CISSP/CISM)",
+      "Do not imply direct cloud architecture ownership if role was operational/governance-focused only",
+      "Avoid claiming core platform transformation leadership unless directly accountable for delivery outcomes"
+    ]
+  },
+  "cover_letter_guidance": {
+    "tone": "Executive, confident, governance-oriented, results-driven",
+    "positioning": "Position candidate as a seasoned IT operations and governance leader who bridges technology delivery with business and regulatory priorities in insurance/financial services, emphasizing stability, compliance, and measurable operational outcomes",
+    "bridge_gaps_honestly": [
+      "If lacking direct insurance experience, emphasize transferable financial services regulatory and operational governance expertise",
+      "If no formal security certification, highlight practical experience overseeing cybersecurity and resilience programs",
+      "If cloud exposure is limited, focus on governance oversight of cloud initiatives rather than technical implementation",
+      "If vendor management experience is indirect, describe oversight through governance or program management roles"
+    ]
+  }
+}

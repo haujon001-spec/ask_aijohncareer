@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-25T12:21:19.981688Z",
+  "timestamp": "2026-08-05T14:52:45.693168",
   "sourceFile": "C:\\Users\\haujo\\projects\\DEV\\ask_aijohncareer\\src\\data\\john_profile.json",
   "profile": {
     "metadata": {
@@ -28,139 +28,297 @@
         "JohnHauResume2017.txt",
         "JohnHauResumeBofa_Edge.txt"
       ],
-      "last_backfilled": "2026-07-25T12:21:19.981688Z"
+      "last_backfilled": "2026-07-25T12:21:19.981688Z",
+      "ai_projects_last_rewritten": "2026-08-05"
     },
     "summary": "Senior technology leader with extensive years of IT infrastructure experience across Virtual Desktop Infrastructure (VDI), Desktop in Data Center (DiDC), End User Computing (EUC), lifecycle management, performance engineering, and global escalation leadership across major financial institutions: Morgan Stanley, Bank of America, AIA, Edge Technology Group, and Merrill Lynch. Former VP & Asia Manager for Workspace Virtualization Engineering at Morgan Stanley, serving as the primary APAC escalation lead for VDI issues across APAC, EMEA, and NA. Architected global VDI blueprints supporting 120,000 desktops and authored 8 global white papers. Hands-on innovator with proven ability to build AI-powered automation tools, dashboards, and agentic systems, including an independently built production-grade algorithmic trading platform combining quantitative modeling, machine learning, multi-agent LLM orchestration, and live risk-managed exchange execution.",
     "ai_projects": [
       {
-        "title": "John's Career Copilot - Full-Stack AI Interactive Resume Platform",
+        "id": "multi_agent_llm_orchestration",
+        "title": "Multi-Agent LLM Orchestration Framework for Quantitative Research & QA",
+        "repo": "trading",
+        "category": "Agentic AI / LLM Orchestration",
+        "status": "Production - operating",
+        "period": "Jan 2026 - present",
+        "resume_bullet": "Multi-Agent LLM Orchestration | Quant Agent Framework - Designed and operate an agentic framework that chains specialized agents through a Macro -> QA -> Backtest -> Evaluation -> Risk -> Performance -> Code-Improvement pipeline, governed by declarative YAML pass/fail criteria and silent-failure detection that gate every release. Extended with Tavily real-time search via the Anthropic SDK using tool-calling to ground agent output in live data rather than static training data - enterprise change-control discipline applied to AI systems. (private repository - walkthrough available on request)",
+        "description": "Designed and operate a multi-agent orchestration framework in which specialized Python agents (macro/regime analysis, data QA, backtest execution, trade evaluation, risk, performance metrics, visualization and code improvement) are chained by a central Orchestrator and a Final Checkout agent. Every agent's output is validated against declarative YAML success criteria including explicit silent-failure patterns (e.g. duplicated timestamps, empty cycle arrays, future-dated ranges), producing a PASS/FAIL grade that gates deployment. Extended with a Tavily real-time search integration via the Anthropic SDK using tool-calling so agents ground research in current information.",
+        "tech_stack": [
+          "Python",
+          "Anthropic Claude",
+          "DeepSeek R1",
+          "Multi-LLM ensemble",
+          "Anthropic SDK tool-calling",
+          "Tavily Search API",
+          "YAML policy definitions",
+          "Agentic orchestration"
+        ],
+        "key_features": [
+          "Orchestrator chaining Macro -> QA -> Backtest -> Evaluation -> Risk -> Performance -> Visualization -> Code Improvement",
+          "Declarative YAML pass_criteria / fail_criteria / silent_failures per agent with grade formulas",
+          "Automated QA and evaluator agents that gate deployment of dashboards and strategy changes",
+          "Tavily real-time web search grounded through Anthropic SDK tool-calling",
+          "Claude + DeepSeek ensemble for cross-model reasoning"
+        ],
+        "impact": "Applies enterprise change-control and audit discipline to AI output: nothing is treated as production-ready until an automated agent returns an explicit PASS against documented criteria.",
+        "transferable_skills": [
+          "AI governance and validation",
+          "Automated QA gating",
+          "Pipeline orchestration design",
+          "Prompt and tool-calling engineering"
+        ],
+        "project_name": "Quant Agent Framework",
+        "repo_visibility": "private"
+      },
+      {
+        "id": "career_copilot",
+        "title": "John's Career Copilot - Conversational AI Resume & JD-Matching Platform",
+        "repo": "ask_aijohncareer",
         "url": "https://www.askcareer-ai.com",
-        "description": "Built a production AI-powered interactive resume platform that enables real conversations about career experience instead of traditional resume scrolling. Dual LLM integration with intelligent conversational interface, responsive design, and production VPS deployment.",
+        "category": "Full-Stack AI Platform",
+        "status": "Live in production",
+        "period": "Mar 2026 - present",
+        "evidence": "109 commits (Mar 2026 - Aug 2026)",
+        "resume_bullet": "Conversational AI Resume Platform | John's Career Copilot - Built and operate a full-stack AI portal on React 18/Vite with a Node.js/Express API, routing Claude Sonnet, Google Gemini and DeepSeek R1 through OpenRouter. Includes a JD-matching engine that scores job descriptions against a structured JSON profile and auto-generates tailored resumes and cover letters as .docx. Containerized with Docker Compose behind Caddy with automatic Let's Encrypt TLS on a self-managed Linux VPS. askcareer-ai.com | github.com/haujon001-spec/ask_aijohncareer",
+        "description": "Built and operate a production conversational AI portal that replaces resume scrolling with a real conversation about career experience. A React 18 / Vite frontend talks to a Node.js/Express backend that routes requests across Claude Sonnet, Google Gemini and DeepSeek R1 via OpenRouter, grounded in a structured JSON profile rather than free-text keyword matching. A separate JD API service compares any job description against the profile and generates a match scorecard, a tailored resume and a cover letter, exported to .docx, with batch processing across a JD corpus.",
         "tech_stack": [
           "React 18",
           "Vite",
-          "Express.js",
           "Node.js",
-          "Google Gemini 3.1 Flash Lite",
+          "Express.js",
+          "Claude Sonnet",
+          "Google Gemini",
           "DeepSeek R1",
           "OpenRouter API",
+          "Python",
+          "python-docx",
           "Docker",
           "Docker Compose",
           "Caddy",
           "Let's Encrypt",
-          "Linux",
-          "HTTPS"
+          "Linux VPS",
+          "GitHub CI/CD"
         ],
         "key_features": [
-          "Real-time streaming responses from dual LLM models",
-          "14 pre-built intelligent queries (cloud infrastructure, leadership, AI projects, cybersecurity, etc.)",
-          "Responsive dark/light theme toggle with localStorage persistence",
-          "Context-aware AI reasoning for accurate career narrative vs keyword-matching",
-          "Mobile-optimized UI with marquee animations"
+          "Real-time streaming responses with multi-model routing and cost-tiered model selection",
+          "JD match scorecard plus auto-generated tailored resume and cover letter as .docx",
+          "Structured JSON profile as single authoritative source of career truth",
+          "Dark/light theme, mobile-optimized responsive UI, 48.82 kB gzipped bundle",
+          "Docker Compose deployment behind Caddy with automatic HTTPS, staging/main branch workflow"
         ],
-        "impact": "Production deployment on VPS with 48.82 kB gzipped frontend, <2 second page load. Demonstrates full-stack modern web development, LLM integration, DevOps containerization, and production-grade deployment with auto HTTPS via Let's Encrypt."
+        "impact": "Live public product demonstrating full-stack development, LLM integration, document automation, containerization and production DevOps end to end - built and operated single-handedly.",
+        "transferable_skills": [
+          "Full-stack delivery",
+          "LLM API integration",
+          "Docker/CI-CD",
+          "TLS and reverse-proxy operations",
+          "Product ownership"
+        ],
+        "project_name": "John's Career Copilot",
+        "repo_visibility": "public",
+        "github_url": "https://github.com/haujon001-spec/ask_aijohncareer"
       },
       {
-        "title": "Production Next.js AI Portal with Multilingual LLM Chatbot",
-        "description": "Built aibreeds-demo.com with multilingual LLM chatbot and translation engine",
+        "id": "ai_breeds_portal",
+        "title": "AI Breeds Portal - Multilingual AI Platform with Resilient LLM Failover",
+        "repo": "pets",
+        "url": "https://aibreeds-demo.com",
+        "category": "Full-Stack AI Platform",
+        "status": "Live in production",
+        "period": "Jan 2026 - Jul 2026",
+        "evidence": "59 commits (Jan 2026 - Jul 2026)",
+        "resume_bullet": "Multilingual AI Portal with Resilient LLM Failover | AI Breeds Portal - Delivered a Next.js 16 / React 19 / TypeScript platform serving 12 languages, engineered around a five-provider LLM fallback chain (Groq -> Together AI -> Hugging Face -> Cohere -> OpenRouter) for high availability. Adds LLaVA-1.5 vision verification of generated imagery and Stable Diffusion XL image generation, with blue-green zero-downtime deployment, 66 automated health checks across 10 categories, and scripted rollback. aibreeds-demo.com | github.com/haujon001-spec/pets",
+        "description": "Delivered a production Next.js 16 / React 19 / TypeScript portal covering 61 breed profiles with an AI chatbot, LLM-powered dynamic translation across 12 languages (including RTL support for Arabic), and AI image generation. The core engineering challenge was availability: an intelligent LLM router implements a five-provider fallback chain so a provider outage or rate limit degrades gracefully instead of failing. A LLaVA-1.5 vision model verifies that fetched or generated breed images actually match the breed, and Stable Diffusion XL via Replicate fills gaps for rare breeds.",
         "tech_stack": [
-          "Next.js",
-          "LLM",
-          "Translation Engine"
+          "Next.js 16",
+          "React 19",
+          "TypeScript",
+          "Tailwind CSS",
+          "next-intl",
+          "Groq (Llama-3.3-70B)",
+          "Together AI",
+          "Hugging Face",
+          "Cohere",
+          "OpenRouter",
+          "LLaVA-1.5 vision model",
+          "Stable Diffusion XL / Replicate",
+          "Docker",
+          "Caddy",
+          "Linux VPS",
+          "sharp"
         ],
-        "impact": "Production deployment, multi-language support"
+        "key_features": [
+          "Five-provider LLM fallback chain with intelligent routing for high availability",
+          "12-language internationalization with LLM-powered dynamic translation and client-side caching",
+          "LLaVA-1.5 vision verification of image accuracy; SDXL generation fallback for rare breeds",
+          "Blue-green zero-downtime deployment with scripted rollback and environment segregation (dev/staging/prod)",
+          "10-category health-check system running 66 automated checks"
+        ],
+        "impact": "Demonstrates resilience engineering and non-functional requirements (availability, failover, observability, zero-downtime release) applied to an AI product stack.",
+        "transferable_skills": [
+          "High-availability design",
+          "Failover and graceful degradation",
+          "Deployment strategy and rollback",
+          "Internationalization",
+          "Vision model integration"
+        ],
+        "project_name": "AI Breeds Portal",
+        "repo_visibility": "public",
+        "github_url": "https://github.com/haujon001-spec/pets"
       },
       {
-        "title": "Production Multi-Strategy Algorithmic Trading System",
-        "description": "Architected and operate a live, multi-strategy crypto trading system (200+ commits since Jan 2026): a custom Python backtesting engine used to test dozens of strategy variants (regime-detection, hybrid, directional, funding-rate arbitrage), Hidden Markov / Hidden Semi-Markov Model (HMM/HSMM) market-regime classification, and LightGBM machine learning models for entry/exit signal generation.",
+        "id": "algo_trading_platform",
+        "title": "Production Multi-Strategy Algorithmic Trading Platform with Live Risk Engine",
+        "repo": "trading",
+        "category": "Quantitative ML / Live Systems",
+        "status": "Production - live execution",
+        "period": "Jan 2026 - present",
+        "evidence": "212 commits (Jan 2026 - Jul 2026)",
+        "resume_bullet": "Production Algorithmic Trading Platform | Systematic Trading Engine - Architected a live multi-strategy system: custom backtesting engine, Hidden Markov / Hidden Semi-Markov regime-detection models, and LightGBM ML signal generation, wired to a risk engine (position sizing, stop-loss/take-profit, trailing stops) executing across Binance and Bitunix. Runs as a systemd-managed VPS service with on-exchange safety-net orders, Telegram alerting, and a Caddy-fronted monitoring portal. (private repository - walkthrough available on request)",
+        "description": "Architected and operate an end-to-end algorithmic trading platform: an incremental OHLCV ETL pipeline feeds a custom Python backtesting engine used to evaluate dozens of strategy variants (regime-detection, hybrid, directional, funding-rate arbitrage). Hidden Markov and Hidden Semi-Markov models classify market regime; LightGBM models generate entry/exit signals. A dedicated risk engine enforces position sizing, stop-loss/take-profit, trailing stops and volatility-based rules before orders reach a live multi-account execution layer on Binance and Bitunix. The service runs under systemd on a Linux VPS with on-exchange safety-net orders, pre/post-deployment position audits, Telegram alerting and watchdog monitoring, and a Caddy-fronted web portal for live/paper account monitoring, backtest comparison and reporting.",
         "tech_stack": [
           "Python",
+          "pandas",
+          "NumPy",
           "Hidden Markov Models (HMM/HSMM)",
           "LightGBM",
-          "pandas / NumPy",
-          "Custom Backtesting Engine"
-        ],
-        "impact": "Independent quant R&D system combining statistical regime modeling, ML, and systematic strategy design/backtesting across dozens of tested variants."
-      },
-      {
-        "title": "Live Risk-Managed Multi-Account Execution Engine",
-        "description": "Built a dedicated risk engine (position sizing, stop-loss/take-profit, trailing stops, volatility-based rules) wired to a live order-execution and position-management layer across multiple exchange accounts (Binance, Bitunix), deployed as a systemd-managed production service on a VPS with on-exchange safety-net orders and pre/post-deployment position audits.",
-        "tech_stack": [
+          "Custom backtesting engine",
           "Binance API",
           "Bitunix API",
-          "systemd",
-          "Python",
-          "Risk Engine",
-          "Order Execution"
-        ],
-        "impact": "Applies enterprise-grade stop-loss and position-sizing discipline to a self-built, live, multi-account automated trading system with on-exchange safety nets."
-      },
-      {
-        "title": "Multi-Agent LLM Framework for Trading Research & QA",
-        "description": "Designed a multi-agent architecture (Claude + DeepSeek ensemble) with specialized agents for market/news research, chart pattern recognition, technical analysis, backtest evaluation/grading, and automated QA/data-validation agents that gate deployment of dashboards and strategy changes.",
-        "tech_stack": [
-          "Anthropic Claude",
-          "DeepSeek R1",
-          "Multi-LLM Ensemble",
-          "Agentic Orchestration",
-          "Python"
-        ],
-        "impact": "Automates research, evaluation, and QA steps with agents that produce PASS/FAIL validation before any output is treated as production-ready — mirrors enterprise governance discipline applied to a personal AI system."
-      },
-      {
-        "title": "Tavily Real-Time Search Integration for LLM Agents",
-        "description": "Integrated the Tavily search API with the Anthropic SDK to give trading agents real-time web search for market news, crypto trends, and technical analysis context, using tool-calling to ground LLM outputs in current information.",
-        "tech_stack": [
-          "Tavily API",
-          "Anthropic SDK",
-          "Python",
-          "Tool-calling / Function-calling"
-        ],
-        "impact": "Grounds LLM agent research outputs in live market information rather than static training data."
-      },
-      {
-        "title": "Full-Stack Trading Web Portal & Dashboards",
-        "description": "Built a Python web portal for live/paper account monitoring, backtest comparison, and investor-facing reporting, deployed with systemd + Caddy and Telegram-based alerting/watchdog integration.",
-        "tech_stack": [
-          "Python",
           "Flask",
           "systemd",
           "Caddy",
-          "Telegram Bot API"
+          "Telegram Bot API",
+          "Linux VPS",
+          "Docker",
+          "Git/GitHub"
         ],
-        "impact": "Production-deployed operational dashboard supporting live trading oversight and reporting across multiple accounts."
+        "key_features": [
+          "Custom backtesting engine covering dozens of strategy variants with reproducible results",
+          "HMM/HSMM statistical regime classification and LightGBM ML signal models",
+          "Live risk engine: position sizing, stop-loss/take-profit, trailing stops, volatility rules",
+          "Multi-account live execution with on-exchange safety-net orders and position audits",
+          "systemd-managed production service, Telegram alerting/watchdog, Caddy-fronted monitoring portal",
+          "Golden-engine governance: verified strategies are immutable, changes ship as new dated versions"
+        ],
+        "impact": "A self-built system running real capital under production discipline - version control, backups, staged releases, monitoring and rollback - built and maintained across 212 commits.",
+        "transferable_skills": [
+          "Machine learning in production",
+          "Risk controls and safety nets",
+          "Linux/systemd service operations",
+          "Monitoring and alerting",
+          "Change management on critical systems"
+        ],
+        "project_name": "Systematic Trading Engine",
+        "repo_visibility": "private"
       },
       {
-        "title": "Global Economic Visualization Dashboard",
-        "description": "Plotly.js + Python dashboard with AI-verified insights for GDP, Population, Debt analysis",
+        "id": "semantic_memory_rag",
+        "title": "3-Tier Semantic Memory & RAG Infrastructure",
+        "repo": "memory_management",
+        "category": "AI Infrastructure / Knowledge Systems",
+        "status": "Operational",
+        "period": "Mar 2026 - present",
+        "resume_bullet": "Semantic Memory & RAG Infrastructure | 3-Tier Memory System - Built a 3-tier memory system (ChromaDB vector store + sentence-transformers embeddings) delivering retrieval-augmented context across a multi-project engineering workspace, kept current by a filesystem watcher and a scheduled daily indexer. Serves as the shared knowledge layer behind the AI agents above. github.com/haujon001-spec/memory_management",
+        "description": "Replaced a flat 2-tier JSON memory store with a 3-tier architecture: global facts, domain-specific knowledge (trading, data science), and project-level semantic memory backed by a ChromaDB vector store with sentence-transformers embeddings. Indexes Markdown and Quarto (.qmd) documentation into searchable collections, providing retrieval-augmented context to AI agents across a multi-project workspace. A watchdog filesystem monitor plus a scheduled daily indexer (2:00 AM) keep the vector index current, with Windows startup registration and health-check scripts for unattended operation.",
+        "tech_stack": [
+          "Python",
+          "ChromaDB",
+          "sentence-transformers",
+          "Vector embeddings",
+          "RAG retrieval",
+          "watchdog",
+          "PowerShell",
+          "Quarto (.qmd) parsing",
+          "Scheduled indexing",
+          "OpenClaw gateway integration"
+        ],
+        "key_features": [
+          "3-tier architecture: global facts / domain knowledge / project semantic memory",
+          "ChromaDB vector store with sentence-transformers embeddings for semantic search",
+          "Automated .qmd and .md documentation indexing into separate doc and session collections",
+          "Filesystem watcher plus scheduled daily indexer for always-current retrieval",
+          "PowerShell startup registration, health checks and tier validation tests"
+        ],
+        "impact": "Shared knowledge infrastructure reused by every other AI project in the workspace - demonstrates platform thinking rather than one-off tooling.",
+        "transferable_skills": [
+          "Vector databases and RAG",
+          "Knowledge platform architecture",
+          "Scheduled automation and unattended operations",
+          "Reusable shared infrastructure design"
+        ],
+        "project_name": "3-Tier Memory System",
+        "repo_visibility": "public",
+        "github_url": "https://github.com/haujon001-spec/memory_management"
+      },
+      {
+        "id": "global_econ_dashboard",
+        "title": "AI-Validated Global Economic Visualization Platform",
+        "repo": "Data_visualization",
         "url": "https://sleek-ravine-jfj9.here.now/",
+        "category": "Data Engineering / Visualization",
+        "status": "Published",
+        "period": "Feb 2026 - Mar 2026",
+        "resume_bullet": "AI-Validated Data Visualization | Global Market Cap Explorer - Engineered a Python/pandas ETL pipeline and Plotly.js dashboard tracking global market capitalization across equities, cryptocurrencies and precious metals, with AI-assisted validation cross-checking every published figure against independent sources before release. sleek-ravine-jfj9.here.now | github.com/haujon001-spec/data_visualization",
+        "description": "Engineered a multi-phase data platform tracking the evolution of the top 20 global assets by market capitalization over a 10-year window across public companies, cryptocurrencies and precious metals. A Python/pandas ETL pipeline ingests yfinance and CoinGecko data, normalizes currencies, and corrects for stock splits, dilution and consolidated share counts. An interactive Plotly.js dashboard with an animated bar race surfaces the results. A dedicated validation layer cross-checks output against independent public sources and flags data staleness before anything is published.",
         "tech_stack": [
+          "Python",
+          "pandas",
+          "yfinance",
+          "CoinGecko API",
           "Plotly.js",
-          "Python",
-          "AI Validation"
+          "AI-assisted data validation",
+          "ETL pipeline",
+          "VPS deployment"
         ],
-        "impact": "Published dashboard, data-driven insights"
+        "key_features": [
+          "Multi-source ETL across equities, crypto and precious metals with currency normalization",
+          "Split, dilution and consolidated-share adjustment logic with documented assumptions",
+          "Independent-source validation and data-staleness detection before publication",
+          "Interactive Plotly.js dashboard with animated bar race and visible methodology annotations"
+        ],
+        "impact": "Published dashboard with an auditable data lineage - assumptions and corrections are documented and verified rather than asserted.",
+        "transferable_skills": [
+          "Data pipeline engineering",
+          "Data quality and validation",
+          "Visualization and executive reporting",
+          "Source reconciliation"
+        ],
+        "project_name": "Global Market Cap Explorer",
+        "repo_visibility": "public",
+        "github_url": "https://github.com/haujon001-spec/data_visualization"
       },
       {
-        "title": "AI-Augmented Dashboards with Explainability",
-        "description": "Built dashboards with explainability panels, unified controls, and automated QA validation",
+        "id": "enterprise_automation",
+        "title": "Enterprise ITSM/ETL Automation & AI-Augmented Reporting",
+        "category": "Workplace Automation",
+        "status": "Delivered in role",
+        "period": "2019 - 2025",
+        "resume_bullet": "Enterprise Automation & AI-Augmented Reporting - Automated ITSM and ETL workflows with PowerShell and Power Query, saving 7 FTE at Bank of America (14,390 hours annually, 70% efficiency gain) and 144 man-days annually at AIA; built dashboards with AI explainability panels, unified controls and automated QA validation.",
+        "description": "Delivered automation of ITSM and ETL workflows in enterprise environments using PowerShell and Power Query, and integrated Workday approvals with ServiceNow ticket assignment to automate onboarding, offboarding and move workflows. Built operational dashboards with explainability panels, unified controls and automated QA validation to make reporting self-service and auditable.",
         "tech_stack": [
+          "PowerShell",
+          "Power Query",
+          "Python",
+          "ServiceNow",
+          "Workday integration",
           "PowerBI",
-          "Python",
-          "QA Automation"
+          "Splunk",
+          "VBA"
         ],
-        "impact": "Enhanced operational intelligence, transparency"
-      },
-      {
-        "title": "Linux-Based LLM Inference Pipelines",
-        "description": "Personal R&D: GPU-accelerated model testing and containerized AI workflows",
-        "tech_stack": [
-          "Linux",
-          "GPU",
-          "LLM",
-          "Docker"
+        "key_features": [
+          "ITSM and ETL workflow automation across patching, reporting and service desk operations",
+          "Workday-to-ServiceNow integration automating joiner/mover/leaver workflows",
+          "Dashboards with explainability panels, unified controls and automated QA validation"
         ],
-        "impact": "Advanced ML ops, containerized inference"
+        "impact": "7 FTE saved at Bank of America (14,390 hours annually, 70% efficiency gain); 144 man-days saved annually at AIA.",
+        "transferable_skills": [
+          "Operations automation",
+          "Cost optimization",
+          "Process reengineering",
+          "Enterprise tooling integration"
+        ],
+        "project_name": "Enterprise ITSM/ETL Automation",
+        "repo_visibility": "n/a"
       }
     ],
     "linkedin_recommendations": [
@@ -335,23 +493,22 @@
         "scale": "120,000 desktops",
         "impact": "$1.4M OPEX reduction, $640K vendor cost avoidance"
       },
-      
       {
-       "achievement": "India ODC 10K Contractor VDI Remediation",
-       "company": "Morgan Stanley",
-       "scale": "10,000 offshore vendor users",
-       "impact": "Core architect for full-stack performance remediation; resolved VM bottlenecks through SPLUNK-driven analysis, live demo interrogations with app owners, and multi-team collaboration; presented findings and mitigation   plan to lead engineers, product managers, and MD-level senior management"
+        "achievement": "India ODC 10K Contractor VDI Remediation",
+        "company": "Morgan Stanley",
+        "scale": "10,000 offshore vendor users",
+        "impact": "Core architect for full-stack performance remediation; resolved VM bottlenecks through SPLUNK-driven analysis, live demo interrogations with app owners, and multi-team collaboration; presented findings and mitigation   plan to lead engineers, product managers, and MD-level senior management"
       },
       {
-       "achievement": "Global Virtual Desktop & Application Get-Well Program",
-       "company": "Morgan Stanley",
-       "impact": "Served as global SME and lead architect for Citrix, Virtual Desktop, and cloud environments; authored onboarding guidelines and workload-analysis standards for migrating traditional desktops and fat-client applications to VDI/Virtual Apps; drove global remediation program improving stability, performance, and user experience across APAC/EMEA/NA"
+        "achievement": "Global Virtual Desktop & Application Get-Well Program",
+        "company": "Morgan Stanley",
+        "impact": "Served as global SME and lead architect for Citrix, Virtual Desktop, and cloud environments; authored onboarding guidelines and workload-analysis standards for migrating traditional desktops and fat-client applications to VDI/Virtual Apps; drove global remediation program improving stability, performance, and user experience across APAC/EMEA/NA"
       },
       {
-       "achievement": "Scientific Load Testing & User Density Validation",
-       "company": "Morgan Stanley",
-       "tech": "LoginVSI, SPLUNK, custom load models",
-       "impact": "Performed scientific load tests validating user density and cost optimization for cloud VDI and Citrix XenApp plants; produced white papers and presented recommendations to senior managers"
+        "achievement": "Scientific Load Testing & User Density Validation",
+        "company": "Morgan Stanley",
+        "tech": "LoginVSI, SPLUNK, custom load models",
+        "impact": "Performed scientific load tests validating user density and cost optimization for cloud VDI and Citrix XenApp plants; produced white papers and presented recommendations to senior managers"
       },
       {
         "achievement": "Resolved Multi-Year Patching Backlog",
@@ -635,12 +792,6 @@
         "impact": "Proactively led cross-team remediation effort"
       },
       {
-        "achievement": "Deep Performance Forensics for 10,000 VPC Users",
-        "company": "Bank of America",
-        "scale": "10,000 vendor VPC users",
-        "impact": "Performed SPLUNK-driven performance forensics for 10,000 vendor VPC users, identifying latency bottlenecks and driving remediation"
-      },
-      {
         "achievement": "Trading Platform Stability Remediation",
         "company": "Bank of America",
         "impact": "Led remediation for latency-sensitive trading workloads, improving stability and reducing escalations from MDs and traders"
@@ -679,14 +830,16 @@
         "scope": "Head of EUS/EUC, Service Desk, ITDR, Production Control | 50+ staff, APAC region",
         "highlights": [
           "Led End User Services, ITDR and Production Control teams for 50+ staff across HK , Macau and China ensuring stable endpoint and virtual desktop services",
-          "Strengthened patch compliance from 58% → 100%, resolving a critical 2-year backlog through governance and automation",
+          "Managed HKD 28M infrastructure budget, driving vendor governance and cost optimization across APAC IT operations.",
+          "Acted as subject matter expert resolving the 2024 CrowdStrike BSOD outage, restoring **90% of affected devices within the first day**.",
           "Delivered Windows 11 migration for 3,400 devices, saving HK$3.5M while improving performance and security",
+          "Led 1,700-user relocation to 3 new offices with zero downtime and seamless service continuity",
+          "Strengthened patch compliance from 58% → 100%, resolving a critical 2-year backlog through governance and automation",
           "Automated ITSM workflows using Power Query + PowerShell, saving 144 man-days annually",
           "Implemented ETL automation tools improving operational efficiency by ~30%",
           "Built PowerBI dashboards for SLA, KPI, and operational performance monitoring across APAC",
           "Standardized SOPs, escalation flows, and communication guidelines, improving service quality by one full grade",
           "Executed HKMA-aligned DR drills ensuring full regulatory compliance",
-          "Led 1,700-user relocation to 3 new offices with zero downtime and seamless service continuity",
           "Improved operational productivity by ~30% through automation and process optimization",
           "Strengthened cross-team collaboration across APAC regions and global support model alignment",
           "Delivered strategic planning presentations to senior management for the 2024 and 2025 IT roadmap.",
@@ -694,8 +847,6 @@
           "Improved stakeholder communication and deliverable turnaround time by **2 days**.",
           "Executed **3 disaster recovery drills** in 2024, achieving governance improvements through **40+ process enhancements**.",
           "Oversaw vendor management and completed departmental budget planning for 2024/2025, including cost analysis, approvals, and SMT presentations.",
-          "Managed HKD 28M infrastructure budget, driving vendor governance and cost optimization across APAC IT operations.",
-          "Acted as subject matter expert resolving the 2024 CrowdStrike BSOD outage, restoring **90% of affected devices within the first day**.",
           "Led root cause investigation into a CEO global messaging incident on mobile devices, presenting RCA and permanent fix to C-suite leadership.",
           "Identified root cause of VIP client device non-compliance and implemented governance documentation and improved checkout scripts to prevent recurrence.",
           "Provided technical direction for the design of a tier-1 resiliency and high-availability architecture to meet DR/BCP requirements.",
@@ -740,7 +891,8 @@
         "period": "Oct 2019 – Aug 2020",
         "scope": "Systems and network engineering leadership, HK/SG/AU region",
         "highlights": [
-          "Managed 3 teams with 12 subordinates (systems, network engineering, and service delivery management)",
+          "Managed 2 teams with 12 subordinates (systems and network engineering)",
+          "Identified ISO27001 compliance gaps and designed remediation architecture generating HKD 1.8M in new revenue",
           "Responsible for IT governance, systems stability, and IT ops process refinement for Financial Services clients",
           "Designed 3-tier backup architecture improving success rate from 40–68% → 99%",
           "Led ISO 27001 and SFC EDSP (External Electronic Data Storage) compliance efforts",
@@ -760,8 +912,7 @@
           "Drove measurable improvement of **overall KPIs** for the Centralized Services team",
           "Managed end-to-end IT operations via **ticketing systems**, overseeing incident and problem management workflows across teams",
           "Led migration of critical trading systems from unsupported CentOS to enterprise-grade RedHat, eliminating compliance and stability risks",
-          "Implemented syslog-NG high availability logging architecture to close audit gaps and strengthen observability",
-          "Identified ISO27001 compliance gaps and designed remediation architecture generating HKD 1.8M in new revenue"
+          "Implemented syslog-NG high availability logging architecture to close audit gaps and strengthen observability"
         ]
       },
       {
@@ -773,15 +924,14 @@
           "APAC escalation lead for VDI and Virtual App issues (APAC/EMEA/NA coverage)",
           "Managed global virtual team of 8 people with 2 directs in region",
           "Authored 8 global white papers on AppSense, Citrix policy, load testing, HDX technology, user density, trading performance, and Storefront capacity analysis (became firm-wide VDI blueprints)",
-	  "Reduced OPEX by US$1.4M through VM environment optimization and resource utilization analysis",
-	  "Avoided US$12.7M TCO through Center of excellence by identifying 9,800 unassigned/spare/reclaimed virtual desktops for reuse",          
-	  "Avoided US$640K in vendor costs on consultancy analysis",
-	  "Generated US$1M additional monthly trade volume in China by improving stability (low latency) for Citrix XenApp trading apps",	  
-	  "Core architect for India ODC 10K contractor VDI remediation, identifying VM bottlenecks through SPLUNK-driven analysis, live demo interrogations with app owners and users, and multi-team collaboration",
-  	  "Presented full remediation plan, root cause analysis, and mitigation strategy to lead engineers, product managers, and MD-level senior management",
-	  "Served as global SME and lead architect for Citrix, Virtual Desktop, and cloud environments, authoring onboarding guidelines and workload-analysis standards for migrating traditional desktops and fat-client applications to VDI/Virtual Apps and driving the global get-well program",
-	  "Performed scientific load testing and user density validation using LoginVSI and SPLUNK data analysis; authored white papers and presented findings to senior managers",
-	  "Revamped Morgan Stanley's **No.1 global trading application** (US$ multi-billions in daily trading volume) using Citrix XenApp technology",
+          "Avoided US$12.7M TCO through Center of excellence by identifying 9,800 unassigned/spare/reclaimed virtual desktops for reuse",
+          "Avoided US$640K in vendor costs on consultancy analysis",
+          "Generated US$1M additional monthly trade volume in China by improving stability (low latency) for Citrix XenApp trading apps",
+          "Core architect for India ODC 10K contractor VDI remediation, identifying VM bottlenecks through SPLUNK-driven analysis, live demo interrogations with app owners and users, and multi-team collaboration",
+          "Presented full remediation plan, root cause analysis, and mitigation strategy to lead engineers, product managers, and MD-level senior management",
+          "Served as global SME and lead architect for Citrix, Virtual Desktop, and cloud environments, authoring onboarding guidelines and workload-analysis standards for migrating traditional desktops and fat-client applications to VDI/Virtual Apps and driving the global get-well program",
+          "Performed scientific load testing and user density validation using LoginVSI and SPLUNK data analysis; authored white papers and presented findings to senior managers",
+          "Revamped Morgan Stanley's **No.1 global trading application** (US$ multi-billions in daily trading volume) using Citrix XenApp technology",
           "Led global engineering team supporting 120,000 desktops with blueprint adoption globally",
           "Introduced LoginVSI for global performance benchmarking and load testing of VDI/SBC environments",
           "Architected and validated resiliency and high availability for a global Citrix StoreFront remote-access portal (70,000 users), engineering multi-tier failover across local, regional, and global scenarios via Citrix StoreFront native failover grouping, F5 LTM/GTM load balancing, and Citrix NetScaler with Akamai Kona for external DNS failover",
@@ -826,7 +976,7 @@
         "period": "1998 – 2007",
         "scope": "Progressed through **9.5 years** of tenure at Merrill Lynch, advancing from Desktop Support (3 years) to Windows Server Operations (6.5 years) and ultimately to AVP Deputy Team Head",
         "highlights": [
-	  "Awarded 2006 Merrill Lynch Individual Special Achievement Award for outstanding innovative business results",          
+          "Awarded 2006 Merrill Lynch Individual Special Achievement Award for outstanding innovative business results",
           "Led regional data center refreshes across HK, Taiwan, Korea, Beijing, Shanghai, India, Singapore, and Japan",
           "Improved trading application stability by 40% through infrastructure optimization and clustering solutions",
           "Virtualized 26% of servers, saving HK$2M annually as part of cost-saving strategy",
@@ -1017,7 +1167,7 @@
         "credential": "Citrix XenApp 6.5 Advanced Administration",
         "issuer": "Citrix",
         "year": 2011,
-        "type": "Training"
+        "type": "Professional Certification"
       },
       {
         "credential": "Microsoft SCOM 2007 Administration",
@@ -1300,6 +1450,42 @@
       "Operational Excellence ideas",
       "Patching team management",
       "SME virtual team leadership"
-    ]
+    ],
+    "ai_automation_highlights": {
+      "section_title": "AI & AUTOMATION HIGHLIGHTS",
+      "last_updated": "2026-08-05",
+      "source_repos": [
+        "ask_aijohncareer",
+        "trading",
+        "pets",
+        "memory_management",
+        "Data_visualization"
+      ],
+      "bullets": [
+        "Multi-Agent LLM Orchestration | Quant Agent Framework - Designed and operate an agentic framework that chains specialized agents through a Macro -> QA -> Backtest -> Evaluation -> Risk -> Performance -> Code-Improvement pipeline, governed by declarative YAML pass/fail criteria and silent-failure detection that gate every release. Extended with Tavily real-time search via the Anthropic SDK using tool-calling to ground agent output in live data rather than static training data - enterprise change-control discipline applied to AI systems. (private repository - walkthrough available on request)",
+        "Conversational AI Resume Platform | John's Career Copilot - Built and operate a full-stack AI portal on React 18/Vite with a Node.js/Express API, routing Claude Sonnet, Google Gemini and DeepSeek R1 through OpenRouter. Includes a JD-matching engine that scores job descriptions against a structured JSON profile and auto-generates tailored resumes and cover letters as .docx. Containerized with Docker Compose behind Caddy with automatic Let's Encrypt TLS on a self-managed Linux VPS. askcareer-ai.com | github.com/haujon001-spec/ask_aijohncareer",
+        "Multilingual AI Portal with Resilient LLM Failover | AI Breeds Portal - Delivered a Next.js 16 / React 19 / TypeScript platform serving 12 languages, engineered around a five-provider LLM fallback chain (Groq -> Together AI -> Hugging Face -> Cohere -> OpenRouter) for high availability. Adds LLaVA-1.5 vision verification of generated imagery and Stable Diffusion XL image generation, with blue-green zero-downtime deployment, 66 automated health checks across 10 categories, and scripted rollback. aibreeds-demo.com | github.com/haujon001-spec/pets",
+        "Production Algorithmic Trading Platform | Systematic Trading Engine - Architected a live multi-strategy system: custom backtesting engine, Hidden Markov / Hidden Semi-Markov regime-detection models, and LightGBM ML signal generation, wired to a risk engine (position sizing, stop-loss/take-profit, trailing stops) executing across Binance and Bitunix. Runs as a systemd-managed VPS service with on-exchange safety-net orders, Telegram alerting, and a Caddy-fronted monitoring portal. (private repository - walkthrough available on request)",
+        "Semantic Memory & RAG Infrastructure | 3-Tier Memory System - Built a 3-tier memory system (ChromaDB vector store + sentence-transformers embeddings) delivering retrieval-augmented context across a multi-project engineering workspace, kept current by a filesystem watcher and a scheduled daily indexer. Serves as the shared knowledge layer behind the AI agents above. github.com/haujon001-spec/memory_management",
+        "AI-Validated Data Visualization | Global Market Cap Explorer - Engineered a Python/pandas ETL pipeline and Plotly.js dashboard tracking global market capitalization across equities, cryptocurrencies and precious metals, with AI-assisted validation cross-checking every published figure against independent sources before release. sleek-ravine-jfj9.here.now | github.com/haujon001-spec/data_visualization",
+        "Enterprise Automation & AI-Augmented Reporting - Automated ITSM and ETL workflows with PowerShell and Power Query, saving 7 FTE at Bank of America (14,390 hours annually, 70% efficiency gain) and 144 man-days annually at AIA; built dashboards with AI explainability panels, unified controls and automated QA validation."
+      ],
+      "positioning": "Self-directed, production-deployed AI engineering: five live systems built, deployed and operated on self-managed Linux/Docker infrastructure during 2026, evidencing continuous learning translated into working software.",
+      "reference_links": {
+        "live_sites": [
+          "https://www.askcareer-ai.com",
+          "https://aibreeds-demo.com",
+          "https://sleek-ravine-jfj9.here.now/"
+        ],
+        "public_repos": [
+          "https://github.com/haujon001-spec/ask_aijohncareer",
+          "https://github.com/haujon001-spec/pets",
+          "https://github.com/haujon001-spec/memory_management",
+          "https://github.com/haujon001-spec/data_visualization"
+        ],
+        "private_repos_note": "Trading agent framework and trading engine are private; walkthrough available on request.",
+        "verified_on": "2026-08-05"
+      }
+    }
   }
 }

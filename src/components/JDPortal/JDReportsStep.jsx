@@ -14,6 +14,28 @@ const OUTPUT_LABELS = {
 
 function JDReportsStep({ result, onBackToRun }) {
   const [viewing, setViewing] = useState(null) // { path, label } | null
+  const [copiedKey, setCopiedKey] = useState(null)
+
+  const handleCopy = async (key, text) => {
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(text)
+      } else {
+        const textarea = document.createElement('textarea')
+        textarea.value = text
+        textarea.style.position = 'fixed'
+        textarea.style.opacity = '0'
+        document.body.appendChild(textarea)
+        textarea.select()
+        document.execCommand('copy')
+        document.body.removeChild(textarea)
+      }
+      setCopiedKey(key)
+      setTimeout(() => setCopiedKey((k) => (k === key ? null : k)), 1500)
+    } catch {
+      // clipboard unavailable/denied — silently ignore, button just won't confirm
+    }
+  }
 
   if (!result) {
     return (
@@ -39,14 +61,32 @@ function JDReportsStep({ result, onBackToRun }) {
 
       {result.outputs?.scorecard?.strengths && (
         <div className="jd-details">
-          <strong>Strengths</strong>
+          <div className="jd-details-header">
+            <strong>Strengths</strong>
+            <button
+              type="button"
+              className="jd-button-copy"
+              onClick={() => handleCopy('strengths', result.outputs.scorecard.strengths)}
+            >
+              {copiedKey === 'strengths' ? 'Copied!' : 'Copy'}
+            </button>
+          </div>
           <pre>{result.outputs.scorecard.strengths}</pre>
         </div>
       )}
 
       {result.outputs?.scorecard?.gaps && (
         <div className="jd-details">
-          <strong>Gaps</strong>
+          <div className="jd-details-header">
+            <strong>Gaps</strong>
+            <button
+              type="button"
+              className="jd-button-copy"
+              onClick={() => handleCopy('gaps', result.outputs.scorecard.gaps)}
+            >
+              {copiedKey === 'gaps' ? 'Copied!' : 'Copy'}
+            </button>
+          </div>
           <pre>{result.outputs.scorecard.gaps}</pre>
         </div>
       )}

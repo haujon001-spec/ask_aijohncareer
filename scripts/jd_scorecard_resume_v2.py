@@ -1325,13 +1325,12 @@ if run_coverletter:
         "Rules:\n"
         "1. ALL claims and achievements must come ONLY from the candidate profile data provided — no fabrication.\n"
         "2. Write in first person, confident executive tone, not generic or templated.\n"
-        "3. The letter must be 5-6 substantive paragraphs, and must reference EVERY company in the candidate profile's `professional_experience` array with at least one concrete, quantified achievement — never silently drop a company for space, even under the paragraph budget below:\n"
-        "   Para 1 — Declarative opening: name ALL companies from `professional_experience`, in the exact same order as that array (most recent first) — e.g. 'Across [Company A], [Company B], [Company C], [Company D], and [Company E], I have led global infrastructure teams, stabilized mission-critical environments, and delivered measurable business impact across APAC, EMEA, and North America.' State cross-career impact directly. Do NOT open with a 'why this role at this company' framing or restate what the role/company does — the reader already knows that.\n"
-        "   Para 2 — The two most recent companies' leadership & operational experience (quantified from profile).\n"
-        "   Para 3 — The next two companies chronologically — do not skip any (quantified from profile); how this deeper enterprise background translates to this specific role context.\n"
-        "   Para 4 — Optional but encouraged if the profile documents an early notable recognition/award: the single oldest/earliest company may be used here as a brief 'leadership foundation' origin story (e.g. an early achievement award), even though it appears out of chronological sequence — this does not excuse dropping it from Para 2/3 if it would otherwise belong there.\n"
-        "   Para 5 — Innovation, transformation, and people leadership as differentiators.\n"
-        "   Para 6 — Closing: call to action, enthusiasm, availability.\n"
+        "3. The letter must be 5 tight paragraphs (plus sign-off) and stay concise — a hiring manager should be able to read it quickly, not a company-by-company stat dump. Cover ONLY the 5 most recent entries in `professional_experience` (skip any entries beyond the 5th — those are early-career/entry-level roles from before the candidate's senior IT career began and are not relevant to the senior leadership positions now being targeted; if the array has fewer than 5 entries, cover all of them):\n"
+        "   Para 1 — Declarative opening: name the 5 most recent companies from `professional_experience`, in the exact same order as that array (most recent first) — e.g. 'Across [Company A], [Company B], [Company C], [Company D], and [Company E], I have led global infrastructure teams, stabilized mission-critical environments, and delivered measurable business impact across APAC, EMEA, and North America.' State cross-career impact directly. Do NOT open with a 'why this role at this company' framing or restate what the role/company does — the reader already knows that.\n"
+        "   Para 2 — Recommendations summary ONLY (see rule 12) — a short, standalone paragraph, 1-2 sentences, immediately after the opening. No achievement detail here; it exists purely as a social-proof beat before the substantive achievement paragraphs.\n"
+        "   Para 3 — The 2-3 strongest, most JD-relevant, ATS-strengthening quantified achievements in the ENTIRE letter, drawn from whichever of the 5 companies are most relevant to this JD — go deep here with real numbers; this is the letter's substantive core, not an exhaustive company-by-company stat dump.\n"
+        "   Para 4 — The remaining companies from the 5, covered briefly (role/scope plus at most one light achievement each, roughly one sentence per company) so continuity and keyword coverage are preserved without repeating Para 3's depth. The oldest of the 5 (typically Merrill Lynch) may close this paragraph with a brief early notable recognition/award as a 'leadership foundation' note if the profile documents one.\n"
+        "   Para 5 — Innovation/transformation/people leadership as a differentiator, then closing: call to action, enthusiasm, availability — combine into one final paragraph to keep the letter tight.\n"
         "4. Use semantic matching to connect adjacent experience from the profile to the JD without overstating direct domain experience.\n"
         "5. Never claim direct experience with named domain-specific tools, standards, or industries unless they are explicitly present in the profile data.\n"
         "6. Do NOT use generic phrases like 'I am writing to apply for'. Open with impact.\n"
@@ -1340,7 +1339,7 @@ if run_coverletter:
         "9. Do not state the exact computed years-of-experience figure (e.g. '27 years' or '27.33 years'). A rounded, approximate figure like '25+ years' is acceptable if it strengthens positioning, but default to 'extensive years'/'extensive experience' when no rounding is natural. For any SINGLE company's tenure, never use a precise decimal duration (e.g. '9.5 years') — use a rounded phrase like 'nearly a decade' or a whole-number-plus figure instead.\n"
         "10. The header block is ONLY: candidate name, location, phone | email, LinkedIn, website — one line each, no blank lines between them. Do NOT include a date line, a recipient name line ('Hiring Manager'), or a company name line anywhere before the salutation. Go directly from the header block to 'Dear Hiring Manager,'.\n"
         "11. Output ONLY the cover letter text — no preamble, no commentary (the ** bold markers from rules 7-8 are the one exception — those are expected).\n"
-        + ("12. A RECOMMENDATIONS SUMMARY block may be supplied below (pre-computed, real counts — never invent a different number or theme). If present, weave ONE brief sentence of social proof into Para 2 (right after the opening) citing the exact total-recommendations count and choosing whichever 2-3 listed themes are most relevant to THIS JD's priorities — do not always pick the same fixed themes across different JDs, and do not name individual recommenders or quote a specific recommendation verbatim unless the block explicitly provides a quotable line.\n" if recommendations_summary else "")
+        + ("12. A RECOMMENDATIONS SUMMARY block may be supplied below (pre-computed, real counts — never invent a different number or theme). If present, it MUST form Para 2 on its own (see rule 3) — one brief sentence of social proof citing the exact total-recommendations count and choosing whichever 2-3 listed themes are most relevant to THIS JD's priorities — do not always pick the same fixed themes across different JDs, and do not name individual recommenders or quote a specific recommendation verbatim unless the block explicitly provides a quotable line.\n" if recommendations_summary else "")
         + ("13. Recruiter resume-adjustment guidance (below) may be supplied — it comes from this JD's own Match Scorecard. Apply it ONLY to tone, emphasis, and which existing achievements get foregrounded. It must NEVER be used to introduce a fact, figure, project, or claim that is not already present in the candidate profile data. Never print the guidance verbatim or add a visible heading for it.\n" if resume_adjustment else "")
     )
 
@@ -1385,7 +1384,7 @@ Structure:
 - Letter header block, exactly these lines with no blank lines between them: Name / Location / Phone | Email / LinkedIn / Website
 - No date line, no recipient name line, no company name line
 - Salutation: Dear Hiring Manager,
-- 5-6 focused paragraphs as described in the rules above — every company in `professional_experience` must appear with a real achievement, none silently dropped (see rule 3)
+- 5 tight paragraphs as described in the rules above, plus sign-off — cover only the 5 most recent `professional_experience` entries (see rule 3), and keep the whole letter concise enough for a hiring manager to read quickly
 - Professional sign-off
 
 Key themes to hit (using only profile facts):
@@ -1399,7 +1398,7 @@ Key themes to hit (using only profile facts):
 - Bold every distinct quantified achievement and every company/title mention (see rules 7-8)
 - Do not state an exact years-of-experience number anywhere (see rule 9)
 - No date/recipient-name/company lines before the salutation (see rule 10)
-{"- If a RECOMMENDATIONS SUMMARY block was supplied above, weave one brief social-proof sentence into Para 2 using its real count and whichever themes best fit this JD (see rule 12)" if recommendations_summary else ""}
+{"- If a RECOMMENDATIONS SUMMARY block was supplied above, it must form its own short Para 2 (see rules 3 and 12) — do not bury it inside an achievement paragraph" if recommendations_summary else ""}
 {"- If recruiter resume-adjustment guidance was supplied above, weave it into tone/emphasis only — do not quote it or add a visible heading for it (see rule 13)" if resume_adjustments_text else ""}
 """
 

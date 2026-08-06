@@ -102,3 +102,29 @@ Backed up first: `scripts/jd_scorecard_resume_v2.py.20260805_V2.bak`.
 ## Files changed
 
 `scripts/jd_scorecard_resume_v2.py` only — no `john_profile.json` changes needed.
+
+## Committed, pushed, and deployed to production (5 Aug 2026)
+
+Committed `061137a` (scoped precisely to `scripts/jd_scorecard_resume_v2.py` and this session's
+own docs — deliberately excluding the concurrent session's uncommitted `john_profile.json` and JD
+blueprint changes, per user decision earlier the same session). Pushed to `origin/main` along with
+the 3 previously-uncommitted-to-remote Aug 3 DeepSeek-fix commits (`1d0a355..061137a`).
+
+Deployed to production (`askcareer-ai.com`, VPS `152.42.214.111`), same procedure as the 31 Jul/3
+Aug deploys (script is `COPY`'d into the `jd-api` image at build time, not bind-mounted):
+1. VPS's existing copy backed up first: `scripts/jd_scorecard_resume_v2.py.20260805_pre_deploy.bak`.
+2. `scp`'d the updated script to `/opt/john-career-copilot/scripts/`; `sha256sum` confirmed
+   identical to the local file before rebuilding.
+3. `docker compose -f docker-compose.prod.yml build jd-api` then `up -d jd-api` — only `jd-api`
+   recreated (container ID `d71bfeffb98b` → `2a9d96f1d1f2`); `app` (`d44b9adeb452`) and `caddy`
+   (`f746213b453a`) container IDs confirmed byte-for-byte unchanged, untouched throughout.
+4. Verified inside the freshly recreated container: `sha256sum` matches the local file exactly;
+   `grep` for fix markers (`SHARED_SYSTEM_PROMPT`, `build_recommendations_summary`, the AI-highlights
+   de-stickiness wording) all present.
+5. Live health checks against the real domain: `https://www.askcareer-ai.com/` → 200,
+   `https://www.askcareer-ai.com/jd-api/api/health` → 200 (`{"status":"ok",...}`),
+   `https://www.askcareer-ai.com/portal` → 200.
+
+**Not yet done, carried forward:** a real end-user pipeline run through the live production portal
+using today's fixes (all verification so far was local-machine `--llm=sonnet` runs against real JDs,
+not through the deployed portal UI itself).

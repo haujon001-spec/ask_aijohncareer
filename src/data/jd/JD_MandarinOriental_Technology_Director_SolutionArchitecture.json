@@ -1,0 +1,248 @@
+{
+  "jd_file": "mandarin_oriental_enterprise_solutions_architect_jd.md",
+  "company": "Mandarin Oriental Hotel Group",
+  "company_slug": "mandarin-oriental",
+  "job_title": "Enterprise Solutions Architect",
+  "role_slug": "enterprise-solutions-architect",
+  "industry": "Luxury Hospitality",
+  "role_summary": "Director-level strategic technology leader defining and governing enterprise and solution architecture across Mandarin Oriental Hotel Group. Responsible for aligning technology solutions with business objectives, scalability, security, and integration, while also hands-on in solution and integration architecture. Collaborates with business and IT teams to deliver future-resilient solutions leveraging advanced AI technologies.",
+  "must_have_requirements": [
+    "Deep expertise in enterprise architecture frameworks",
+    "Proven experience in solution design and systems integration",
+    "Strong stakeholder engagement and ability to translate business needs into technical solutions",
+    "Hands-on experience with cloud and on-premises environments",
+    "Knowledge and applied experience with advanced AI technologies",
+    "Strategic thinking with ability to govern architecture across an organization",
+    "Excellent communication and presentation skills for executive-level interactions",
+    "Proactive problem-solving and analytical skills"
+  ],
+  "nice_to_have_requirements": [
+    "Experience in the hospitality industry",
+    "TOGAF or equivalent architecture certification",
+    "Cloud certifications (AWS, Azure, GCP)",
+    "Experience with AI/ML frameworks and tools",
+    "Knowledge of hotel systems (PMS, CRS, CRM)"
+  ],
+  "soft_skills_priority": [
+    "Strategic Thinking",
+    "Collaboration",
+    "Communication",
+    "Leadership",
+    "Problem-Solving",
+    "Innovation",
+    "Integrity",
+    "Growth Mindset"
+  ],
+  "semantic_match_guidance": {
+    "Enterprise Architecture": [
+      "enterprise architecture",
+      "architecture governance",
+      "TOGAF",
+      "architecture framework",
+      "architecture roadmap",
+      "technical strategy"
+    ],
+    "Solution Design": [
+      "solution architecture",
+      "solution design",
+      "technical design",
+      "system architecture",
+      "integration architecture"
+    ],
+    "Systems Integration": [
+      "API",
+      "microservices",
+      "integration patterns",
+      "ESB",
+      "middleware",
+      "data integration"
+    ],
+    "Cloud Infrastructure": [
+      "AWS",
+      "Azure",
+      "GCP",
+      "cloud migration",
+      "hybrid cloud",
+      "on-premises",
+      "infrastructure architecture"
+    ],
+    "AI & Automation": [
+      "artificial intelligence",
+      "machine learning",
+      "AI-driven",
+      "automation",
+      "intelligent solutions",
+      "predictive analytics"
+    ],
+    "Stakeholder Engagement": [
+      "business stakeholders",
+      "cross-functional collaboration",
+      "business requirements",
+      "technical leads",
+      "stakeholder management"
+    ],
+    "Leadership & Strategy": [
+      "strategic leadership",
+      "architecture governance",
+      "technology vision",
+      "director-level",
+      "team leadership"
+    ],
+    "Hospitality Domain": [
+      "luxury hotels",
+      "resort operations",
+      "hotel systems",
+      "guest experience",
+      "hospitality technology"
+    ]
+  },
+  "scoring_criteria": [
+    {
+      "name": "Enterprise Architecture Strategy",
+      "weight": 15,
+      "why_it_matters": "Core responsibility to define and govern enterprise architecture, ensuring alignment with business goals and strategic direction.",
+      "evidence_type_to_look_for": [
+        "Architecture frameworks (TOGAF, Zachman)",
+        "Architecture roadmap artifacts",
+        "Governance processes",
+        "Case studies of enterprise-wide architecture transformation"
+      ],
+      "gap_expected": "If lacking formal EA experience, highlight solution architecture in complex environments."
+    },
+    {
+      "name": "Solution Design & Integration",
+      "weight": 15,
+      "why_it_matters": "Hands-on role designing and delivering integrated solutions across applications, data, and infrastructure.",
+      "evidence_type_to_look_for": [
+        "API design",
+        "Microservices architecture",
+        "Integration platforms (MuleSoft, Azure Logic Apps)",
+        "End-to-end solution delivery projects"
+      ],
+      "gap_expected": "Look for compensation if no direct integration experience; emphasize related system design."
+    },
+    {
+      "name": "Cloud & Infrastructure Architecture",
+      "weight": 10,
+      "why_it_matters": "Need to handle both cloud and on-premises environments, ensuring scalability and security.",
+      "evidence_type_to_look_for": [
+        "Cloud certifications (AWS/Azure/GCP)",
+        "Migration projects",
+        "Hybrid cloud deployments",
+        "Infrastructure as Code (Terraform, CloudFormation)"
+      ],
+      "gap_expected": "If no cloud exposure, stress on-premises and willingness to upskill."
+    },
+    {
+      "name": "AI & Advanced Technologies",
+      "weight": 10,
+      "why_it_matters": "JD specifically mentions driving innovation with advanced AI technologies.",
+      "evidence_type_to_look_for": [
+        "AI/ML projects",
+        "Use of cognitive services",
+        "Automation tools",
+        "Data science collaboration"
+      ],
+      "gap_expected": "If AI is limited, show foundational knowledge and eagerness to apply."
+    },
+    {
+      "name": "Stakeholder Engagement & Collaboration",
+      "weight": 15,
+      "why_it_matters": "Job requires close collaboration with BSLs and TALs, translating business needs into technical solutions.",
+      "evidence_type_to_look_for": [
+        "Cross-functional project experience",
+        "Workshops with business users",
+        "Managing diverse stakeholders",
+        "Presentation to C-level"
+      ],
+      "gap_expected": "Highlight any experience in requirement gathering and stakeholder management."
+    },
+    {
+      "name": "Delivery & Engineering Excellence",
+      "weight": 10,
+      "why_it_matters": "Hands-on delivery and engineering support, proactive problem-solving.",
+      "evidence_type_to_look_for": [
+        "Hands-on coding or configuration",
+        "DevOps practices",
+        "Continuous improvement initiatives",
+        "Technical troubleshooting"
+      ],
+      "gap_expected": "If more strategy than hands-on, emphasize deliverable-focused roles."
+    },
+    {
+      "name": "Technical Leadership",
+      "weight": 10,
+      "why_it_matters": "Director-level role requires leadership in setting technology direction and guiding teams.",
+      "evidence_type_to_look_for": [
+        "Leading architecture reviews",
+        "Mentoring engineers",
+        "Setting technical standards",
+        "Influencing tech stack decisions"
+      ],
+      "gap_expected": "Showcase any leadership role, even if not formal."
+    },
+    {
+      "name": "Communication & Presentation",
+      "weight": 5,
+      "why_it_matters": "Must articulate complex architecture to non-technical stakeholders and executives.",
+      "evidence_type_to_look_for": [
+        "Public speaking",
+        "Technical documentation",
+        "Visual architecture diagrams",
+        "Simplification of complex concepts"
+      ],
+      "gap_expected": "If not documented, look for reports or whitepapers."
+    },
+    {
+      "name": "Hospitality Domain Knowledge",
+      "weight": 5,
+      "why_it_matters": "Understanding of hotel operations and systems is a plus, though not mandatory.",
+      "evidence_type_to_look_for": [
+        "Experience in hospitality companies",
+        "Knowledge of hotel PMS, CRM, booking engines",
+        "Guest-facing systems experience"
+      ],
+      "gap_expected": "If none, emphasize transferable skills from other industries."
+    },
+    {
+      "name": "Digital Transformation & Innovation",
+      "weight": 5,
+      "why_it_matters": "Need for future-resilient solutions and innovation, aligned with luxury brand.",
+      "evidence_type_to_look_for": [
+        "Digital transformation initiatives",
+        "Innovation labs",
+        "Prototyping new tech",
+        "Thought leadership in tech trends"
+      ],
+      "gap_expected": "Show any innovative projects or forward-thinking mindset."
+    }
+  ],
+  "resume_tailoring_guidance": {
+    "mandatory_sections": [
+      "PROFESSIONAL SUMMARY",
+      "AI & AUTOMATION HIGHLIGHTS",
+      "CORE COMPETENCIES",
+      "SOFT SKILLS"
+    ],
+    "summary_focus": [
+      "Strategic enterprise architecture leadership with hands-on solution delivery",
+      "Proven ability to align technology with luxury hospitality business goals",
+      "Expert in systems integration and future-proofing with AI technologies",
+      "Collaborative leader bridging business and IT stakeholders"
+    ],
+    "do_not_overclaim": [
+      "Do not claim direct luxury hotel experience if not true; emphasize transferable architecture skills",
+      "Do not overstate AI expertise unless concrete projects exist; use words like 'exploring' or 'foundational' if needed",
+      "Do not exaggerate cloud certifications if not held; mention cloud experience without specific titles"
+    ]
+  },
+  "cover_letter_guidance": {
+    "tone": "Professional, confident, and forward-thinking, demonstrating passion for luxury service and technology innovation.",
+    "positioning": "As a strategic technology leader who combines architectural vision with hands-on delivery, ready to elevate Mandarin Oriental's digital landscape.",
+    "bridge_gaps_honestly": [
+      "If lacking hospitality experience, highlight transferable skills from other high-touch service industries",
+      "If AI experience is limited, express eagerness to leverage existing skills for AI-driven innovation",
+      "Acknowledge any gaps in cloud infrastructure by showing proactive learning or related projects"
+    ]
+  }
+}

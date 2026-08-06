@@ -1,0 +1,248 @@
+{
+  "jd_file": "tradebeyond_cloud_infrastructure_lead",
+  "company": "TradeBeyond",
+  "company_slug": "tradebeyond",
+  "job_title": "Head of Cloud Infrastructure",
+  "role_slug": "head-cloud-infrastructure",
+  "industry": "Enterprise SaaS / Supply Chain Technology",
+  "role_summary": "Lead a global team responsible for managing cloud infrastructure for enterprise SaaS solutions across Asia, Europe, and the US, ensuring compliance with security, stability, and performance requirements, while driving continuous improvements and managing IT operations.",
+  "must_have_requirements": [
+    "15+ years of hands-on experience in IT infrastructure",
+    "8+ years in a leadership or team lead role",
+    "Bachelor degree in Information Technology or related field",
+    "Solid experience in public clouds including AWS and Azure",
+    "Experience managing cloud networking, NGINX, Kubernetes, Java applications, PostgreSQL, MongoDB, Elasticsearch/OpenSearch, Redis/Valkey, RabbitMQ/Azure Service Bus, AWS S3/Azure Blob Storage",
+    "Good communication and stakeholder management skills",
+    "Fluent in English and Chinese (Cantonese and Putonghua)",
+    "Eligible to work in Hong Kong without sponsorship"
+  ],
+  "nice_to_have_requirements": [
+    "Relevant certifications in AWS, Azure",
+    "Experience with other public clouds like GCP",
+    "DevOps practices, CI/CD, infrastructure as code, and tools such as Jenkins"
+  ],
+  "soft_skills_priority": [
+    "Leadership & team development",
+    "Cross-functional collaboration",
+    "Vendor negotiation",
+    "Stakeholder communication",
+    "Problem-solving & continuous improvement"
+  ],
+  "semantic_match_guidance": {
+    "Cloud Platforms": [
+      "AWS",
+      "Azure",
+      "GCP",
+      "cloud architecture",
+      "cloud services",
+      "EC2",
+      "S3",
+      "VPC",
+      "Azure Blob"
+    ],
+    "Leadership & Management": [
+      "team lead",
+      "manager",
+      "director",
+      "mentorship",
+      "global team",
+      "hiring",
+      "performance management"
+    ],
+    "Infrastructure Stack": [
+      "Kubernetes",
+      "NGINX",
+      "Java",
+      "PostgreSQL",
+      "MongoDB",
+      "Elasticsearch",
+      "OpenSearch",
+      "Redis",
+      "Valkey",
+      "RabbitMQ",
+      "Azure Service Bus"
+    ],
+    "DevOps & Automation": [
+      "CI/CD",
+      "Jenkins",
+      "Infrastructure as Code",
+      "Terraform",
+      "Ansible",
+      "Docker",
+      "automation",
+      "configuration management"
+    ],
+    "Compliance & Security": [
+      "SOC 2",
+      "security audits",
+      "ISO 27001",
+      "risk management",
+      "business continuity",
+      "data privacy"
+    ],
+    "Networking": [
+      "cloud networking",
+      "VPC",
+      "load balancing",
+      "firewall",
+      "VPN",
+      "DNS"
+    ],
+    "IT Operations": [
+      "help desk",
+      "internal IT",
+      "office network",
+      "IT vendor management",
+      "IT tools"
+    ],
+    "Communication & Language": [
+      "bilingual",
+      "Chinese",
+      "Cantonese",
+      "Putonghua",
+      "English",
+      "cross-cultural"
+    ]
+  },
+  "scoring_criteria": [
+    {
+      "name": "Cloud Platform Expertise (AWS & Azure)",
+      "weight": 20,
+      "why_it_matters": "Core requirement for managing infrastructure in public clouds; must have deep hands-on experience.",
+      "evidence_type_to_look_for": [
+        "Certifications",
+        "Years of AWS/Azure usage",
+        "Specific services (EC2, S3, VPC, Azure Blob)",
+        "Migration projects"
+      ],
+      "gap_expected": "Ensure depth in at least one cloud and breadth in the other"
+    },
+    {
+      "name": "Leadership & Team Management",
+      "weight": 15,
+      "why_it_matters": "Must lead a global, distributed team across multiple regions with 8+ years leadership experience.",
+      "evidence_type_to_look_for": [
+        "Titles held",
+        "Team size",
+        "Remote/global team management",
+        "Mentoring",
+        "Performance reviews"
+      ],
+      "gap_expected": "Demonstrate ability to manage across time zones"
+    },
+    {
+      "name": "Infrastructure Technology Stack",
+      "weight": 15,
+      "why_it_matters": "JD lists specific technologies that are critical for the platform; hands-on experience required.",
+      "evidence_type_to_look_for": [
+        "Each listed tech mentioned in resume",
+        "Projects using these technologies",
+        "Configuration and troubleshooting"
+      ],
+      "gap_expected": "Prioritize breadth; need proficiency in most, with depth in some"
+    },
+    {
+      "name": "DevOps & Automation Practices",
+      "weight": 10,
+      "why_it_matters": "Continuous improvement and operations automation are key responsibilities; CI/CD and IaC are desirable.",
+      "evidence_type_to_look_for": [
+        "Jenkins",
+        "CI/CD pipelines",
+        "Terraform/Ansible",
+        "Automation scripts",
+        "Infrastructure as code projects"
+      ],
+      "gap_expected": "Good to have; not mandatory but strongly preferred"
+    },
+    {
+      "name": "Compliance & Security Management",
+      "weight": 10,
+      "why_it_matters": "Support SOC 2 Type 2 audits and ensure security/stability; requires understanding of security frameworks.",
+      "evidence_type_to_look_for": [
+        "SOC 2 experience",
+        "Security audits",
+        "Compliance projects",
+        "Security incident handling"
+      ],
+      "gap_expected": "Must show ability to work with auditors and implement security controls"
+    },
+    {
+      "name": "Stakeholder & Vendor Management",
+      "weight": 10,
+      "why_it_matters": "Collaborate with product/application teams and manage IT vendors to align with goals.",
+      "evidence_type_to_look_for": [
+        "Cross-functional projects",
+        "Vendor negotiations",
+        "Contract management",
+        "Stakeholder communication examples"
+      ],
+      "gap_expected": "Show specific examples of vendor assessment and alignment"
+    },
+    {
+      "name": "Communication & Language Skills",
+      "weight": 10,
+      "why_it_matters": "Must be fluent in English and Chinese (Cantonese and Putonghua) to work with teams in HK, China, Europe, US.",
+      "evidence_type_to_look_for": [
+        "Language proficiency mentioned",
+        "Experience working with Chinese-speaking teams",
+        "Bilingual communication in resume"
+      ],
+      "gap_expected": "Fluent in both required; only English is a gap"
+    },
+    {
+      "name": "Problem Solving & Continuous Improvement",
+      "weight": 5,
+      "why_it_matters": "Drive improvements in infrastructure design, cost optimization, and operations automation.",
+      "evidence_type_to_look_for": [
+        "Cost optimization projects",
+        "Process improvements",
+        "Innovation in infrastructure",
+        "Metrics-driven improvements"
+      ],
+      "gap_expected": "Provide quantifiable results"
+    },
+    {
+      "name": "Education & Certifications",
+      "weight": 5,
+      "why_it_matters": "Bachelor degree in IT-related field required; certifications desirable but not must.",
+      "evidence_type_to_look_for": [
+        "Degree",
+        "AWS/Azure certifications",
+        "GCP certification"
+      ],
+      "gap_expected": "Degree must have; certifications nice-to-have"
+    }
+  ],
+  "resume_tailoring_guidance": {
+    "mandatory_sections": [
+      "PROFESSIONAL SUMMARY",
+      "TECHNICAL SKILLS",
+      "LEADERSHIP EXPERIENCE",
+      "CLOUD INFRASTRUCTURE PROJECTS",
+      "COMPLIANCE & SECURITY",
+      "LANGUAGES"
+    ],
+    "summary_focus": [
+      "15+ years in IT infrastructure",
+      "8+ years leading global teams",
+      "Expert in AWS and Azure",
+      "Managed multi-region enterprise SaaS environments",
+      "Strong compliance focus (SOC 2)"
+    ],
+    "do_not_overclaim": [
+      "Do not claim AWS/Azure expertise if only basic exposure—need depth",
+      "Do not list technologies you haven't actually worked with",
+      "Do not exaggerate leadership experience if team size was small",
+      "Do not claim fluency in Cantonese if not truly fluent"
+    ]
+  },
+  "cover_letter_guidance": {
+    "tone": "Professional, confident, and globally-minded",
+    "positioning": "Highlight extensive hands-on cloud infrastructure leadership with a track record of managing complex, multi-region SaaS environments. Emphasize ability to lead diverse, distributed teams and drive compliance and automation.",
+    "bridge_gaps_honestly": [
+      "If missing certifications, emphasize years of equivalent experience",
+      "If not fluent in Cantonese, highlight fluency in Putonghua and English and commitment to learn",
+      "If lacking specific tech like Valkey, mention similar technologies and ability to learn quickly"
+    ]
+  }
+}

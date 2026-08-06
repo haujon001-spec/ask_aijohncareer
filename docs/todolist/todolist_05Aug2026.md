@@ -171,8 +171,19 @@ Merrill Lynch "leadership foundation" paragraph correctly says "nearly a decade"
 imprecise "9.5 years." Regex-checked: no stray exact/decimal years figures in either output;
 bold-markup balanced in the cover letter.
 
-Not committed to git yet — awaiting user go-ahead (now two rounds of changes stacked in the
-working tree).
+**Committed (`061137a`), pushed to `origin/main`** (along with 3 previously-unpushed 3 Aug commits,
+`1d0a355..061137a`), scoped precisely to `scripts/jd_scorecard_resume_v2.py` + this session's own
+docs — the concurrent session's `john_profile.json`/JD blueprint changes deliberately excluded.
+
+**Deployed to production** (`askcareer-ai.com`): `jd-api` image rebuilt and container recreated
+(VPS copy backed up first, `sha256sum` verified matching, fix markers confirmed present inside the
+running container); `app`/`caddy` container IDs unchanged throughout. Live checks all 200: `/`,
+`/jd-api/api/health`, `/portal`. Full record in the guide's new "Committed, pushed, and deployed"
+section.
+
+**Still open:** a real end-user pipeline run through the live production portal (not just local
+`--llm=sonnet` verification runs) to confirm today's fixes behave the same way through the deployed
+UI.
 
 ## Priority order for today
 
@@ -184,6 +195,148 @@ working tree).
 5. ~~Write/update the dated guide under `docs/guides/`~~ — **done.**
 6. ~~Implement the TradeBeyond-comparison rework (company coverage, resume recommendations,
    opening style, years wording)~~ — **done, verified live.**
-7. Decide whether to commit today's `jd_scorecard_resume_v2.py` changes to git (both rounds).
-8. Carry-forward items from `todolist_03Aug2026.md` (live-verify DeepSeek fix, git push decision
-   for the 3 Aug commits, and the older 31 Jul backlog) — not picked up this session.
+7. ~~Commit today's `jd_scorecard_resume_v2.py` changes and push to GitHub~~ — **done (`061137a`),
+   pushed along with the 3 Aug commits.**
+8. ~~Deploy to production VPS~~ — **done, verified live (`/`, `/jd-api/api/health`, `/portal` all
+   200).**
+9. **Tomorrow:** a real end-user pipeline run through the live production portal to confirm
+   today's fixes work end-to-end through the deployed UI (not just local CLI runs).
+10. Carry-forward items from `todolist_03Aug2026.md` (live-verify DeepSeek fix, and the older 31
+    Jul backlog: LinkedIn automation discovery-path decision, Manulife resume regen decision, VPS
+    hardening, dev-env docs, Job Tracker status fields) — not picked up this session.
+11. Reconcile the concurrent session's work whenever convenient: uncommitted `john_profile.json`
+    ai_projects rewrite, `JD_Manulife_...json` diff, new `JD_TradeBeyond_...json` /
+    `JD_TransmericaLifeBermuda_...json` blueprints, and two stray root-level `.docx` files — none
+    of this touched or committed this session, per user decision.
+
+## New today (6 Aug 2026) — john_profile.json JSON syntax bug (portal pipeline crash)
+
+**Bug report (verbatim, via portal screenshot):** running the JD pipeline from the portal
+(`JD_StarbucksAsiaPacific_Technology_Director_Corporate_digital.txt`, DeepSeek, mode=All) failed
+immediately with `json.decoder.JSONDecodeError: Expecting ',' delimiter: line 896 column 5 (char
+62091)` at `jd_scorecard_resume_v2.py:564` (`profile_raw = json.loads(PROFILE_PATH.read_text(...))`
+). User asked (A–C): follow soul.md strict rules; log the fix here; ask clarifying questions before
+proceeding.
+
+**Root cause:** the uncommitted `john_profile.json` `ai_projects` rewrite carried over from item 11
+above (concurrent session, 5 Aug) left the `Edge Technology Group` → `Centralized Services Manager`
+highlights array with a missing comma between two relocated bullet strings (line 895/896), plus
+tab-indentation (vs. the file's 2-space-equivalent/10-space convention) on 6 lines total: the
+2 lines at the break point, and 4 more in the AIA `Associate Director, Infrastructure Services`
+highlights (`Managed HKD 28M...`, `Delivered Windows 11...`, `Led 1,700-user relocation...`,
+`Strengthened patch compliance...`). Confirmed via a scratch-copy JSON validation pass that this
+was the file's *only* syntax error — fixing it made the full 1491-line file parse cleanly.
+
+**Clarifying questions asked and answered before implementing:**
+1. Scope, given item 11 flagged this file as "not this session's to manage" — **user chose full
+   reconciliation now** (not just the minimal comma fix), since it's actively breaking the portal.
+2. Tab-indented lines — **user chose normalize to spaces**, matching the file's existing style.
+3. Backup — **user chose a new dated backup** even though a `20260805_V1.bak` already exists from
+   the concurrent session.
+
+**Full reconciliation performed:**
+- Backed up first: `src/data/john_profile.json.20260806_V1.bak`.
+- Fixed the missing comma (line 895) and normalized all 6 tab-indented lines to the file's
+  standard indentation; stripped trailing whitespace. Re-validated: `python -c "json.load(...)"`
+  now succeeds; zero tabs or trailing whitespace remain in the file.
+- Reviewed the rest of the concurrent session's `ai_projects` rewrite for compatibility with
+  `jd_scorecard_resume_v2.py`: the new richer per-project schema (`id`, `repo`, `resume_bullet`,
+  `key_features`, `transferable_skills`, `project_name`, `repo_visibility`, `github_url`) is
+  structurally safe — `build_profile_context()` (script line ~573-582) JSON-dumps `ai_projects`
+  wholesale into the LLM prompt regardless of field names, so extra fields are just more context,
+  not a schema mismatch.
+- **Finding, not fixed (flagging only):** the concurrent session also added a new top-level
+  `profile.ai_automation_highlights` block (precomputed bullets, positioning statement, reference
+  links) that is **not** in `build_profile_context()`'s explicit section whitelist
+  (`jd_scorecard_resume_v2.py:575-579`) — it is currently inert, never read by the pipeline. Left
+  untouched pending user decision on whether it should be wired in or was scaffolding for later.
+
+**Verification (soul.md §3.1 — executed, not just edited):** ran the exact crash-point code
+(`json.loads(PROFILE_PATH.read_text(...))` → `profile.get("profile", profile_raw)`) directly
+against the fixed file: succeeds, 14 profile keys, 7 `ai_projects` entries. Did not run a full
+live LLM pipeline pass (would incur real API cost) — that is covered by the pre-existing "Tomorrow"
+item 9 above (real end-user portal run) and can validate this fix as part of that same pass.
+
+**Status:** fix applied and locally verified at the code level; not yet committed (git-status still
+shows `john_profile.json` as modified — this session's fix plus the concurrent session's rewrite
+are now combined in the working tree, same as item 11 already described); not yet re-run through
+the portal UI.
+
+**User re-ran the portal live** through `New JD Run` → `JD Run` → `Reports` for the same
+`JD_StarbucksAsiaPacific_Technology_Director_Corporate_digital.txt` — succeeded end-to-end (74/100
+GOOD MATCH, Scorecard + Resume + Cover Letter all generated). Confirms the fix above resolves the
+crash live, through the real UI, not just the local code-path check.
+
+## New today (6 Aug 2026, later) — cover-letter tightening + Reports copy-to-clipboard
+
+User reviewed the live cover letter output and asked (A–C, verbatim in spirit):
+1. Add copy-to-clipboard on the Reports view's Strengths and Gaps sections.
+2. Cover letter opening line only names 4 latest companies (quote was truncated by the screenshot
+   crop at "...Merrill Lynch"); remove the 5th/6th company info from it.
+3. Remove anything from the oldest company (Alco Plastic Products Ltd) from the cover letter.
+4. Move the "16 LinkedIn recommendations..." sentence to be the top of the second paragraph.
+5. Trim to the top 2-3 JD/ATS-relevant achievements — letter reads too long for a hiring manager.
+
+**Clarifying questions asked and answered before implementing** (the original ask was ambiguous:
+"4 latest" vs. an explicit 5-company quote; scope — one-off vs. permanent script rule; whether
+Siemens H.K. Ltd. — paired with Alco in the same sentence — also goes):
+1. **Scope — permanent script rule change**, not a one-off edit to this one output. User's own
+   words: Siemens/Alco "reflect my early days in IT which are irrelevant for senior roles that I
+   am applying to" — a general principle, applies to every future JD's cover letter.
+2. **Company count — the 5 most recent** (AIA, Bank of America, Edge Technology Group, Morgan
+   Stanley, Merrill Lynch), not 4 — corrects the screenshot-truncated original ask.
+3. **Remove both Siemens H.K. Ltd. and Alco Plastic Products Ltd** (the 2 oldest of the profile's 7
+   `professional_experience` entries, 1995-1998, pre-dating the senior IT career) — confirmed via
+   `profile.professional_experience`: entries are already in reverse-chronological array order, so
+   this is "keep the first 5 array entries, drop the last 2" — no hardcoded company names needed in
+   the rule itself beyond the explanatory example.
+4. **Copy button — per-section** (separate button on Strengths and on Gaps), not one whole-card
+   button.
+
+**Implementation — cover letter (`scripts/jd_scorecard_resume_v2.py`):**
+- Backed up first: `scripts/jd_scorecard_resume_v2.py.20260806_V1.bak`.
+- Rewrote `COVERLETTER_TASK_RULES` rule 3's paragraph plan (previously 5-6 paragraphs covering ALL
+  7 `professional_experience` entries, no company ever dropped — the 5 Aug decision): now 5 tight
+  paragraphs covering only the 5 most recent entries (skip beyond the 5th — early-career/entry-level
+  roles not relevant to senior leadership targets); Para 2 is now the recommendations-summary
+  sentence on its own as a short standalone paragraph (previously buried mid-paragraph); Para 3 is
+  the letter's substantive core (2-3 strongest JD-relevant, ATS-quantified achievements); Para 4
+  covers the remaining companies briefly (continuity/keyword coverage, one sentence each); Para 5
+  combines innovation/differentiators with the closing to keep the letter tight. Updated rule 12
+  (recommendations block) and the `Structure`/`Key themes` instruction text to match. **This
+  formally supersedes the 5 Aug "cover all 7, no company dropped" decision for cover letters only**
+  — the Resume section is unaffected (it already only lists the 5 major companies in its main
+  section, with Siemens/Alco compressed into a separate "Earlier Roles" line — confirmed by
+  inspection, not assumed).
+- **Verified live**: re-ran `python scripts/jd_scorecard_resume_v2.py
+  "data_raw/jd/txt/JD_StarbucksAsiaPacific_Technology_Director_Corporate_digital.txt" --llm=sonnet
+  --coverletter-only` (real `anthropic/claude-sonnet-5` call via OpenRouter, no mocks). Result:
+  opening line now names exactly 5 companies (AIA → Bank of America → Edge Technology Group →
+  Morgan Stanley → Merrill Lynch); Siemens/Alco fully absent from the whole letter; the "16
+  LinkedIn recommendations" sentence is now its own standalone Para 2, immediately after the
+  opening; letter is 5 paragraphs instead of 6, noticeably tighter (22 lines vs. the prior 25).
+  **Not fully resolved:** Para 3 still stacks several quantified metrics across 3 companies rather
+  than a strict 2-3-achievements-total count — flagged to the user as an open nuance rather than
+  guessed further; may need a follow-up tightening pass depending on their read of the live output.
+  Output written to
+  `data_processed/StarbucksAsiaPacific/CoverLetter/{txt,docx}/...06AUG2026.*` (overwrote today's
+  earlier portal-generated version — pre-existing behavior, not new).
+
+**Implementation — Reports view copy buttons (frontend):**
+- Backed up first: `src/components/JDPortal/JDReportsStep.jsx.20260806_V1.bak` and
+  `JDPortal.css.20260806_V1.bak`.
+- Added a `handleCopy()` helper (Clipboard API with a `document.execCommand('copy')` fallback for
+  non-secure contexts) and a `copiedKey` state for a transient "Copied!" label. Added a
+  `.jd-details-header` flex row with a `.jd-button-copy` button next to each of the Strengths and
+  Gaps `<strong>` headings in `JDReportsStep.jsx`; matching CSS added to `JDPortal.css`.
+- **Verified via build, not yet via browser**: `npm run build` succeeds cleanly from these two
+  files (confirmed a pre-existing, unrelated CSS minify warning — `Unexpected "}"` — reproduces
+  identically on a `git stash`d `main`, so it predates this session and isn't from this change).
+  Did not launch a second local dev server to click-test in a browser, since the user already had
+  `npm run dev:all` running live for their own portal-testing session and a second instance risked
+  a port conflict — asked the user to visually confirm the Copy buttons in their already-running
+  session instead of duplicating it.
+
+**Status:** both changes implemented and locally verified (script: live LLM run; frontend: clean
+build); neither committed yet. Cover-letter Para 3 achievement density flagged as an open question
+pending user feedback on the live regenerated output.
