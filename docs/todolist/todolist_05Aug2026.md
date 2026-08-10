@@ -338,5 +338,34 @@ Siemens H.K. Ltd. — paired with Alco in the same sentence — also goes):
   session instead of duplicating it.
 
 **Status:** both changes implemented and locally verified (script: live LLM run; frontend: clean
-build); neither committed yet. Cover-letter Para 3 achievement density flagged as an open question
-pending user feedback on the live regenerated output.
+build). Cover-letter Para 3 achievement density flagged as an open question pending user feedback
+on the live regenerated output.
+
+**Committed (`ab7c31a`), pushed to `origin/main`.** User confirmed committing the full working tree
+(not just this session's own files) — also swept in the unreviewed `JD_Manulife...json` diff, new
+`JD_TradeBeyond`/`JD_TransmericaLifeBermuda`/`JD_MandarinOriental`/`JD_StarbucksAsiaPacific` JD
+blueprints, and 2 stray root-level TradeBeyond `.docx` files, all previously flagged as "not this
+session's to manage" — now committed per explicit user decision.
+
+**Deployed to production** (`askcareer-ai.com`, VPS `152.42.214.111`). This deploy differs from the
+5/3 Aug pattern: those only touched `jd-api` (Python script); this one also changes the React
+frontend (Reports copy buttons), so `app` needed a rebuild too, not just `jd-api`.
+1. VPS's existing copies backed up first (`*.20260806_pre_deploy.bak`): `scripts/jd_scorecard_resume_v2.py`,
+   `src/data/john_profile.json`, `src/components/JDPortal/JDReportsStep.jsx`, `JDPortal.css`.
+2. `scp`'d the 4 updated files to `/opt/john-career-copilot/...` (not git-based — confirmed the VPS
+   deploy directory is a plain file tree, not a git checkout); `sha256sum` verified all 4 identical
+   to the local files before rebuilding.
+3. `docker compose -f docker-compose.prod.yml build jd-api app` then `up -d jd-api app` — only those
+   two recreated (`jd-api` `2a9d96f1d1f2` → `63aed3dc18d4`, `app` `d44b9adeb452` → `a7ae0b986469`);
+   `caddy` (`f746213b453a`) confirmed unchanged throughout.
+4. Verified inside the freshly recreated containers: `sha256sum` of both files inside `jd-api`
+   matches the local files exactly; grepped for fix markers (`Para 2 — Recommendations summary
+   ONLY`, the ISO27001 bullet) — present; grepped the `app` container's built `dist/assets/*.js`
+   and `*.css` for `jd-button-copy` — present in both.
+5. Live health checks against the real domain: `https://www.askcareer-ai.com/` → 200,
+   `/jd-api/api/health` → 200 (`{"status":"ok",...}`), `/portal` → 200.
+6. `docker image prune -f` — no dangling images left to reclaim.
+
+**Still open:** a real end-user pipeline run through the live production portal to confirm the
+cover-letter and copy-button changes behave the same way through the deployed UI (the local
+`--llm=sonnet --coverletter-only` run earlier today verified the logic, not the deployed instance).
