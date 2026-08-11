@@ -41,9 +41,20 @@ are carried forward unchanged from `todolist_07Aug2026.md` except where noted.
      correct bold runs, correct Unicode em-dash.
    - Guide written: `docs/guides/MASTERRESUMEGENERATOR_11AUG2026.md`.
 
+2. **AEON Credit Service Asia JD blueprint committed.** The
+   `src/data/jd/JD_AEONCreditServiceAsia_Head_Of_Information_Technology.json`
+   blueprint (plus its Scorecard/Resume/CoverLetter outputs under
+   `data_processed/AEONCreditServiceAsia/`, which stay gitignored per the
+   existing `data_processed/` pattern) surfaced mid-session from the user's
+   own JD Portal run — flagged for confirmation since it wasn't something
+   this session triggered; user confirmed it was their own recent JD
+   submission. Blueprint committed and pushed alongside
+   `JD_Jefferies_IT_VP_VDIDesktopEngineer.json` (pre-existing, previously
+   uncommitted).
+
 ## Carried over from 7 Aug 2026 (still open, not actioned since)
 
-2. **Live-verify the production deploy through the actual portal UI.**
+3. **Live-verify the production deploy through the actual portal UI.**
    Everything so far was verified locally or via container/health checks —
    not yet exercised as a real end-user run through
    `https://www.askcareer-ai.com/portal`. Confirm:
@@ -51,20 +62,22 @@ are carried forward unchanged from `todolist_07Aug2026.md` except where noted.
      and shorter overall length all come through in a live-generated letter.
    - The per-section Copy buttons on the Reports view's Strengths/Gaps
      actually copy to clipboard when clicked in a browser.
-3. **Commit the pending `todolist_05Aug2026.md` doc update** — the deploy
-   record was written but deliberately left uncommitted.
-4. Live-verify the DeepSeek token-retry + reasoning-effort fix with a real
+   - **Next thing to do** — highest-priority open item as of 11 Aug 2026.
+4. ~~Commit the pending `todolist_05Aug2026.md` doc update~~ — **already done**,
+   found resolved in commit `4c0958c` (10 Aug 2026) on checking git history
+   today; `todolist_07Aug2026.md` just hadn't been updated to reflect it.
+5. Live-verify the DeepSeek token-retry + reasoning-effort fix with a real
    rerun of `JD_Invesco_IT_AssociateDirector.txt --refresh-blueprint --llm=deepseek`.
-5. Older 31 Jul backlog: LinkedIn automation discovery-path decision,
+6. Older 31 Jul backlog: LinkedIn automation discovery-path decision,
    Manulife resume regen decision, VPS hardening, dev-env docs, Job Tracker
    status fields.
-6. Cover-letter Para 3 achievement density — flagged as an open nuance,
+7. Cover-letter Para 3 achievement density — flagged as an open nuance,
    revisit only if a live read of the letter still feels too dense.
 
 ## Carried over from 10 Aug 2026 — Multi-Profile / Multi-Tenant JD Portal
 ## (requirements + decisions captured, still NOT scoped or implemented)
 
-Priority remains explicitly deferred — stays behind items 2-3 above until
+Priority remains explicitly deferred — stays behind item 3 above until
 prioritized. Full requirements, the 3 locked decisions (self-service signup,
 per-user TOTP, vision-LLM screenshot capture), and the folder/data-model
 layout decision (`data_raw/<profilename>/`, `data_processed/<profilename>/`,
