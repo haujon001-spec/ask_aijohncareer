@@ -4,7 +4,7 @@ import { QRCodeSVG } from 'qrcode.react'
 import { fetchAuthStatus, enroll, confirmEnroll } from '../../../utils/jdApi'
 import './PortalAuth.css'
 
-function PortalEnroll() {
+function PortalEnroll({ basePath = '/portal' }) {
   const navigate = useNavigate()
   const [checking, setChecking] = useState(true)
   const [step, setStep] = useState('password') // 'password' | 'scan' | 'done'
@@ -23,7 +23,7 @@ function PortalEnroll() {
     fetchAuthStatus()
       .then((res) => {
         if (res.enrolled) {
-          navigate('/portal/login', { replace: true })
+          navigate(`${basePath}/login`, { replace: true })
           return
         }
         setChecking(false)
@@ -40,7 +40,7 @@ function PortalEnroll() {
   useEffect(() => {
     runStatusCheck()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [navigate])
+  }, [navigate, basePath])
 
   const handlePasswordSubmit = async (e) => {
     e.preventDefault()
@@ -104,7 +104,7 @@ function PortalEnroll() {
           <button
             type="button"
             className="portal-button portal-button--secondary"
-            onClick={() => navigate('/portal/login')}
+            onClick={() => navigate(`${basePath}/login`)}
           >
             Already enrolled? Go to Sign-in
           </button>
@@ -194,7 +194,7 @@ function PortalEnroll() {
             <div className="portal-banner portal-banner--success">
               Enrollment complete. You can now sign in with your password and authenticator code.
             </div>
-            <button type="button" className="portal-button" onClick={() => navigate('/portal/login')}>
+            <button type="button" className="portal-button" onClick={() => navigate(`${basePath}/login`)}>
               Go to Sign-in
             </button>
           </>

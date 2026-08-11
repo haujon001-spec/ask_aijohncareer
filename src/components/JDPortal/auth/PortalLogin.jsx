@@ -4,7 +4,7 @@ import { fetchAuthStatus, login } from '../../../utils/jdApi'
 import { usePortalAuth } from '../../../context/PortalAuthContext'
 import './PortalAuth.css'
 
-function PortalLogin() {
+function PortalLogin({ basePath = '/portal' }) {
   const navigate = useNavigate()
   const { markAuthenticated } = usePortalAuth()
   const [checkingEnrollment, setCheckingEnrollment] = useState(true)
@@ -17,13 +17,13 @@ function PortalLogin() {
     fetchAuthStatus()
       .then((res) => {
         if (!res.enrolled) {
-          navigate('/portal/enroll', { replace: true })
+          navigate(`${basePath}/enroll`, { replace: true })
           return
         }
         setCheckingEnrollment(false)
       })
       .catch(() => setCheckingEnrollment(false))
-  }, [navigate])
+  }, [navigate, basePath])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -32,7 +32,7 @@ function PortalLogin() {
     try {
       await login({ password, totpCode })
       markAuthenticated()
-      navigate('/portal', { replace: true })
+      navigate(basePath, { replace: true })
     } catch (err) {
       setError(err.status === 429 ? err.message : 'Invalid password or code')
     } finally {

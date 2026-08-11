@@ -3,22 +3,28 @@ import fs from 'fs';
 import path from 'path';
 import { resolveWithinRoot, PathGuardError } from '../lib/pathGuard.js';
 import { deriveJdMetadata } from '../lib/jdNaming.js';
-import { runJdPipeline, discoverOutputs, isValidLlm, requiredKeyEnvFor, hasUsableKey, getCurrentRunStatus, cancelCurrentRun, isPipelineBusy } from '../lib/pythonRunner.js';
+import { isValidProfileName } from '../lib/profileName.js';
+import {
+  runJdPipelineV3, discoverOutputsV3, isValidLlm, requiredKeyEnvFor, hasUsableKey,
+  getCurrentRunStatus, cancelCurrentRun, isPipelineBusy,
+} from '../lib/pythonRunner.js';
 import { isValidProvider } from '../lib/llmKeys.js';
 
 const VALID_MODES = ['all', 'scorecard', 'resume', 'coverletter'];
 
-export function createJdRunRouter({ projectRoot, jdTxtDir, timeoutMs }) {
+// Profile-aware sibling of jd_run.js — near-identical body, but requires
+// profileName and resolves data_raw/<profileName>/jd/txt per-request instead
+// of a fixed constructor-time directory (each profile has its own JD corpus,
+// see jd_scorecard_resume_v3.py's own path-forking rationale). jd_run.js
+// itself is untouched; /status and /cancel share pythonRunner.js's single
+// currentRun state with v2's router, per the shared-lock decision.
+export function createJdRunV3Router({ projectRoot, timeoutMs }) {
   const router = express.Router();
 
-  // Polled by the UI while a run is active to show step-level progress
-  // (e.g. "[2/3] Generating Tailored Resume...") instead of just an elapsed timer.
   router.get('/status', (req, res) => {
     res.json(getCurrentRunStatus());
   });
 
-  // Force-stop: kills the in-flight python process. Already-written output
-  // files from completed steps are left in place (see pythonRunner.js).
   router.post('/cancel', (req, res) => {
     const result = cancelCurrentRun();
     if (!result.cancelled) {
@@ -28,8 +34,14 @@ export function createJdRunRouter({ projectRoot, jdTxtDir, timeoutMs }) {
   });
 
   router.post('/', async (req, res) => {
-    const { jdFile, llm = 'sonnet', mode = 'all', refreshBlueprint = false, generateDocx = true, resumeAdjustment = false, customModel = null } = req.body || {};
+    const {
+      profileName, jdFile, llm = 'sonnet', mode = 'all', refreshBlueprint = false,
+      generateDocx = true, resumeAdjustment = false, customModel = null,
+    } = req.body || {};
 
+    if (!isValidProfileName(profileName)) {
+      return res.status(400).json({ error: 'profileName is required and must be filename-safe' });
+    }
     if (!jdFile || typeof jdFile !== 'string') {
       return res.status(400).json({ error: 'jdFile is required' });
     }
@@ -45,6 +57,7 @@ export function createJdRunRouter({ projectRoot, jdTxtDir, timeoutMs }) {
       }
     }
 
+    const jdTxtDir = path.join(projectRoot, 'data_raw', profileName, 'jd', 'txt');
     let jdAbsPath;
     try {
       jdAbsPath = resolveWithinRoot(jdTxtDir, jdFile, { allowedExtensions: ['.txt'] });
@@ -63,8 +76,6 @@ export function createJdRunRouter({ projectRoot, jdTxtDir, timeoutMs }) {
       });
     }
 
-    // Shared across /api/jd/run (v2) and /api/jd-v3/run (v3) — a run of
-    // either kind blocks the other (see pythonRunner.js's isPipelineBusy).
     if (isPipelineBusy()) {
       return res.status(409).json({ error: 'Another JD run is already in progress. Try again shortly.' });
     }
@@ -73,8 +84,8 @@ export function createJdRunRouter({ projectRoot, jdTxtDir, timeoutMs }) {
     const jdStem = path.basename(jdFile, '.txt');
     const { employer } = deriveJdMetadata(jdStem);
 
-    console.log(`🚀 [jd-api] Running JD pipeline: ${jdFile} (llm=${llm}, mode=${mode}, resumeAdjustment=${resumeAdjustment}${llm === 'custom' ? `, model=${customModel.slug} (${customModel.provider})` : ''})`);
-    const result = await runJdPipeline({ projectRoot, jdAbsPath, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment, customModel, timeoutMs });
+    console.log(`🚀 [jd-api] Running v3 JD pipeline for '${profileName}': ${jdFile} (llm=${llm}, mode=${mode})`);
+    const result = await runJdPipelineV3({ projectRoot, profileName, jdAbsPath, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment, customModel, timeoutMs });
 
     if (result.timedOut) {
       return res.status(500).json({ error: 'JD pipeline timed out', killed: true });
@@ -86,7 +97,7 @@ export function createJdRunRouter({ projectRoot, jdTxtDir, timeoutMs }) {
       });
     }
     if (result.cancelled) {
-      console.log(`⏹️ [jd-api] JD pipeline cancelled by user: ${jdFile}`);
+      console.log(`⏹️ [jd-api] v3 JD pipeline cancelled by user: ${jdFile}`);
       return res.json({ success: false, cancelled: true, jdFile, employer });
     }
     if (result.exitCode !== 0) {
@@ -98,7 +109,7 @@ export function createJdRunRouter({ projectRoot, jdTxtDir, timeoutMs }) {
       });
     }
 
-    const outputs = discoverOutputs({ projectRoot, employer, mode, runStartedAtMs });
+    const outputs = discoverOutputsV3({ projectRoot, profileName, employer, mode, runStartedAtMs });
     if (Object.keys(outputs).length === 0) {
       return res.status(500).json({
         error: 'Script succeeded but expected output files were not found',
@@ -113,7 +124,7 @@ export function createJdRunRouter({ projectRoot, jdTxtDir, timeoutMs }) {
     }
 
     const durationMs = Date.now() - runStartedAtMs;
-    console.log(`✅ [jd-api] JD pipeline completed in ${durationMs}ms`);
+    console.log(`✅ [jd-api] v3 JD pipeline completed in ${durationMs}ms`);
 
     res.json({ success: true, jdFile, employer, llm, durationMs, outputs, downloadUrls });
   });

@@ -7,6 +7,7 @@ import PortalLogin from './components/JDPortal/auth/PortalLogin'
 import ProtectedRoute from './components/JDPortal/auth/ProtectedRoute'
 import PortalShell from './components/JDPortal/PortalShell'
 import JDPortal from './components/JDPortal/JDPortal'
+import JDPortal2 from './components/JDPortal/JDPortal2'
 import { PortalAuthProvider } from './context/PortalAuthContext'
 
 function App() {
@@ -26,6 +27,29 @@ function App() {
                   element={
                     <ProtectedRoute>
                       <JDPortal />
+                    </ProtectedRoute>
+                  }
+                />
+              </Routes>
+            </PortalShell>
+          </PortalAuthProvider>
+        }
+      />
+      {/* Multi-profile portal (Phase 2, 11 Aug 2026) — same auth gate as
+          /portal, parallel route, v3-backed. /portal itself is untouched. */}
+      <Route
+        path="/portal2/*"
+        element={
+          <PortalAuthProvider>
+            <PortalShell basePath="/portal2" brandLabel="Multi-Profile Portal">
+              <Routes>
+                <Route path="login" element={<PortalLogin basePath="/portal2" />} />
+                <Route path="enroll" element={<PortalEnroll basePath="/portal2" />} />
+                <Route
+                  path="/"
+                  element={
+                    <ProtectedRoute basePath="/portal2">
+                      <JDPortal2 />
                     </ProtectedRoute>
                   }
                 />

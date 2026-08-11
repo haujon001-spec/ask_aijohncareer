@@ -8,12 +8,16 @@ import { requireAuth } from './lib/auth.js';
 import { createAuthRouter } from './api/auth.js';
 import { createJdUploadRouter } from './api/jd_upload.js';
 import { createJdRunRouter } from './api/jd_run.js';
+import { createJdRunV3Router } from './api/jd_run_v3.js';
 import { createProfileRouter } from './api/profile.js';
 import { createProfileViewRouter } from './api/profile_view.js';
+import { createProfilesRouter } from './api/profiles.js';
+import { createOnboardRouter } from './api/onboard.js';
 import { createHistoryRouter } from './api/history.js';
 import { createDownloadRouter } from './api/download.js';
 import { createViewRouter } from './api/view.js';
 import { createSettingsRouter } from './api/settings.js';
+import { isValidProfileName } from './lib/profileName.js';
 
 // Standalone entrypoint for the JD Automation Portal API — separate process
 // and port from backend/server.js (the live askcareer-ai.com chatbot app).
@@ -84,7 +88,7 @@ app.get('/api/health', (req, res) => {
 // session that doesn't exist yet); every other JD route requires it.
 app.use('/api/auth', createAuthRouter({ projectRoot }));
 
-app.use('/api/jd/upload', requireAuth, createJdUploadRouter({ jdTxtDir: JD_TXT_DIR }));
+app.use('/api/jd/upload', requireAuth, createJdUploadRouter({ jdTxtDir: JD_TXT_DIR, projectRoot }));
 app.use('/api/jd/run', requireAuth, createJdRunRouter({ projectRoot, jdTxtDir: JD_TXT_DIR, timeoutMs: RUN_TIMEOUT_MS }));
 app.use('/api/profile', requireAuth, createProfileRouter({ projectRoot }));
 app.use('/api/profile-view', requireAuth, createProfileViewRouter({ projectRoot }));
@@ -92,6 +96,25 @@ app.use('/api/history', requireAuth, createHistoryRouter({ projectRoot }));
 app.use('/api/download', requireAuth, createDownloadRouter({ dataProcessedRoot: DATA_PROCESSED_ROOT }));
 app.use('/api/view', requireAuth, createViewRouter({ dataProcessedRoot: DATA_PROCESSED_ROOT }));
 app.use('/api/settings', requireAuth, createSettingsRouter({ projectRoot }));
+
+// Multi-profile additions (Phase 2, 11 Aug 2026) — additive, mounted
+// alongside the routes above without changing any of them.
+app.use('/api/profiles', requireAuth, createProfilesRouter({ projectRoot }));
+app.use(
+  '/api/jd-v3/upload',
+  requireAuth,
+  createJdUploadRouter({
+    jdTxtDir: (req) => {
+      const { profileName } = req.body || {};
+      return isValidProfileName(profileName)
+        ? path.join(projectRoot, 'data_raw', profileName, 'jd', 'txt')
+        : null;
+    },
+    projectRoot,
+  }),
+);
+app.use('/api/onboard', requireAuth, express.json({ limit: '10mb' }), createOnboardRouter({ projectRoot }));
+app.use('/api/jd-v3/run', requireAuth, createJdRunV3Router({ projectRoot, timeoutMs: RUN_TIMEOUT_MS }));
 
 app.use((req, res) => {
   res.status(404).json({ error: 'Not found' });

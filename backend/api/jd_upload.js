@@ -3,7 +3,11 @@ import fs from 'fs';
 import path from 'path';
 import { sanitizeEmployerSlug, sanitizeRoleSlug } from '../lib/jdNaming.js';
 
-export function createJdUploadRouter({ jdTxtDir }) {
+// jdTxtDir: either a fixed absolute path (v2's existing usage, unchanged), or
+// a `(req) => absolutePath` resolver (Phase 2, 11 Aug 2026 — lets a v3 mount
+// derive data_raw/<profileName>/jd/txt per-request from req.body.profileName
+// without duplicating this whole route).
+export function createJdUploadRouter({ jdTxtDir, projectRoot }) {
   const router = express.Router();
 
   router.post('/', (req, res) => {
@@ -16,6 +20,11 @@ export function createJdUploadRouter({ jdTxtDir }) {
       return res.status(400).json({ error: 'jdText is required and must be at least 50 characters' });
     }
 
+    const resolvedJdTxtDir = typeof jdTxtDir === 'function' ? jdTxtDir(req) : jdTxtDir;
+    if (!resolvedJdTxtDir) {
+      return res.status(400).json({ error: 'Could not resolve a target JD folder for this request' });
+    }
+
     const employerSlug = sanitizeEmployerSlug(employer);
     if (!employerSlug) {
       return res.status(400).json({ error: 'employer must contain at least one alphanumeric character' });
@@ -23,9 +32,9 @@ export function createJdUploadRouter({ jdTxtDir }) {
     const roleSlug = role ? sanitizeRoleSlug(role) : '';
 
     const filename = roleSlug ? `JD_${employerSlug}_${roleSlug}.txt` : `JD_${employerSlug}.txt`;
-    const filePath = path.join(jdTxtDir, filename);
+    const filePath = path.join(resolvedJdTxtDir, filename);
 
-    fs.mkdirSync(jdTxtDir, { recursive: true });
+    fs.mkdirSync(resolvedJdTxtDir, { recursive: true });
 
     try {
       fs.writeFileSync(filePath, jdText, { flag: overwrite ? 'w' : 'wx' });
@@ -47,7 +56,9 @@ export function createJdUploadRouter({ jdTxtDir }) {
       success: true,
       file: {
         filename,
-        path: `data_raw/jd/txt/${filename}`,
+        path: projectRoot
+          ? path.relative(projectRoot, filePath).split(path.sep).join('/')
+          : `data_raw/jd/txt/${filename}`,
         employer: employerSlug,
         roleSlug: roleSlug || null,
         sizeBytes: stat.size,

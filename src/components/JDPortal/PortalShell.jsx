@@ -5,7 +5,7 @@ import './PortalShell.css'
 
 const PORTAL_THEME_KEY = 'jdPortalTheme'
 
-function PortalShell({ children }) {
+function PortalShell({ children, basePath = '/portal', brandLabel = 'Automation Portal' }) {
   const { status, logout } = usePortalAuth()
   const [portalTheme, setPortalTheme] = useState(() => localStorage.getItem(PORTAL_THEME_KEY) || 'fintech')
 
@@ -18,9 +18,9 @@ function PortalShell({ children }) {
   return (
     <div className="portal-shell" data-portal-theme={portalTheme}>
       <header className="portal-header">
-        <Link to="/portal" className="portal-brand">
+        <Link to={basePath} className="portal-brand">
           <span className="portal-brand-mark">JD</span>
-          <span className="portal-brand-text">Automation Portal</span>
+          <span className="portal-brand-text">{brandLabel}</span>
         </Link>
         <div className="portal-header-actions">
           <button type="button" className="portal-theme-toggle" onClick={toggleTheme}>

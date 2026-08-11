@@ -9,6 +9,16 @@
 /data_raw/
 /data_processed/
 
+# Per-profile data folders (Phase 2, 11 Aug 2026): a NEW src/data/<Name>/
+# folder is untracked by default, protecting any future real profile's PII
+# from ever landing in this public repo. Already-tracked paths are
+# unaffected — git does not retroactively untrack files tracked before this
+# rule existed. Any new profile meant to stay public (e.g. a fictitious test
+# fixture) must be explicitly allow-listed the same way AlexRivera is below.
+/src/data/*/
+!/src/data/jd/
+!/src/data/AlexRivera/
+
 # Secrets directory (soul.md §4)
 # Excluding contents (not the directory itself) so the .example placeholder
 # below can be explicitly re-included — git can't un-ignore a file whose

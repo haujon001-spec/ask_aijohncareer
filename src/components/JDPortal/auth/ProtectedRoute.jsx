@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Navigate } from 'react-router-dom'
 import { usePortalAuth } from '../../../context/PortalAuthContext'
 
-function ProtectedRoute({ children }) {
+function ProtectedRoute({ children, basePath = '/portal' }) {
   const { status, checkAuth } = usePortalAuth()
 
   useEffect(() => {
@@ -15,7 +15,7 @@ function ProtectedRoute({ children }) {
   }
 
   if (status === 'unauthenticated') {
-    return <Navigate to="/portal/login" replace />
+    return <Navigate to={`${basePath}/login`} replace />
   }
 
   return children

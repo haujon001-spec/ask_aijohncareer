@@ -87,6 +87,57 @@ are carried forward unchanged from `todolist_07Aug2026.md` except where noted.
      to-JD-text capture, `update_profile_from_resume.py` multi-profile
      support.
 
+4. **Multi-Profile epic, Phase 2 (resume onboarding + `/portal2`) — built,
+   verified, done** (backend/route-level; browser click-through still needs
+   user's own portal password — see below). User asked for this directly
+   after Phase 1, resolving 4 more decisions first (public-repo/PII posture,
+   onboarding-mechanism design, v2/v3-parity confirmation, portal2 auth/scope)
+   — full record in
+   `docs/guides/JDPORTAL_PHASE2_ONBOARDING_PORTAL2_11AUG2026.md`. Delivered:
+   - **Public-repo finding**: `gh repo view` confirmed this repo is PUBLIC —
+     `.gitignore` now defaults every future `src/data/<Name>/` folder to
+     untracked (explicit allow-list for `src/data/jd/` and
+     `src/data/AlexRivera/`), closing a real risk before Matina Fung's real
+     data ever touched git.
+   - `scripts/update_profile_from_resume.py` extended (backed up first,
+     `.20260811_V1.bak`): new `--profile=`/`--create-new-profile` mode
+     (whole-resume→whole-profile extraction, separate from the existing
+     employer-diff mode), `.docx` input support (paragraphs + table cells,
+     including nested tables), retired `deepseek-reasoner` alias fixed
+     (same class of bug already fixed in v2/v3 on 3 Aug), hardcoded "John
+     Hau" genericized in the diff-mode prompt too.
+   - **Matina Fung onboarded for real** (`src/data/MatinaFung/profile.json`,
+     gitignored, never pushed) — her source docx was missing its entire
+     name/contact header (verified via exhaustive check: no images, text
+     boxes, headers/footers, or document-properties fallback either); user
+     manually restored it, then supplied location + LinkedIn after a second
+     gap was found. Also fixed a prompt bug live: first extraction populated
+     `ai_projects` with HR-initiatives-that-used-AI-tools rather than
+     personally-built systems — tightened the prompt, empty array on re-run
+     (correct).
+   - Backend: `runJdPipelineV3`/`discoverOutputsV3` in `pythonRunner.js`
+     (siblings of the v2 functions, untouched); shared run-lock across
+     `/api/jd/run` and new `/api/jd-v3/run` (`jd_run.js`'s old router-local
+     boolean replaced with the same `isPipelineBusy()` both now share, so a
+     v2 run and a v3 run can't race); new `/api/profiles`, `/api/onboard`,
+     `/api/jd-v3/upload`, `/api/jd-v3/run` routes, all additive.
+   - Frontend: new `/portal2` route (`ProfilePicker`, `ResumeUpload`,
+     `JDRunStepV3`, `JDWizardV3`, `JDPortal2`), reusing the same shared
+     password+TOTP gate as `/portal` (not per-person accounts). Found and
+     fixed 3 more hardcoded `/portal`-literal spots than originally scoped
+     (`PortalEnroll.jsx`) via a `basePath` prop threaded through 4 auth/shell
+     components.
+   - Verified: v2/v3 parity via `diff` (5 expected buckets only), Matina's
+     CLI pipeline run against her real Richemont JD (zero "John Hau" leakage,
+     grep-checked), `git diff --stat scripts/jd_scorecard_resume_v2.py`
+     clean, `node --check` on every backend file, jd-api dev server restarts
+     clean, new routes return `401` not `404` (correctly mounted +
+     auth-gated), `npm run build` succeeds.
+   - **Not yet done**: an actual browser click-through of `/portal2` (login →
+     pick/onboard profile → run JD → confirm Reports) — needs the portal's
+     real password, which this session doesn't have. Carried to next time
+     the user is available to click through it themselves.
+
 ## Carried over from 7 Aug 2026 (still open, not actioned since)
 
 3. ~~Live-verify the production deploy through the actual portal UI.~~ —
@@ -112,20 +163,23 @@ are carried forward unchanged from `todolist_07Aug2026.md` except where noted.
 7. Cover-letter Para 3 achievement density — flagged as an open nuance,
    revisit only if a live read of the letter still feels too dense.
 
-## Multi-Profile / Multi-Tenant JD Portal — Phase 1 done, Phases 2+ still open
+## Multi-Profile / Multi-Tenant JD Portal — Phases 1 & 2 done, rest still open
 
-Phase 1 (CLI foundation, `jd_scorecard_resume_v3.py`) is done — see item 3
-above. Remaining phases, still NOT scoped or implemented, no longer blocked
-on priority (user has now explicitly activated this epic) but not yet
-sequenced either:
+Phase 1 (CLI foundation) and Phase 2 (resume onboarding + `/portal2`) are
+both done — see items 3 and 4 above. Remaining, still NOT scoped or
+implemented:
+- **Immediate next step**: user needs to click through `/portal2` themselves
+  (real password required) to confirm the browser flow end-to-end — backend
+  routes and the underlying pipeline are already verified, only the UI
+  click-path itself is unconfirmed.
 - Backend/auth: extend the existing password+TOTP model to per-user identity
   (today: exactly one credential set, JWT payload hardcoded to `{user:
-  'john'}`, no user concept anywhere in `backend/`).
-- Self-service signup + LLM-based resume-to-profile onboarding (today:
-  `scripts/update_profile_from_resume.py` only ever writes
-  `john_profile.json`, no `--profile`/`--output` flag).
-- Portal UI for multi-user profile management.
+  'john'}`, no user concept anywhere in `backend/`) — portal2 deliberately
+  still reuses the single shared gate + a profile picker, not real accounts.
 - Screenshot-to-JD-text capture (vision-LLM call, reusing the existing
   OpenRouter `call_llm()` pattern per the 10 Aug decision).
+- `/api/profile/update-from-resume/propose`+`/approve` (the existing pure-JS
+  diff-mode route used by John's own profile editor) is still not
+  profile-aware — separate from the Python-script extension shipped today.
 - Data-isolation/PII-handling posture beyond "minimal" (11 Aug decision) if
   the user base grows beyond a handful of known people.

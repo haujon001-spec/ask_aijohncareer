@@ -14,7 +14,10 @@ function loadLastSavedJd() {
   }
 }
 
-function JDUploadForm({ onUploaded }) {
+// uploadFn/extraParams (added Phase 2, 11 Aug 2026): lets a profile-aware
+// caller (portal2) pass uploadJdV3 + { profileName } without duplicating this
+// whole form — defaults preserve the exact existing /portal (v2) behavior.
+function JDUploadForm({ onUploaded, uploadFn = uploadJd, extraParams = {} }) {
   const lastSaved = loadLastSavedJd()
   const [employer, setEmployer] = useState(lastSaved?.employer || '')
   const [role, setRole] = useState(lastSaved?.role || '')
@@ -31,7 +34,7 @@ function JDUploadForm({ onUploaded }) {
     setError(null)
     setSuccessMsg(null)
     try {
-      const result = await uploadJd({ employer, role, jdText, overwrite })
+      const result = await uploadFn({ employer, role, jdText, overwrite, ...extraParams })
       setConflict(null)
       setSuccessMsg(`Saved as ${result.file.filename}`)
       try {

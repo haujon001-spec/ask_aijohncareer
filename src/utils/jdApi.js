@@ -202,3 +202,41 @@ export function logout() {
 export function fetchMe() {
   return request('/api/auth/me')
 }
+
+// ---- Multi-profile (Phase 2, 11 Aug 2026) ----
+// Additive — the functions above are untouched and keep hitting /api/jd/*,
+// used by the existing /portal (v2, John). Everything below targets the new
+// /api/profiles, /api/onboard, /api/jd-v3/* routes used by /portal2.
+
+export function fetchProfiles() {
+  return request('/api/profiles')
+}
+
+export function onboardProfile({ profileName, filename, contentBase64 }) {
+  return request('/api/onboard', {
+    method: 'POST',
+    body: JSON.stringify({ profileName, filename, contentBase64 })
+  })
+}
+
+export function uploadJdV3({ profileName, employer, role, jdText, overwrite }) {
+  return request('/api/jd-v3/upload', {
+    method: 'POST',
+    body: JSON.stringify({ profileName, employer, role, jdText, overwrite })
+  })
+}
+
+export function runJdV3({ profileName, jdFile, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment, customModel }) {
+  return request('/api/jd-v3/run', {
+    method: 'POST',
+    body: JSON.stringify({ profileName, jdFile, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment, customModel })
+  })
+}
+
+export function fetchRunStatusV3() {
+  return request('/api/jd-v3/run/status')
+}
+
+export function cancelRunV3() {
+  return request('/api/jd-v3/run/cancel', { method: 'POST' })
+}
