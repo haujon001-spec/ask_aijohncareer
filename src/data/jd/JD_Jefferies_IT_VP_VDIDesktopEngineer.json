@@ -1,0 +1,296 @@
+{
+  "jd_file": "Citrix_NetScaler_VDI_Desktop_Engineer_Jefferies.pdf",
+  "company": "Jefferies",
+  "company_slug": "jefferies",
+  "job_title": "Citrix/NetScaler & VDI Desktop Engineer",
+  "role_slug": "citrix-netscaler-vdi-desktop-engineer",
+  "industry": "Investment Banking / Capital Markets / Financial Services IT",
+  "role_summary": "Senior VDI and Desktop Engineering role responsible for designing, deploying, and troubleshooting Citrix/NetScaler infrastructure (physical and virtual), Citrix Virtual Apps and Desktops, and integration with VMware, Nutanix, AWS, and Azure Virtual Desktop. Also covers desktop engineering including Windows 10/11 endpoint management (Intune/SCCM), thin client deployment (IGEL), Active Directory administration, automation/scripting, and L1-L3 incident support in a fast-paced financial services environment.",
+  "must_have_requirements": [
+    "7-10 years of experience in VDI and Desktop Engineering",
+    "Extensive hands-on knowledge of Citrix NetScaler (physical and virtual environments)",
+    "In-depth knowledge of Citrix ADM and its integration with NetScaler",
+    "Expertise in GSLB, load balancing, SSL certificates, and standard NetScaler features",
+    "Experience with Citrix Virtual Apps and Desktops (on-prem and Citrix Cloud)",
+    "Experience integrating Citrix infrastructure (FAS, Cloud Connectors, StoreFront)",
+    "Expert knowledge in VMware and Nutanix virtualization platforms",
+    "Experience integrating Citrix with AWS and Azure, including Azure Virtual Desktop",
+    "Strong knowledge of Active Directory (policies, OU, DNS)",
+    "Strong Windows 10/11 deployment, configuration, and troubleshooting experience",
+    "Experience managing endpoints via Microsoft Endpoint Manager (Intune) or SCCM",
+    "Experience troubleshooting via GUI and CLI for L1/L2/L3 issues",
+    "Bachelor's degree in Computer Science, IT, or related field"
+  ],
+  "nice_to_have_requirements": [
+    "Experience with Citrix Access Gateway",
+    "Experience migrating to/from Citrix Cloud",
+    "Experience with Windows 365 (Cloud PC) integration with Citrix Cloud",
+    "Automation/scripting experience with ServiceNow, UiPath, Power Automate, PowerShell",
+    "Experience building and deploying IGEL thin clients",
+    "Knowledge of firewall and EPA advanced NetScaler features",
+    "Packaging and scripting for automated software deployment",
+    "Experience supporting Microsoft 365 apps (Teams, Outlook, OneDrive)",
+    "Understanding of endpoint security best practices (antivirus, encryption, patch management)",
+    "Networking basics: LAN/WAN, VPN, DNS, DHCP, IP addressing"
+  ],
+  "soft_skills_priority": [
+    "Customer service orientation for end-user support",
+    "Communication and interpersonal skills across technical and business audiences",
+    "Ability to multitask and prioritize in a fast-paced environment",
+    "Problem-solving and analytical thinking",
+    "Documentation and knowledge base management",
+    "Team collaboration and willingness to assist on any project",
+    "Adaptability across audiences, environments, and cultures",
+    "Project management skills"
+  ],
+  "semantic_match_guidance": {
+    "citrix_netscaler": [
+      "NetScaler ADC",
+      "NetScaler Gateway",
+      "Citrix ADC",
+      "load balancer configuration",
+      "GSLB setup",
+      "SSL certificate management",
+      "content switching",
+      "VPX/MPX/SDX appliances"
+    ],
+    "citrix_adm": [
+      "Citrix Application Delivery Management",
+      "NetScaler MAS",
+      "analytics and monitoring for ADC"
+    ],
+    "virtual_apps_desktops": [
+      "XenApp",
+      "XenDesktop",
+      "Citrix DaaS",
+      "Citrix Cloud",
+      "published apps/desktops",
+      "session host management"
+    ],
+    "citrix_infra_components": [
+      "Federated Authentication Service",
+      "Cloud Connector",
+      "StoreFront",
+      "Citrix Access Gateway",
+      "NetScaler Gateway"
+    ],
+    "virtualization_platforms": [
+      "VMware vSphere",
+      "ESXi",
+      "vCenter",
+      "Nutanix AHV",
+      "Nutanix Prism",
+      "hyperconverged infrastructure"
+    ],
+    "cloud_integration": [
+      "Azure Virtual Desktop",
+      "AVD",
+      "Azure VMs",
+      "Azure AD",
+      "virtual networks",
+      "AWS EC2",
+      "AWS VPC",
+      "Windows 365",
+      "Cloud PC"
+    ],
+    "automation_scripting": [
+      "PowerShell scripting",
+      "Power Automate flows",
+      "UiPath bots",
+      "ServiceNow workflows",
+      "RPA",
+      "automated provisioning"
+    ],
+    "endpoint_management": [
+      "Microsoft Intune",
+      "SCCM/MECM",
+      "endpoint compliance policies",
+      "device imaging",
+      "Windows 10/11 deployment",
+      "autopilot"
+    ],
+    "directory_services": [
+      "Active Directory",
+      "Group Policy Objects",
+      "Organizational Units",
+      "DNS management"
+    ],
+    "thin_client": [
+      "IGEL OS",
+      "IGEL UMS",
+      "thin client provisioning and management"
+    ],
+    "networking": [
+      "LAN/WAN troubleshooting",
+      "VPN configuration",
+      "DHCP",
+      "DNS",
+      "IP addressing",
+      "firewall rules"
+    ],
+    "endpoint_security": [
+      "antivirus deployment",
+      "disk encryption",
+      "patch management",
+      "compliance enforcement"
+    ],
+    "collaboration_tools": [
+      "Microsoft Teams",
+      "Outlook",
+      "OneDrive",
+      "M365 administration"
+    ],
+    "incident_management": [
+      "L1/L2/L3 ticketing",
+      "ITSM tools",
+      "escalation procedures",
+      "knowledge base documentation"
+    ]
+  },
+  "scoring_criteria": [
+    {
+      "name": "Citrix NetScaler Expertise",
+      "weight": 18,
+      "why_it_matters": "Core requirement for the role; NetScaler is the primary ADC/load balancing platform requiring deep hands-on expertise.",
+      "evidence_type_to_look_for": [
+        "NetScaler VPX/MPX/SDX deployment",
+        "GSLB configuration",
+        "SSL certificate management",
+        "ADM integration",
+        "CLI/GUI troubleshooting"
+      ],
+      "gap_expected": "Candidates from pure desktop support backgrounds may lack NetScaler-specific ADC experience."
+    },
+    {
+      "name": "Citrix Virtual Apps and Desktops / Citrix Cloud",
+      "weight": 15,
+      "why_it_matters": "Central VDI platform for delivering virtual apps/desktops; on-prem and cloud proficiency is essential.",
+      "evidence_type_to_look_for": [
+        "XenApp/XenDesktop administration",
+        "Citrix Cloud migration projects",
+        "FAS, StoreFront, Cloud Connector configuration"
+      ]
+    },
+    {
+      "name": "Virtualization Platforms (VMware & Nutanix)",
+      "weight": 12,
+      "why_it_matters": "Underlying infrastructure for Citrix environments; expert-level knowledge is explicitly required.",
+      "evidence_type_to_look_for": [
+        "vSphere/ESXi administration",
+        "Nutanix AHV/Prism management",
+        "hypervisor design and troubleshooting"
+      ]
+    },
+    {
+      "name": "Cloud Integration (AWS/Azure/AVD)",
+      "weight": 12,
+      "why_it_matters": "Modern Citrix deployments increasingly leverage cloud platforms, especially Azure Virtual Desktop.",
+      "evidence_type_to_look_for": [
+        "Azure Virtual Desktop deployments",
+        "Azure AD/VNet configuration",
+        "AWS-Citrix integration projects",
+        "Windows 365 experience"
+      ],
+      "gap_expected": "May have stronger on-prem experience than cloud-native AVD/Windows 365 exposure."
+    },
+    {
+      "name": "Desktop Engineering & Endpoint Management",
+      "weight": 12,
+      "why_it_matters": "Significant portion of role involves Windows 10/11 deployment and endpoint management via Intune/SCCM.",
+      "evidence_type_to_look_for": [
+        "Windows imaging/provisioning",
+        "Intune/SCCM policy management",
+        "hardware troubleshooting",
+        "software packaging"
+      ]
+    },
+    {
+      "name": "Active Directory & Networking Fundamentals",
+      "weight": 8,
+      "why_it_matters": "Foundational for both Citrix infrastructure and desktop environments.",
+      "evidence_type_to_look_for": [
+        "GPO management",
+        "OU structuring",
+        "DNS/DHCP configuration",
+        "VPN/LAN troubleshooting"
+      ]
+    },
+    {
+      "name": "Automation & Scripting",
+      "weight": 7,
+      "why_it_matters": "Automation tools reduce manual workload and are called out as a distinct skill area.",
+      "evidence_type_to_look_for": [
+        "PowerShell scripts",
+        "Power Automate flows",
+        "UiPath automations",
+        "ServiceNow workflow customization"
+      ],
+      "gap_expected": "Many VDI engineers have PowerShell but limited RPA tool exposure (UiPath/Power Automate)."
+    },
+    {
+      "name": "Thin Client Management (IGEL)",
+      "weight": 5,
+      "why_it_matters": "Specific endpoint technology mentioned for VDI delivery.",
+      "evidence_type_to_look_for": [
+        "IGEL OS deployment",
+        "IGEL UMS management",
+        "thin client fleet administration"
+      ],
+      "gap_expected": "Common gap if prior experience is with Dell Wyse or other thin client vendors."
+    },
+    {
+      "name": "Incident Management & Customer Support",
+      "weight": 6,
+      "why_it_matters": "Role spans L1-L3 support with direct end-user interaction in a demanding financial services environment.",
+      "evidence_type_to_look_for": [
+        "Ticketing system experience",
+        "SLA adherence",
+        "documentation/knowledge base contributions",
+        "escalation handling"
+      ]
+    },
+    {
+      "name": "Soft Skills & Communication",
+      "weight": 5,
+      "why_it_matters": "Role requires cross-functional collaboration and clear communication in a fast-paced, high-stakes financial environment.",
+      "evidence_type_to_look_for": [
+        "Cross-team collaboration examples",
+        "stakeholder communication",
+        "adaptability across global teams"
+      ]
+    }
+  ],
+  "resume_tailoring_guidance": {
+    "mandatory_sections": [
+      "PROFESSIONAL SUMMARY",
+      "AI & AUTOMATION HIGHLIGHTS",
+      "CORE COMPETENCIES",
+      "SOFT SKILLS"
+    ],
+    "summary_focus": [
+      "Lead with years of VDI/Desktop Engineering experience (7-10+) and Citrix/NetScaler specialization",
+      "Highlight NetScaler ADC, GSLB, load balancing, and SSL certificate expertise",
+      "Emphasize Citrix Virtual Apps and Desktops experience across on-prem and Citrix Cloud",
+      "Showcase virtualization depth in VMware and Nutanix",
+      "Mention cloud integration experience (Azure Virtual Desktop, AWS) if applicable",
+      "Include endpoint management tools (Intune/SCCM) and Windows 10/11 deployment experience",
+      "Reference automation/scripting tools used (PowerShell, Power Automate, UiPath) if genuinely applied"
+    ],
+    "do_not_overclaim": [
+      "Do not claim 'expert' level in Nutanix or Windows 365 if only exposed briefly or through documentation",
+      "Do not overstate IGEL experience if only familiar with general thin client concepts",
+      "Do not imply Citrix Access Gateway experience if only worked with NetScaler Gateway without Access Gateway specifics",
+      "Do not inflate automation tool usage (UiPath/Power Automate) if experience is limited to basic scripting"
+    ]
+  },
+  "cover_letter_guidance": {
+    "tone": "Professional, technically confident, and customer-service oriented—reflecting the precision expected in financial services IT environments.",
+    "positioning": "Position candidate as a seasoned Citrix/NetScaler and VDI specialist who bridges infrastructure engineering with hands-on desktop support, capable of supporting a global investment bank's demanding, fast-paced environment.",
+    "bridge_gaps_honestly": [
+      "If Azure Virtual Desktop or Windows 365 exposure is limited, emphasize strong Azure fundamentals and rapid learning ability with cloud VDI platforms",
+      "If automation tool experience (UiPath/Power Automate) is minimal, highlight strong PowerShell scripting and willingness to expand into RPA tools",
+      "If IGEL-specific experience is absent, reference transferable thin client management experience (e.g., Dell Wyse, other endpoint platforms)",
+      "If Nutanix exposure is secondary to VMware, be transparent about primary platform depth while noting hyperconverged infrastructure familiarity"
+    ]
+  }
+}

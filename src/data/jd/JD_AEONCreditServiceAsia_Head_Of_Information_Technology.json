@@ -1,0 +1,218 @@
+{
+  "jd_file": "head_of_it_division_jd.txt",
+  "company": "AEON",
+  "company_slug": "aeon",
+  "job_title": "Head of IT Division",
+  "role_slug": "head-of-it-division",
+  "industry": "Financial Services",
+  "role_summary": "Lead the company's technology strategy and operations, overseeing core card & loan systems, digital platforms, cybersecurity, and regulatory compliance, while driving AI adoption for operational excellence and competitive advantage.",
+  "must_have_requirements": [
+    "Bachelor's degree in Information Technology, Computer Science, or related field",
+    "Minimum 10 years of IT leadership experience, ideally in financial services or consumer finance",
+    "Strong knowledge of full cycle IT services including infrastructure, applications, cybersecurity, and emerging technologies",
+    "Proven track record in managing large-scale IT projects and regulatory compliance",
+    "Excellent leadership, communication, and stakeholder management skills",
+    "Good command of both written and spoken English and Chinese (Mandarin and Cantonese)",
+    "Authorized to work in Hong Kong SAR"
+  ],
+  "nice_to_have_requirements": [
+    "Experience in AI strategy and implementation",
+    "Prior working exposure in Japanese Company",
+    "Professional related qualification"
+  ],
+  "soft_skills_priority": [
+    "Leadership",
+    "Communication",
+    "Stakeholder Management",
+    "Strategic Thinking",
+    "Team Development"
+  ],
+  "semantic_match_guidance": {
+    "IT Leadership": [
+      "Head of IT",
+      "IT Director",
+      "VP of Technology",
+      "Manage IT department",
+      "Lead technology teams",
+      "IT operations management"
+    ],
+    "Financial Services / Consumer Finance": [
+      "banking",
+      "credit card systems",
+      "loan systems",
+      "fintech",
+      "consumer finance",
+      "core banking systems"
+    ],
+    "AI & Automation": [
+      "artificial intelligence",
+      "machine learning",
+      "automation",
+      "AI strategy",
+      "chatbots",
+      "predictive analytics",
+      "fraud detection AI"
+    ],
+    "Cybersecurity & Compliance": [
+      "PCIDSS",
+      "data protection",
+      "information security",
+      "regulatory compliance",
+      "risk management",
+      "governance"
+    ],
+    "Digital Transformation": [
+      "digital platforms",
+      "innovation",
+      "cloud migration",
+      "digital strategy",
+      "process automation",
+      "customer experience"
+    ],
+    "Budget & Vendor Management": [
+      "IT budget",
+      "cost optimization",
+      "vendor management",
+      "resource allocation"
+    ]
+  },
+  "scoring_criteria": [
+    {
+      "name": "IT Leadership Experience",
+      "weight": 20,
+      "why_it_matters": "Directly responsible for all IT functions; requires proven leadership at a senior level.",
+      "evidence_type_to_look_for": [
+        "10+ years in IT leadership roles",
+        "Managed IT departments or divisions",
+        "Led large-scale IT projects"
+      ],
+      "gap_expected": "Candidates with fewer than 10 years may be considered if they show exceptional strategic impact."
+    },
+    {
+      "name": "Financial Services Domain Knowledge",
+      "weight": 15,
+      "why_it_matters": "Core systems are card & loan systems; understanding of financial services is critical.",
+      "evidence_type_to_look_for": [
+        "Experience in banking, consumer finance, or fintech",
+        "Knowledge of credit scoring, loan origination, card processing",
+        "Familiarity with regulatory environment in financial services"
+      ],
+      "gap_expected": "Candidates from other industries must demonstrate transferable skills and learning agility."
+    },
+    {
+      "name": "Technical Expertise (Infrastructure, Applications, Cybersecurity)",
+      "weight": 15,
+      "why_it_matters": "Oversee all IT systems; breadth of technical knowledge ensures reliable operations.",
+      "evidence_type_to_look_for": [
+        "Hands-on experience with infrastructure, networks, and applications",
+        "Knowledge of core banking systems or similar",
+        "Cybersecurity certifications or experience"
+      ],
+      "gap_expected": "Deep expertise in one area may compensate for less in others."
+    },
+    {
+      "name": "AI & Automation Experience",
+      "weight": 10,
+      "why_it_matters": "Specifically responsible for AI adoption roadmap; critical for future competitiveness.",
+      "evidence_type_to_look_for": [
+        "Led AI or automation initiatives",
+        "Implemented machine learning solutions",
+        "Experience with RPA, intelligent automation"
+      ],
+      "gap_expected": "Preferred but not mandatory; candidates with strong potential may be considered."
+    },
+    {
+      "name": "Regulatory & Compliance Management",
+      "weight": 10,
+      "why_it_matters": "Must manage IT governance, cybersecurity, data protection, PCIDSS frameworks.",
+      "evidence_type_to_look_for": [
+        "Experience with compliance frameworks (PCIDSS, GDPR, etc.)",
+        "Managed audits and regulatory interactions",
+        "Risk assessment and mitigation"
+      ],
+      "gap_expected": "Familiarity with financial services regulations is key."
+    },
+    {
+      "name": "Strategic Vision & Digital Transformation",
+      "weight": 10,
+      "why_it_matters": "Lead digital transformation and innovation initiatives; align IT with business growth.",
+      "evidence_type_to_look_for": [
+        "Developed and executed IT strategies",
+        "Led digital transformation projects",
+        "Introduced new technologies to improve operations"
+      ],
+      "gap_expected": "Candidates should show examples of strategic impact."
+    },
+    {
+      "name": "Budget & Resource Management",
+      "weight": 5,
+      "why_it_matters": "Manage IT budget and optimize resources for strategic priorities.",
+      "evidence_type_to_look_for": [
+        "Managed IT budgets",
+        "Cost optimization initiatives",
+        "Vendor management"
+      ],
+      "gap_expected": "Relevant for senior roles; may be less critical if other strengths are present."
+    },
+    {
+      "name": "Stakeholder Management & Communication",
+      "weight": 5,
+      "why_it_matters": "Excellent leadership and communication skills are essential for cross-functional collaboration.",
+      "evidence_type_to_look_for": [
+        "Experience working with C-level executives",
+        "Strong presentation and reporting skills",
+        "Effective team leadership"
+      ],
+      "gap_expected": "Must be able to articulate technical concepts to non-technical stakeholders."
+    },
+    {
+      "name": "Language Proficiency",
+      "weight": 5,
+      "why_it_matters": "Required command of English, Cantonese, and Mandarin for interaction with stakeholders.",
+      "evidence_type_to_look_for": [
+        "Native or fluent in Cantonese and Mandarin",
+        "Professional proficiency in English",
+        "Experience working in multilingual environments"
+      ],
+      "gap_expected": "Non-native speakers must demonstrate high proficiency."
+    },
+    {
+      "name": "Education & Qualifications",
+      "weight": 5,
+      "why_it_matters": "Bachelor's degree in IT or related field is required; professional certifications add value.",
+      "evidence_type_to_look_for": [
+        "Degree in Information Technology, Computer Science, or related",
+        "Relevant certifications (e.g., PMP, CISSP, ITIL)",
+        "Advanced degrees (MBA, MSc) as plus"
+      ],
+      "gap_expected": "Candidates with more experience may compensate for degree specifics."
+    }
+  ],
+  "resume_tailoring_guidance": {
+    "mandatory_sections": [
+      "PROFESSIONAL SUMMARY",
+      "AI & AUTOMATION HIGHLIGHTS",
+      "CORE COMPETENCIES",
+      "SOFT SKILLS"
+    ],
+    "summary_focus": [
+      "Senior IT leader with 10+ years in financial services, specializing in core card/loan systems, cybersecurity, and digital transformation.",
+      "Proven track record in aligning IT strategy with business goals, driving AI adoption, and ensuring regulatory compliance.",
+      "Effective communicator fluent in English, Cantonese, and Mandarin, with strong stakeholder management skills."
+    ],
+    "do_not_overclaim": [
+      "Do not claim AI implementation experience unless you have actual projects.",
+      "Do not exaggerate leadership years if less than 10.",
+      "Do not mention Japanese company experience if not applicable."
+    ]
+  },
+  "cover_letter_guidance": {
+    "tone": "Professional, confident, and strategic",
+    "positioning": "Position yourself as a visionary IT leader who can modernize legacy systems and drive innovation, particularly in AI and digital transformation, while maintaining rigorous compliance.",
+    "bridge_gaps_honestly": [
+      "If you lack AI experience, emphasize your ability to learn and your strategic understanding of AI opportunities.",
+      "If your background is not in consumer finance, highlight transferable skills from other regulated industries.",
+      "If you're not fluent in both Mandarin and Cantonese, state your level and commitment to improve."
+    ]
+  }
+}
