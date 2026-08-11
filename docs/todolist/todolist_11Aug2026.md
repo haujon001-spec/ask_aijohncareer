@@ -168,10 +168,13 @@ are carried forward unchanged from `todolist_07Aug2026.md` except where noted.
 Phase 1 (CLI foundation) and Phase 2 (resume onboarding + `/portal2`) are
 both done — see items 3 and 4 above. Remaining, still NOT scoped or
 implemented:
-- **Immediate next step**: user needs to click through `/portal2` themselves
-  (real password required) to confirm the browser flow end-to-end — backend
-  routes and the underlying pipeline are already verified, only the UI
-  click-path itself is unconfirmed.
+- **Immediate next step — carried to tomorrow (12 Aug 2026)**: user will
+  click through `/portal2` themselves (real password required) to confirm
+  the browser flow end-to-end — login → profile picker shows Matina Fung →
+  run her Richemont JD (or onboard a fresh profile via `ResumeUpload`) →
+  confirm the Reports step renders and downloads work. Backend routes and
+  the underlying v3 pipeline are already verified via CLI/`node --check`/
+  `npm run build`; only the actual UI click-path is unconfirmed.
 - Backend/auth: extend the existing password+TOTP model to per-user identity
   (today: exactly one credential set, JWT payload hardcoded to `{user:
   'john'}`, no user concept anywhere in `backend/`) — portal2 deliberately
@@ -183,3 +186,19 @@ implemented:
   profile-aware — separate from the Python-script extension shipped today.
 - Data-isolation/PII-handling posture beyond "minimal" (11 Aug decision) if
   the user base grows beyond a handful of known people.
+
+## Session close (11 Aug 2026)
+
+All work above is committed and pushed to `origin/main`:
+- `9daa6a6` — DeepSeek retry-fix live verification (Invesco blueprint refresh)
+- `a911303` — master resume generator
+- `2dccb72` — multi-profile epic Phase 1 (`jd_scorecard_resume_v3.py`)
+- `bcc504b` — multi-profile epic Phase 2 (resume onboarding + `/portal2`)
+
+`docs/guides/` updated: `MASTERRESUMEGENERATOR_11AUG2026.md`,
+`JDSCORECARDRESUMEV3_MULTIPROFILE_FOUNDATION_11AUG2026.md`,
+`JDPORTAL_PHASE2_ONBOARDING_PORTAL2_11AUG2026.md`. Working tree is clean
+(`git status` shows nothing pending) — `src/data/MatinaFung/`,
+`data_raw/MatinaFung/`, `data_processed/MatinaFung/` remain local-only and
+gitignored, as intended. Session closed here; pick up tomorrow with the
+`/portal2` browser click-through as the first item.
