@@ -168,13 +168,23 @@ are carried forward unchanged from `todolist_07Aug2026.md` except where noted.
 Phase 1 (CLI foundation) and Phase 2 (resume onboarding + `/portal2`) are
 both done — see items 3 and 4 above. Remaining, still NOT scoped or
 implemented:
+- **Feature request, 11 Aug 2026 (already built, needs browser verification):
+  "Take a new profile using a resume and generate a profile.json — make this
+  available in the portal."** This is exactly `ResumeUpload.jsx` +
+  `POST /api/onboard` from Phase 2 — upload a `.docx`/`.txt` in `/portal2`,
+  give it a profile name, and it runs
+  `python scripts/update_profile_from_resume.py <file> --profile=<Name>
+  --create-new-profile` server-side, same as the CLI command used to onboard
+  Matina Fung. **Not yet click-tested in the browser** — this is the
+  "immediate next step" below, not a separate build task.
 - **Immediate next step — carried to tomorrow (12 Aug 2026)**: user will
   click through `/portal2` themselves (real password required) to confirm
   the browser flow end-to-end — login → profile picker shows Matina Fung →
-  run her Richemont JD (or onboard a fresh profile via `ResumeUpload`) →
-  confirm the Reports step renders and downloads work. Backend routes and
-  the underlying v3 pipeline are already verified via CLI/`node --check`/
-  `npm run build`; only the actual UI click-path is unconfirmed.
+  run her Richemont JD (or onboard a fresh profile via `ResumeUpload`, the
+  feature request above) → confirm the Reports step renders and downloads
+  work. Backend routes and the underlying v3 pipeline are already verified
+  via CLI/`node --check`/`npm run build`; only the actual UI click-path is
+  unconfirmed.
 - Backend/auth: extend the existing password+TOTP model to per-user identity
   (today: exactly one credential set, JWT payload hardcoded to `{user:
   'john'}`, no user concept anywhere in `backend/`) — portal2 deliberately
