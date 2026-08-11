@@ -1,0 +1,240 @@
+{
+  "jd_file": "Manulife_HK_AI_Data_Portfolio_Lead.pdf",
+  "company": "Manulife Hong Kong",
+  "company_slug": "manulife-hk",
+  "job_title": "AI & Data Portfolio and Transformation Lead",
+  "role_slug": "ai-data-portfolio-transformation-lead",
+  "industry": "Financial Services / Insurance",
+  "role_summary": "Senior leadership role responsible for orchestrating Manulife Hong Kong's enterprise-scale AI & Data agenda. Owns strategy and roadmap development, portfolio prioritization, transformation operating rhythm, value realization tracking, and executive communications across Enterprise Data Products, AI Platform, AI Adoption, AI Champions, and strategic partnerships. Does not own technical data/AI platform controls or day-to-day delivery.",
+  "must_have_requirements": [
+    "10+ years experience in strategy, transformation, consulting, portfolio management, or enterprise program leadership",
+    "Experience managing a portfolio of initiatives with prioritization, funding, dependency and risk tracking",
+    "Proven ability to develop executive proposals, business cases and decision materials for senior leadership",
+    "Experience establishing or running a transformation operating cadence (dashboards, steering committees, decision forums)",
+    "Strong executive communication skills including materials for CEO/SMT/Board-level audiences",
+    "Experience translating ambiguous business needs into structured plans, roadmaps and prioritized initiatives",
+    "Cross-functional stakeholder management across business, technology, risk, finance and regional teams",
+    "Experience with benefits realization, KPI frameworks or value/adoption tracking for transformation initiatives",
+    "Exposure to AI, data or digital transformation programs (strategy/portfolio level, not necessarily technical)"
+  ],
+  "nice_to_have_requirements": [
+    "Financial services or insurance industry experience",
+    "Experience with AI platform, data platform, or enterprise data product initiatives at a strategic level",
+    "Experience with change management, adoption programs or AI literacy/champion initiatives",
+    "Experience working with regional/global stakeholders in a matrixed multinational organization",
+    "Familiarity with operating model design or evolution",
+    "Experience supporting regulator or strategic partner discussions"
+  ],
+  "soft_skills_priority": [
+    "Executive communication and storytelling",
+    "Structured problem solving",
+    "Stakeholder influence and alignment across functions",
+    "Facilitation of trade-off and prioritization discussions",
+    "Political savvy and diplomacy with senior leadership",
+    "Organizational discipline and rigor",
+    "Adaptability in ambiguous, evolving environments",
+    "Collaborative orchestration without direct authority"
+  ],
+  "semantic_match_guidance": {
+    "portfolio_management": [
+      "portfolio prioritization",
+      "investment governance",
+      "Book of Work",
+      "demand management",
+      "trade-off analysis",
+      "PPM",
+      "program portfolio",
+      "resource allocation"
+    ],
+    "transformation_operating_rhythm": [
+      "steering committee",
+      "governance cadence",
+      "operating model",
+      "PMO",
+      "transformation office",
+      "cross-functional governance",
+      "escalation management"
+    ],
+    "executive_communication": [
+      "board presentations",
+      "SMT decks",
+      "executive narratives",
+      "business cases",
+      "CxO reporting",
+      "decision papers"
+    ],
+    "ai_data_exposure": [
+      "AI strategy",
+      "data strategy",
+      "AI adoption",
+      "data products",
+      "AI platform",
+      "digital transformation",
+      "analytics transformation",
+      "AI literacy"
+    ],
+    "value_realization": [
+      "benefits realization",
+      "KPI framework",
+      "value tracking",
+      "cost avoidance",
+      "productivity impact",
+      "ROI measurement",
+      "outcome tracking"
+    ],
+    "stakeholder_management": [
+      "cross-functional alignment",
+      "regional coordination",
+      "risk and finance partnership",
+      "matrixed organization",
+      "business partnering"
+    ],
+    "financial_services_context": [
+      "insurance",
+      "banking",
+      "wealth management",
+      "regulatory environment",
+      "financial services transformation"
+    ]
+  },
+  "scoring_criteria": [
+    {
+      "name": "Strategy & Roadmap Development",
+      "weight": 15,
+      "why_it_matters": "Core responsibility to develop and maintain the AI & Data strategy, translating business priorities into initiatives and sequencing.",
+      "evidence_type_to_look_for": [
+        "led strategy development",
+        "created roadmaps",
+        "annual planning cycles",
+        "capability mapping"
+      ],
+      "gap_expected": "May lack AI-specific strategy experience if background is general transformation"
+    },
+    {
+      "name": "Portfolio Prioritization & Investment Governance",
+      "weight": 15,
+      "why_it_matters": "Central to the role: maintaining consolidated portfolio view, prioritization criteria, and trade-off facilitation.",
+      "evidence_type_to_look_for": [
+        "portfolio governance",
+        "investment committees",
+        "prioritization frameworks",
+        "demand vs capacity management"
+      ]
+    },
+    {
+      "name": "Executive Communication & Decision Materials",
+      "weight": 15,
+      "why_it_matters": "Role requires producing high-quality proposals, business cases and narratives for CEO/SMT/Board/regulator audiences.",
+      "evidence_type_to_look_for": [
+        "board decks",
+        "executive presentations",
+        "business case authorship",
+        "senior stakeholder buy-in"
+      ]
+    },
+    {
+      "name": "Transformation Operating Rhythm & Governance Cadence",
+      "weight": 12,
+      "why_it_matters": "Must establish and run recurring governance forums, dashboards and escalation processes.",
+      "evidence_type_to_look_for": [
+        "PMO leadership",
+        "steering committee facilitation",
+        "dashboard creation",
+        "escalation protocols"
+      ]
+    },
+    {
+      "name": "Cross-Functional Stakeholder Management",
+      "weight": 12,
+      "why_it_matters": "Must work across business, technology, risk, finance and regional teams without direct authority.",
+      "evidence_type_to_look_for": [
+        "cross-departmental collaboration",
+        "matrix management",
+        "regional/global coordination"
+      ]
+    },
+    {
+      "name": "Value Realization & KPI/Adoption Tracking",
+      "weight": 10,
+      "why_it_matters": "Responsible for benefits realization frameworks, adoption tracking, and business outcome measurement.",
+      "evidence_type_to_look_for": [
+        "KPI framework design",
+        "adoption metrics",
+        "benefits tracking",
+        "cost-avoidance reporting"
+      ]
+    },
+    {
+      "name": "AI & Data Domain Exposure",
+      "weight": 8,
+      "why_it_matters": "While not a technical role, familiarity with AI/data initiatives, platforms and terminology is important for credibility.",
+      "evidence_type_to_look_for": [
+        "AI adoption programs",
+        "data product initiatives",
+        "AI platform strategy involvement"
+      ],
+      "gap_expected": "Candidates from generic transformation background may have limited direct AI/data exposure"
+    },
+    {
+      "name": "Financial Services Industry Experience",
+      "weight": 6,
+      "why_it_matters": "Preferred but not mandatory; helps navigate regulatory and industry-specific stakeholder dynamics.",
+      "evidence_type_to_look_for": [
+        "insurance",
+        "banking",
+        "wealth management experience"
+      ],
+      "gap_expected": "May come from consulting or other industries"
+    },
+    {
+      "name": "Change Management & Adoption Engagement",
+      "weight": 4,
+      "why_it_matters": "Supports AI Champions, literacy programs and adoption-focused communications.",
+      "evidence_type_to_look_for": [
+        "change management programs",
+        "training/enablement initiatives",
+        "champion network coordination"
+      ]
+    },
+    {
+      "name": "Structured Problem Solving & Ambiguity Navigation",
+      "weight": 3,
+      "why_it_matters": "Must translate ambiguous business needs into clear, actionable plans.",
+      "evidence_type_to_look_for": [
+        "consulting frameworks",
+        "problem structuring",
+        "ambiguous mandate resolution"
+      ]
+    }
+  ],
+  "resume_tailoring_guidance": {
+    "mandatory_sections": [
+      "PROFESSIONAL SUMMARY",
+      "AI & AUTOMATION HIGHLIGHTS",
+      "CORE COMPETENCIES",
+      "SOFT SKILLS"
+    ],
+    "summary_focus": [
+      "Position as a strategic portfolio/transformation leader, not a technical AI/data practitioner",
+      "Emphasize executive engagement, governance cadence design, and portfolio prioritization achievements",
+      "Highlight cross-functional orchestration across business, tech, risk, finance stakeholders",
+      "Quantify value realization, adoption or benefit tracking outcomes where possible",
+      "Reference any AI, data, or digital transformation program involvement even if at strategic/governance level"
+    ],
+    "do_not_overclaim": [
+      "Do not claim ownership of AI platform technical architecture, model lifecycle or observability",
+      "Do not claim ownership of data governance controls or data architecture standards",
+      "Do not overstate hands-on data science or engineering delivery experience",
+      "Avoid implying day-to-day project management if background is strategic/portfolio-level only"
+    ]
+  },
+  "cover_letter_guidance": {
+    "tone": "Executive, confident, consultative — reflecting seniority and cross-functional influence",
+    "positioning": "Frame candidate as a bridge-builder who turns fragmented AI/Data initiatives into a coherent, governed enterprise portfolio with clear executive visibility and measurable value",
+    "bridge_gaps_honestly": [
+      "If limited direct AI/Data domain experience, emphasize transferable portfolio governance and transformation orchestration skills applied to complex, technology-driven agendas",
+      "If no financial services background, highlight regulatory-adjacent or highly governed industry experience",
+      "If no formal AI Champion/literacy program experience, connect to broader change management or capability-building initiatives"
+    ]
+  }
+}

@@ -1,0 +1,194 @@
+{
+  "jd_file": "jd_director_it_infrastructure_example_corp.txt",
+  "company": "Example Corp",
+  "company_slug": "example-corp",
+  "job_title": "Director of IT Infrastructure",
+  "role_slug": "director-it-infrastructure",
+  "industry": "Information Technology / IT Infrastructure Operations",
+  "role_summary": "Lead a multi-country regional IT infrastructure operations team, owning budget, vendor governance, endpoint/VDI modernization, and disaster recovery readiness while partnering with senior stakeholders on infrastructure strategy.",
+  "must_have_requirements": [
+    "10+ years of IT infrastructure leadership experience",
+    "Experience with virtual desktop infrastructure (VDI) platforms",
+    "Track record of infrastructure budget ownership",
+    "Strong stakeholder management and team leadership skills",
+    "Experience with disaster recovery program delivery",
+    "Experience leading regional/multi-country infrastructure operations teams"
+  ],
+  "nice_to_have_requirements": [
+    "Vendor governance and cost optimization experience",
+    "Endpoint modernization program experience",
+    "Business continuity planning exposure",
+    "Experience in Singapore or APAC region",
+    "Exposure to senior/executive stakeholder engagement"
+  ],
+  "soft_skills_priority": [
+    "Team leadership across distributed/regional teams",
+    "Stakeholder management with senior executives",
+    "Budget and vendor negotiation acumen",
+    "Strategic planning and prioritization",
+    "Crisis/incident management composure (DR/BCP)",
+    "Cross-cultural communication (multi-country teams)"
+  ],
+  "semantic_match_guidance": {
+    "infrastructure_leadership": [
+      "IT infrastructure director",
+      "infrastructure operations manager",
+      "head of infrastructure",
+      "regional IT operations lead",
+      "infrastructure and operations (I&O) leader"
+    ],
+    "vdi_experience": [
+      "Citrix",
+      "VMware Horizon",
+      "Azure Virtual Desktop",
+      "Windows Virtual Desktop",
+      "virtual desktop infrastructure",
+      "desktop virtualization"
+    ],
+    "budget_ownership": [
+      "OPEX/CAPEX management",
+      "IT cost optimization",
+      "vendor contract negotiation",
+      "budget forecasting",
+      "P&L accountability for infrastructure"
+    ],
+    "disaster_recovery": [
+      "DR planning",
+      "business continuity planning",
+      "BCP",
+      "failover testing",
+      "RTO/RPO management",
+      "resilience program"
+    ],
+    "stakeholder_management": [
+      "executive stakeholder engagement",
+      "cross-functional collaboration",
+      "steering committee presentations",
+      "senior leadership partnership"
+    ],
+    "regional_team_leadership": [
+      "multi-country team management",
+      "distributed team leadership",
+      "APAC operations",
+      "matrixed team leadership"
+    ],
+    "endpoint_modernization": [
+      "endpoint management",
+      "device lifecycle management",
+      "Intune",
+      "SCCM",
+      "modern workplace program"
+    ]
+  },
+  "scoring_criteria": [
+    {
+      "name": "IT Infrastructure Leadership Experience (10+ yrs)",
+      "weight": 20,
+      "why_it_matters": "Core seniority and technical leadership requirement for the role",
+      "evidence_type_to_look_for": [
+        "Years in infrastructure leadership titles",
+        "Scope of teams/regions managed",
+        "Progression into senior IT roles"
+      ]
+    },
+    {
+      "name": "Regional/Multi-Country Team Leadership",
+      "weight": 15,
+      "why_it_matters": "Role explicitly requires leading operations across multiple countries",
+      "evidence_type_to_look_for": [
+        "Team size and geographic spread",
+        "Cross-border operations management",
+        "Matrixed reporting structures"
+      ]
+    },
+    {
+      "name": "Infrastructure Budget Ownership & Vendor Governance",
+      "weight": 15,
+      "why_it_matters": "Direct requirement for financial and vendor accountability",
+      "evidence_type_to_look_for": [
+        "Budget size managed",
+        "Cost optimization results",
+        "Vendor contract negotiation examples"
+      ]
+    },
+    {
+      "name": "VDI / Endpoint Modernization Experience",
+      "weight": 15,
+      "why_it_matters": "Named technical program area central to role responsibilities",
+      "evidence_type_to_look_for": [
+        "Named VDI platforms used",
+        "Endpoint modernization project outcomes",
+        "Migration/rollout scale"
+      ]
+    },
+    {
+      "name": "Disaster Recovery / Business Continuity Delivery",
+      "weight": 15,
+      "why_it_matters": "Explicit requirement for DR/BCP program ownership",
+      "evidence_type_to_look_for": [
+        "DR plan authorship",
+        "Failover test execution",
+        "BCP audits or certifications"
+      ]
+    },
+    {
+      "name": "Stakeholder Management & Executive Partnership",
+      "weight": 10,
+      "why_it_matters": "Role requires strategic partnership with senior stakeholders",
+      "evidence_type_to_look_for": [
+        "Examples of executive-level presentations",
+        "Cross-functional influence",
+        "Strategic advisory involvement"
+      ]
+    },
+    {
+      "name": "Infrastructure Strategy & Planning",
+      "weight": 5,
+      "why_it_matters": "Role includes strategic input into infrastructure direction",
+      "evidence_type_to_look_for": [
+        "Infrastructure roadmap ownership",
+        "Technology strategy documents",
+        "Capacity planning experience"
+      ]
+    },
+    {
+      "name": "Communication & Leadership Soft Skills",
+      "weight": 5,
+      "why_it_matters": "Necessary for leading diverse regional teams and senior engagement",
+      "evidence_type_to_look_for": [
+        "Team leadership language in resume",
+        "Mentorship/coaching mentions",
+        "Conflict resolution examples"
+      ]
+    }
+  ],
+  "resume_tailoring_guidance": {
+    "mandatory_sections": [
+      "PROFESSIONAL SUMMARY",
+      "AI & AUTOMATION HIGHLIGHTS",
+      "CORE COMPETENCIES",
+      "SOFT SKILLS"
+    ],
+    "summary_focus": [
+      "Position candidate as a senior IT infrastructure leader with multi-country team oversight",
+      "Highlight budget ownership scale and cost optimization outcomes",
+      "Emphasize VDI/endpoint modernization and DR/BCP program delivery",
+      "Showcase stakeholder engagement at senior/executive level"
+    ],
+    "do_not_overclaim": [
+      "Do not imply Singapore/APAC-specific experience unless explicitly stated in resume",
+      "Do not overstate DR ownership if only participated rather than led",
+      "Do not inflate team size or budget figures beyond documented resume evidence",
+      "Do not claim VDI platform expertise not explicitly named in resume"
+    ]
+  },
+  "cover_letter_guidance": {
+    "tone": "Confident, executive, and outcomes-focused",
+    "positioning": "Present candidate as a seasoned infrastructure leader capable of scaling regional operations, optimizing infrastructure spend, and delivering resilient, modern IT environments",
+    "bridge_gaps_honestly": [
+      "If no direct Singapore/APAC experience, emphasize successful management of other multi-country or globally distributed teams",
+      "If DR experience is partial, frame as active contributor to DR/BCP programs while highlighting willingness to lead full ownership",
+      "If VDI experience is limited, highlight adjacent endpoint/virtualization technology experience and rapid learning capability"
+    ]
+  }
+}

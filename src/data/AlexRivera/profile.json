@@ -1,0 +1,71 @@
+{
+  "timestamp": "2026-08-11T00:00:00.000000",
+  "sourceFile": "src/data/AlexRivera/profile.json",
+  "profile": {
+    "metadata": {
+      "name": "Alex Rivera",
+      "title": "Director of Infrastructure Operations",
+      "location": "Singapore",
+      "email": "alex.rivera.testprofile@example.com",
+      "phone": "+65 5555 0000",
+      "linkedin": "linkedin.com/in/alexrivera-example",
+      "availability": "Immediate",
+      "years_experience": 15.0
+    },
+    "summary": "Fictitious test profile: infrastructure operations director with 15 years across banking and insurance IT, used only to exercise scripts/jd_scorecard_resume_v3.py end-to-end. All facts below are synthetic.",
+    "professional_experience": [
+      {
+        "company": "Fictitious Bank Holdings",
+        "title": "Director, Infrastructure Operations",
+        "period": "Jan 2020 - Present",
+        "scope": "Head of infrastructure operations, 30+ staff, regional scope",
+        "highlights": [
+          "Led migration of 5,000 endpoints to a new virtual desktop platform, reducing support tickets by 35%",
+          "Managed a USD 10M annual infrastructure budget across three countries",
+          "Automated patch compliance reporting, saving an estimated 500 hours annually"
+        ]
+      },
+      {
+        "company": "Example Insurance Group",
+        "title": "Senior Manager, IT Operations",
+        "period": "Jun 2014 - Dec 2019",
+        "scope": "Regional IT operations manager",
+        "highlights": [
+          "Reduced major incident volume by 40% through proactive monitoring rollout",
+          "Delivered a disaster recovery program achieving 100% test success rate for 3 consecutive years"
+        ]
+      }
+    ],
+    "major_achievements": [
+      {
+        "achievement": "Endpoint Modernization Program",
+        "company": "Fictitious Bank Holdings",
+        "scale": "5,000 endpoints",
+        "impact": "35% reduction in support tickets"
+      }
+    ],
+    "ai_projects": [],
+    "core_competencies": {
+      "leadership": ["Team leadership", "Budget governance"],
+      "infrastructure": ["VDI", "Endpoint management"]
+    },
+    "technical_skills": ["Citrix, VMware, Windows Server administration"],
+    "education_certifications": [
+      {
+        "credential": "Fictitious Certification in IT Leadership",
+        "issuer": "Example Institute",
+        "type": "certification"
+      }
+    ],
+    "languages_spoken": ["English (Fluent)"],
+    "soft_skills": ["Stakeholder management", "Vendor governance"],
+    "languages": [
+      {
+        "language": "English",
+        "proficiency": "Fluent"
+      }
+    ],
+    "key_topics_for_qa": ["Infrastructure operations", "Budget governance"],
+    "linkedin_recommendations": []
+  }
+}
