@@ -54,20 +54,23 @@ are carried forward unchanged from `todolist_07Aug2026.md` except where noted.
 
 ## Carried over from 7 Aug 2026 (still open, not actioned since)
 
-3. **Live-verify the production deploy through the actual portal UI.**
-   Everything so far was verified locally or via container/health checks —
-   not yet exercised as a real end-user run through
-   `https://www.askcareer-ai.com/portal`. Confirm:
-   - The cover letter's 5-company cap, standalone recommendations paragraph,
-     and shorter overall length all come through in a live-generated letter.
-   - The per-section Copy buttons on the Reports view's Strengths/Gaps
-     actually copy to clipboard when clicked in a browser.
-   - **Next thing to do** — highest-priority open item as of 11 Aug 2026.
+3. ~~Live-verify the production deploy through the actual portal UI.~~ —
+   **done, confirmed by user 11 Aug 2026.** Both the cover letter's 5-company
+   cap/standalone recommendations paragraph/shorter length AND the Reports
+   view's per-section Copy buttons confirmed working as expected on
+   `https://www.askcareer-ai.com/portal`.
 4. ~~Commit the pending `todolist_05Aug2026.md` doc update~~ — **already done**,
    found resolved in commit `4c0958c` (10 Aug 2026) on checking git history
    today; `todolist_07Aug2026.md` just hadn't been updated to reflect it.
-5. Live-verify the DeepSeek token-retry + reasoning-effort fix with a real
-   rerun of `JD_Invesco_IT_AssociateDirector.txt --refresh-blueprint --llm=deepseek`.
+5. ~~Live-verify the DeepSeek token-retry + reasoning-effort fix~~ — **done,
+   11 Aug 2026.** Ran
+   `python scripts/jd_scorecard_resume_v2.py "data_raw/jd/txt/JD_Invesco_IT_AssociateDirector.txt" --refresh-blueprint --llm=deepseek`
+   live. The fix fired for real: Resume call hit
+   `finish_reason='length'` at `max_tokens=20000` (`reasoning_tokens=16386`),
+   auto-retried at `max_tokens=40000`, and completed cleanly. All three
+   outputs (Scorecard/Resume/Cover Letter, txt+docx) regenerated in
+   `data_processed/Invesco/`; resume text ends on a proper closing section
+   ("AVAILABILITY / Immediate"), not a mid-sentence cutoff — no truncation.
 6. Older 31 Jul backlog: LinkedIn automation discovery-path decision,
    Manulife resume regen decision, VPS hardening, dev-env docs, Job Tracker
    status fields.
