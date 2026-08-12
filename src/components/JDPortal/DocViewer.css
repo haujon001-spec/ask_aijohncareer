@@ -12,7 +12,7 @@
 
 .doc-viewer-modal {
   width: 100%;
-  max-width: 760px;
+  max-width: 90vw;
   max-height: 88vh;
   display: flex;
   flex-direction: column;
@@ -102,7 +102,11 @@
 
 @media (max-width: 768px) {
   .doc-viewer-overlay {
-    padding: 12px;
+    padding: 6px;
+  }
+
+  .doc-viewer-modal {
+    max-width: 98vw;
   }
 
   .doc-viewer-body {
@@ -111,7 +115,12 @@
 }
 
 @media (max-width: 480px) {
+  .doc-viewer-overlay {
+    padding: 4px;
+  }
+
   .doc-viewer-modal {
+    max-width: 99vw;
     max-height: 92vh;
   }
 

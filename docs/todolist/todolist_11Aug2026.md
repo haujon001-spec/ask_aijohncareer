@@ -197,6 +197,33 @@ implemented:
 - Data-isolation/PII-handling posture beyond "minimal" (11 Aug decision) if
   the user base grows beyond a handful of known people.
 
+## New today (12 Aug 2026) — Reports view width (requested, not yet scoped/built)
+
+- **Feature request: widen the Reports view (desktop + mobile) for Scorecard,
+  Resume, and Cover Letter — "extend and maximize the horizontal view."**
+  User flagged via screenshot that the New JD Run → Reports → "View" popup
+  (Cover Letter shown in the example) renders in a visibly narrow column even
+  on a wide desktop viewport.
+  - Root cause located: `src/components/JDPortal/DocViewer.css` —
+    `.doc-viewer-modal` is hard-capped at `max-width: 760px` (line 15), with
+    no wider breakpoint override. This is the "View" modal opened from the
+    Reports step's docx/txt buttons (`src/components/JDPortal/DocViewer.jsx`,
+    rendered from `src/components/JDPortal/JDReportsStep.jsx`).
+  - By contrast, the outer portal shell (`PortalShell.css`) already scales
+    its content column up to `max-width: 1800px` (2000px/2400px at wider
+    breakpoints via `@media (min-width: 1921px/2560px)`) — so the page
+    container itself is not the bottleneck; the modal's own cap is.
+  - Not yet scoped: target desktop max-width (e.g. a wider fixed cap, a
+    vw-relative width, or matching the outer shell's breakpoint pattern) and
+    whether mobile behavior should also change (it already narrows via
+    `@media (max-width: 768px/480px)` padding rules, unclear if that counts
+    as "maximize" too or is already acceptable). Clarifying questions asked
+    of user before implementation — see session notes.
+  - Note: filed into this dated doc at the user's explicit direction even
+    though today is 12 Aug 2026 (soul.md naming convention would normally
+    call for a new `todolist_12Aug2026.md`) — flagged back to user, not
+    unilaterally resolved.
+
 ## Session close (11 Aug 2026)
 
 All work above is committed and pushed to `origin/main`:
