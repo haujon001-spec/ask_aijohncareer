@@ -66,12 +66,18 @@ themselves next time rather than have that done today. Guide:
 
 ## Carried over from 11 Aug 2026 (still open, not actioned since)
 
-- **Immediate next step:** user to click through `/portal2` themselves (real
+- **`/portal2` click-through — CONFIRMED COMPLETE 26 Aug 2026.** User
+  logged in and clicked through `/portal2` (profile picker → JD run →
+  Reports step, including the wide `DocViewer` modal from this file's own
+  width-fix item above) and confirmed checkout succeeded end-to-end. No
+  issues found. See `docs/todolist/todolist_26Aug2026.md` for that day's
+  session log.
+- ~~**Immediate next step:** user to click through `/portal2` themselves (real
   password required) — login → profile picker shows Matina Fung → run her
   Richemont JD (or onboard a fresh profile via `ResumeUpload`) → confirm the
   Reports step renders and downloads work. Backend routes and the v3
   pipeline are already verified via CLI/`node --check`/`npm run build`; only
-  the actual UI click-path is unconfirmed.
+  the actual UI click-path is unconfirmed.~~
 - Backend/auth: extend the existing password+TOTP model to per-user identity
   (today: one shared credential set, JWT hardcoded to `{user: 'john'}`).
 - Screenshot-to-JD-text capture (vision-LLM call via existing OpenRouter
