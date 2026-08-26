@@ -79,9 +79,10 @@ the real domain. `app`/`caddy` confirmed untouched throughout. Full record:
   `docs/guides/JDSCORECARDRESUMEV3_MULTIPROFILE_FOUNDATION_11AUG2026.md` /
   `JDPORTAL_PHASE2_ONBOARDING_PORTAL2_11AUG2026.md` for what's being
   deployed.
-- Two local commits not yet pushed to `origin/main`: `24f6a57` (dedup/
-  1-pager feature) and `ed75eda` (deploy record doc). Not pushed pending
-  user confirmation.
+- Three local commits not yet pushed to `origin/main`: `24f6a57` (dedup/
+  1-pager feature), `ed75eda` (deploy record doc), `b1fdbd5` (this
+  carry-forward note). User explicitly said to hold the push for now —
+  do not push without asking again next session.
 - Untracked `src/data/jd/JD_HospitalAuthority_IT_Manager_Systems.json` —
   needs a decision (commit / discard / run through the pipeline).
 - Backend/auth: per-user identity (today: shared credential set, JWT
@@ -93,3 +94,16 @@ the real domain. `app`/`caddy` confirmed untouched throughout. Full record:
 - Older 31 Jul backlog: LinkedIn automation discovery-path decision,
   Manulife resume regen decision, VPS hardening, dev-env docs, Job Tracker
   status fields.
+
+## Session closed 26 Aug 2026
+
+Working tree clean at close except the pre-existing untracked
+`src/data/jd/JD_HospitalAuthority_IT_Manager_Systems.json` (open item
+above, unrelated to today's work, left as-is — not committed or deleted
+without a decision from the user). 3 local commits ahead of
+`origin/main`, held back at the user's explicit request — **do not push
+without asking again.**
+
+**Top priority for next session:** deploy the `/portal2` multi-profile
+epic to the VPS (see above) — everything needed to scope it is already
+recorded here and in the linked guides.
