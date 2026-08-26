@@ -63,6 +63,25 @@ the real domain. `app`/`caddy` confirmed untouched throughout. Full record:
 
 ## Still open (carried, not actioned today)
 
+- **NEXT PRIORITY: deploy the `/portal2` multi-profile epic to the VPS.**
+  User explicitly deferred this today (scoped today's deploy to just the
+  dedup/1-pager fix instead — see above). Still not deployed to production:
+  Phase 1 (`jd_scorecard_resume_v3.py`, `2dccb72`), Phase 2 (resume
+  onboarding + `/portal2` UI, `bcc504b`), the master resume generator
+  (`a911303`), and the 12 Aug Reports-view width fix (`4ba2138`) — all
+  live/verified locally only, none deployed since the last VPS deploy on
+  6 Aug (`ab7c31a`). Bigger than today's single-file deploy: needs
+  `Dockerfile.jd-api` updated to also `COPY` `jd_scorecard_resume_v3.py`,
+  both `app` and `jd-api` rebuilt (not just `jd-api`), and an explicit
+  decision on whether any real profile data (e.g. Matina Fung's, currently
+  gitignored/local-only) should ship to production at all. See
+  `docs/guides/JDPORTALVPSDEPLOY_30JUL2026.md` for the deploy pattern and
+  `docs/guides/JDSCORECARDRESUMEV3_MULTIPROFILE_FOUNDATION_11AUG2026.md` /
+  `JDPORTAL_PHASE2_ONBOARDING_PORTAL2_11AUG2026.md` for what's being
+  deployed.
+- Two local commits not yet pushed to `origin/main`: `24f6a57` (dedup/
+  1-pager feature) and `ed75eda` (deploy record doc). Not pushed pending
+  user confirmation.
 - Untracked `src/data/jd/JD_HospitalAuthority_IT_Manager_Systems.json` —
   needs a decision (commit / discard / run through the pipeline).
 - Backend/auth: per-user identity (today: shared credential set, JWT
