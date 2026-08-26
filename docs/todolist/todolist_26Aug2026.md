@@ -52,6 +52,15 @@ restating; resume first pass caught a real AI-Highlights/Professional-
 Experience duplicate (Bank of America ITSM automation figures), fixed by
 extending rule 18's scope, re-verified clean on the second pass.
 
+**Deployed to production same day**, scoped to just this fix (user chose
+this over also deploying the un-deployed `/portal2` epic accumulated since
+the last VPS deploy on 6 Aug). scp + `jd-api`-only rebuild, backed up first
+(`*.20260826_pre_deploy.bak` on the VPS), byte-identical transfer confirmed
+via `sha256sum`, dedup rule markers confirmed present inside the running
+container, health endpoint + main site + `/portal` all verified 200 through
+the real domain. `app`/`caddy` confirmed untouched throughout. Full record:
+`docs/guides/JDSCORECARDRESUMEV2_DEDUP_ONEPAGECOVERLETTER_26AUG2026.md`.
+
 ## Still open (carried, not actioned today)
 
 - Untracked `src/data/jd/JD_HospitalAuthority_IT_Manager_Systems.json` —

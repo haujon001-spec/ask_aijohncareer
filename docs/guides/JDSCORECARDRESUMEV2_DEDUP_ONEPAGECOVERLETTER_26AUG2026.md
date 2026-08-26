@@ -44,6 +44,44 @@ Ran the real pipeline twice against the (pre-existing, untracked) Hospital Autho
 - `data_processed/HospitalAuthority/CoverLetter/{txt,docx}/JohnHauCoverLetter_HospitalAuthority_IT_Manager_Systems_26AUG2026.*` (regenerated, verification run)
 - Backup: `scripts/jd_scorecard_resume_v2.py.20260826_V1.bak`
 
+## Production deployment (26 Aug 2026)
+
+User asked to deploy to `askcareer-ai.com` (VPS `152.42.214.111`). Scoped explicitly to just this
+fix (asked first — the alternative was also deploying the entire un-deployed `/portal2`
+multi-profile epic accumulated since the last VPS deploy on 6 Aug, `ab7c31a`, which is materially
+bigger and was deferred to its own session).
+
+Followed the established scp/rebuild pattern (`docs/guides/JDSCORECARDRESUMEV2_DEEPSEEKTOKENRETRY_03AUG2026.md`
+et al.), only `jd_scorecard_resume_v2.py` is affected since that's the only file this fix touched:
+
+1. Read-only pre-check via `ssh root@www.askcareer-ai.com`: all 3 containers healthy (`app`,
+   `jd-api`, `caddy`), 60G disk free, confirmed the VPS's existing script hash differs from the
+   local one (expected — VPS was still on the pre-dedup version).
+2. Backed up the VPS's existing copy first: `scripts/jd_scorecard_resume_v2.py.20260826_pre_deploy.bak`,
+   `sha256sum`-verified matching the pre-deploy file before touching anything.
+3. `scp`'d the updated script; `sha256sum` on both sides confirmed byte-identical transfer.
+4. `docker compose -f docker-compose.prod.yml build jd-api` — build log confirmed the `COPY
+   scripts/jd_scorecard_resume_v2.py` layer re-ran (not cached), all other layers cached as
+   expected (no unrelated changes).
+5. `docker compose -f docker-compose.prod.yml up -d jd-api` — recreated only the `jd-api`
+   container; `app` and `caddy` were never touched (confirmed via unchanged `docker ps` uptime:
+   `app` 2 weeks, `caddy` 3 weeks, both untouched throughout).
+
+**Verified live, not just assumed deployed:**
+- `jd-api` container: `Up ... (healthy)`.
+- Public health check through the real domain: `https://www.askcareer-ai.com/jd-api/api/health` →
+  `200 {"status":"ok",...}`.
+- Confirmed the actual fix is in the running container (not just the image build log): `docker exec
+  ... grep -c` for the `CROSS-SECTION DEDUPLICATION` / `CROSS-PARAGRAPH DEDUPLICATION` rule
+  markers inside `/app/scripts/jd_scorecard_resume_v2.py` → 2 matches, as expected.
+- Confirmed the untouched services stayed untouched and the site still serves: main app
+  `https://www.askcareer-ai.com/` → 200, `https://www.askcareer-ai.com/portal` → 200.
+
+Did not attempt a live authenticated portal run through production (no portal password available
+to this session, same limitation noted in the 30 Jul/6 Aug deploy guides) — confidence instead
+comes from the two local `--force` pipeline runs already verified above (real LLM calls, same
+script) plus the byte-identical-transfer + in-container-content verification here.
+
 ## Note
 
 `src/data/jd/JD_HospitalAuthority_IT_Manager_Systems.json` (the JD blueprint used for this verification run) was already sitting untracked in the working tree from 12 Aug, unrelated to this feature — still an open item, not resolved here (see `docs/todolist/todolist_26Aug2026.md`).
