@@ -15,6 +15,7 @@ const MODE_FLAGS = {
 
 const LLM_KEY_ENV = {
   sonnet: 'OPENROUTER_API_KEY',
+  haiku: 'OPENROUTER_API_KEY',
   gemini: 'OPENROUTER_API_KEY',
   deepseek: 'DEEPSEEK_API_KEY',
 };
@@ -25,6 +26,7 @@ const LLM_KEY_ENV = {
 // the request itself (customModel.provider), not a fixed preset.
 const PROVIDER_FOR_LLM = {
   sonnet: 'openrouter',
+  haiku: 'openrouter',
   gemini: 'openrouter',
   deepseek: 'deepseek',
 };

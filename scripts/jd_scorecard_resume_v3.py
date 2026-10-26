@@ -47,7 +47,7 @@ Usage:
   python scripts/jd_scorecard_resume_v3.py --profile=<Name> --refresh-blueprint
   python scripts/jd_scorecard_resume_v3.py --profile=<Name> --batch
   python scripts/jd_scorecard_resume_v3.py --profile=<Name> --batch --force
-  python scripts/jd_scorecard_resume_v3.py --profile=<Name> --llm=sonnet|deepseek|gemini
+  python scripts/jd_scorecard_resume_v3.py --profile=<Name> --llm=sonnet|haiku|deepseek|gemini
   python scripts/jd_scorecard_resume_v3.py --profile=<Name> --ResumeAdjustment
   python scripts/jd_scorecard_resume_v3.py --profile=<Name> --llm=custom --model=anthropic/claude-opus-4-8 --provider=openrouter
   python scripts/jd_scorecard_resume_v3.py --profile=<Name> --llm=sonnet --api-key=sk-or-v1-...
@@ -370,7 +370,7 @@ resume_adjustment = any(f.lower() == "--resumeadjustment" for f in flags)
 
 # ── LLM selection via --llm=<name> flag ───────────────────────────────────────
 llm_flag = next((f for f in flags if f.startswith("--llm=")), "--llm=sonnet")
-llm_choice = llm_flag.split("=", 1)[1].lower()   # sonnet | deepseek | gemini | custom
+llm_choice = llm_flag.split("=", 1)[1].lower()   # sonnet | haiku | deepseek | gemini | custom
 
 # ── Bring-your-own-key / dynamic model overrides (added 23 Jul 2026) ──────────
 # --model= and --provider= together select an arbitrary OpenRouter/DeepSeek
@@ -448,7 +448,8 @@ for env_file in [ROOT / ".env.local", ROOT / ".env.vps", ROOT / ".env"]:
 # thinking mode.
 LLM_CONFIGS = {
     # name          model_id                                     api_key_env            base_url
-    "sonnet":  ("anthropic/claude-sonnet-5",                "OPENROUTER_API_KEY",  "https://openrouter.ai/api/v1/chat/completions"),
+    "sonnet":  ("anthropic/claude-sonnet-5.5",                "OPENROUTER_API_KEY",  "https://openrouter.ai/api/v1/chat/completions"),
+    "haiku":   ("anthropic/claude-haiku-5.5",                "OPENROUTER_API_KEY",  "https://openrouter.ai/api/v1/chat/completions"),
     "deepseek":("deepseek-v4-flash",                        "DEEPSEEK_API_KEY",    "https://api.deepseek.com/chat/completions"),
     "gemini":  ("google/gemini-3.1-flash-lite-preview",     "OPENROUTER_API_KEY",  "https://openrouter.ai/api/v1/chat/completions"),
 }
@@ -469,7 +470,7 @@ if llm_choice == "custom":
 elif llm_choice in LLM_CONFIGS:
     MODEL, api_key_env, LLM_ENDPOINT = LLM_CONFIGS[llm_choice]
 else:
-    sys.exit(f"ERROR: Unknown --llm value '{llm_choice}'. Valid: sonnet, deepseek, gemini, custom")
+    sys.exit(f"ERROR: Unknown --llm value '{llm_choice}'. Valid: sonnet, haiku, deepseek, gemini, custom")
 
 API_KEY = cli_api_key_override or os.environ.get(api_key_env, "")
 if not API_KEY:
@@ -1527,6 +1528,7 @@ print(f"  python scripts/jd_scorecard_resume_v3.py --profile=<Name> --refresh-bl
 print(f"  python scripts/jd_scorecard_resume_v3.py --profile=<Name> --ResumeAdjustment  (apply this JD's scorecard 6a guidance)")
 print(f"  python scripts/jd_scorecard_resume_v3.py --profile=<Name> --llm=sonnet    (default, Claude Sonnet 5)")
 print(f"  python scripts/jd_scorecard_resume_v3.py --profile=<Name> --llm=deepseek  (DeepSeek R1)")
-print(f"  python scripts/jd_scorecard_resume_v3.py --profile=<Name> --llm=gemini    (Gemini Flash Lite - cheaper)")
+print(f"  python scripts/jd_scorecard_resume_v3.py --profile=<Name> --llm=haiku     (Claude Haiku 5.5 - cheapest Claude)")
+print(f"  python scripts/jd_scorecard_resume_v3.py --profile=<Name> --llm=gemini    (legacy: Gemini Flash Lite preview)")
 print(f"  python scripts/jd_scorecard_resume_v3.py --profile=<Name> --llm=custom --model=<id> --provider=openrouter|deepseek")
 print(f"  python scripts/jd_scorecard_resume_v3.py --profile=<Name> --llm=sonnet --api-key=<key>  (bring your own key)")

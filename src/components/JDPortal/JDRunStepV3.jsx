@@ -166,7 +166,7 @@ function JDRunStepV3({ profileName, initialJdFile, onComplete }) {
           <select id="jd-llm" value={llm} onChange={(e) => setLlm(e.target.value)} disabled={running}>
             <option value="sonnet">Sonnet</option>
             <option value="deepseek">DeepSeek</option>
-            <option value="gemini">Gemini</option>
+            <option value="haiku">Haiku (cheapest)</option>
             <option value="custom">Custom…</option>
           </select>
         </div>

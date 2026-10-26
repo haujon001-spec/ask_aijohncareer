@@ -12,7 +12,8 @@ import { resolveUserKey, envVarForProvider } from './llmKeys.js';
 // official model id 3 Aug 2026, alongside the same fix in
 // scripts/jd_scorecard_resume_v2.py's call_llm().
 const LLM_CONFIGS = {
-  sonnet: { model: 'anthropic/claude-sonnet-5', provider: 'openrouter', endpoint: 'https://openrouter.ai/api/v1/chat/completions' },
+  sonnet: { model: 'anthropic/claude-sonnet-5.5', provider: 'openrouter', endpoint: 'https://openrouter.ai/api/v1/chat/completions' },
+  haiku: { model: 'anthropic/claude-haiku-5.5', provider: 'openrouter', endpoint: 'https://openrouter.ai/api/v1/chat/completions' },
   gemini: { model: 'google/gemini-3.1-flash-lite-preview', provider: 'openrouter', endpoint: 'https://openrouter.ai/api/v1/chat/completions' },
   deepseek: { model: 'deepseek-v4-flash', provider: 'deepseek', endpoint: 'https://api.deepseek.com/chat/completions' },
 };

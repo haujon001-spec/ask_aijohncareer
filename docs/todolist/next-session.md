@@ -13,25 +13,22 @@
 > 2. Decide on `npm audit fix` (24 vulns, mostly dev tooling; edits `package-lock.json`).
 > 3. Then the carried top priority: **deploy the `/portal2` epic to the VPS** (decide first whether
 >    any non-John profile data ships). Not started.
-> ## LLM MODEL REVIEW (26 Oct 2026) — findings + plan, nothing changed yet
-> Checked the portal's presets against OpenRouter's live catalog (`https://openrouter.ai/api/v1/models`, public, no key).
-> $ per 1M tokens in/out:
-> | Preset | Current model | Price | Newer/cheaper available |
-> |---|---|---|---|
-> | Sonnet | `anthropic/claude-sonnet-5` (Jul 2026) | 2.00 / 10.00 | `claude-sonnet-5.5` (Sep 2026) same price; `claude-haiku-5.5` (Oct 2026) 0.10 / 0.50; `claude-opus-5.5` 4/20 |
-> | DeepSeek | `deepseek-v4-flash` (Apr 2026, native API) | 0.091 / 0.182 | `deepseek-v4.1-flash` (Sep 2026) 0.02 / 1.00 (cheaper input, *dearer* output); still the cheapest output |
-> | Gemini | `google/gemini-3.1-flash-lite-preview` (Mar 2026, a *preview*) | 0.25 / 1.50 | `gemini-3.8-flash` 0.825/4.125 (newer, dearer); `gemini-4-argon` 2/10 |
-> Also: `backend/server.js` chat still uses `deepseek-reasoner` (alias DeepSeek retired 24 Jul 2026) and
-> `gemini-3.1-flash-lite-preview`, with fallback text saying "DeepSeek V3.2" — stale; review alongside.
-> **Planned feature — dynamic model check from the portal:** add `GET /jd-api/api/models` that fetches the
-> OpenRouter catalog (cache ~24h; no key needed), filters by family (anthropic / deepseek / google) and
-> drops `:free`/`:batch`/`-vision`/dated snapshots, ranks by newest + price, and returns "recommended"
-> + "cheapest". Portal Configure step: a "Check for newer models" button showing current vs latest with
-> price, one click to set it as the Custom model (existing Custom… path already accepts any
-> `provider/slug`). Keep the 3 presets editable via a small config file (e.g. `config/llm_presets.json`)
-> instead of the hard-coded `LLM_CONFIGS` in `jd_scorecard_resume_v2.py`/`v3.py`. DeepSeek's native API
-> needs its own ids (`/models` on api.deepseek.com with the key). Quality is NOT measured by price — run a
-> real JD on a candidate before switching a default.
+> ## LLM MODEL REVIEW (26 Oct 2026) — presets updated locally, NOT deployed; checker still to build
+> Done + verified locally (see `docs/guides/LLMMODELREFRESH_26OCT2026.md`): Sonnet -> `claude-sonnet-5.5`;
+> Gemini preset replaced in the UI by **Haiku 5.5** (`haiku`, $0.10/$0.50); chat backend moved off the retired
+> `deepseek-reasoner` and the Gemini preview. User decisions: Haiku as the cheap option; checker = **suggest only**.
+> **Open items:**
+> 1. **Top up the DeepSeek API balance** — live calls return 402 Insufficient Balance (affects the portal DeepSeek preset + chat).
+> 2. Deploy the model changes to the VPS **together with `/portal2`** (local `pythonRunner.js` already carries /portal2 changes).
+> 3. Build the **dynamic model checker** (suggest-only): `GET /jd-api/api/models` reads OpenRouter's public catalog
+>    (cache ~24h), filters to anthropic/deepseek/google, drops `:free`/`:batch`/`-vision`/dated snapshots, ranks by
+>    newest + price, returns "current vs latest" with price. Configure step gets a "Check for newer models" button;
+>    click sets it as the Custom model (existing Custom… path takes any `provider/slug`). Move presets from hard-coded
+>    `LLM_CONFIGS` (v2/v3/update_profile + llmClient.js + pythonRunner.js) into one `config/llm_presets.json`.
+>    DeepSeek-native ids need `api.deepseek.com/models` + key. Price != quality: test on a real JD before switching a default.
+> 4. Reasoning-token cost: both Claude models hit the length-retry on resumes — consider a higher first-try `max_tokens`
+>    for Resume, and/or `reasoning` effort params via OpenRouter, to avoid paying for a truncated first attempt.
+> 5. Trim the DeepSeek key prefix logged by `backend/server.js` at startup.
 >
 > Resume with the `/next-session` command (`.claude/commands/next-session.md`).
 

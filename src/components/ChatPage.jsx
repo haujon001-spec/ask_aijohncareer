@@ -9,8 +9,8 @@ function ChatPage() {
 
   // Model name mapping for display
   const modelNames = {
-    deepseek: 'Gemini 3.1 Flash Lite',
-    nemotron: 'DeepSeek R1'
+    deepseek: 'Claude Haiku 5.5',
+    nemotron: 'DeepSeek V4 Flash'
   }
 
   const [messages, setMessages] = useState([
@@ -166,7 +166,7 @@ function ChatPage() {
         <div className="sidebar">
           <SidebarIntro onQuickPrompt={handleQuickPrompt} />
           <ModelSelector selectedModel={selectedModel} onModelChange={setSelectedModel} />
-          <label className="reasoning-toggle" title={selectedModel === 'nemotron' ? 'Show extended reasoning' : 'Only available with DeepSeek R1'}>
+          <label className="reasoning-toggle" title={selectedModel === 'nemotron' ? 'Show extended reasoning' : 'Only available with DeepSeek V4 Flash'}>
             <input
               type="checkbox"
               checked={showReasoning}

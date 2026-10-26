@@ -99,27 +99,27 @@ Resume Context:
 ${JSON.stringify(profileForPrompt, null, 2)}`;
 }
 
-// LLM Provider Configs - 2 MODELS ONLY: Google Gemini 3.1 Flash + DeepSeek R1
+// LLM Provider Configs - 2 MODELS ONLY: Claude Haiku 5.5 + DeepSeek V4 Flash (updated 26 Oct 2026)
 // Optimized for best results (tested & confirmed working March 26, 2026)
-// Status: Google Gemini ✅ (fast, free, tested), DeepSeek R1 ✅ (advanced reasoning, tested)
+// Ids 'deepseek'/'nemotron' are legacy frontend keys: 'deepseek' = Haiku slot, 'nemotron' = DeepSeek slot.
 const llmConfigs = {
   deepseek: {
-    name: 'Google Gemini 3.1 Flash Lite',
+    name: 'Claude Haiku 5.5',
     apiKey: process.env.OPENROUTER_API_KEY,
     provider: 'openrouter',
     endpoint: 'https://openrouter.ai/api/v1/chat/completions',
-    model: 'google/gemini-3.1-flash-lite-preview',
-    costPerToken: { input: 0, output: 0 },
+    model: 'anthropic/claude-haiku-5.5',
+    costPerToken: { input: 0.10 / 1e6, output: 0.50 / 1e6 },
     supportsReasoning: false,
     status: 'working'
   },
   nemotron: {
-    name: 'DeepSeek R1',
+    name: 'DeepSeek V4 Flash',
     apiKey: process.env.DEEPSEEK_API_KEY,
     provider: 'deepseek',
     endpoint: 'https://api.deepseek.com/chat/completions',
-    model: 'deepseek-reasoner',
-    costPerToken: { input: 0, output: 0 },
+    model: 'deepseek-v4-flash',
+    costPerToken: { input: 0.091 / 1e6, output: 0.182 / 1e6 },
     supportsReasoning: true,
     status: 'working'
   }
@@ -147,6 +147,11 @@ async function callLLM(config, question, includeReasoning = false, maxTokens = 1
       if (config.provider === 'deepseek') {
         payload.reasoning_mode = 'enabled';
       }
+    }
+    // DeepSeek V4 defaults to high-effort thinking, which can eat a small chat
+    // max_tokens budget; 'low' matches the JD pipeline's setting.
+    if (config.provider === 'deepseek') {
+      payload.reasoning_effort = 'low';
     }
 
     // OpenRouter requires different headers
@@ -265,8 +270,8 @@ app.post('/api/:model', async (req, res) => {
         const deepseekConfig = llmConfigs.deepseek;
         result = await callLLM(deepseekConfig, question, reasoning, max_tokens);
         fallbackUsed = true;
-        fallbackReason = `${config.name} auth failed → Using DeepSeek V3.2`;
-        result.model = `${originalModel} [Using: DeepSeek V3.2]`;
+        fallbackReason = `${config.name} auth failed → Using DeepSeek V4 Flash`;
+        result.model = `${originalModel} [Using: DeepSeek V4 Flash]`;
       } else {
         throw error;
       }
