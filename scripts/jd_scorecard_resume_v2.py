@@ -315,6 +315,94 @@ def extract_resume_adjustments(scorecard_text):
 args = [a for a in sys.argv[1:] if not a.startswith("-")]
 flags = [a for a in sys.argv[1:] if a.startswith("-")]
 
+
+# ── --docx-to-pdf=<docx file or folder> : standalone conversion mode ──────────
+# Converts EXISTING .docx files to PDF (no LLM call, no JD needed). Each PDF is
+# written to the sibling pdf/ folder of the docx's own folder, e.g.
+#   data_processed/<Employer>/resume/docx/X.docx -> .../resume/pdf/X.pdf
+# Uses Microsoft Word (COM, via PowerShell) so the PDF matches the docx exactly;
+# falls back to LibreOffice (soffice) if Word is unavailable.
+def convert_docx_files_to_pdf(docx_files):
+    jobs = []
+    for f in docx_files:
+        pdf_dir = f.parent.parent / "pdf" if f.parent.name.lower() == "docx" else f.parent
+        pdf_dir.mkdir(parents=True, exist_ok=True)
+        jobs.append((f, pdf_dir / f"{f.stem}.pdf"))
+    if not jobs:
+        return []
+
+    # Jobs travel as JSON in an env var (avoids PowerShell array-flattening and
+    # quoting pitfalls with a single job or odd characters in paths).
+    ps = (
+        "$ErrorActionPreference='Stop';"
+        "$jobs=ConvertFrom-Json -InputObject $env:D2P_JOBS;"
+        "$w=New-Object -ComObject Word.Application;$w.Visible=$false;$w.DisplayAlerts=0;"
+        "try{foreach($j in $jobs){"
+        "try{$d=$w.Documents.Open([string]$j.src);"
+        "$d.SaveAs2([string]$j.dst,17);$d.Close($false);Write-Output ('OK|'+$j.dst)}"
+        "catch{Write-Output ('FAIL|'+$j.src+'|'+$_.Exception.Message)}}}"
+        "finally{$w.Quit()}"
+    )
+    results = []
+    try:
+        proc = subprocess.run(
+            ["powershell", "-NoProfile", "-NonInteractive", "-Command", ps],
+            capture_output=True, text=True, timeout=300,
+            env={**os.environ, "D2P_JOBS": json.dumps([{"src": str(s), "dst": str(d)} for s, d in jobs])},
+        )
+        if proc.returncode != 0 and not proc.stdout.strip():
+            raise RuntimeError(proc.stderr.strip() or "Word automation failed")
+        for line in proc.stdout.splitlines():
+            parts = line.strip().split("|")
+            if parts[0] == "OK":
+                results.append((Path(parts[1]), None))
+            elif parts[0] == "FAIL":
+                results.append((Path(parts[1]), parts[2] if len(parts) > 2 else "unknown error"))
+        return results
+    except Exception as exc:
+        print(f"  ⚠️  Word conversion unavailable ({exc}); trying LibreOffice...")
+
+    results = []
+    for src, dst in jobs:
+        try:
+            subprocess.run(
+                ["soffice", "--headless", "--convert-to", "pdf", "--outdir", str(dst.parent), str(src)],
+                check=True, capture_output=True, timeout=120,
+            )
+            results.append((dst, None))
+        except Exception as exc:
+            results.append((src, str(exc)))
+    return results
+
+
+_d2p = next((f for f in flags if f.lower().startswith("--docx-to-pdf=")), None)
+if _d2p:
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    _target =Path(_d2p.split("=", 1)[1].strip('"'))
+    if not _target.is_absolute():
+        _target = ROOT / _target
+    if _target.is_dir():
+        _docs = sorted(p for p in _target.rglob("*.docx") if not p.name.startswith("~$"))
+    elif _target.suffix.lower() == ".docx" and _target.exists():
+        _docs = [_target]
+    else:
+        sys.exit(f"ERROR: --docx-to-pdf needs an existing .docx file or folder: {_target}")
+    if not _docs:
+        sys.exit(f"ERROR: no .docx files found under {_target}")
+    print(f"\n📄  Converting {len(_docs)} docx file(s) to PDF...")
+    _failed = 0
+    for _out, _err in convert_docx_files_to_pdf(_docs):
+        if _err:
+            _failed += 1
+            print(f"  ❌  {_out.name}: {_err}")
+        else:
+            try:
+                print(f"  ✅  PDF → {_out.relative_to(ROOT)}")
+            except ValueError:
+                print(f"  ✅  PDF → {_out}")
+    sys.exit(1 if _failed else 0)
+
 jd_path = Path(args[0]) if args else resolve_default_jd()
 if not jd_path.is_absolute():
     jd_path = ROOT / jd_path
@@ -328,6 +416,7 @@ refresh_blueprint = "--refresh-blueprint" in flags
 batch_mode        = "--batch" in flags
 force_run         = "--force" in flags
 generate_docx     = "--no-docx" not in flags
+generate_pdf      = "--pdf" in flags and generate_docx   # also write PDFs from the new docx files
 resume_adjustment = any(f.lower() == "--resumeadjustment" for f in flags)
 
 # ── LLM selection via --llm=<name> flag ───────────────────────────────────────
@@ -930,6 +1019,12 @@ def maybe_convert_to_docx(txt_path, label):
             print(f"  ⚠️  {label} DOCX original file was locked; wrote fallback → {out_path.relative_to(ROOT)}")
         else:
             print(f"  ✅  {label} DOCX → {out_path.relative_to(ROOT)}")
+        if generate_pdf:
+            for pdf_out, err in convert_docx_files_to_pdf([out_path]):
+                if err:
+                    print(f"  ⚠️  {label} PDF failed: {err}")
+                else:
+                    print(f"  ✅  {label} PDF  → {pdf_out.relative_to(ROOT)}")
         return out_path
     except Exception as exc:
         print(f"  ⚠️  {label} DOCX conversion failed: {exc}")
@@ -1485,6 +1580,8 @@ print(f"  python scripts/jd_scorecard_resume_v2.py --batch")
 print(f"  python scripts/jd_scorecard_resume_v2.py --batch --force")
 print(f"  python scripts/jd_scorecard_resume_v2.py --refresh-blueprint")
 print(f"  python scripts/jd_scorecard_resume_v2.py --ResumeAdjustment  (apply this JD's scorecard 6a guidance)")
+print(f"  python scripts/jd_scorecard_resume_v2.py --pdf           (also write PDFs next to the docx files)")
+print(f"  python scripts/jd_scorecard_resume_v2.py --docx-to-pdf=<docx file or folder>  (convert existing docx only)")
 print(f"  python scripts/jd_scorecard_resume_v2.py --llm=sonnet    (default, Claude Sonnet 5.5)")
 print(f"  python scripts/jd_scorecard_resume_v2.py --llm=deepseek  (DeepSeek Flash - cheap)")
 print(f"  python scripts/jd_scorecard_resume_v2.py --llm=deepseekpro  (DeepSeek Pro - deep thinking)")

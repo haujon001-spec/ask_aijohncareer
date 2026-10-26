@@ -2,6 +2,15 @@
 
 > **Closing note (26 Oct 2026):** Pushed through `6245c62` + this doc commit. VPS = Node 24.22.1 + new model presets (model-only deploy, /portal2 still pending). Benchmark: DeepSeek Pro full-run was NOT completed (stopped at close; earlier scorecard-only test: 264 s vs Flash 76 s) — optional to re-run. New untracked files left from portal runs, not committed: `src/data/jd/JD_Manulife_AVP_Technology_Asia_Strategy_and_Engineering.json`, `src/data/jd/JD_XXXAmbition_VP_Technology_Cloud_Workspace.json` (plus the pre-existing Hospital Authority one) — decide commit/discard. `soul.md` has an uncommitted modification and `CLAUDE.md` is untracked (pre-existing).
 
+> ## PLANNED FOR 27 Oct 2026 — add the PDF feature to the web portal
+> CLI side is DONE + committed 26 Oct: `scripts/jd_scorecard_resume_v2.py --pdf` (PDF alongside each new docx) and
+> `--docx-to-pdf=<docx file|folder>` (convert existing docx); guide `docs/guides/DOCXTOPDF_26OCT2026.md`. Engine = Word COM
+> (laptop only). **Portal work still to do:**
+> 1. Reports step: "Download PDF" / "Convert to PDF" button per document (and a "Generate PDF too" checkbox on the JD Run step that passes `--pdf` via `pythonRunner.js`).
+> 2. Backend: jd-api route to list/serve `data_processed/<Employer>/<Type>/pdf/*.pdf` and trigger `--docx-to-pdf=` for one file (path-validate under `data_processed/`, same guard as existing report routes).
+> 3. **VPS blocker:** the `jd-api` image is Linux/alpine — no Word. `--pdf` there degrades to a warning (no crash) but makes no PDF. Decide: add LibreOffice to `Dockerfile.jd-api` (`apk add libreoffice` + fonts; bigger image, rebuild jd-api only) vs. laptop-only PDFs synced over (ties into the sync feature below). Fonts: check the PDF looks like the Word one.
+> 4. Verify in browser (Playwright) on local portal, then deploy per the scp pattern; update guide + todolist.
+>
 > **UPDATE (same day): steps 1-5 below are DONE.** Laptop + VPS `app` + `jd-api` all run
 > Node v24.22.1 (details in `todolist_26Oct2026.md`, "Node 24 alignment"). Remaining from this
 > file: user's real portal login + JD run, then the carried items at the bottom. Rollback tags on
