@@ -4,6 +4,16 @@
 > Node v24.22.1 (details in `todolist_26Oct2026.md`, "Node 24 alignment"). Remaining from this
 > file: user's real portal login + JD run, then the carried items at the bottom. Rollback tags on
 > the VPS: `*:pre_node22` (Node 18 images) and `*:pre_node24` (Node 22 images).
+>
+> ## NEXT THING TO DO (as of end of 26 Oct 2026)
+> 1. **User:** log in to the local portal (password was reset 26 Oct via
+>    `docs/guides/JDPORTALPASSWORDROTATION_25JUL2026.md` Method A) and run one real JD end-to-end on
+>    Node 24.22.1 (`npm run dev:all`, http://localhost:5173/portal). Then do the same on the VPS
+>    portal — NB the VPS has its own `secrets/jd_portal_auth.json`, unaffected by the local reset.
+> 2. Decide on `npm audit fix` (24 vulns, mostly dev tooling; edits `package-lock.json`).
+> 3. Then the carried top priority: **deploy the `/portal2` epic to the VPS** (decide first whether
+>    any non-John profile data ships). Not started.
+> Resume with the `/next-session` command (`.claude/commands/next-session.md`).
 
 Read `todolist_26Oct2026.md` first (full record of today's SSH fix, OS patching and Node 22 rollout).
 
