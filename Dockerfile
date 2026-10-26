@@ -1,7 +1,7 @@
 # Multi-stage build - Frontend + Backend
 
 # Stage 1: Build frontend
-FROM node:22-alpine AS frontend-builder
+FROM node:24-alpine AS frontend-builder
 WORKDIR /build
 COPY package*.json ./
 RUN npm ci
@@ -9,7 +9,7 @@ COPY . .
 RUN npm run build
 
 # Stage 2: Backend runtime
-FROM node:22-alpine
+FROM node:24-alpine
 WORKDIR /app
 
 # Copy package.json from root

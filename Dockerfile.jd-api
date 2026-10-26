@@ -5,7 +5,7 @@
 # stay untouched by this feature (soul.md golden-rule: don't touch what's
 # already working).
 
-FROM node:22-alpine
+FROM node:24-alpine
 WORKDIR /app
 
 # Python 3 + venv for the JD pipeline script. Alpine's system Python enforces

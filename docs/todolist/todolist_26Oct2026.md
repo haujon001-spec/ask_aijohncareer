@@ -35,6 +35,17 @@ lacked it. Fixed by the user via the DO web console (appended the public key).
   `/jd-api/api/health`, `/api/health` all 200. Caddy untouched.
 - Not changed: VPS `backend/` code (still the 26 Aug state), so `/portal2` is still undeployed.
 
+## Node 24 alignment — DONE 26 Oct 2026 (supersedes the Node 22 target above)
+User decision: latest/safest and identical everywhere, no downgrades.
+- Laptop: winget upgrade (after reboot cleared installer error 1618) 24.13.0 -> **v24.22.1** (npm 11.19.1).
+  `npm run dev:all` verified: :3000, :3010, :5173 and `/portal` all 200.
+- VPS: `Dockerfile` + `Dockerfile.jd-api` -> `node:24-alpine`; backups `*.20261026_pre_node24.bak`
+  + rollback tags `john-career-copilot-{app,jd-api}:pre_node24` (Node 22 images); sha256 identical on transfer.
+- Result: laptop, `app` and `jd-api` all report **v24.22.1**. Public `/`, `/portal`, `/api/health`,
+  `/jd-api/api/health` 200; bad login 401; live chat 200; logs clean; containers healthy, 0 restarts.
+- Local backups: `archive/Dockerfile*.20261026_V2.bak`.
+- Still untested: a real portal login (password + MFA) and one real JD run — user to do once.
+
 ## Next (in order)
 1. (Done above: Node 22 Dockerfiles + v3 COPY.)
 2. Decide whether any real profile data (e.g. Matina Fung's) ships to production.
