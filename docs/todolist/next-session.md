@@ -58,6 +58,17 @@
 >    to `logs/` — no hallucinated success: the summary must come from actual hash checks.
 > 6. Tests: dry-run on current drift (expect ~10 new folders each way), round-trip one throwaway employer folder, conflict case,
 >    confirm secrets/ and profile files are untouched, confirm container still healthy afterwards.
+> **HOW TO ASK (user instruction, 26 Oct 2026): at the start of next session ask these questions ONE BY ONE, in
+> multiple-choice format (AskUserQuestion, one question per call, wait for the answer before the next), in this order:**
+> | # | Question | Suggested choices |
+> |---|---|---|
+> | 1 | Which side wins when the same file differs on both? | Laptop wins (Recommended) / VPS wins / Keep both, flag conflict / Ask me per file |
+> | 2 | What file types sync? | Everything: txt + docx + pdf (Recommended) / Text only / docx + pdf only |
+> | 3 | Who can trigger the sync? | Laptop portal only (Recommended) / Laptop + live VPS portal |
+> | 4 | The 3 untracked JD json files (Manulife, XXXAmbition, Hospital Authority)? | Sync them / Keep local only / Commit to git first / Discard |
+> | 5 | What gets synced? | Generated outputs only / Outputs + JD inputs (Recommended) / Outputs + inputs + blueprints |
+> Then restate the chosen design in 3-4 lines and get a go-ahead before implementing (soul.md §8.1).
+>
 > **Questions to ask the user at the start of that session:** (1) which side is the source of truth for conflicts;
 > (2) include DOCX/PDF binaries or text only; (3) should the live VPS portal also be able to trigger it, or laptop only;
 > (4) are the Manulife / XXXAmbition / Hospital Authority JD json files meant to be synced or kept local;
