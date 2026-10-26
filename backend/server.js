@@ -99,7 +99,7 @@ Resume Context:
 ${JSON.stringify(profileForPrompt, null, 2)}`;
 }
 
-// LLM Provider Configs - 2 MODELS ONLY: Claude Haiku 5.5 + DeepSeek V4 Flash (updated 26 Oct 2026)
+// LLM Provider Configs - 2 MODELS ONLY: Claude Haiku 5.5 + DeepSeek Flash (updated 26 Oct 2026)
 // Optimized for best results (tested & confirmed working March 26, 2026)
 // Ids 'deepseek'/'nemotron' are legacy frontend keys: 'deepseek' = Haiku slot, 'nemotron' = DeepSeek slot.
 const llmConfigs = {
@@ -114,11 +114,11 @@ const llmConfigs = {
     status: 'working'
   },
   nemotron: {
-    name: 'DeepSeek V4 Flash',
+    name: 'DeepSeek Flash',
     apiKey: process.env.DEEPSEEK_API_KEY,
     provider: 'deepseek',
     endpoint: 'https://api.deepseek.com/chat/completions',
-    model: 'deepseek-v4-flash',
+    model: 'deepseek-flash',
     costPerToken: { input: 0.091 / 1e6, output: 0.182 / 1e6 },
     supportsReasoning: true,
     status: 'working'
@@ -270,8 +270,8 @@ app.post('/api/:model', async (req, res) => {
         const deepseekConfig = llmConfigs.deepseek;
         result = await callLLM(deepseekConfig, question, reasoning, max_tokens);
         fallbackUsed = true;
-        fallbackReason = `${config.name} auth failed → Using DeepSeek V4 Flash`;
-        result.model = `${originalModel} [Using: DeepSeek V4 Flash]`;
+        fallbackReason = `${config.name} auth failed → Using DeepSeek Flash`;
+        result.model = `${originalModel} [Using: DeepSeek Flash]`;
       } else {
         throw error;
       }

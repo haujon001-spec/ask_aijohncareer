@@ -20,13 +20,13 @@ Usage:
   python scripts/update_profile_from_resume.py <file> [<file2> ...] [options]
   python scripts/update_profile_from_resume.py data_raw/resume/txt/JohnHauResume2025-AIA.txt
   python scripts/update_profile_from_resume.py data_raw/resume/txt/JohnHauResume2025-AIA.txt --company="AIA International Ltd"
-  python scripts/update_profile_from_resume.py <file> --llm=sonnet|haiku|deepseek|gemini
+  python scripts/update_profile_from_resume.py <file> --llm=sonnet|haiku|deepseek|deepseekpro|gemini
   python scripts/update_profile_from_resume.py <file> --dry-run
 
 --company=<name>   Explicit employer name to match against profile.professional_experience
                     (must match an existing entry's "company" field exactly). If omitted,
                     the script tries to auto-detect it from the file content.
---llm=<name>        sonnet (default) | haiku | deepseek | gemini — same presets as jd_scorecard_resume_v2.py.
+--llm=<name>        sonnet (default) | haiku | deepseek | deepseekpro | gemini — same presets as jd_scorecard_resume_v2.py.
 --dry-run           Run the LLM extraction and print what WOULD be added, but never
                     back up or write john_profile.json.
 --create-new-employer   Requires --company="Exact New Employer Name". Allows creating a
@@ -124,7 +124,8 @@ LLM_CONFIGS = {
     "haiku":   ("anthropic/claude-haiku-5.5",            "OPENROUTER_API_KEY", "https://openrouter.ai/api/v1/chat/completions"),
     # "deepseek-reasoner" is a legacy alias DeepSeek retired 24 Jul 2026 — same
     # fix already applied in jd_scorecard_resume_v2.py/v3.py on 3 Aug 2026.
-    "deepseek": ("deepseek-v4-flash",                   "DEEPSEEK_API_KEY",   "https://api.deepseek.com/chat/completions"),
+    "deepseek": ("deepseek-flash",                   "DEEPSEEK_API_KEY",   "https://api.deepseek.com/chat/completions"),
+    "deepseekpro": ("deepseek-v4-pro",                   "DEEPSEEK_API_KEY",   "https://api.deepseek.com/chat/completions"),
     "gemini":  ("google/gemini-3.1-flash-lite-preview", "OPENROUTER_API_KEY", "https://openrouter.ai/api/v1/chat/completions"),
 }
 

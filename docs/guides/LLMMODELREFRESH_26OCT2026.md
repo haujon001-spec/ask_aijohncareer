@@ -29,3 +29,16 @@ Files: `scripts/jd_scorecard_resume_v2.py`, `_v3.py`, `scripts/update_profile_fr
 
 ## Production status
 VPS still runs the old model ids. Deploy together with the `/portal2` epic (the local `pythonRunner.js` already contains `/portal2` changes, so a partial scp would ship them unintentionally).
+
+## Addendum — DeepSeek: Flash (cheap) vs Pro (deep thinking), 26 Oct 2026
+Source: https://api-docs.deepseek.com/quick_start/pricing (and /guides/thinking_mode). Your account's `/models` lists `deepseek-flash` and `deepseek-v4-pro`.
+- The portal had been calling `deepseek-v4-flash`, which DeepSeek now documents as a **legacy alias** served by DeepSeek-V4.1-Flash-1017 at Flash prices (no retirement date given). Moved to the official id `deepseek-flash` before it can be retired like `deepseek-reasoner` was.
+- DeepSeek's own prices, $ per 1M tokens, off-peak / peak (peak = 01-04 and 06-10 UTC, Mon-Fri; off-peak is half): Flash input 0.15/0.30, output 0.60/1.20; Pro input 0.66/1.32, output 1.98/3.96. (The OpenRouter figures quoted earlier were the reseller's, not DeepSeek's.)
+- Both models support thinking on/off (default on) and effort `low|high|max` via `reasoning_effort` and `{"thinking":{"type":"enabled|disabled"}}`.
+
+| Portal / CLI option | Model id | Effort | Real test (scorecard, same JD) |
+|---|---|---|---|
+| `deepseek` — "DeepSeek Flash (cheap)" | `deepseek-flash` | low | 76 s, 23.5 KB |
+| `deepseekpro` — "DeepSeek Pro (deep thinking)" | `deepseek-v4-pro` | high | 264 s, 22.5 KB |
+
+CLI: `--llm=deepseek` or `--llm=deepseekpro` (v2, v3, update_profile_from_resume). Chat backend DeepSeek slot now `deepseek-flash`. Effort for Pro is set by `LLM_DEEPSEEK_REASONING_EFFORT` in the Python scripts and `reasoningEffort` in `backend/lib/llmClient.js`. Not yet used: `max` effort and thinking-disabled mode (cheapest of all) — easy follow-ups. Backups: `archive/*.20261026_V4.bak`. DeepSeek account topped up ($20, balance 19.78 after tests). Still local only — not deployed.

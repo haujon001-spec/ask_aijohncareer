@@ -49,7 +49,7 @@ export function createJdRunV3Router({ projectRoot, timeoutMs }) {
       return res.status(400).json({ error: `Invalid mode: ${mode}. Valid: ${VALID_MODES.join(', ')}` });
     }
     if (!isValidLlm(llm)) {
-      return res.status(400).json({ error: `Invalid llm: ${llm}. Valid: sonnet, haiku, deepseek, gemini, custom` });
+      return res.status(400).json({ error: `Invalid llm: ${llm}. Valid: sonnet, haiku, deepseek, deepseekpro, gemini, custom` });
     }
     if (llm === 'custom') {
       if (!customModel || !isValidProvider(customModel.provider) || !customModel.slug || typeof customModel.slug !== 'string') {

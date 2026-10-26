@@ -163,7 +163,8 @@ function ProfileUpdateFromResume() {
           <label>LLM</label>
           <select value={llm} onChange={(e) => setLlm(e.target.value)}>
             <option value="sonnet">Sonnet</option>
-            <option value="deepseek">DeepSeek</option>
+            <option value="deepseek">DeepSeek Flash (cheap)</option>
+            <option value="deepseekpro">DeepSeek Pro (deep thinking)</option>
             <option value="haiku">Haiku (cheapest)</option>
           </select>
         </div>

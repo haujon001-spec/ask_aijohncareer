@@ -18,7 +18,7 @@
 > Gemini preset replaced in the UI by **Haiku 5.5** (`haiku`, $0.10/$0.50); chat backend moved off the retired
 > `deepseek-reasoner` and the Gemini preview. User decisions: Haiku as the cheap option; checker = **suggest only**.
 > **Open items:**
-> 1. **Top up the DeepSeek API balance** — live calls return 402 Insufficient Balance (affects the portal DeepSeek preset + chat).
+> 1. ~~Top up DeepSeek~~ DONE (USD 20 topped up; verified). DeepSeek presets now Flash (cheap, `deepseek-flash`) + Pro (deep thinking, `deepseek-v4-pro`, effort high) — see guide addendum. Check the VPS's own DeepSeek key balance/account when deploying.
 > 2. Deploy the model changes to the VPS **together with `/portal2`** (local `pythonRunner.js` already carries /portal2 changes).
 > 3. Build the **dynamic model checker** (suggest-only): `GET /jd-api/api/models` reads OpenRouter's public catalog
 >    (cache ~24h), filters to anthropic/deepseek/google, drops `:free`/`:batch`/`-vision`/dated snapshots, ranks by

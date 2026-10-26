@@ -4,7 +4,7 @@ import './ModelSelector.css'
 function ModelSelector({ selectedModel, onModelChange }) {
   const models = [
     { id: 'deepseek', name: 'Claude Haiku 5.5', icon: '⚡', desc: 'FASTEST' },
-    { id: 'nemotron', name: 'DeepSeek V4 Flash', icon: '🧠', desc: 'BEST REASONING' }
+    { id: 'nemotron', name: 'DeepSeek Flash', icon: '🧠', desc: 'BEST REASONING' }
   ]
 
   return (

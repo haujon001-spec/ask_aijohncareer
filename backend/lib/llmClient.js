@@ -15,7 +15,9 @@ const LLM_CONFIGS = {
   sonnet: { model: 'anthropic/claude-sonnet-5.5', provider: 'openrouter', endpoint: 'https://openrouter.ai/api/v1/chat/completions' },
   haiku: { model: 'anthropic/claude-haiku-5.5', provider: 'openrouter', endpoint: 'https://openrouter.ai/api/v1/chat/completions' },
   gemini: { model: 'google/gemini-3.1-flash-lite-preview', provider: 'openrouter', endpoint: 'https://openrouter.ai/api/v1/chat/completions' },
-  deepseek: { model: 'deepseek-v4-flash', provider: 'deepseek', endpoint: 'https://api.deepseek.com/chat/completions' },
+  deepseek: { model: 'deepseek-flash', provider: 'deepseek', endpoint: 'https://api.deepseek.com/chat/completions' },
+  // "deep thinking" option (26 Oct 2026): DeepSeek's default high reasoning effort.
+  deepseekpro: { model: 'deepseek-v4-pro', provider: 'deepseek', endpoint: 'https://api.deepseek.com/chat/completions', reasoningEffort: 'high' },
 };
 
 // DeepSeek defaults to thinking mode enabled with reasoning_effort="high" when
@@ -67,7 +69,7 @@ async function sleep(ms) {
 }
 
 export async function callLlmJson({ projectRoot, llm, customModel, systemPrompt, userPrompt, maxTokens = 6000, label = '' }) {
-  const { model, provider, endpoint } = resolveModel({ llm, customModel });
+  const { model, provider, endpoint, reasoningEffort } = resolveModel({ llm, customModel });
   const apiKey = resolveApiKey({ projectRoot, provider });
 
   const payload = {
@@ -80,7 +82,7 @@ export async function callLlmJson({ projectRoot, llm, customModel, systemPrompt,
     response_format: { type: 'json_object' },
   };
   if (provider === 'deepseek') {
-    payload.reasoning_effort = DEEPSEEK_REASONING_EFFORT;
+    payload.reasoning_effort = reasoningEffort || DEEPSEEK_REASONING_EFFORT;
   }
 
   const headers = {

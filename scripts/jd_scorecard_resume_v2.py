@@ -39,7 +39,7 @@ Usage: identical to v1, just invoke this file instead.
   python scripts/jd_scorecard_resume_v2.py --refresh-blueprint
   python scripts/jd_scorecard_resume_v2.py --batch
   python scripts/jd_scorecard_resume_v2.py --batch --force
-  python scripts/jd_scorecard_resume_v2.py --llm=sonnet|haiku|deepseek|gemini
+  python scripts/jd_scorecard_resume_v2.py --llm=sonnet|haiku|deepseek|deepseekpro|gemini
   python scripts/jd_scorecard_resume_v2.py --ResumeAdjustment
   python scripts/jd_scorecard_resume_v2.py --llm=custom --model=anthropic/claude-opus-4-8 --provider=openrouter
   python scripts/jd_scorecard_resume_v2.py --llm=sonnet --api-key=sk-or-v1-...
@@ -332,7 +332,7 @@ resume_adjustment = any(f.lower() == "--resumeadjustment" for f in flags)
 
 # ── LLM selection via --llm=<name> flag ───────────────────────────────────────
 llm_flag = next((f for f in flags if f.startswith("--llm=")), "--llm=sonnet")
-llm_choice = llm_flag.split("=", 1)[1].lower()   # sonnet | haiku | deepseek | gemini | custom
+llm_choice = llm_flag.split("=", 1)[1].lower()   # sonnet | haiku | deepseek | deepseekpro | gemini | custom
 
 # ── Bring-your-own-key / dynamic model overrides (added 23 Jul 2026) ──────────
 # --model= and --provider= together select an arbitrary OpenRouter/DeepSeek
@@ -390,7 +390,8 @@ LLM_CONFIGS = {
     # name          model_id                                     api_key_env            base_url
     "sonnet":  ("anthropic/claude-sonnet-5.5",                "OPENROUTER_API_KEY",  "https://openrouter.ai/api/v1/chat/completions"),
     "haiku":   ("anthropic/claude-haiku-5.5",                "OPENROUTER_API_KEY",  "https://openrouter.ai/api/v1/chat/completions"),
-    "deepseek":("deepseek-v4-flash",                        "DEEPSEEK_API_KEY",    "https://api.deepseek.com/chat/completions"),
+    "deepseek":("deepseek-flash",                        "DEEPSEEK_API_KEY",    "https://api.deepseek.com/chat/completions"),
+    "deepseekpro":("deepseek-v4-pro",                        "DEEPSEEK_API_KEY",    "https://api.deepseek.com/chat/completions"),
     "gemini":  ("google/gemini-3.1-flash-lite-preview",     "OPENROUTER_API_KEY",  "https://openrouter.ai/api/v1/chat/completions"),
 }
 
@@ -410,7 +411,7 @@ if llm_choice == "custom":
 elif llm_choice in LLM_CONFIGS:
     MODEL, api_key_env, LLM_ENDPOINT = LLM_CONFIGS[llm_choice]
 else:
-    sys.exit(f"ERROR: Unknown --llm value '{llm_choice}'. Valid: sonnet, haiku, deepseek, gemini, custom")
+    sys.exit(f"ERROR: Unknown --llm value '{llm_choice}'. Valid: sonnet, haiku, deepseek, deepseekpro, gemini, custom")
 
 API_KEY = cli_api_key_override or os.environ.get(api_key_env, "")
 if not API_KEY:
@@ -450,6 +451,10 @@ LLM_MAX_TOKENS_CEILING = 64000
 # reasoning model, unlike Sonnet/Gemini) while cutting reasoning-token spend
 # enough to bring per-call latency back in line with the other providers.
 LLM_DEEPSEEK_REASONING_EFFORT = "low"
+# --llm=deepseekpro (deepseek-v4-pro, "deep thinking") opts into DeepSeek's default high effort;
+# --llm=deepseek (deepseek-flash, "cheap") and custom DeepSeek ids keep "low". Added 26 Oct 2026.
+if llm_choice == "deepseekpro":
+    LLM_DEEPSEEK_REASONING_EFFORT = "high"
 
 if batch_mode:
     jd_files = sorted(DEFAULT_JD_DIR.glob("JD_*.txt"))
@@ -1481,7 +1486,8 @@ print(f"  python scripts/jd_scorecard_resume_v2.py --batch --force")
 print(f"  python scripts/jd_scorecard_resume_v2.py --refresh-blueprint")
 print(f"  python scripts/jd_scorecard_resume_v2.py --ResumeAdjustment  (apply this JD's scorecard 6a guidance)")
 print(f"  python scripts/jd_scorecard_resume_v2.py --llm=sonnet    (default, Claude Sonnet 5.5)")
-print(f"  python scripts/jd_scorecard_resume_v2.py --llm=deepseek  (DeepSeek R1)")
+print(f"  python scripts/jd_scorecard_resume_v2.py --llm=deepseek  (DeepSeek Flash - cheap)")
+print(f"  python scripts/jd_scorecard_resume_v2.py --llm=deepseekpro  (DeepSeek Pro - deep thinking)")
 print(f"  python scripts/jd_scorecard_resume_v2.py --llm=haiku     (Claude Haiku 5.5 - cheapest Claude)")
 print(f"  python scripts/jd_scorecard_resume_v2.py --llm=gemini    (legacy: Gemini Flash Lite preview)")
 print(f"  python scripts/jd_scorecard_resume_v2.py --llm=custom --model=<id> --provider=openrouter|deepseek")

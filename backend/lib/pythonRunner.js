@@ -18,6 +18,7 @@ const LLM_KEY_ENV = {
   haiku: 'OPENROUTER_API_KEY',
   gemini: 'OPENROUTER_API_KEY',
   deepseek: 'DEEPSEEK_API_KEY',
+  deepseekpro: 'DEEPSEEK_API_KEY',
 };
 
 // Which stored user-key provider (see llmKeys.js) backs each preset — used to
@@ -29,6 +30,7 @@ const PROVIDER_FOR_LLM = {
   haiku: 'openrouter',
   gemini: 'openrouter',
   deepseek: 'deepseek',
+  deepseekpro: 'deepseek',
 };
 
 const TYPE_DIRS = { scorecard: 'ScoreCard', resume: 'resume', coverletter: 'CoverLetter' };
