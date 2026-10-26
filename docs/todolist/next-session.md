@@ -32,6 +32,37 @@
 >    for Resume, and/or `reasoning` effort params via OpenRouter, to avoid paying for a truncated first attempt.
 > 5. Trim the DeepSeek key prefix logged by `backend/server.js` at startup.
 >
+> ## NEW FEATURE REQUEST (user, 26 Oct 2026) — one-button two-way sync, local laptop <-> VPS
+> **Goal:** newly generated resumes, scorecards and cover letters (and the JD inputs behind them) can be
+> synced between the laptop and the VPS with ONE button, in either direction (local -> VPS and VPS -> local).
+> **Why it's needed (measured 26 Oct):** the two sides have drifted — folders in `data_processed/`: laptop 28 vs VPS 18;
+> JD text files in `data_raw/jd/txt/`: 34 vs 25; JD json in `src/data/jd/`: 33 vs 23. Today the only way across is manual scp.
+> **What syncs (all already bind-mounted into the `jd-api` container, so no rebuild needed):**
+> - `data_processed/<Employer>/{ScoreCard,resume,CoverLetter}/{txt,docx,pdf}` — the generated outputs (main target)
+> - `data_raw/jd/txt/*.txt` and `src/data/jd/*.json` — the JD inputs and their cached blueprints
+> **What must NOT sync by default (guard-rails):** `secrets/` (password hash, TOTP, stored API keys), `.env*`,
+> `src/data/john_profile.json` and other profile folders (one-way, explicit, with backup + diff first — see the
+> 30 Jul profile version-history feature), `data_processed/<other-person>/` such as MatinaFung/AlexRivera (the open
+> "does non-John data ship to production" decision applies here too), the `ZZModelTest` scratch folder.
+> **Suggested design (to confirm with user before building):**
+> 1. Portal button **"Sync"** (Reports step or header) with a direction toggle: Push (local -> VPS) / Pull (VPS -> local).
+> 2. **Dry-run preview first:** list of new / changed / identical / conflicting files per employer, counts and sizes; user clicks Confirm.
+> 3. **Never overwrite silently:** copy only files that are new or newer; on a conflict (same name, different content, both
+>    changed) keep both (suffix `.from_vps` / `.from_local`) and flag it; every overwrite is backed up first
+>    (`.YYYYMMDD_V<n>.bak`, per soul.md golden rule); deletions are never propagated.
+> 4. **Mechanism options:** (a) laptop-side script/endpoint using `rsync`-over-SSH or `scp` with the existing SSH key (simplest,
+>    the button lives in the LOCAL portal and drives both directions from the laptop); (b) an authenticated VPS endpoint that
+>    streams a tar of changed files (needed if the live VPS portal should also trigger it). Recommend (a) first.
+>    The VPS root SSH key must never be exposed to the browser or stored in the portal; use the laptop's own key only.
+> 5. Verify with sha256 per file after transfer, show a result summary (copied / skipped / conflicts / failed), log it
+>    to `logs/` — no hallucinated success: the summary must come from actual hash checks.
+> 6. Tests: dry-run on current drift (expect ~10 new folders each way), round-trip one throwaway employer folder, conflict case,
+>    confirm secrets/ and profile files are untouched, confirm container still healthy afterwards.
+> **Questions to ask the user at the start of that session:** (1) which side is the source of truth for conflicts;
+> (2) include DOCX/PDF binaries or text only; (3) should the live VPS portal also be able to trigger it, or laptop only;
+> (4) are the Manulife / XXXAmbition / Hospital Authority JD json files meant to be synced or kept local;
+> (5) sync the JD inputs (`data_raw`, `src/data/jd`) or only generated outputs.
+>
 > Resume with the `/next-session` command (`.claude/commands/next-session.md`).
 
 Read `todolist_26Oct2026.md` first (full record of today's SSH fix, OS patching and Node 22 rollout).
