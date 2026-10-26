@@ -19,7 +19,7 @@
 > `deepseek-reasoner` and the Gemini preview. User decisions: Haiku as the cheap option; checker = **suggest only**.
 > **Open items:**
 > 1. ~~Top up DeepSeek~~ DONE (USD 20 topped up; verified). DeepSeek presets now Flash (cheap, `deepseek-flash`) + Pro (deep thinking, `deepseek-v4-pro`, effort high) — see guide addendum. Check the VPS's own DeepSeek key balance/account when deploying.
-> 2. Deploy the model changes to the VPS **together with `/portal2`** (local `pythonRunner.js` already carries /portal2 changes).
+> 2. ~~Deploy the model changes to the VPS~~ DONE 26 Oct 2026 (model-only, patched in place; /portal2 still undeployed). Rollback tags `*:pre_models`. See guide.
 > 3. Build the **dynamic model checker** (suggest-only): `GET /jd-api/api/models` reads OpenRouter's public catalog
 >    (cache ~24h), filters to anthropic/deepseek/google, drops `:free`/`:batch`/`-vision`/dated snapshots, ranks by
 >    newest + price, returns "current vs latest" with price. Configure step gets a "Check for newer models" button;
@@ -80,5 +80,5 @@ to clear it.
 ## Reminders
 - Logging in to the portal itself (password + MFA) and running a real JD is still untested
   post-patch; ask user to do one run to close that out.
-- VPS rollback tags currently present: `john-career-copilot-{app,jd-api}:pre_node22` (Node 18 images).
-- One pending non-security apt package on VPS: `fwupd`.
+- VPS rollback tags now: `john-career-copilot-{app,jd-api}:pre_models` only.
+- ~~fwupd pending~~ done; old `pre_node22`/`pre_node24` rollback images removed 26 Oct (housekeeping).

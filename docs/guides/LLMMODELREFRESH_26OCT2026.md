@@ -42,3 +42,23 @@ Source: https://api-docs.deepseek.com/quick_start/pricing (and /guides/thinking_
 | `deepseekpro` — "DeepSeek Pro (deep thinking)" | `deepseek-v4-pro` | high | 264 s, 22.5 KB |
 
 CLI: `--llm=deepseek` or `--llm=deepseekpro` (v2, v3, update_profile_from_resume). Chat backend DeepSeek slot now `deepseek-flash`. Effort for Pro is set by `LLM_DEEPSEEK_REASONING_EFFORT` in the Python scripts and `reasoningEffort` in `backend/lib/llmClient.js`. Not yet used: `max` effort and thinking-disabled mode (cheapest of all) — easy follow-ups. Backups: `archive/*.20261026_V4.bak`. DeepSeek account topped up ($20, balance 19.78 after tests). Still local only — not deployed.
+
+## Benchmark — old vs new presets, full pipeline (scorecard + resume + cover letter), same JD, 26 Oct 2026
+Cost = sum of the exact per-call `usage.cost` OpenRouter returns (logged by the pipeline); a lower bound, since truncated retry attempts aren't logged. DeepSeek is billed by its own API (balance moved < $0.01). OpenRouter's account-level usage counter posts late, so per-run deltas from it were NOT used.
+
+| Preset | Model | Full-run cost | Time | Scorecard / Resume / Cover (words) | Unsupported figures |
+|---|---|---|---|---|---|
+| Sonnet — OLD | claude-sonnet-5 | ~$0.73 | 614 s | 2233 / 2254 / 436 | 0 |
+| **Sonnet — NEW** | claude-sonnet-5.5 | ~$0.69 | **392 s** | 3216 / 2200 / **388** | 0 |
+| Gemini — OLD | gemini-3.1-flash-lite-preview | ~$0.01 | 35 s | **827** / 1646 / 370 | 0 |
+| **Haiku — NEW** | claude-haiku-5.5 | **~$0.06** (up to ~$0.08 incl. retries) | 478 s | 3201 / 1985 / 392 | 0 |
+| **DeepSeek Flash — NEW** | deepseek-flash | **< $0.01** | 200 s | 4629 / 2010 / 432 | 0 |
+| DeepSeek Pro — NEW | deepseek-v4-pro | (run still in progress when recorded) | | | |
+
+Reading: Sonnet 5.5 is slightly cheaper and ~36% faster than Sonnet 5 with a fuller scorecard and a cover letter inside the 350-420-word / 1-page target (Sonnet 5's was 436). The old Gemini preset was nearly free but its scorecard was ~4x thinner (827 words vs ~3,200) — not like-for-like. Haiku 5.5 gives full-depth output at ~1/10th of Sonnet's cost; DeepSeek Flash is the cheapest. "Unsupported figures" = numbers in the resume/cover letter not found in the profile JSON, resume templates or JD (all zero — no fabricated figures from any model).
+
+## VPS deployment — 26 Oct 2026 (done)
+Model changes deployed to production WITHOUT the `/portal2` epic: 8 files copied as-is (their only diff vs the VPS was today's model edits) + `pythonRunner.js` and `jd_run.js` patched in place on the VPS's own older copies. Backups: `*.20261026_pre_models.bak` on the VPS; rollback image tags `john-career-copilot-{app,jd-api}:pre_models` (Node 24 images before this change). Verified: Node v24.22.1 in both containers, `/`, `/portal`, `/api/health`, `/jd-api/api/health` 200, bad login 401, live chat on both slots OK with no fallback, logs clean, haiku/deepseekpro accepted by the portal API. Not deployed: `jd_run_v3.js`, `JDRunStepV3.jsx`, `update_profile_from_resume.py` (they don't exist on the VPS — part of `/portal2`).
+
+## VPS housekeeping — 26 Oct 2026 (done)
+`fwupd` updated (no reboot needed); removed old rollback tags `pre_node22` + `pre_node24` (~777 MB); pruned build cache older than 24h (~616 MB). Disk 24%.
