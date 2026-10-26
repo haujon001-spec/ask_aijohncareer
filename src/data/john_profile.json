@@ -734,6 +734,12 @@
         "impact": "Standardized, objective hiring framework introduced"
       },
       {
+        "achievement": "Microsoft Copilot Enterprise AI Deployment",
+        "company": "AIA International Ltd",
+        "scale": "Phase 1 rolled out to senior technical managers",
+        "impact": "Successfully deployed Microsoft Copilot to senior technical managers, bringing generative-AI productivity tooling into AIA's infrastructure leadership, and partnered with Microsoft to scope and plan Phase 2 of the deployment"
+      },
+      {
         "achievement": "No.1 Global Trading Application Revamp",
         "company": "Morgan Stanley",
         "metric": "US$ multi-billions daily trading volume",
@@ -856,6 +862,7 @@
           "Built and led a standardized, objective hiring framework, interviewing over **40 candidates** and hiring **8 additional team members**.",
           "Automated onboarding, offboarding, and move workflows by integrating Workday approvals with ServiceNow ticket assignment, partnering with Group IT and HR.",
           "Championed Phase 1 deployment of a self-service IT catalogue for software and hardware ordering in collaboration with Group IT.",
+          "Spearheaded enterprise AI adoption by successfully deploying Microsoft Copilot to senior technical managers, and partnered with Microsoft to scope and plan Phase 2 of the rollout.",
           "Transitioned EUS software/hardware procurement from an annual upfront cost model to a pay-as-you-go model, partnering with Finance and SMT."
         ]
       },
