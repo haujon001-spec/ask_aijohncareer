@@ -53,7 +53,7 @@ Cost = sum of the exact per-call `usage.cost` OpenRouter returns (logged by the 
 | Gemini — OLD | gemini-3.1-flash-lite-preview | ~$0.01 | 35 s | **827** / 1646 / 370 | 0 |
 | **Haiku — NEW** | claude-haiku-5.5 | **~$0.06** (up to ~$0.08 incl. retries) | 478 s | 3201 / 1985 / 392 | 0 |
 | **DeepSeek Flash — NEW** | deepseek-flash | **< $0.01** | 200 s | 4629 / 2010 / 432 | 0 |
-| DeepSeek Pro — NEW | deepseek-v4-pro | (run still in progress when recorded) | | | |
+| DeepSeek Pro — NEW | deepseek-v4-pro | not completed (full run stopped at session close); scorecard-only test earlier: 264 s vs Flash 76 s | | | |
 
 Reading: Sonnet 5.5 is slightly cheaper and ~36% faster than Sonnet 5 with a fuller scorecard and a cover letter inside the 350-420-word / 1-page target (Sonnet 5's was 436). The old Gemini preset was nearly free but its scorecard was ~4x thinner (827 words vs ~3,200) — not like-for-like. Haiku 5.5 gives full-depth output at ~1/10th of Sonnet's cost; DeepSeek Flash is the cheapest. "Unsupported figures" = numbers in the resume/cover letter not found in the profile JSON, resume templates or JD (all zero — no fabricated figures from any model).
 

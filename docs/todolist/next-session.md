@@ -1,4 +1,6 @@
-# Next session — written 26 October 2026
+# Next session — written 26 October 2026 (session closed; resume with `/next-session`)
+
+> **Closing note (26 Oct 2026):** Pushed through `6245c62` + this doc commit. VPS = Node 24.22.1 + new model presets (model-only deploy, /portal2 still pending). Benchmark: DeepSeek Pro full-run was NOT completed (stopped at close; earlier scorecard-only test: 264 s vs Flash 76 s) — optional to re-run. New untracked files left from portal runs, not committed: `src/data/jd/JD_Manulife_AVP_Technology_Asia_Strategy_and_Engineering.json`, `src/data/jd/JD_XXXAmbition_VP_Technology_Cloud_Workspace.json` (plus the pre-existing Hospital Authority one) — decide commit/discard. `soul.md` has an uncommitted modification and `CLAUDE.md` is untracked (pre-existing).
 
 > **UPDATE (same day): steps 1-5 below are DONE.** Laptop + VPS `app` + `jd-api` all run
 > Node v24.22.1 (details in `todolist_26Oct2026.md`, "Node 24 alignment"). Remaining from this
@@ -6,7 +8,7 @@
 > the VPS: `*:pre_node22` (Node 18 images) and `*:pre_node24` (Node 22 images).
 >
 > ## NEXT THING TO DO (as of end of 26 Oct 2026)
-> 1. **User:** log in to the local portal (password was reset 26 Oct via
+> 1. **PARTLY DONE (26 Oct, user-confirmed):** local portal login + a real JD run with **Haiku 5.5** works as expected. Still to check: same on the live VPS portal, and a Sonnet 5.5 / DeepSeek Flash/Pro run via the portal UI. (original note follows) log in to the local portal (password was reset 26 Oct via
 >    `docs/guides/JDPORTALPASSWORDROTATION_25JUL2026.md` Method A) and run one real JD end-to-end on
 >    Node 24.22.1 (`npm run dev:all`, http://localhost:5173/portal). Then do the same on the VPS
 >    portal — NB the VPS has its own `secrets/jd_portal_auth.json`, unaffected by the local reset.
