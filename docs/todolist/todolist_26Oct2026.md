@@ -50,6 +50,6 @@ User decision: latest/safest and identical everywhere, no downgrades.
 1. (Done above: Node 22 Dockerfiles + v3 COPY.)
 2. Decide whether any real profile data (e.g. Matina Fung's) ships to production.
 3. Deploy `/portal2` epic to VPS (scp-based; backup first; rebuild both `app` and `jd-api`). Not started, per user.
-4. Commit the Dockerfile changes (uncommitted locally).
-5. Held items: 3 unpushed local commits (do not push without asking); untracked
+4. (Done: Dockerfile changes committed as `f07cfd9` and `b4a52f1`.)
+5. Held items: unpushed local commits (do not push without asking); untracked
    `JD_HospitalAuthority_IT_Manager_Systems.json` needs a decision.
