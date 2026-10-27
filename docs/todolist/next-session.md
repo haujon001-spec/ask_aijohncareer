@@ -1,5 +1,8 @@
 # Next session — written 26 October 2026 (session closed; resume with `/next-session`)
 
+> ## UPDATE 27 Oct 2026 (late) — mobile "Save JD not visible" FIX DEPLOYED, awaiting user's phone check
+> Root cause: `100vh` on mobile Chrome is taller than the visible screen -> changed `.portal-shell` to `100dvh` (+ opaque Save bar). Live. **Next session: ask the user to confirm on the phone** (portal + Save JD visible without scrolling). If still clipped, try `position: fixed; inset: 0` on `.portal-shell`. Same `100vh` pattern exists on the public chat page (`src/App.css` L5-6, L89-90; `src/index.css` L47) — apply `dvh` there too after checking the chat input bar on the phone.
+>
 > ## UPDATE 27 Oct 2026 (night) — follow-ups DONE; **/portal2 DEFERRED ("later")** (record: `docs/guides/VPSDEPLOY_27OCT2026.md`, second-deploy section)
 > Done + live: sticky Save JD bar + compact screenshot grid; profile edits pushed to the VPS (28.33 yrs, career break ends Nov 2022); /portal2 switched OFF on the live site (flags, code kept); clearer LinkedIn-refusal message. User runs Sync manually.
 > **Later:** (A) enable /portal2 on the VPS — needs `VITE_ENABLE_PORTAL2=true` build, `JD_ENABLE_PORTAL2=1`, onboarding script in the image, and the non-John-data decision. (B) LinkedIn link on the live site is not feasible without bypassing LinkedIn's bot protection — use the laptop portal (`npm run dev:lan`) + Sync. (C) Real-phone test. (D) `src/data/john_profile.json` is modified-but-uncommitted locally (user's edits, now also on the VPS) — user to decide about committing (public repo). (E) GitHub push not done.

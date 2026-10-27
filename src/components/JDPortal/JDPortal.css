@@ -708,8 +708,9 @@
   gap: 12px;
   margin-top: 12px;
   padding: 12px 0 2px;
-  background: rgb(var(--portal-sunken-rgb) / 0.92);
+  background: rgb(var(--portal-sunken-rgb) / 0.98);
   border-top: 1px solid var(--portal-border);
+  padding-bottom: max(2px, env(safe-area-inset-bottom));
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
 }

@@ -1,6 +1,12 @@
 .portal-shell {
   height: 100vh;
   max-height: 100vh;
+  /* Mobile browsers: 100vh is the screen height with the address bar hidden, so the
+     bottom of the portal (and the pinned Save bar) sat BELOW the visible area.
+     dvh follows what is actually visible. Older browsers keep the vh values above.
+     (27 Oct 2026, reproduced on the user's Android phone) */
+  height: 100dvh;
+  max-height: 100dvh;
   width: 100%;
   overflow: hidden;
   background:

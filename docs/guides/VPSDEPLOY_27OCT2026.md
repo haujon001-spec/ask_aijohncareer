@@ -68,3 +68,13 @@ Left to the user to run manually.
 ## Verification (live)
 `/portal2`, `/portal2/login` → `/portal/login`; `/jd-api/api/{profiles,onboard,jd-v3/run}` 404; other routes 401; health 200; new UI + sticky CSS in the bundle, no portal2 strings; no page errors; chat OK; 0 errors in logs; both containers healthy.
 Rollback tags for this step: `john-career-copilot-{app,jd-api}:pre_portal2off` (earlier: `:pre_capture`).
+
+
+---
+# Third deploy, same day: Save JD hidden on the user's phone (mobile viewport bug)
+
+User's real Android screenshot (live site) showed the bottom of the form clipped by the phone's navigation bar, with only the top sliver of Save JD visible — the earlier sticky-bar fix did not help on a real phone.
+- **Cause:** `.portal-shell` used `height: 100vh`. On mobile Chrome `100vh` = screen height with the address bar HIDDEN, taller than the visible area, so the bottom of the portal (and the pinned Save bar) sat below the visible screen. Desktop browsers and Playwright cannot show this (innerHeight == 100vh there), which is why it was missed.
+- **Fix:** `PortalShell.css` now sets `height/max-height: 100dvh` after the `100vh` fallback (dynamic viewport height tracks the visible area); Save bar background made near-opaque (0.98) with a `safe-area-inset-bottom` padding. 2 CSS files, hash-verified, app image only (rollback tag `john-career-copilot-app:pre_mobilefix`).
+- **Verified:** live CSS bundle contains the `100dvh` rule; desktop 1440×800, Pixel-7 412×915 and 360×640 viewports all show Save JD fully in view with the shell height equal to the visible height; app healthy, no log errors. **Needs the user's phone to confirm** (cannot be reproduced headless).
+- **Not changed (same pattern, not reported):** the public chat page also uses `100vh` (`src/App.css` lines 5-6 and 89-90, `src/index.css` line 47) and may clip its bottom input on mobile — candidate for the same `dvh` fix.
