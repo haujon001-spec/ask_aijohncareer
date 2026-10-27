@@ -20,6 +20,7 @@ import { createSettingsRouter } from './api/settings.js';
 import { createPdfRouter } from './api/pdf.js';
 import { createSyncRouter } from './api/sync.js';
 import { createJdCaptureRouter } from './api/jd_capture.js';
+import { createJdLinkRouter } from './api/jd_link.js';
 import { isValidProfileName } from './lib/profileName.js';
 
 // Standalone entrypoint for the JD Automation Portal API — separate process
@@ -116,6 +117,7 @@ app.use(
     res.status(err.status || 400).json({ error: err.type === 'entity.too.large' ? 'Screenshots are too large to upload together' : 'Invalid request body' });
   },
 );
+app.use('/api/jd/link', requireAuth, createJdLinkRouter());
 app.use('/api/jd/run', requireAuth, createJdRunRouter({ projectRoot, jdTxtDir: JD_TXT_DIR, timeoutMs: RUN_TIMEOUT_MS }));
 app.use('/api/profile', requireAuth, createProfileRouter({ projectRoot }));
 app.use('/api/profile-view', requireAuth, createProfileViewRouter({ projectRoot }));

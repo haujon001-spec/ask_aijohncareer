@@ -53,6 +53,14 @@ export function runJd({ jdFile, llm, mode, refreshBlueprint, generateDocx, gener
 
 // ---- JD screenshot capture (27 Oct 2026) ----
 
+// Read a job from a LinkedIn job link (public page, no LinkedIn login involved).
+export function fetchJdFromLink(url) {
+  return request('/api/jd/link', {
+    method: 'POST',
+    body: JSON.stringify({ url })
+  })
+}
+
 // Used to detect a backend that predates the capture route (404) before uploading.
 export function fetchCaptureLimits() {
   return request('/api/jd/capture/limits')

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { uploadJd } from '../../utils/jdApi'
 import CollapsibleCard from './CollapsibleCard'
 import CaptureFromScreenshots from './CaptureFromScreenshots'
+import CaptureFromLink from './CaptureFromLink'
 
 const MIN_JD_LENGTH = 50
 const LAST_SAVED_JD_KEY = 'jdPortal.lastSavedJd'
@@ -29,8 +30,8 @@ function JDUploadForm({ onUploaded, uploadFn = uploadJd, extraParams = {}, enabl
   const [error, setError] = useState(null)
   const [conflict, setConflict] = useState(null)
   const [successMsg, setSuccessMsg] = useState(null)
-  const [captureOpen, setCaptureOpen] = useState(false)
-  const [captureNotice, setCaptureNotice] = useState(null) // { imagesRead, notes } | null
+  const [captureMode, setCaptureMode] = useState(null) // 'screenshots' | 'link' | null
+  const [captureNotice, setCaptureNotice] = useState(null) // { source, imagesRead, notes, empty? } | null
 
   const tooShort = jdText.trim().length < MIN_JD_LENGTH
 
@@ -65,17 +66,17 @@ function JDUploadForm({ onUploaded, uploadFn = uploadJd, extraParams = {}, enabl
   const handleExtracted = (result) => {
     if (!result.jdText) {
       // Nothing readable: tell the user why, but never wipe what is already in the form.
-      setCaptureNotice({ imagesRead: result.imagesRead, notes: result.notes || [], empty: true })
+      setCaptureNotice({ source: result.source, imagesRead: result.imagesRead, notes: result.notes || [], empty: true })
       return
     }
     setEmployer(result.employer || '')
     setRole(result.role || '')
     setJdText(result.jdText || '')
-    setCaptureNotice({ imagesRead: result.imagesRead, notes: result.notes || [] })
+    setCaptureNotice({ source: result.source, imagesRead: result.imagesRead, notes: result.notes || [] })
     setConflict(null)
     setSuccessMsg(null)
     setError(null)
-    if (result.jdText) setCaptureOpen(false)
+    setCaptureMode(null)
   }
 
   const handleSubmit = (e) => {
@@ -116,15 +117,26 @@ function JDUploadForm({ onUploaded, uploadFn = uploadJd, extraParams = {}, enabl
 
       {enableCapture && (
         <div className="jd-capture-wrap">
-          <button
-            type="button"
-            className="jd-button jd-button-secondary"
-            aria-expanded={captureOpen}
-            onClick={() => setCaptureOpen((o) => !o)}
-          >
-            {captureOpen ? 'Hide screenshot capture' : 'Capture from screenshots'}
-          </button>
-          {captureOpen && <CaptureFromScreenshots onExtracted={handleExtracted} disabled={submitting} />}
+          <div className="jd-capture-actions">
+            <button
+              type="button"
+              className="jd-button jd-button-secondary"
+              aria-expanded={captureMode === 'screenshots'}
+              onClick={() => setCaptureMode((m) => (m === 'screenshots' ? null : 'screenshots'))}
+            >
+              {captureMode === 'screenshots' ? 'Hide screenshot capture' : 'Capture from screenshots'}
+            </button>
+            <button
+              type="button"
+              className="jd-button jd-button-secondary"
+              aria-expanded={captureMode === 'link'}
+              onClick={() => setCaptureMode((m) => (m === 'link' ? null : 'link'))}
+            >
+              {captureMode === 'link' ? 'Hide job link' : 'Paste a LinkedIn job link'}
+            </button>
+          </div>
+          {captureMode === 'screenshots' && <CaptureFromScreenshots onExtracted={handleExtracted} disabled={submitting} />}
+          {captureMode === 'link' && <CaptureFromLink onExtracted={handleExtracted} disabled={submitting} />}
         </div>
       )}
 
@@ -132,7 +144,9 @@ function JDUploadForm({ onUploaded, uploadFn = uploadJd, extraParams = {}, enabl
         <div className={`jd-banner ${captureNotice.notes.length || captureNotice.empty ? 'jd-banner--warning' : 'jd-banner--success'}`}>
           {captureNotice.empty
             ? 'No job description could be read — the form was left unchanged.'
-            : `Filled from ${captureNotice.imagesRead} screenshot${captureNotice.imagesRead === 1 ? '' : 's'} — please read it through and fix any misread words before saving.`}
+            : captureNotice.source === 'link'
+              ? 'Filled from the LinkedIn job page — please read it through before saving.'
+              : `Filled from ${captureNotice.imagesRead} screenshot${captureNotice.imagesRead === 1 ? '' : 's'} — please read it through and fix any misread words before saving.`}
           {captureNotice.notes.length > 0 && (
             <ul className="jd-capture-notes">
               {captureNotice.notes.map((n, i) => (
