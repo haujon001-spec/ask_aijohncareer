@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { captureJdFromImages } from '../../utils/jdApi'
+import { captureJdFromImages, fetchCaptureLimits } from '../../utils/jdApi'
 
 // Mirrors backend/lib/jdCapture.js (the server re-checks everything).
 const MAX_IMAGES = 10
@@ -45,10 +45,19 @@ function CaptureFromScreenshots({ onExtracted, disabled }) {
   const [items, setItems] = useState([]) // [{ id, file, preview }]
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState(null)
+  const [backendMissing, setBackendMissing] = useState(false)
   const galleryRef = useRef(null)
   const cameraRef = useRef(null)
   const itemsRef = useRef(items)
   itemsRef.current = items
+
+  // A backend started before this feature existed answers 404 here (and would
+  // reject the real upload with an opaque 413) — say so up front.
+  useEffect(() => {
+    fetchCaptureLimits().catch((err) => {
+      if (err.status === 404) setBackendMissing(true)
+    })
+  }, [])
 
   // Release the preview blobs when the panel goes away.
   useEffect(() => () => itemsRef.current.forEach((it) => URL.revokeObjectURL(it.preview)), [])
@@ -92,7 +101,13 @@ function CaptureFromScreenshots({ onExtracted, disabled }) {
       items.forEach((it) => URL.revokeObjectURL(it.preview))
       setItems([])
     } catch (err) {
-      setError(err.message)
+      setError(
+        err.status === 413
+          ? 'The screenshots were too large for the server. Remove a few and try again — or restart the portal backend if you have not since updating.'
+          : err.status === 404
+            ? 'The running backend does not have screenshot capture yet — restart it (npm run dev:all), then try again.'
+            : err.message
+      )
     } finally {
       setBusy(false)
     }
@@ -104,8 +119,19 @@ function CaptureFromScreenshots({ onExtracted, disabled }) {
     <div className="jd-capture">
       <p className="jd-field-hint" style={{ marginBottom: 10 }}>
         Add the screenshots of the job ad in order, top of the page first. Overlapping scroll screenshots are fine — repeated
-        lines are removed. The images are read once and not stored.
+        lines are removed, and if they are out of order the model will re-order them and tell you. The images are read once and
+        not stored.
       </p>
+      <p className="jd-field-hint" style={{ marginBottom: 10 }}>
+        <strong>You do not need to type or paste anything below</strong> — Employer, Role and the job description are filled in
+        for you (replacing what is there now).
+      </p>
+      {backendMissing && (
+        <div className="jd-banner jd-banner--error" style={{ marginBottom: 10 }}>
+          The running portal backend was started before screenshot capture was added. Stop it and run <code>npm run dev:all</code>{' '}
+          (or <code>npm run dev:lan</code>) again, then reload this page.
+        </div>
+      )}
 
       <div className="jd-capture-actions">
         <button type="button" className="jd-button jd-button-secondary" disabled={locked || items.length >= MAX_IMAGES} onClick={() => galleryRef.current?.click()}>

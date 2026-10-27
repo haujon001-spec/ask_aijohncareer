@@ -53,6 +53,11 @@ export function runJd({ jdFile, llm, mode, refreshBlueprint, generateDocx, gener
 
 // ---- JD screenshot capture (27 Oct 2026) ----
 
+// Used to detect a backend that predates the capture route (404) before uploading.
+export function fetchCaptureLimits() {
+  return request('/api/jd/capture/limits')
+}
+
 // images: ordered [{ mediaType, data }], data = raw base64 (no data: prefix)
 export function captureJdFromImages(images) {
   return request('/api/jd/capture', {

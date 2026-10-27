@@ -58,6 +58,13 @@ Prompt rules: transcribe verbatim, join in order and drop the overlap between ne
 - Test used a synthetic page rendered from a real JD, not a live LinkedIn screenshot; very small or low-contrast text may produce `[unreadable]` notes.
 - `/portal2` does not have the option.
 
+## Follow-up, same day: first real use hit "HTTP 413"
+- **Cause:** the user's dev backend (port 3010) had been started *before* the capture code existed. The old process rejects any body over 2 MB with a bare 413 (global parser) — ten re-encoded screenshots exceed that — and answers the capture route with 404. Fix = **restart the backend** (`npm run dev:all` / `dev:lan`); a password reset or page reload does not pick up new backend code.
+- **Hardening added:** the panel now calls `GET /api/jd/capture/limits` on open; a 404 shows "backend started before screenshot capture was added — restart it". A 413/404 on upload gives a plain-English message instead of "HTTP 413".
+- **Prompt:** screenshots picked out of order are re-ordered by content continuity (tested with two shuffled screenshots: 40/40 passages found, 39/39 in order; a 3.8 MB upload accepted).
+- **UI:** the panel states that nothing needs to be typed or pasted below — Employer, Role and text are filled in and replace what is there.
+- Note: two Vite servers (5173 and 5174) were running; use one.
+
 ## Also changed
 - `jd_api_server.js` no longer logs any part of the API keys at startup (it used to print the first 20 characters).
 

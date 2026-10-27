@@ -60,6 +60,7 @@ The images are consecutive screenshots of ONE job posting, given in reading orde
 Rules:
 1. Transcribe the job posting text faithfully and completely. Do not summarise, shorten, reword, translate or add anything.
 2. Join the images in order into ONE continuous text and remove the duplicated overlap, so each line appears exactly once.
+   The images are normally already in reading order. But if the content clearly does not continue from one image to the next (for example Image 3 holds text that belongs before Image 2), put the pieces in the order the posting itself reads and add a note saying the screenshots were out of order.
 3. Leave out app chrome that is not part of the posting: status bar, clock, battery, navigation bars, tab bars, buttons and labels such as Apply, Easy Apply, Save, Share, Report, "N applicants", "Promoted", "Premium", ads, and "similar jobs / people also viewed" lists.
 4. Keep the posting's structure: put each heading on its own line, and write bullet points as lines starting with "- ". Separate sections with a blank line.
 5. If a word or number cannot be read with confidence, write [unreadable] in its place and add a short note to "notes" saying where. Never guess a figure, name or requirement.
