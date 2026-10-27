@@ -1,5 +1,24 @@
 # Next session — written 26 October 2026 (session closed; resume with `/next-session`)
 
+> # START HERE — 28 Oct 2026 (written end of 27 Oct; resume with `/next-session`)
+> ## 1. TOP PRIORITY: mobile bottom-of-page clipping + button usability (every page)
+> **Reported (user, real Android Chrome, live site, 27 Oct evening):** the bottom of the page is still cut off, so buttons at the bottom (Save JD, and on other pages too) are hard to see and hard to press. The `100dvh` fix (`PortalShell.css`, commit `7ad0467`, deployed) did NOT visibly solve it — user said "same issue". Do this first, with a phone screenshot after each attempt:
+> 1. Get a fresh phone screenshot of /portal (Configure) AND another page (History, Reports, JD Run, Profile) to see exactly what is clipped (browser bottom bar? Android gesture/nav bar? the shell itself?).
+> 2. Hypotheses, in order: (a) hard-reload/cache — confirm the phone really loaded the new CSS (`index-*.css` contains `100dvh`); (b) `.portal-shell` should be `position: fixed; inset: 0` (layout-viewport sized) instead of any vh/dvh; (c) the inner scroll area (`.jd-portal`, `.portal-main`) needs real `padding-bottom` (~96px + `env(safe-area-inset-bottom)`) so the last buttons can scroll above the system bar; (d) the sticky Save bar fights the nested flex/overflow containers — consider a fixed-position action bar for phones (`@media (max-width: 768px)`).
+> 3. **Touch targets everywhere (phone):** all portal buttons ≥ 44×44 px with spacing; primary action buttons full-width on phones; check every wizard step, History row actions (View / Convert to PDF / delete), Profile, Sync-less live view.
+> 4. Same `100vh` pattern on the public chat page (`src/App.css` L5-6, L89-90; `src/index.css` L47) — check the chat input bar on the phone and fix the same way.
+> 5. Test method: desktop Playwright cannot reproduce it (innerHeight == 100vh there). Try Chrome DevTools device mode / `chrome://inspect` remote debugging against the phone, or Playwright with a WebKit/Android profile, then confirm on the real phone. Deploy = CSS-only app rebuild (see `docs/guides/VPSDEPLOY_27OCT2026.md`, third deploy; rollback tag `john-career-copilot-app:pre_mobilefix`).
+>
+> ## 2. Good news to remember
+> The **LinkedIn job-link option works on the live phone portal** (user confirmed 27 Oct evening: "works like a charm"). My own single server-side test earlier that day was refused, so LinkedIn's blocking of the VPS is intermittent, not permanent. Keep the clearer refusal message (it points to the laptop portal / screenshots as the fallback). Do NOT try to engineer around LinkedIn blocking if it refuses again.
+> Screenshot capture, PDF buttons, Sync (laptop only; user runs it manually), profile push (28.33 yrs, career break end Nov 2022) are all live and verified. `/portal2` is deliberately OFF on the live site (deferred "later").
+>
+> ## 3. Smaller open items
+> (A) Phone confirmation that screenshot capture works end-to-end on a real phone (user has now used it live — Ant International JD loaded, 5,481 chars). (B) `src/data/john_profile.json` is edited-but-uncommitted locally (also live on VPS) — public repo, user to decide. (C) `soul.md` has an uncommitted user edit. (D) Old docx files still contain `**` — rebuild with `scripts/docx_render.py <folder>` only if wanted. (E) Enabling /portal2 on the VPS later: see the "/portal2 parked" section of `VPSDEPLOY_27OCT2026.md`.
+> **Pushed to GitHub:** everything committed up to the end of 27 Oct (see `git log`); the profile JSON, secrets and archive backups are NOT in git.
+>
+---
+
 > ## UPDATE 27 Oct 2026 (late) — mobile "Save JD not visible" FIX DEPLOYED, awaiting user's phone check
 > Root cause: `100vh` on mobile Chrome is taller than the visible screen -> changed `.portal-shell` to `100dvh` (+ opaque Save bar). Live. **Next session: ask the user to confirm on the phone** (portal + Save JD visible without scrolling). If still clipped, try `position: fixed; inset: 0` on `.portal-shell`. Same `100vh` pattern exists on the public chat page (`src/App.css` L5-6, L89-90; `src/index.css` L47) — apply `dvh` there too after checking the chat input bar on the phone.
 >

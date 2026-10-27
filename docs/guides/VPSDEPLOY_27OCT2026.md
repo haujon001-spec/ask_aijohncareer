@@ -78,3 +78,8 @@ User's real Android screenshot (live site) showed the bottom of the form clipped
 - **Fix:** `PortalShell.css` now sets `height/max-height: 100dvh` after the `100vh` fallback (dynamic viewport height tracks the visible area); Save bar background made near-opaque (0.98) with a `safe-area-inset-bottom` padding. 2 CSS files, hash-verified, app image only (rollback tag `john-career-copilot-app:pre_mobilefix`).
 - **Verified:** live CSS bundle contains the `100dvh` rule; desktop 1440×800, Pixel-7 412×915 and 360×640 viewports all show Save JD fully in view with the shell height equal to the visible height; app healthy, no log errors. **Needs the user's phone to confirm** (cannot be reproduced headless).
 - **Not changed (same pattern, not reported):** the public chat page also uses `100vh` (`src/App.css` lines 5-6 and 89-90, `src/index.css` line 47) and may clip its bottom input on mobile — candidate for the same `dvh` fix.
+
+
+---
+## Correction (27 Oct, evening): LinkedIn link DOES work on the live portal from the phone
+After the third deploy the user reported the link option "works like a charm on the mobile external portal". The earlier statements in this guide ("does not work from the VPS", "NOT possible") were based on one server-side test that LinkedIn refused — LinkedIn's blocking of the VPS address is **intermittent**, not permanent. Treat the link option as best-effort on the live site, with screenshots / the laptop portal as the fallback; still no attempt should be made to circumvent LinkedIn's bot protection.
