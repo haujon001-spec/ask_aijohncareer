@@ -165,10 +165,24 @@ function CaptureFromScreenshots({ onExtracted, disabled }) {
         />
       </div>
 
-      {error && <div className="jd-banner jd-banner--error" style={{ marginTop: 10 }}>{error}</div>}
-
       {items.length > 0 && (
         <>
+          <div className="jd-capture-read">
+            <button type="button" className="jd-button" disabled={locked} onClick={handleRead}>
+              {busy ? 'Reading screenshots…' : `Read job description from ${items.length} screenshot${items.length === 1 ? '' : 's'}`}
+            </button>
+            {busy && (
+              <span className="jd-elapsed-timer" style={{ marginLeft: 12 }}>
+                <span className="jd-typing-dots">
+                  <span></span><span></span><span></span>
+                </span>
+                <span>Uploading and reading — this can take up to a minute…</span>
+              </span>
+            )}
+          </div>
+
+          {error && <div className="jd-banner jd-banner--error" role="alert" style={{ marginTop: 10 }}>{error}</div>}
+
           <ol className="jd-capture-list">
             {items.map((it, i) => (
               <li key={it.id} className="jd-capture-item">
@@ -185,13 +199,11 @@ function CaptureFromScreenshots({ onExtracted, disabled }) {
               </li>
             ))}
           </ol>
-
-          <button type="button" className="jd-button" disabled={locked} onClick={handleRead}>
-            {busy ? 'Reading screenshots…' : `Read job description from ${items.length} screenshot${items.length === 1 ? '' : 's'}`}
-          </button>
-          {busy && <span className="jd-field-hint" style={{ marginLeft: 10 }}>This can take up to a minute.</span>}
         </>
       )}
+
+      {/* errors before any screenshot is queued (e.g. too many files picked) */}
+      {items.length === 0 && error && <div className="jd-banner jd-banner--error" role="alert" style={{ marginTop: 10 }}>{error}</div>}
     </div>
   )
 }

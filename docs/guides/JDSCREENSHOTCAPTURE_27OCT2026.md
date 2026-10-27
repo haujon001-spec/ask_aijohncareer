@@ -65,6 +65,10 @@ Prompt rules: transcribe verbatim, join in order and drop the overlap between ne
 - **UI:** the panel states that nothing needs to be typed or pasted below — Employer, Role and text are filled in and replace what is there.
 - Note: two Vite servers (5173 and 5174) were running; use one.
 
+### Second follow-up: "Read button does nothing" (same day)
+- **Cause 1 (the real blocker):** after restarting, only Vite was new. The JD API (3010) and chat backend (3000) were orphaned `node` processes from 14:04 still holding their ports, so the freshly started backends could not bind and the OLD code kept answering (capture route = 404, bodies >2 MB = 413). Check with: `Get-NetTCPConnection -State Listen -LocalPort 3010 | % { Get-Process -Id $_.OwningProcess | select Id,StartTime }` — the StartTime must be later than the last code change. Stop the stale process, then start the servers again.
+- **Cause 2 (UI):** with 10 screenshots listed, the button was far below the error banner, so a failure was off-screen and looked like "nothing happened". The Read button, a progress indicator and any error now sit together directly under the Choose/Take buttons, above the list (`role="alert"`).
+
 ## Also changed
 - `jd_api_server.js` no longer logs any part of the API keys at startup (it used to print the first 20 characters).
 
