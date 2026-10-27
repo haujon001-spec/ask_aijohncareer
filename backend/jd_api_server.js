@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { loadEnv } from './lib/loadEnv.js';
@@ -130,6 +131,10 @@ app.use('/api/sync', requireAuth, createSyncRouter({ projectRoot }));
 
 // Multi-profile additions (Phase 2, 11 Aug 2026) — additive, mounted
 // alongside the routes above without changing any of them.
+// Parked for the live site (27 Oct 2026): mounted on the laptop (not in Docker) or
+// when JD_ENABLE_PORTAL2=1; the production container leaves them out entirely.
+const PORTAL2_ENABLED = process.env.JD_ENABLE_PORTAL2 === '1' || !fs.existsSync('/.dockerenv');
+if (PORTAL2_ENABLED) {
 app.use('/api/profiles', requireAuth, createProfilesRouter({ projectRoot }));
 app.use(
   '/api/jd-v3/upload',
@@ -146,6 +151,9 @@ app.use(
 );
 app.use('/api/onboard', requireAuth, express.json({ limit: '10mb' }), createOnboardRouter({ projectRoot }));
 app.use('/api/jd-v3/run', requireAuth, createJdRunV3Router({ projectRoot, timeoutMs: RUN_TIMEOUT_MS }));
+} else {
+  console.log('ℹ️  [jd-api] multi-profile routes (/api/profiles, /api/onboard, /api/jd-v3) are disabled in this environment');
+}
 
 app.use((req, res) => {
   res.status(404).json({ error: 'Not found' });

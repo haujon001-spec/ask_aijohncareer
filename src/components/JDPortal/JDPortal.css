@@ -86,7 +86,9 @@
 
 .jd-field textarea {
   resize: vertical;
-  min-height: 360px;
+  /* 360px on a normal screen, scaled down on short windows so the Save button
+     is not pushed off-screen (27 Oct 2026) */
+  min-height: min(360px, 38vh);
   line-height: 1.5;
 }
 
@@ -642,8 +644,8 @@
   list-style: none;
   margin: 14px 0;
   padding: 0;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 8px;
 }
 .jd-capture-item {
@@ -693,4 +695,21 @@
   flex-wrap: wrap;
   gap: 8px;
   margin-top: 14px;
+}
+
+/* Save bar that stays visible while the form scrolls (27 Oct 2026) */
+.jd-form-actions {
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 12px;
+  padding: 12px 0 2px;
+  background: rgb(var(--portal-sunken-rgb) / 0.92);
+  border-top: 1px solid var(--portal-border);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }

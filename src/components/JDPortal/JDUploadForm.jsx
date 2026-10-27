@@ -194,9 +194,17 @@ function JDUploadForm({ onUploaded, uploadFn = uploadJd, extraParams = {}, enabl
           </span>
         </div>
 
-        <button type="submit" className="jd-button" disabled={submitting || tooShort || !employer.trim()}>
-          {submitting ? 'Saving…' : 'Save JD'}
-        </button>
+        {/* sticky: stays at the bottom of the scroll area so Save is always in view */}
+        <div className="jd-form-actions">
+          <button type="submit" className="jd-button" disabled={submitting || tooShort || !employer.trim()}>
+            {submitting ? 'Saving…' : 'Save JD'}
+          </button>
+          {(tooShort || !employer.trim()) && (
+            <span className="jd-field-hint">
+              {!employer.trim() ? 'Employer is required.' : `Add at least ${MIN_JD_LENGTH} characters of job description.`}
+            </span>
+          )}
+        </div>
       </form>
     </CollapsibleCard>
   )

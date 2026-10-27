@@ -145,7 +145,7 @@ export async function fetchLinkedInJob(input, { fetchImpl = fetch } = {}) {
     throw new LinkError(`Could not reach LinkedIn (${err.name === 'TimeoutError' ? 'timed out' : err.message}). Try again, or use screenshots.`, 502);
   }
 
-  const blockedHint = 'LinkedIn did not give this server the job page (it often refuses servers and some networks). Use screenshots or paste the text instead.';
+  const blockedHint = 'LinkedIn did not give this server the job page — it blocks most cloud servers, so link reading works from the laptop portal (npm run dev:lan) but usually not from the live site. Paste the link in the laptop portal, or use screenshots / paste the text here.';
   if (resp.status === 404 || resp.status === 410) throw new LinkError('LinkedIn says this job no longer exists.', 404);
   if (resp.status === 429 || resp.status === 999 || resp.status === 403) throw new LinkError(blockedHint, 502);
   if (!resp.ok) throw new LinkError(`LinkedIn returned HTTP ${resp.status}. ${blockedHint}`, 502);

@@ -41,3 +41,30 @@ Server leftovers (safe to delete later): `/root/deploy_20261027.tgz`, `/root/bui
 - Git Bash `sha256sum` prefixes the hash with `\` when the path contains backslashes and writes `*path` — normalise before comparing. A CRLF file list breaks remote `sha256sum` loops (names end in `\r`).
 - The VPS `tar` wants options before arguments (`tar --exclude=… -czf …`).
 - Stale dev backends: after code changes, check the listener's `StartTime` on 3010/3000 — an orphaned old `node` keeps the port and the new one silently fails to bind.
+
+
+---
+# Second deploy, same day (user follow-up requests)
+
+## 1. Save JD button not visible — fixed
+Cause: Save JD was the last item of a long form inside the portal's inner scroll area; with the capture list open it sat ~1,900 px down and there was no always-visible save action. Fix: **sticky Save bar** (`.jd-form-actions`, stays at the bottom of the scroll area, with a hint saying why it is disabled), screenshot list is now a **compact grid** (160 px for 10 shots on desktop instead of ~750 px), and the JD textarea height is `min(360px, 38vh)` so short windows are not overrun. Measured at 1830×1000, 1440×800, 1280×720 and phone 390×844: Save visible without scrolling at all sizes.
+
+## 2. LinkedIn link on the live site — NOT possible without circumvention
+LinkedIn blocks the VPS's datacenter address. Getting past that (alternate guest endpoints, spoofed browser headers, third-party scraping proxies, tunnelling through the laptop's home IP) is bot-check circumvention and against LinkedIn's terms, so it was deliberately **not** attempted (a probing request was also blocked by the tool's permission check). Supported route: **use the link option from the laptop portal** (`npm run dev:lan`, also reachable from the phone on the same Wi-Fi), then bring the JD across with Sync (JD inputs sync) — or use screenshots on the live site. The refusal message on the live site now says exactly this.
+Note: the link reader identifies itself with a normal browser User-Agent when fetching the public page.
+
+## 3. /portal2 parked for the live site
+User decision: no portal2 on the VPS for now. Done with switches, no code removed:
+- Frontend `src/App.jsx`: `/portal2` only exists in dev builds or when built with `VITE_ENABLE_PORTAL2=true`; a production build redirects `/portal2` to `/portal` (and contains none of the portal2 screens).
+- Backend `backend/jd_api_server.js`: `/api/profiles`, `/api/onboard`, `/api/jd-v3/*` mount only outside Docker or when `JD_ENABLE_PORTAL2=1`. Live: all three return 404; laptop unchanged.
+- **To enable later:** build with `VITE_ENABLE_PORTAL2=true`, set `JD_ENABLE_PORTAL2=1` on `jd-api`, add `scripts/update_profile_from_resume.py` to `Dockerfile.jd-api`, and first settle the "does non-John data ship" question.
+
+## 4. Profile edits pushed to the live server
+Safety check first: the VPS profile had **zero** content differences from the last committed version (no server-side edits to lose). Backed up as `src/data/john_profile.json.20261027_pre_deploy.bak` on the VPS, copied with sha256 verified, owner 1001:1001. Both containers read it (bind mount, no restart needed). Verified through the live chat: it now answers "career break ended November 2022, 2.25 years". The profile file is **not committed to git** (tracked file in a public repo, left to the user).
+
+## 5. Sync
+Left to the user to run manually.
+
+## Verification (live)
+`/portal2`, `/portal2/login` → `/portal/login`; `/jd-api/api/{profiles,onboard,jd-v3/run}` 404; other routes 401; health 200; new UI + sticky CSS in the bundle, no portal2 strings; no page errors; chat OK; 0 errors in logs; both containers healthy.
+Rollback tags for this step: `john-career-copilot-{app,jd-api}:pre_portal2off` (earlier: `:pre_capture`).

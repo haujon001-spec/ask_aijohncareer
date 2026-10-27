@@ -1,5 +1,5 @@
 import React from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import './App.css'
 import ChatPage from './components/ChatPage'
 import PortalEnroll from './components/JDPortal/auth/PortalEnroll'
@@ -9,6 +9,12 @@ import PortalShell from './components/JDPortal/PortalShell'
 import JDPortal from './components/JDPortal/JDPortal'
 import JDPortal2 from './components/JDPortal/JDPortal2'
 import { PortalAuthProvider } from './context/PortalAuthContext'
+
+// /portal2 (multi-profile) is parked for the live site (27 Oct 2026, user decision:
+// "no need to deploy portal2 to the VPS for now"). It is on in dev builds and in any
+// build made with VITE_ENABLE_PORTAL2=true; a normal production build redirects it.
+// The matching server routes are gated in backend/jd_api_server.js.
+const PORTAL2_ENABLED = import.meta.env.DEV || import.meta.env.VITE_ENABLE_PORTAL2 === 'true'
 
 function App() {
   return (
@@ -37,6 +43,8 @@ function App() {
       />
       {/* Multi-profile portal (Phase 2, 11 Aug 2026) — same auth gate as
           /portal, parallel route, v3-backed. /portal itself is untouched. */}
+      {!PORTAL2_ENABLED && <Route path="/portal2/*" element={<Navigate to="/portal" replace />} />}
+      {PORTAL2_ENABLED && (
       <Route
         path="/portal2/*"
         element={
@@ -58,6 +66,7 @@ function App() {
           </PortalAuthProvider>
         }
       />
+      )}
     </Routes>
   )
 }
