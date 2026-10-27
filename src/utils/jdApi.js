@@ -4,7 +4,10 @@
 // In production the JD API is reached via Caddy's same-origin /jd-api/* path
 // route (see Caddyfile) rather than a separate host:port — import.meta.env.PROD
 // is a Vite build-time constant, true whenever `vite build` runs.
-export const JD_API_BASE = import.meta.env.VITE_JD_API_BASE || (import.meta.env.PROD ? '/jd-api' : 'http://localhost:3010')
+// In dev the API host follows the page's own hostname (not a hard-coded "localhost"),
+// so opening the dev server from a phone at http://<laptop-ip>:5173 reaches the
+// laptop's API instead of the phone itself.
+export const JD_API_BASE = import.meta.env.VITE_JD_API_BASE || (import.meta.env.PROD ? '/jd-api' : `http://${window.location.hostname || 'localhost'}:3010`)
 
 async function request(path, options = {}) {
   const resp = await fetch(`${JD_API_BASE}${path}`, {
@@ -45,6 +48,16 @@ export function runJd({ jdFile, llm, mode, refreshBlueprint, generateDocx, gener
   return request('/api/jd/run', {
     method: 'POST',
     body: JSON.stringify({ jdFile, llm, mode, refreshBlueprint, generateDocx, generatePdf, resumeAdjustment, customModel })
+  })
+}
+
+// ---- JD screenshot capture (27 Oct 2026) ----
+
+// images: ordered [{ mediaType, data }], data = raw base64 (no data: prefix)
+export function captureJdFromImages(images) {
+  return request('/api/jd/capture', {
+    method: 'POST',
+    body: JSON.stringify({ images })
   })
 }
 

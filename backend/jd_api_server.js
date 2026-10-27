@@ -19,6 +19,7 @@ import { createViewRouter } from './api/view.js';
 import { createSettingsRouter } from './api/settings.js';
 import { createPdfRouter } from './api/pdf.js';
 import { createSyncRouter } from './api/sync.js';
+import { createJdCaptureRouter } from './api/jd_capture.js';
 import { isValidProfileName } from './lib/profileName.js';
 
 // Standalone entrypoint for the JD Automation Portal API — separate process
@@ -34,8 +35,9 @@ loadEnv(projectRoot);
 const openrouterKey = process.env.OPENROUTER_API_KEY;
 const deepseekKey = process.env.DEEPSEEK_API_KEY;
 console.log('✅ [jd-api] API Keys loaded:');
-console.log(`   OpenRouter: ${openrouterKey ? openrouterKey.substring(0, 20) + '...' : 'NOT SET'}`);
-console.log(`   DeepSeek: ${deepseekKey ? deepseekKey.substring(0, 20) + '...' : 'NOT SET'}`);
+// Report presence only — never log any part of a key (27 Oct 2026).
+console.log(`   OpenRouter: ${openrouterKey ? 'set' : 'NOT SET'}`);
+console.log(`   DeepSeek: ${deepseekKey ? 'set' : 'NOT SET'}`);
 
 const app = express();
 app.set('trust proxy', 1); // behind Caddy in production — req.secure must reflect the real client scheme for the session cookie's `secure` flag
@@ -56,16 +58,29 @@ const FRONTEND_ORIGINS = (process.env.JD_PORTAL_FRONTEND_ORIGIN || 'http://local
 
 // credentials:true + an explicit origin (not '*') are both required for the
 // httpOnly session cookie to be sent/received across the Vite dev origin.
-app.use(cors({
-  origin(origin, callback) {
-    // No Origin header (e.g. curl, same-origin) — allow.
-    if (!origin || FRONTEND_ORIGINS.includes(origin)) return callback(null, true);
-    callback(new Error(`CORS: origin ${origin} not in JD_PORTAL_FRONTEND_ORIGIN allow-list`));
-  },
-  credentials: true,
+//
+// Also allowed (27 Oct 2026, phone -> laptop over Wi-Fi): an Origin whose
+// hostname is exactly the host this request was addressed to, e.g. a page at
+// http://192.168.1.20:5173 calling http://192.168.1.20:3010. A page served from
+// any OTHER host never matches, so this does not open the API to the LAN.
+app.use(cors((req, callback) => {
+  const origin = req.header('Origin');
+  let allowed = !origin || FRONTEND_ORIGINS.includes(origin); // no Origin (curl, same-origin) — allow
+  if (!allowed) {
+    try {
+      allowed = new URL(origin).hostname === req.hostname;
+    } catch {
+      allowed = false;
+    }
+  }
+  if (allowed) return callback(null, { origin: true, credentials: true });
+  callback(new Error(`CORS: origin ${origin} not in JD_PORTAL_FRONTEND_ORIGIN allow-list`));
 }));
 app.use(cookieParser());
-app.use(express.json({ limit: '2mb' }));
+// The screenshot-capture route carries base64 images and installs its own larger
+// parser below, so the global 2 MB parser must not run first (it would 413 it).
+const jsonParser = express.json({ limit: '2mb' });
+app.use((req, res, next) => (req.path.startsWith('/api/jd/capture') ? next() : jsonParser(req, res, next)));
 app.use(express.urlencoded({ extended: true }));
 
 // Error handler for parsing errors (mirrors backend/server.js's pattern)
@@ -91,6 +106,16 @@ app.get('/api/health', (req, res) => {
 app.use('/api/auth', createAuthRouter({ projectRoot }));
 
 app.use('/api/jd/upload', requireAuth, createJdUploadRouter({ jdTxtDir: JD_TXT_DIR, projectRoot }));
+app.use(
+  '/api/jd/capture',
+  requireAuth,
+  express.json({ limit: '40mb' }),
+  createJdCaptureRouter({ projectRoot }),
+  (err, req, res, next) => {
+    // body-parser failures (too large / bad JSON) -> JSON, not Express's HTML page
+    res.status(err.status || 400).json({ error: err.type === 'entity.too.large' ? 'Screenshots are too large to upload together' : 'Invalid request body' });
+  },
+);
 app.use('/api/jd/run', requireAuth, createJdRunRouter({ projectRoot, jdTxtDir: JD_TXT_DIR, timeoutMs: RUN_TIMEOUT_MS }));
 app.use('/api/profile', requireAuth, createProfileRouter({ projectRoot }));
 app.use('/api/profile-view', requireAuth, createProfileViewRouter({ projectRoot }));

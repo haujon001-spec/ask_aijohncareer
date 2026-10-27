@@ -1,5 +1,9 @@
 # Next session — written 26 October 2026 (session closed; resume with `/next-session`)
 
+> ## UPDATE 27 Oct 2026 (later) — JD SCREENSHOT CAPTURE built + verified locally (guide: `docs/guides/JDSCREENSHOTCAPTURE_27OCT2026.md`)
+> Haiku 5.5 vision, /portal Configure step, fills the JD box for review, images never stored. Real-model UI test: 100% word recall, 0 dupes.
+> **Open:** (1) try it on the real phone via `npm run dev:lan` (allow node.exe through Windows Firewall, Private); (2) **deploy to VPS awaits the user's explicit go** (rebuild `app` + `jd-api`; also ships the earlier PDF/Sync changes; `docx_render.py` COPY already in `Dockerfile.jd-api`); (3) `/portal2` has no capture option.
+>
 > ## UPDATE 27 Oct 2026 — PDF-in-portal, `**` fix and Sync are BUILT + verified locally (guide: `docs/guides/PDFPORTALANDSYNC_27OCT2026.md`)
 > Prod login was reset by the user (VPS steps recorded in `JDPORTALPASSWORDROTATION_25JUL2026.md`). Sync design answers: conflicts per
 > company, everything (txt+docx+pdf), laptop portal only, JD json synced, outputs + JD inputs.

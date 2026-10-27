@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { uploadJd } from '../../utils/jdApi'
 import CollapsibleCard from './CollapsibleCard'
+import CaptureFromScreenshots from './CaptureFromScreenshots'
 
 const MIN_JD_LENGTH = 50
 const LAST_SAVED_JD_KEY = 'jdPortal.lastSavedJd'
@@ -17,7 +18,9 @@ function loadLastSavedJd() {
 // uploadFn/extraParams (added Phase 2, 11 Aug 2026): lets a profile-aware
 // caller (portal2) pass uploadJdV3 + { profileName } without duplicating this
 // whole form — defaults preserve the exact existing /portal (v2) behavior.
-function JDUploadForm({ onUploaded, uploadFn = uploadJd, extraParams = {} }) {
+// enableCapture (27 Oct 2026): shows the "Capture from screenshots" option. Off by
+// default so /portal2 is unchanged; /portal turns it on.
+function JDUploadForm({ onUploaded, uploadFn = uploadJd, extraParams = {}, enableCapture = false }) {
   const lastSaved = loadLastSavedJd()
   const [employer, setEmployer] = useState(lastSaved?.employer || '')
   const [role, setRole] = useState(lastSaved?.role || '')
@@ -26,6 +29,8 @@ function JDUploadForm({ onUploaded, uploadFn = uploadJd, extraParams = {} }) {
   const [error, setError] = useState(null)
   const [conflict, setConflict] = useState(null)
   const [successMsg, setSuccessMsg] = useState(null)
+  const [captureOpen, setCaptureOpen] = useState(false)
+  const [captureNotice, setCaptureNotice] = useState(null) // { imagesRead, notes } | null
 
   const tooShort = jdText.trim().length < MIN_JD_LENGTH
 
@@ -52,6 +57,25 @@ function JDUploadForm({ onUploaded, uploadFn = uploadJd, extraParams = {} }) {
     } finally {
       setSubmitting(false)
     }
+  }
+
+  // A capture replaces the whole form: the fields are normally pre-filled with the
+  // LAST saved JD, so keeping the old employer/role next to new text would save the
+  // new job under the old company's file name.
+  const handleExtracted = (result) => {
+    if (!result.jdText) {
+      // Nothing readable: tell the user why, but never wipe what is already in the form.
+      setCaptureNotice({ imagesRead: result.imagesRead, notes: result.notes || [], empty: true })
+      return
+    }
+    setEmployer(result.employer || '')
+    setRole(result.role || '')
+    setJdText(result.jdText || '')
+    setCaptureNotice({ imagesRead: result.imagesRead, notes: result.notes || [] })
+    setConflict(null)
+    setSuccessMsg(null)
+    setError(null)
+    if (result.jdText) setCaptureOpen(false)
   }
 
   const handleSubmit = (e) => {
@@ -87,6 +111,35 @@ function JDUploadForm({ onUploaded, uploadFn = uploadJd, extraParams = {} }) {
               Cancel
             </button>
           </div>
+        </div>
+      )}
+
+      {enableCapture && (
+        <div className="jd-capture-wrap">
+          <button
+            type="button"
+            className="jd-button jd-button-secondary"
+            aria-expanded={captureOpen}
+            onClick={() => setCaptureOpen((o) => !o)}
+          >
+            {captureOpen ? 'Hide screenshot capture' : 'Capture from screenshots'}
+          </button>
+          {captureOpen && <CaptureFromScreenshots onExtracted={handleExtracted} disabled={submitting} />}
+        </div>
+      )}
+
+      {captureNotice && (
+        <div className={`jd-banner ${captureNotice.notes.length || captureNotice.empty ? 'jd-banner--warning' : 'jd-banner--success'}`}>
+          {captureNotice.empty
+            ? 'No job description could be read — the form was left unchanged.'
+            : `Filled from ${captureNotice.imagesRead} screenshot${captureNotice.imagesRead === 1 ? '' : 's'} — please read it through and fix any misread words before saving.`}
+          {captureNotice.notes.length > 0 && (
+            <ul className="jd-capture-notes">
+              {captureNotice.notes.map((n, i) => (
+                <li key={i}>{n}</li>
+              ))}
+            </ul>
+          )}
         </div>
       )}
 

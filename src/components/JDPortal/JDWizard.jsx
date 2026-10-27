@@ -21,6 +21,7 @@ function JDWizard() {
 
       {step === 'configure' && (
         <JDUploadForm
+          enableCapture
           onUploaded={(file) => {
             setLastUpload(file)
             setStep('run')

@@ -622,3 +622,68 @@
 .jd-sync-files li span {
   color: var(--portal-text-muted);
 }
+
+/* ---- JD screenshot capture (27 Oct 2026) ---- */
+.jd-capture-wrap {
+  margin-bottom: 16px;
+}
+.jd-capture {
+  margin-top: 12px;
+  padding: 14px;
+  border: 1px solid var(--portal-border);
+  border-radius: var(--portal-radius, 8px);
+}
+.jd-capture-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.jd-capture-list {
+  list-style: none;
+  margin: 14px 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.jd-capture-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  border: 1px solid var(--portal-border);
+  border-radius: var(--portal-radius, 8px);
+}
+.jd-capture-item img {
+  width: 44px;
+  height: 58px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.jd-capture-item-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.jd-capture-item-body strong {
+  white-space: nowrap;
+  font-size: 14px;
+}
+.jd-capture-item-buttons {
+  display: flex;
+  gap: 6px;
+}
+.jd-capture-item-buttons .jd-button-view {
+  min-width: 34px;
+  min-height: 34px;
+  padding: 0;
+}
+.jd-capture-item {
+  gap: 8px;
+}
+.jd-capture-notes {
+  margin: 8px 0 0;
+  padding-left: 18px;
+}
