@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { toDownloadUrl } from '../../utils/jdApi'
 import DocViewer from './DocViewer'
 import CollapsibleCard from './CollapsibleCard'
+import PdfControl from './PdfControl'
 
 const OUTPUT_LABELS = {
   scorecardTxt: 'Scorecard (.txt)',
@@ -95,7 +96,10 @@ function JDReportsStep({ result, onBackToRun }) {
         <div className="jd-download-links">
           {Object.entries(result.downloadUrls).map(([key, url]) => {
             const label = OUTPUT_LABELS[key] || key
+            // PDFs are shown by the PdfControl beside their .docx, not as a separate link.
+            if (key.endsWith('Pdf')) return null
             if (key.endsWith('Docx')) {
+              const pdfUrl = result.downloadUrls[key.replace(/Docx$/, 'Pdf')]
               return (
                 <span className="jd-download-group" key={key}>
                   <a href={toDownloadUrl(url)} target="_blank" rel="noreferrer">
@@ -108,6 +112,7 @@ function JDReportsStep({ result, onBackToRun }) {
                   >
                     View
                   </button>
+                  <PdfControl docxPath={url} pdfPath={pdfUrl} />
                 </span>
               )
             }

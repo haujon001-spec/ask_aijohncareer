@@ -3,6 +3,7 @@ import { fetchHistory, deleteHistoryCompany, deleteHistoryJob, toDownloadUrl } f
 import DocViewerInline from './DocViewerInline'
 import CollapsibleCard from './CollapsibleCard'
 import JDHistoryTrash from './JDHistoryTrash'
+import PdfControl from './PdfControl'
 
 function DownloadLink({ label, path }) {
   if (!path) return null
@@ -13,7 +14,7 @@ function DownloadLink({ label, path }) {
   )
 }
 
-function DocxWithView({ label, path, docKey, isOpen, onToggleView }) {
+function DocxWithView({ label, path, pdfPath, docKey, isOpen, onToggleView }) {
   if (!path) return null
   return (
     <span className="jd-download-group">
@@ -30,6 +31,7 @@ function DocxWithView({ label, path, docKey, isOpen, onToggleView }) {
       >
         {isOpen ? 'Hide' : 'View'}
       </button>
+      <PdfControl docxPath={path} pdfPath={pdfPath} />
     </span>
   )
 }
@@ -301,6 +303,7 @@ function JDHistoryList() {
                             <DocxWithView
                               label="Scorecard (.docx)"
                               path={entry.scorecard?.docx}
+                              pdfPath={entry.scorecard?.pdf}
                               docKey={`${jobKey}::scorecard`}
                               isOpen={expandedDoc?.key === `${jobKey}::scorecard`}
                               onToggleView={onToggleView}
@@ -309,6 +312,7 @@ function JDHistoryList() {
                             <DocxWithView
                               label="Resume (.docx)"
                               path={entry.resume?.docx}
+                              pdfPath={entry.resume?.pdf}
                               docKey={`${jobKey}::resume`}
                               isOpen={expandedDoc?.key === `${jobKey}::resume`}
                               onToggleView={onToggleView}
@@ -317,6 +321,7 @@ function JDHistoryList() {
                             <DocxWithView
                               label="Cover Letter (.docx)"
                               path={entry.coverLetter?.docx}
+                              pdfPath={entry.coverLetter?.pdf}
                               docKey={`${jobKey}::coverletter`}
                               isOpen={expandedDoc?.key === `${jobKey}::coverletter`}
                               onToggleView={onToggleView}

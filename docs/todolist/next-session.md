@@ -1,5 +1,16 @@
 # Next session — written 26 October 2026 (session closed; resume with `/next-session`)
 
+> ## UPDATE 27 Oct 2026 — PDF-in-portal, `**` fix and Sync are BUILT + verified locally (guide: `docs/guides/PDFPORTALANDSYNC_27OCT2026.md`)
+> Prod login was reset by the user (VPS steps recorded in `JDPORTALPASSWORDROTATION_25JUL2026.md`). Sync design answers: conflicts per
+> company, everything (txt+docx+pdf), laptop portal only, JD json synced, outputs + JD inputs.
+> **Open / for next session:**
+> 1. **Restart the dev server and click through the real login-gated portal** (PDF checkbox, Convert to PDF, Sync tab) — verified only via an auth-stubbed harness.
+> 2. **No real sync has been run.** Preview shows ~160 laptop-only / ~47 VPS-only / 5 differing files (FWD x2, HKEX, Manulife x2 conflict). User to press Sync and choose per-company winners.
+> 3. **Deploy** (not done): `Dockerfile.jd-api` now COPYs `scripts/docx_render.py` (required, else v2 import fails on the VPS); rebuild `app` + `jd-api`. PDF convert/Sync are hidden on the VPS by design.
+> 4. Old docx files still contain `**`; rebuild with `scripts/docx_render.py <folder>` only if the user wants (overwrites docx; manual edits lost; archive copy kept).
+> 5. `/portal2` (v3 script) has no PDF wiring and still uses its own old docx writer.
+> 6. Decide whether to commit/ignore the 6 untracked JD json files (they now sync, they are not in git). `soul.md` still has an uncommitted edit of the user's.
+
 > **Closing note (26 Oct 2026):** Pushed through `6245c62` + this doc commit. VPS = Node 24.22.1 + new model presets (model-only deploy, /portal2 still pending). Benchmark: DeepSeek Pro full-run was NOT completed (stopped at close; earlier scorecard-only test: 264 s vs Flash 76 s) — optional to re-run. New untracked files left from portal runs, not committed: `src/data/jd/JD_Manulife_AVP_Technology_Asia_Strategy_and_Engineering.json`, `src/data/jd/JD_XXXAmbition_VP_Technology_Cloud_Workspace.json` (plus the pre-existing Hospital Authority one) — decide commit/discard. `soul.md` has an uncommitted modification and `CLAUDE.md` is untracked (pre-existing).
 
 > ## PLANNED FOR 27 Oct 2026 — add the PDF feature to the web portal

@@ -41,10 +41,40 @@ export function uploadJd({ employer, role, jdText, overwrite }) {
   })
 }
 
-export function runJd({ jdFile, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment, customModel }) {
+export function runJd({ jdFile, llm, mode, refreshBlueprint, generateDocx, generatePdf, resumeAdjustment, customModel }) {
   return request('/api/jd/run', {
     method: 'POST',
-    body: JSON.stringify({ jdFile, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment, customModel })
+    body: JSON.stringify({ jdFile, llm, mode, refreshBlueprint, generateDocx, generatePdf, resumeAdjustment, customModel })
+  })
+}
+
+// ---- Laptop <-> VPS sync (added 27 Oct 2026; laptop portal only) ----
+
+export function fetchSyncStatus() {
+  return request('/api/sync/status')
+}
+
+export function previewSync() {
+  return request('/api/sync/preview', { method: 'POST', body: JSON.stringify({}) })
+}
+
+export function runSync({ direction, companies, resolutions }) {
+  return request('/api/sync/run', {
+    method: 'POST',
+    body: JSON.stringify({ direction, companies, resolutions, confirm: true })
+  })
+}
+
+// ---- PDF (added 27 Oct 2026) ----
+
+export function fetchPdfCapabilities() {
+  return request('/api/pdf/capabilities')
+}
+
+export function convertToPdf(docxPath) {
+  return request('/api/pdf/convert', {
+    method: 'POST',
+    body: JSON.stringify({ path: docxPath })
   })
 }
 

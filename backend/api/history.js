@@ -316,6 +316,7 @@ function scanHistory({ projectRoot, dataProcessedRoot, employerFilter, limit }) 
         scorecard: {
           txt: toRepoRelativePath(projectRoot, scorecardPath),
           docx: findSibling(projectRoot, employer, 'ScoreCard', filename),
+          pdf: findSibling(projectRoot, employer, 'ScoreCard', filename, 'pdf'),
           matchScore: parseMatchScore(content),
         },
         resume: findPaired(projectRoot, employer, 'resume', 'JohnHauResume', roleTag, date),
@@ -344,12 +345,13 @@ function findPaired(projectRoot, employer, typeDir, prefix, roleTag, date) {
   return {
     txt: toRepoRelativePath(projectRoot, path.join(dir, match)),
     docx: findSibling(projectRoot, employer, typeDir, match),
+    pdf: findSibling(projectRoot, employer, typeDir, match, 'pdf'),
   };
 }
 
-function findSibling(projectRoot, employer, typeDir, txtFilename) {
-  const docxPath = path.join(projectRoot, 'data_processed', employer, typeDir, 'docx', txtFilename.replace(/\.txt$/, '.docx'));
-  return fs.existsSync(docxPath) ? toRepoRelativePath(projectRoot, docxPath) : null;
+function findSibling(projectRoot, employer, typeDir, txtFilename, format = 'docx') {
+  const siblingPath = path.join(projectRoot, 'data_processed', employer, typeDir, format, txtFilename.replace(/\.txt$/, `.${format}`));
+  return fs.existsSync(siblingPath) ? toRepoRelativePath(projectRoot, siblingPath) : null;
 }
 
 function listFilesRecursive(dir) {

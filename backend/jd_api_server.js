@@ -17,6 +17,8 @@ import { createHistoryRouter } from './api/history.js';
 import { createDownloadRouter } from './api/download.js';
 import { createViewRouter } from './api/view.js';
 import { createSettingsRouter } from './api/settings.js';
+import { createPdfRouter } from './api/pdf.js';
+import { createSyncRouter } from './api/sync.js';
 import { isValidProfileName } from './lib/profileName.js';
 
 // Standalone entrypoint for the JD Automation Portal API — separate process
@@ -96,6 +98,8 @@ app.use('/api/history', requireAuth, createHistoryRouter({ projectRoot }));
 app.use('/api/download', requireAuth, createDownloadRouter({ dataProcessedRoot: DATA_PROCESSED_ROOT }));
 app.use('/api/view', requireAuth, createViewRouter({ dataProcessedRoot: DATA_PROCESSED_ROOT }));
 app.use('/api/settings', requireAuth, createSettingsRouter({ projectRoot }));
+app.use('/api/pdf', requireAuth, createPdfRouter({ projectRoot, dataProcessedRoot: DATA_PROCESSED_ROOT }));
+app.use('/api/sync', requireAuth, createSyncRouter({ projectRoot }));
 
 // Multi-profile additions (Phase 2, 11 Aug 2026) — additive, mounted
 // alongside the routes above without changing any of them.

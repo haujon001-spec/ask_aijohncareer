@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { runJd, fetchRunStatus, cancelRun } from '../../utils/jdApi'
 import CollapsibleCard from './CollapsibleCard'
+import { usePdfCapability } from './PdfControl'
 
 const STATUS_POLL_MS = 2000
 
@@ -13,13 +14,14 @@ const MODE_FLAGS = {
   all: null
 }
 
-function buildCommandPreview({ jdFile, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment, customProvider, customModelSlug }) {
+function buildCommandPreview({ jdFile, llm, mode, refreshBlueprint, generateDocx, generatePdf, resumeAdjustment, customProvider, customModelSlug }) {
   const parts = ['python scripts/jd_scorecard_resume_v2.py']
   parts.push(`"data_raw/jd/txt/${jdFile || '<JD file>'}"`)
   const modeFlag = MODE_FLAGS[mode || 'all']
   if (modeFlag) parts.push(modeFlag)
   if (refreshBlueprint) parts.push('--refresh-blueprint')
   if (generateDocx === false) parts.push('--no-docx')
+  if (generatePdf && generateDocx !== false) parts.push('--pdf')
   if (resumeAdjustment) parts.push('--ResumeAdjustment')
   if (llm === 'custom') {
     parts.push('--llm=custom', `--model=${customModelSlug || '<model id>'}`, `--provider=${customProvider}`)
@@ -37,6 +39,8 @@ function JDRunStep({ initialJdFile, onComplete }) {
   const [mode, setMode] = useState('all')
   const [refreshBlueprint, setRefreshBlueprint] = useState(false)
   const [generateDocx, setGenerateDocx] = useState(true)
+  const [generatePdf, setGeneratePdf] = useState(false)
+  const pdfCapability = usePdfCapability()
   const [resumeAdjustment, setResumeAdjustment] = useState(false)
 
   const [running, setRunning] = useState(false)
@@ -84,7 +88,7 @@ function JDRunStep({ initialJdFile, onComplete }) {
     const customModel = llm === 'custom' ? { provider: customProvider, slug: customModelSlug.trim() } : undefined
 
     try {
-      const response = await runJd({ jdFile, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment, customModel })
+      const response = await runJd({ jdFile, llm, mode, refreshBlueprint, generateDocx, generatePdf: generatePdf && generateDocx, resumeAdjustment, customModel })
       if (response.cancelled) {
         setCancelledMsg(`Run stopped — steps already completed before the stop were kept (${response.jdFile}).`)
       } else {
@@ -233,6 +237,22 @@ function JDRunStep({ initialJdFile, onComplete }) {
 
         <div className="jd-checkbox-field">
           <input
+            id="jd-generate-pdf"
+            type="checkbox"
+            checked={generatePdf && generateDocx}
+            onChange={(e) => setGeneratePdf(e.target.checked)}
+            disabled={running || !generateDocx || !pdfCapability?.available}
+          />
+          <label htmlFor="jd-generate-pdf">
+            Also generate PDF
+            {pdfCapability && !pdfCapability.available && (
+              <span className="jd-field-hint"> — not available on this server (no Word/LibreOffice); make PDFs on the laptop and Sync</span>
+            )}
+          </label>
+        </div>
+
+        <div className="jd-checkbox-field">
+          <input
             id="jd-resume-adjustment"
             type="checkbox"
             checked={resumeAdjustment}
@@ -247,7 +267,7 @@ function JDRunStep({ initialJdFile, onComplete }) {
         <div className="jd-field">
           <label htmlFor="jd-command-preview">Command Preview</label>
           <pre id="jd-command-preview" className="jd-command-preview">
-            {buildCommandPreview({ jdFile, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment, customProvider, customModelSlug })}
+            {buildCommandPreview({ jdFile, llm, mode, refreshBlueprint, generateDocx, generatePdf, resumeAdjustment, customProvider, customModelSlug })}
           </pre>
         </div>
 

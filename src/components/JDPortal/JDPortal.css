@@ -581,3 +581,44 @@
     justify-content: space-between;
   }
 }
+
+/* ---- Sync panel + PDF control (27 Oct 2026) ---- */
+.jd-sync-company {
+  border: 1px solid var(--portal-border);
+  border-radius: var(--portal-radius, 8px);
+  padding: 10px 14px;
+  margin-top: 10px;
+}
+.jd-sync-company-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  cursor: pointer;
+}
+.jd-sync-counts {
+  display: inline-flex;
+  gap: 14px;
+  color: var(--portal-text-secondary);
+  font-size: 13px;
+}
+.jd-sync-conflict-tag {
+  color: var(--portal-warning);
+}
+.jd-sync-resolve {
+  margin: 10px 0 4px;
+}
+.jd-sync-files {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  font-size: 13px;
+  color: var(--portal-text-secondary);
+  word-break: break-all;
+}
+.jd-sync-files li {
+  padding: 2px 0;
+}
+.jd-sync-files li span {
+  color: var(--portal-text-muted);
+}

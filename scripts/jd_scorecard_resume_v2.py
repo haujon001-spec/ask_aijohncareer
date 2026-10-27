@@ -84,13 +84,9 @@ import requests
 from pathlib import Path
 from datetime import datetime
 
-try:
-    from docx import Document
-    from docx.enum.text import WD_PARAGRAPH_ALIGNMENT
-    from docx.shared import Inches, Pt
-    DOCX_AVAILABLE = True
-except ImportError:
-    DOCX_AVAILABLE = False
+# docx rendering (markdown-aware scorecards, marker-safe resumes/cover letters)
+# lives in scripts/docx_render.py since 27 Oct 2026 — scripts/ is on sys.path[0].
+from docx_render import DOCX_AVAILABLE, add_runs_with_markup, convert_text_file_to_docx
 
 # ── Project root (one level up from scripts/) ─────────────────────────────────
 ROOT = Path(__file__).resolve().parent.parent
@@ -105,7 +101,6 @@ DATE_STAMP    = datetime.now().strftime("%d%b%Y").upper()   # e.g. 31MAR2026
 RESUME_YEAR   = datetime.now().strftime("%Y")               # e.g. 2026
 
 # ── v2-only: bold-markup + text-normalization helpers ─────────────────────────
-BOLD_MARKUP_RE = re.compile(r"\*\*(.+?)\*\*")
 
 # Matches "27 years", "27+ years", "27.33 years experience" etc. — case-insensitive
 YEARS_FIGURE_RE = re.compile(r"\b27(?:\.\d+)?\+?\s+years?\b", re.IGNORECASE)
@@ -188,24 +183,6 @@ def normalize_blank_lines(text):
         prev_was_header = is_header
 
     return "\n".join(out)
-
-
-def add_runs_with_markup(paragraph, text):
-    """Add text to a paragraph, rendering **marked** spans as bold runs."""
-    if text.count("**") % 2 != 0:
-        # Unbalanced markup from the LLM — fall back to plain text rather
-        # than leaking a stray "**" into the visible output.
-        paragraph.add_run(text.replace("**", ""))
-        return
-    pos = 0
-    for match in BOLD_MARKUP_RE.finditer(text):
-        if match.start() > pos:
-            paragraph.add_run(text[pos:match.start()])
-        bold_run = paragraph.add_run(match.group(1))
-        bold_run.bold = True
-        pos = match.end()
-    if pos < len(text):
-        paragraph.add_run(text[pos:])
 
 
 def resolve_resume_template():
@@ -872,139 +849,6 @@ Return only valid JSON.
         response_format={"type": "json_object"},
     )
     return extract_json_object(repaired)
-
-
-def style_docx_document(doc):
-    section = doc.sections[0]
-    section.top_margin = Inches(0.7)
-    section.bottom_margin = Inches(0.7)
-    section.left_margin = Inches(0.8)
-    section.right_margin = Inches(0.8)
-
-    normal = doc.styles["Normal"]
-    normal.font.name = "Calibri"
-    normal.font.size = Pt(11)
-    # python-docx's default template applies a document-wide 10pt "space after"
-    # (w:docDefaults/w:pPrDefault) to every paragraph that doesn't explicitly
-    # override it — including every blank spacer paragraph, section-title
-    # line, and bullet. That silently stacked extra air on top of the blank
-    # rows this converter deliberately inserts. Zero it at the Normal-style
-    # level (List Bullet is based on Normal) so only the explicit Pt(3)/Pt(4)
-    # overrides below ever add spacing.
-    normal.paragraph_format.space_before = Pt(0)
-    normal.paragraph_format.space_after = Pt(0)
-
-
-def add_docx_text_block(doc, line):
-    stripped = line.strip()
-    if not stripped:
-        doc.add_paragraph()
-        return
-
-    if set(stripped) <= {"=", "_", "-"} and len(stripped) >= 8:
-        return
-
-    if stripped.startswith(("•", "* ", "- ")):
-        bullet_text = re.sub(r"^[•*-]\s+", "", stripped, count=1).strip()
-        para = doc.add_paragraph(style="List Bullet")
-        para.paragraph_format.left_indent = Inches(0.25)
-        add_runs_with_markup(para, bullet_text)
-        return
-
-    if stripped.isupper() and len(stripped) <= 80:
-        para = doc.add_paragraph()
-        para.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
-        run = para.add_run(stripped)
-        run.bold = True
-        run.font.size = Pt(12)
-        return
-
-    if " — " in stripped and not stripped.endswith(":"):
-        para = doc.add_paragraph()
-        para.paragraph_format.space_after = Pt(3)
-        left, right = stripped.split(" — ", 1)
-        run1 = para.add_run(left + " — ")
-        run1.bold = True
-        add_runs_with_markup(para, right)
-        return
-
-    para = doc.add_paragraph()
-    para.paragraph_format.space_after = Pt(4)
-    add_runs_with_markup(para, stripped)
-
-
-def _is_effectively_blank(line):
-    """Blank line OR a ---/===/___ separator — both collapse to one gap in the docx."""
-    stripped = line.strip()
-    if not stripped:
-        return True
-    return set(stripped) <= {"=", "_", "-"} and len(stripped) >= 8
-
-
-# "Company — Title" header line, as used for each Professional Experience entry.
-_COMPANY_HEADER_RE = re.compile(r"^\S.*\s—\s\S")
-
-# "Mon YYYY – Mon YYYY" / "Mon YYYY – Present" date-range line that follows
-# each company header line.
-_DATE_RANGE_RE = re.compile(
-    r"^[A-Za-z]{3,9}\.?\s+\d{4}\s*[–—-]\s*(?:[A-Za-z]{3,9}\.?\s+\d{4}|Present)$"
-)
-
-
-def convert_text_file_to_docx(txt_path):
-    if not DOCX_AVAILABLE:
-        raise RuntimeError("python-docx is not installed")
-
-    doc = Document()
-    style_docx_document(doc)
-
-    # Pass 1: a section boundary is "blank line, separator, blank line" in the
-    # .txt — each of those independently would add its own empty paragraph,
-    # doubling the visual gap in Word. Collapse any run of blank/separator
-    # lines into a single blank paragraph between real content lines.
-    collapsed_lines = []
-    blank_pending = False
-    for line in txt_path.read_text(encoding="utf-8").splitlines():
-        if _is_effectively_blank(line):
-            blank_pending = True
-            continue
-        if blank_pending and collapsed_lines:
-            collapsed_lines.append("")
-        blank_pending = False
-        collapsed_lines.append(line)
-
-    # Pass 2: within a Professional Experience entry, drop the blank-line gap
-    # between the "Company — Title" header and its date-range line right
-    # below it, so those two rows sit adjacent with no spacing.
-    normalized_lines = []
-    i = 0
-    while i < len(collapsed_lines):
-        line = collapsed_lines[i]
-        if (
-            line == ""
-            and 0 < i < len(collapsed_lines) - 1
-            and _COMPANY_HEADER_RE.match(collapsed_lines[i - 1].strip())
-            and _DATE_RANGE_RE.match(collapsed_lines[i + 1].strip())
-        ):
-            i += 1
-            continue
-        normalized_lines.append(line)
-        i += 1
-
-    for line in normalized_lines:
-        add_docx_text_block(doc, line)
-
-    target_dir = txt_path.parent.parent / "docx"
-    target_dir.mkdir(parents=True, exist_ok=True)
-    out_path = target_dir / f"{txt_path.stem}.docx"
-    try:
-        doc.save(out_path)
-        return out_path, False
-    except PermissionError:
-        fallback_name = f"{txt_path.stem}_{datetime.now().strftime('%H%M%S')}.docx"
-        fallback_path = target_dir / fallback_name
-        doc.save(fallback_path)
-        return fallback_path, True
 
 
 def maybe_convert_to_docx(txt_path, label):

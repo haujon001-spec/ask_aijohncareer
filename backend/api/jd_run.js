@@ -28,7 +28,7 @@ export function createJdRunRouter({ projectRoot, jdTxtDir, timeoutMs }) {
   });
 
   router.post('/', async (req, res) => {
-    const { jdFile, llm = 'sonnet', mode = 'all', refreshBlueprint = false, generateDocx = true, resumeAdjustment = false, customModel = null } = req.body || {};
+    const { jdFile, llm = 'sonnet', mode = 'all', refreshBlueprint = false, generateDocx = true, generatePdf = false, resumeAdjustment = false, customModel = null } = req.body || {};
 
     if (!jdFile || typeof jdFile !== 'string') {
       return res.status(400).json({ error: 'jdFile is required' });
@@ -74,7 +74,7 @@ export function createJdRunRouter({ projectRoot, jdTxtDir, timeoutMs }) {
     const { employer } = deriveJdMetadata(jdStem);
 
     console.log(`🚀 [jd-api] Running JD pipeline: ${jdFile} (llm=${llm}, mode=${mode}, resumeAdjustment=${resumeAdjustment}${llm === 'custom' ? `, model=${customModel.slug} (${customModel.provider})` : ''})`);
-    const result = await runJdPipeline({ projectRoot, jdAbsPath, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment, customModel, timeoutMs });
+    const result = await runJdPipeline({ projectRoot, jdAbsPath, llm, mode, refreshBlueprint, generateDocx, generatePdf, resumeAdjustment, customModel, timeoutMs });
 
     if (result.timedOut) {
       return res.status(500).json({ error: 'JD pipeline timed out', killed: true });
@@ -110,6 +110,7 @@ export function createJdRunRouter({ projectRoot, jdTxtDir, timeoutMs }) {
     for (const [type, entry] of Object.entries(outputs)) {
       if (entry.txt) downloadUrls[`${type}Txt`] = `/api/download/${entry.txt.replace(/^data_processed\//, '')}`;
       if (entry.docx) downloadUrls[`${type}Docx`] = `/api/download/${entry.docx.replace(/^data_processed\//, '')}`;
+      if (entry.pdf) downloadUrls[`${type}Pdf`] = `/api/download/${entry.pdf.replace(/^data_processed\//, '')}`;
     }
 
     const durationMs = Date.now() - runStartedAtMs;

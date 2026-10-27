@@ -66,9 +66,33 @@ Use this if you also want a fresh TOTP secret (e.g. lost the authenticator app, 
 
 **This invalidates the old authenticator entry** — remove the old "AskCareerAI Portal" entry from your authenticator app after confirming the new one works, so you don't have two stale entries.
 
-## VPS note
+## VPS (production) full reset — lost/deleted authenticator (added 27 Oct 2026)
 
-`secrets/jd_portal_auth.json` provisioning on the VPS is still an outstanding item (see `docs/todolist/todolist_25Jul2026.md` — remaining JD Automation Portal phases, deploy). Once the portal is deployed there, the same two methods apply — just run the commands against the VPS's copy of the file (over SSH) instead of the local one, and restart is still not required there either, for the same fresh-read-per-request reason.
+The portal is deployed at `https://www.askcareer-ai.com/portal` (since 30 Jul 2026, see `JDPORTALVPSDEPLOY_30JUL2026.md`). The PowerShell commands above only touch the **laptop's** `secrets/` folder. Production credentials live on the VPS at `/opt/john-career-copilot/secrets/jd_portal_auth.json` (bind-mounted into the `john-career-copilot-jd-api` container), so a production reset is done over SSH with bash. Use this when the authenticator entry was deleted, the phone was lost, or the credential is suspected exposed.
+
+The backend re-reads the file on every request, so **no container restart is needed**.
+
+**Security window:** between step 2 and finishing enrollment, `/portal/enroll` is open to anyone who finds it, and the portal holds stored LLM API keys. Have your phone with the authenticator app ready before you start, and finish enrollment straight away.
+
+1. **Back up** the current credential file (kept in root's home, not in a web-served path):
+   ```bash
+   ssh root@152.42.214.111 'cd /opt/john-career-copilot/secrets && cp -p jd_portal_auth.json /root/jd_portal_auth.json.$(date +%Y%m%d)_V1.bak'
+   ```
+2. **Remove the live file** so the portal returns to "not enrolled":
+   ```bash
+   ssh root@152.42.214.111 'rm /opt/john-career-copilot/secrets/jd_portal_auth.json'
+   ```
+3. **Confirm** the backend sees it (expect `{"enrolled":false}`):
+   ```bash
+   ssh root@152.42.214.111 'docker exec john-career-copilot-jd-api wget -qO- http://localhost:3010/api/auth/status'
+   ```
+4. **Enroll**: open `https://www.askcareer-ai.com/portal` (redirects to `/portal/enroll`), set a new password (min. 8 characters), scan the QR code in Google Authenticator, enter the 6-digit code.
+5. **Verify**: the same status call as step 3 should now return `{"enrolled":true}`, and `/portal/login` should accept the new password + code. Remove the stale "AskCareerAI Portal" entry from the authenticator app if one remains.
+6. **Clean up** once login is confirmed: `ssh root@152.42.214.111 'rm /root/jd_portal_auth.json.*_V1.bak'`.
+
+**Rollback** (if enrollment fails or the wrong person enrolled): `ssh root@152.42.214.111 'cp -p /root/jd_portal_auth.json.<date>_V1.bak /opt/john-career-copilot/secrets/jd_portal_auth.json'`. File ownership should stay `1001` (the container uid); `cp -p` run as root preserves the backup's original owner, but check with `ls -l` afterwards.
+
+Method A (password-only rotation) works on the VPS the same way: run the `node` one-liner against the VPS copy, from inside the container (`docker exec john-career-copilot-jd-api node -e ...`, which has `bcryptjs`), or hash locally and paste the hash in.
 
 ## Limitations
 

@@ -27,6 +27,7 @@ RUN npm ci --only=production
 COPY backend/ ./backend/
 COPY shared/ ./shared/
 COPY scripts/jd_scorecard_resume_v2.py ./scripts/jd_scorecard_resume_v2.py
+COPY scripts/docx_render.py ./scripts/docx_render.py
 COPY scripts/jd_scorecard_resume_v3.py ./scripts/jd_scorecard_resume_v3.py
 COPY src/data/ ./src/data/
 

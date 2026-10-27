@@ -115,12 +115,13 @@ export function resolvePythonBin(projectRoot) {
   return process.platform === 'win32' ? 'python' : 'python3';
 }
 
-function buildRunArgs({ jdAbsPath, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment, customModel }) {
+function buildRunArgs({ jdAbsPath, llm, mode, refreshBlueprint, generateDocx, generatePdf, resumeAdjustment, customModel }) {
   const args = [jdAbsPath];
   const modeFlag = MODE_FLAGS[mode || 'all'];
   if (modeFlag) args.push(modeFlag);
   if (refreshBlueprint) args.push('--refresh-blueprint');
   if (generateDocx === false) args.push('--no-docx');
+  if (generatePdf && generateDocx !== false) args.push('--pdf');
   if (resumeAdjustment) args.push('--ResumeAdjustment');
   if (llm === 'custom' && customModel?.slug && customModel?.provider) {
     args.push('--llm=custom', `--model=${customModel.slug}`, `--provider=${customModel.provider}`);
@@ -130,11 +131,11 @@ function buildRunArgs({ jdAbsPath, llm, mode, refreshBlueprint, generateDocx, re
   return args;
 }
 
-export function runJdPipeline({ projectRoot, jdAbsPath, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment, customModel, timeoutMs }) {
+export function runJdPipeline({ projectRoot, jdAbsPath, llm, mode, refreshBlueprint, generateDocx, generatePdf, resumeAdjustment, customModel, timeoutMs }) {
   return new Promise((resolve) => {
     const pythonBin = resolvePythonBin(projectRoot);
     const scriptPath = path.join(projectRoot, SCRIPT_REL_PATH);
-    const args = buildRunArgs({ jdAbsPath, llm, mode, refreshBlueprint, generateDocx, resumeAdjustment, customModel });
+    const args = buildRunArgs({ jdAbsPath, llm, mode, refreshBlueprint, generateDocx, generatePdf, resumeAdjustment, customModel });
 
     console.log(`🐍 [jd-api] Spawning: ${pythonBin} ${scriptPath} ${args.join(' ')}`);
 
@@ -343,10 +344,12 @@ export function discoverOutputs({ projectRoot, employer, mode, runStartedAtMs })
 
     const content = fs.readFileSync(newest.full, 'utf-8');
     const docxPath = path.join(projectRoot, 'data_processed', employer, TYPE_DIRS[type], 'docx', newest.name.replace(/\.txt$/, '.docx'));
+    const pdfPath = path.join(projectRoot, 'data_processed', employer, TYPE_DIRS[type], 'pdf', newest.name.replace(/\.txt$/, '.pdf'));
 
     const entry = {
       txt: toRepoRelativePath(projectRoot, newest.full),
       docx: fs.existsSync(docxPath) ? toRepoRelativePath(projectRoot, docxPath) : null,
+      pdf: fs.existsSync(pdfPath) && fs.statSync(pdfPath).mtimeMs >= runStartedAtMs ? toRepoRelativePath(projectRoot, pdfPath) : null,
       content,
     };
 
