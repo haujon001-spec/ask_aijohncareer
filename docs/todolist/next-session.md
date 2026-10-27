@@ -1,5 +1,10 @@
 # Next session — written 26 October 2026 (session closed; resume with `/next-session`)
 
+> ## UPDATE 27 Oct 2026 (end of day) — DEPLOYED TO VPS (record: `docs/guides/VPSDEPLOY_27OCT2026.md`)
+> PDF/`docx_render` fix, screenshot capture, LinkedIn link option, `/portal2` code and earlier unshipped portal changes are LIVE (48 files, hash-verified; rollback tags `*:pre_capture`).
+> Screenshot capture verified from the VPS. **LinkedIn link is refused from the VPS (datacenter IP) — works on the laptop only.** Sync stays laptop-only. Nothing pushed to GitHub.
+> **Still open:** (1) press Sync to reconcile ~160/47 differing files (per-company conflict choices for FWD, HKEX, Manulife); (2) decide whether to hide the LinkedIn-link button on the live site (it only shows a "use screenshots" message there); (3) real-phone test of screenshots; (4) decide the non-John-data question before enabling profile onboarding on the VPS (script intentionally not in the image); (5) old docx files still contain `**` (rebuild with `scripts/docx_render.py` if wanted); (6) GitHub push of the local commits (not requested).
+>
 > ## UPDATE 27 Oct 2026 (later) — JD SCREENSHOT CAPTURE built + verified locally (guide: `docs/guides/JDSCREENSHOTCAPTURE_27OCT2026.md`)
 > Haiku 5.5 vision, /portal Configure step, fills the JD box for review, images never stored. Real-model UI test: 100% word recall, 0 dupes.
 > **Open:** (1) try it on the real phone via `npm run dev:lan` (allow node.exe through Windows Firewall, Private); (2) **deploy to VPS awaits the user's explicit go** (rebuild `app` + `jd-api`; also ships the earlier PDF/Sync changes; `docx_render.py` COPY already in `Dockerfile.jd-api`); (3) `/portal2` has no capture option.
