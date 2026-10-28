@@ -528,9 +528,10 @@
       {
         "achievement": "Windows 11 Migration at Scale",
         "company": "AIA International Ltd",
-        "scale": "3,400 devices",
+        "role": "Project owner",
+        "scale": "3,400+ desktops",
         "cost_savings": "HK$3.5M",
-        "impact": "Performance and security improvements. Found the programme without resources, funding or an accountable lead, volunteered to start it, flagged risks and potential delays, and secured funding and senior-management attention to deliver on track.",
+        "impact": "Owned the migration end to end, improving performance and security. Found the programme without resources, funding or an accountable lead, volunteered to take it on, flagged risks and potential delays early, and secured funding and senior-management backing to deliver on track.",
         "jd_keywords": [
           "project delivery and governance",
           "risk and issue management"
@@ -579,6 +580,8 @@
         "achievement": "Citrix Remote Access Portal",
         "company": "Morgan Stanley",
         "scale": "70,000 users",
+        "role": "Chief architect",
+        "impact": "Chief architect for the revamp of the global remote access portal serving 70,000 users, built on Citrix StoreFront with secure access and multi-tier resiliency",
         "security": "Secure StoreFront implementation"
       },
       {
@@ -847,7 +850,7 @@
         "company": "Morgan Stanley",
         "scale": "70,000 users globally",
         "tech": "Citrix StoreFront native failover grouping, F5 LTM/GTM, Citrix NetScaler, Akamai Kona",
-        "impact": "Architected and validated multi-tier local, regional, and global failover for Citrix StoreFront remote access, ensuring continuity of trading-floor access during regional or global outage scenarios"
+        "impact": "As chief architect of the global remote access portal, architected and validated multi-tier local, regional, and global failover for Citrix StoreFront remote access, ensuring continuity of trading-floor access during regional or global outage scenarios"
       },
       {
         "achievement": "Project Delivery Framework (Excel and MS Project)",
@@ -957,7 +960,7 @@
           "Owned the HKD 28M infrastructure budget, including 2024/2025 budget planning, cost analysis, approvals and SMT presentations, driving vendor governance and cost optimisation across APAC IT operations.",
           "Chaired the incident and problem management reviews and led the end-user recovery from the 2024 CrowdStrike BSOD outage: **90% of affected devices restored within the first day** and the remainder within **three days**.",
           "Used Dynatrace for behavioural baselining and ThousandEyes for network path visibility to support incident triage and recovery.",
-          "Delivered the Windows 11 migration for 3,400 devices, saving HK$3.5M while improving performance and security. Found the programme without resources, funding or an accountable lead, volunteered to start it, flagged the risks and potential delays, and secured funding and senior-management attention to deliver on track.",
+          "Project owner for the Windows 11 migration of 3,400+ desktops, delivered end to end and saving HK$3.5M while improving performance and security. Found the programme without resources, funding or an accountable lead, volunteered to take it on, flagged the risks and potential delays early, and secured funding and senior-management backing to deliver on track.",
           "Led the 1,700-user relocation to 3 new offices with zero downtime, coordinating infrastructure, application, security and operations teams for seamless service continuity.",
           "Raised laptop patch compliance from **58% to 100%**, clearing a 2-year backlog with **zero critical vulnerabilities** outstanding. Ran the control through structured user email communications and compliance reporting, brought improvement ideas to the Head of IT Security regularly, and worked with the security, infrastructure and support teams to triage and prioritise security fixes.",
           "Automated ITSM and ETL workflows with Power Query and PowerShell, saving 144 man-days annually and removing two operational positions; trained the team on the technique, cutting a full day of manual reporting to 5 minutes.",
@@ -1092,7 +1095,7 @@
           "Revamped Morgan Stanley's **No.1 global trading application** (US$ multi-billions in daily trading volume) using Citrix XenApp technology",
           "Led global engineering team supporting 120,000 desktops with blueprint adoption globally",
           "Introduced LoginVSI for global performance benchmarking and load testing of VDI/SBC environments",
-          "Architected and validated resiliency and high availability for a global Citrix StoreFront remote-access portal (70,000 users), engineering multi-tier failover across local, regional, and global scenarios via Citrix StoreFront native failover grouping, F5 LTM/GTM load balancing, and Citrix NetScaler with Akamai Kona for external DNS failover",
+          "Chief architect for the revamp of the global remote access portal (Citrix StoreFront, 70,000 users), architecting and validating resiliency and high availability, engineering multi-tier failover across local, regional, and global scenarios via Citrix StoreFront native failover grouping, F5 LTM/GTM load balancing, and Citrix NetScaler with Akamai Kona for external DNS failover",
           "Improved latency for 800+ China developers by 40% and reduced hosted desktop load time from issues to optimal performance",
           "Designed Desktop Transformation Strategy (Flex Desk) with 4,000 users, created white paper validating VDI vs HDI user density",
           "Led Asia-region conversion of 600 Financial Advisors from traditional to virtual desktops as part of a global M&A integration spanning 15,000+ financial advisers and 600+ branch offices, validating business-critical application workloads for zero-disruption cutover",
