@@ -11,16 +11,16 @@
       "linkedin": "linkedin.com/in/johnhau",
       "availability": "Immediate",
       "resume_source": "JohnHauResume2026_MorganStanley.txt",
-      "years_experience": 27.33,
+      "years_experience": 28.33,
       "experience_timeline": {
         "started": 1995,
         "career_break_start": "August 2020",
-        "career_break_end": "November 2023",
+        "career_break_end": "November 2022",
         "ended": "July 2025",
         "total_span_years": 30.58,
-        "career_break_years": 3.25,
-        "actual_work_experience_years": 27.33,
-        "notes": "Calculator: (1995-July 2025: 30 years 7 months) minus (Aug 2020-Nov 2023: 3 years 3 months) = 27 years 4 months"
+        "career_break_years": 2.25,
+        "actual_work_experience_years": 28.33,
+        "notes": "Calculator: (1995-July 2025: 30 years 7 months) minus (Aug 2020-Nov 2022: 2 years 3 months) = 28 years 4 months. Bank of America role ran Nov 2022 - Nov 2023."
       },
       "resume_sources": [
         "JohnHauResume2025-AIA.txt",
@@ -497,12 +497,20 @@
         "achievement": "India ODC 10K Contractor VDI Remediation",
         "company": "Morgan Stanley",
         "scale": "10,000 offshore vendor users",
-        "impact": "Core architect for full-stack performance remediation; resolved VM bottlenecks through SPLUNK-driven analysis, live demo interrogations with app owners, and multi-team collaboration; presented findings and mitigation   plan to lead engineers, product managers, and MD-level senior management"
+        "impact": "Core architect for full-stack performance remediation; resolved VM bottlenecks through SPLUNK-driven analysis, live demo interrogations with app owners, and multi-team collaboration; presented findings and mitigation   plan to lead engineers, product managers, and MD-level senior management; interrogated users and witnessed the issues first-hand while coordinating IT, vendors, application owners, business units and senior management",
+        "jd_keywords": [
+          "cross-functional coordination",
+          "risk and issue management"
+        ]
       },
       {
         "achievement": "Global Virtual Desktop & Application Get-Well Program",
         "company": "Morgan Stanley",
-        "impact": "Served as global SME and lead architect for Citrix, Virtual Desktop, and cloud environments; authored onboarding guidelines and workload-analysis standards for migrating traditional desktops and fat-client applications to VDI/Virtual Apps; drove global remediation program improving stability, performance, and user experience across APAC/EMEA/NA"
+        "impact": "Served as global SME and lead architect for Citrix, Virtual Desktop, and cloud environments; authored onboarding guidelines and workload-analysis standards for migrating traditional desktops and fat-client applications to VDI/Virtual Apps; drove global remediation program improving stability, performance, and user experience across APAC/EMEA/NA; resolved application slowness for Asia research users by coordinating business units, users, IT teams and vendors to reproduce, capture and fix the issues",
+        "jd_keywords": [
+          "cross-functional coordination",
+          "vendor management"
+        ]
       },
       {
         "achievement": "Scientific Load Testing & User Density Validation",
@@ -522,7 +530,11 @@
         "company": "AIA International Ltd",
         "scale": "3,400 devices",
         "cost_savings": "HK$3.5M",
-        "impact": "Performance & security improvements"
+        "impact": "Performance and security improvements. Found the programme without resources, funding or an accountable lead, volunteered to start it, flagged risks and potential delays, and secured funding and senior-management attention to deliver on track.",
+        "jd_keywords": [
+          "project delivery and governance",
+          "risk and issue management"
+        ]
       },
       {
         "achievement": "ITSM/ETL Workflow Automation",
@@ -540,12 +552,16 @@
       {
         "achievement": "Trading System Migration from Unsupported CentOS to RedHat",
         "company": "Edge Technology Group",
-        "impact": "Eliminated compliance and stability risks for financial services clients by migrating critical trading systems from unsupported CentOS to enterprise-grade RedHat"
+        "impact": "Alerted VIP clients to unsupported CentOS, presented a clear migration plan to enterprise-grade RedHat and flagged the risk to senior management; eliminated compliance and stability risks for financial services clients.",
+        "jd_keywords": [
+          "risk and issue management",
+          "compliance and audit"
+        ]
       },
       {
         "achievement": "Syslog-NG High Availability Logging Architecture",
         "company": "Edge Technology Group",
-        "impact": "Implemented HA logging architecture to close audit gaps and strengthen operational observability"
+        "impact": "Gap analysis, SOW and PoC for clients without SIEM coverage; took a resilient syslog-ng solution live as an enterprise SIEM, closing audit gaps and strengthening observability; the pipeline feeds Elastic and Splunk and supports ISO 27001 logging controls"
       },
       {
         "achievement": "ISO27001 Gap Identification and Remediation Architecture",
@@ -701,7 +717,7 @@
         "company": "AIA International Ltd",
         "metric": "90% of devices fixed within 1 day",
         "duration": "Remaining devices resolved within 3 days",
-        "impact": "Minimized business impact during 2024 global outage"
+        "impact": "Led end-user recovery and minimised business impact during the 2024 global outage, working with CrowdStrike telemetry during the recovery"
       },
       {
         "achievement": "Autosys Job Optimization",
@@ -713,7 +729,12 @@
         "achievement": "ITDR Test Program Success",
         "company": "AIA International Ltd",
         "scale": "Several hundred applications tested",
-        "metric": "3 DR tests per year, 100% success rate"
+        "metric": "3 DR tests per year, 100% success rate",
+        "impact": "Chaired ITDR governance across pre-, during and post-exercise phases, communicating with hundreds of colleagues across Application, Architecture and Infrastructure teams.",
+        "jd_keywords": [
+          "cross-functional coordination",
+          "compliance and audit"
+        ]
       },
       {
         "achievement": "ITDR Infrastructure Cost Reduction",
@@ -751,7 +772,7 @@
         "company": "Morgan Stanley",
         "scale": "10,000 offshore vendor users",
         "cost_savings": "Multi-millions of dollars YoY",
-        "impact": "Replaced traditional local desktops in branch offices with secure cloud solutions"
+        "impact": "Replaced traditional local desktops in branch offices with secure cloud solutions, enforced with Microsoft and Citrix DLP policies as Citrix SME: USB blocking, remote print restrictions and clipboard disablement"
       },
       {
         "achievement": "Asia Datacenter Power Down & BCP Testing Management",
@@ -795,7 +816,8 @@
         "achievement": "Outlook Hang Issue Resolution",
         "company": "Bank of America",
         "scale": "200+ users impacted across APAC",
-        "impact": "Proactively led cross-team remediation effort"
+        "tech": "Wireshark packet capture, memory dump analysis",
+        "impact": "Proactively started and led the technical bridge with Microsoft Premier Support and internal engineering; reproduced the issue, took Wireshark packet captures and full memory dumps, and helped Microsoft identify a third-party antivirus DLL hook interfering with core processes"
       },
       {
         "achievement": "Trading Platform Stability Remediation",
@@ -826,6 +848,101 @@
         "scale": "70,000 users globally",
         "tech": "Citrix StoreFront native failover grouping, F5 LTM/GTM, Citrix NetScaler, Akamai Kona",
         "impact": "Architected and validated multi-tier local, regional, and global failover for Citrix StoreFront remote access, ensuring continuity of trading-floor access during regional or global outage scenarios"
+      },
+      {
+        "achievement": "Project Delivery Framework (Excel and MS Project)",
+        "company": "AIA International Ltd",
+        "impact": "Built a reusable framework and coached staff to plan projects with internal and external dependencies, risks, resource availability and delegation, track progress, adjust timelines, and report through an interactive dashboard",
+        "jd_keywords": [
+          "project delivery and governance"
+        ]
+      },
+      {
+        "achievement": "Executive One-Page Project Dashboard",
+        "company": "AIA International Ltd",
+        "impact": "Coached junior project managers to build a one-page executive view of each project: overview, RAG status, risks and next steps",
+        "jd_keywords": [
+          "executive and steering reporting",
+          "project delivery and governance"
+        ]
+      },
+      {
+        "achievement": "Project Delivery Framework (Excel and MS Project)",
+        "company": "Bank of America",
+        "impact": "Built a reusable framework and coached staff to plan projects with internal and external dependencies, risks, resource availability and delegation, track progress, adjust timelines, and report through an interactive dashboard",
+        "jd_keywords": [
+          "project delivery and governance"
+        ]
+      },
+      {
+        "achievement": "Executive One-Page Project Dashboard",
+        "company": "Bank of America",
+        "impact": "Coached junior project managers to build a one-page executive view of each project: overview, RAG status, risks and next steps",
+        "jd_keywords": [
+          "executive and steering reporting",
+          "project delivery and governance"
+        ]
+      },
+      {
+        "achievement": "Project Delivery Framework (Excel and MS Project)",
+        "company": "Edge Technology Group",
+        "impact": "Built a reusable framework and coached staff to plan projects with internal and external dependencies, risks, resource availability and delegation, track progress, adjust timelines, and report through an interactive dashboard",
+        "jd_keywords": [
+          "project delivery and governance"
+        ]
+      },
+      {
+        "achievement": "Executive One-Page Project Dashboard",
+        "company": "Edge Technology Group",
+        "impact": "Coached junior project managers to build a one-page executive view of each project: overview, RAG status, risks and next steps",
+        "jd_keywords": [
+          "executive and steering reporting",
+          "project delivery and governance"
+        ]
+      },
+      {
+        "achievement": "1,700-User Office Relocation",
+        "company": "AIA International Ltd",
+        "scale": "1,700 users, 3 new offices",
+        "impact": "Zero downtime, coordinating infrastructure, application, security and operations teams",
+        "jd_keywords": [
+          "project delivery and governance",
+          "cross-functional coordination"
+        ]
+      },
+      {
+        "achievement": "Java Deployment Automation Escalation",
+        "company": "Bank of America",
+        "impact": "Escalated that thousands of users received Java through manual deployment; the right team was engaged and package deployment was automated in a timely manner",
+        "jd_keywords": [
+          "risk and issue management"
+        ]
+      },
+      {
+        "achievement": "VDI Plant 3x Overcommitment Escalation",
+        "company": "Bank of America",
+        "impact": "Escalated the overcommitment behind recurring intermittent performance issues; used data analysis to write up tactical and strategic fixes",
+        "jd_keywords": [
+          "risk and issue management",
+          "executive and steering reporting"
+        ]
+      },
+      {
+        "achievement": "EOL Windows Server Migration Risk Escalation",
+        "company": "Edge Technology Group",
+        "impact": "Alerted VIP clients to potential migration delays and proposed a plan and timeline to the client's CTO, avoiding penalties and further delays",
+        "jd_keywords": [
+          "risk and issue management",
+          "vendor management"
+        ]
+      },
+      {
+        "achievement": "VDI Plant Capacity Risk Escalation",
+        "company": "Edge Technology Group",
+        "impact": "Flagged capacity risk and proposed corrective actions to senior management",
+        "jd_keywords": [
+          "risk and issue management"
+        ]
       }
     ],
     "professional_experience": [
@@ -836,34 +953,43 @@
         "scope": "Head of EUS/EUC, Service Desk, ITDR, Production Control | 50+ staff, APAC region",
         "highlights": [
           "Led End User Services, ITDR and Production Control teams for 50+ staff across HK , Macau and China ensuring stable endpoint and virtual desktop services",
-          "Managed HKD 28M infrastructure budget, driving vendor governance and cost optimization across APAC IT operations.",
-          "Acted as subject matter expert resolving the 2024 CrowdStrike BSOD outage, restoring **90% of affected devices within the first day**.",
-          "Delivered Windows 11 migration for 3,400 devices, saving HK$3.5M while improving performance and security",
-          "Led 1,700-user relocation to 3 new offices with zero downtime and seamless service continuity",
-          "Strengthened patch compliance from 58% → 100%, resolving a critical 2-year backlog through governance and automation",
-          "Automated ITSM workflows using Power Query + PowerShell, saving 144 man-days annually",
-          "Implemented ETL automation tools improving operational efficiency by ~30%",
-          "Built PowerBI dashboards for SLA, KPI, and operational performance monitoring across APAC",
-          "Standardized SOPs, escalation flows, and communication guidelines, improving service quality by one full grade",
-          "Executed HKMA-aligned DR drills ensuring full regulatory compliance",
-          "Improved operational productivity by ~30% through automation and process optimization",
+          "Ran monthly and ad hoc reviews with vendors and managed service providers to improve end user services quality, defining SLA, SOW and SOP terms and reviewing RFPs. Engaged the Service Desk and Helpdesk provider early and secured a further **10%** saving on the two-year staffing contract.",
+          "Owned the HKD 28M infrastructure budget, including 2024/2025 budget planning, cost analysis, approvals and SMT presentations, driving vendor governance and cost optimisation across APAC IT operations.",
+          "Chaired the incident and problem management reviews and led the end-user recovery from the 2024 CrowdStrike BSOD outage: **90% of affected devices restored within the first day** and the remainder within **three days**.",
+          "Used Dynatrace for behavioural baselining and ThousandEyes for network path visibility to support incident triage and recovery.",
+          "Delivered the Windows 11 migration for 3,400 devices, saving HK$3.5M while improving performance and security. Found the programme without resources, funding or an accountable lead, volunteered to start it, flagged the risks and potential delays, and secured funding and senior-management attention to deliver on track.",
+          "Led the 1,700-user relocation to 3 new offices with zero downtime, coordinating infrastructure, application, security and operations teams for seamless service continuity.",
+          "Raised laptop patch compliance from **58% to 100%**, clearing a 2-year backlog with **zero critical vulnerabilities** outstanding. Ran the control through structured user email communications and compliance reporting, brought improvement ideas to the Head of IT Security regularly, and worked with the security, infrastructure and support teams to triage and prioritise security fixes.",
+          "Automated ITSM and ETL workflows with Power Query and PowerShell, saving 144 man-days annually and removing two operational positions; trained the team on the technique, cutting a full day of manual reporting to 5 minutes.",
+          "Raised operational productivity by about 30% through ETL automation, tooling and process optimisation.",
+          "Automated raw operational data through an ETL feed into PowerBI dashboards for SLA, KPI and service health across APAC, so the team could spot issues quickly and management could see performance at a glance.",
+          "Enhanced Production Control and service operations by standardising SOPs, escalation flows and communication guidelines, improving service quality by one full grade, and built an alert triage and escalation framework based on incident severity and business importance, with proactive alerts so senior management hears about serious issues before users escalate.",
           "Strengthened cross-team collaboration across APAC regions and global support model alignment",
-          "Delivered strategic planning presentations to senior management for the 2024 and 2025 IT roadmap.",
-          "Reduced headcount by **two positions** through automation of operational workflows using PowerShell and Power Query.",
+          "Delivered strategic planning presentations to senior management for the 2024 and 2025 IT roadmap, and produced executive presentations, technical write-ups and technical analysis for audiences at every level.",
+          "Built a project delivery framework in Excel and MS Project and coached staff to run it: workflows with internal and external dependencies, risks, resource availability and delegation, with timelines tracked and adjusted; helped the team build an interactive dashboard.",
+          "Coached junior project managers to build a one-page executive dashboard giving a holistic view of each project: overview, RAG status, risks and next steps.",
           "Improved stakeholder communication and deliverable turnaround time by **2 days**.",
-          "Executed **3 disaster recovery drills** in 2024, achieving governance improvements through **40+ process enhancements**.",
-          "Oversaw vendor management and completed departmental budget planning for 2024/2025, including cost analysis, approvals, and SMT presentations.",
+          "Executed 3 disaster recovery drills in 2024 under HKMA-aligned requirements, achieving full regulatory compliance and 40+ process enhancements.",
           "Led root cause investigation into a CEO global messaging incident on mobile devices, presenting RCA and permanent fix to C-suite leadership.",
           "Identified root cause of VIP client device non-compliance and implemented governance documentation and improved checkout scripts to prevent recurrence.",
           "Provided technical direction for the design of a tier-1 resiliency and high-availability architecture to meet DR/BCP requirements.",
-          "Trained team members on data automation techniques, reducing a full day of manual work to **5 minutes** using Power Query.",
-          "Chaired ITDR governance meetings involving hundreds of colleagues across Application, Architecture, and Infrastructure teams to coordinate DR reviews.",
+          "Chaired ITDR governance across the pre-, during and post-exercise phases, coordinating DR reviews and communications with hundreds of colleagues across Application, Architecture and Infrastructure teams.",
           "Promoted **2 colleagues** within the Production Control team in 2025.",
           "Built and led a standardized, objective hiring framework, interviewing over **40 candidates** and hiring **8 additional team members**.",
           "Automated onboarding, offboarding, and move workflows by integrating Workday approvals with ServiceNow ticket assignment, partnering with Group IT and HR.",
+          "Escalated issues to Group IT with recommendations on the planning of new IT security measures and BAU resolution plans, and aligned Group IT's Windows 11 updates with local business units.",
           "Championed Phase 1 deployment of a self-service IT catalogue for software and hardware ordering in collaboration with Group IT.",
           "Spearheaded enterprise AI adoption by successfully deploying Microsoft Copilot to senior technical managers, and partnered with Microsoft to scope and plan Phase 2 of the rollout.",
           "Transitioned EUS software/hardware procurement from an annual upfront cost model to a pay-as-you-go model, partnering with Finance and SMT."
+        ],
+        "jd_keywords": [
+          "project delivery and governance",
+          "cross-functional coordination",
+          "risk and issue management",
+          "vendor and budget management",
+          "group IT and architecture alignment",
+          "executive and steering reporting",
+          "compliance and audit"
         ]
       },
       {
@@ -873,23 +999,34 @@
         "scope": "Primary escalation lead for VDI/desktop issues, APAC region | 80,000 users on private clould - VDI",
         "highlights": [
           "Served as primary escalation lead for VDI and desktop issues for MDs, traders, VVIP, and end-users across APAC",
+          "Applied a severity-based alert triage and escalation process across APAC VDI and patching operations, with proactive alerts to senior management on high-impact issues.",
           "Supported ~80,000 users on next-gen stateless VDI; conducted deep performance analysis and remediation",
           "Achieved 99% audit pass rate and 99% SLA compliance across all patch cycles",
-          "Automated ETL and ITSM workflows using Power Query + PowerShell, saving 14,390 hours annually (70% efficiency gain)",
-          "Saved 7 FTE through process automation and workflow optimization",
+          "Automated ETL and ITSM workflows with Power Query and PowerShell, saving 14,390 hours (7 FTE) annually, a 70% efficiency gain.",
           "Delivered comprehensive VDI troubleshooting and PowerShell training across 10 APAC countries",
-          "Standardized patching communications, reducing user complaints by 40%",
+          "Set up control governance around user patching and compliance emails, standardising the communications to keep laptops compliant and reducing user complaints by **40%**. Regularly put improvement ideas to the Head of IT Security and worked with stakeholder teams to triage and prioritise security fixes.",
           "Presented restructuring recommendations to global leadership; 2 were adopted globally",
-          "Improved data processing efficiency by ~70% through automation of manual workflows",
-          "Led APAC virtual SME team of **15 FTEs** to drive VDI 'get well' remediation program across the region",
-          "Authored in-depth VDI Top-N issue analysis with actionable recommendations, presented directly to senior management",
-          "Major Incident Management - to proactively coordinated cross-team resolution of Outlook hang issue impacting **over 200 users** across APAC",
-          "Innovation -  Collaborated with global technology team to evaluate and recommend emerging VDI solutions (Turbonomics, LoginVSI, HPE Moonshot) for power-user workload optimization",
-          "Managed a patching and deployment team of **6 FTEs and 1 contractor** delivering APAC security patching operations",
+          "Led the APAC virtual SME team of 15 FTEs on the VDI 'get well' remediation programme, coordinating cross-functional teams across the region.",
+          "Built a project delivery framework in Excel and MS Project and coached staff to run it: workflows with internal and external dependencies, risks, resource availability and delegation, with timelines tracked and adjusted; helped the team build an interactive dashboard.",
+          "Coached junior project managers to build a one-page executive dashboard giving a holistic view of each project: overview, RAG status, risks and next steps.",
+          "Escalated to senior management that thousands of users were receiving Java through manual deployment with no automation; the right team was engaged and package deployment was automated in a timely manner.",
+          "Escalated that the VDI plant was overcommitted by 3x and causing recurring intermittent performance issues; analysed the data and wrote up tactical and strategic fixes for senior management.",
+          "Authored in-depth VDI Top-N issue analysis with actionable recommendations, presented directly to senior management, alongside executive presentations and technical write-ups for audiences at all levels.",
+          "Major Incident Management - to proactively coordinated cross-team resolution of Outlook hang issue impacting **over 200 users** across APAC. Started and led the bridge with Microsoft Premier Support, reproduced the issue and took Wireshark packet captures and full memory dumps, which helped Microsoft identify a third-party antivirus DLL hook interfering with core processes",
+          "Collaborated regularly with regional and global technology teams on goals, roadmap and issue fixing, presenting analysis and write-ups to global committees; evaluated and recommended emerging VDI solutions (Turbonomics, LoginVSI, HPE Moonshot) for power-user workload optimisation.",
+          "Managed a patching and deployment team of 6 FTEs and 1 contractor delivering APAC security patching operations, coordinating day-to-day BAU patching with infrastructure, application, security and operations teams.",
           "Championed **10** Operational Excellence improvement ideas for APAC and global teams, driving automation and process refinement initiatives",
           "People management -Strengthened team collaboration and skill development by mentoring direct reports, setting SMART goals, and implementing staff recognition programs",
           "Performed SPLUNK-driven performance forensics for 10,000 vendor VPC users, identifying latency bottlenecks and driving remediation",
           "Led remediation for latency-sensitive trading workloads, improving stability and reducing escalations from MDs and traders"
+        ],
+        "jd_keywords": [
+          "project delivery and governance",
+          "cross-functional coordination",
+          "risk and issue management",
+          "global committee collaboration",
+          "executive and steering reporting",
+          "compliance and audit"
         ]
       },
       {
@@ -899,27 +1036,37 @@
         "scope": "Systems and network engineering leadership, HK/SG/AU region",
         "highlights": [
           "Managed 2 teams with 12 subordinates (systems and network engineering)",
-          "Identified ISO27001 compliance gaps and designed remediation architecture generating HKD 1.8M in new revenue",
+          "Identified ISO 27001 compliance gaps and designed the remediation architecture, generating **HKD 1.8M** in new revenue, while leading the ISO 27001 and SFC EDSP (External Electronic Data Storage) compliance efforts.",
           "Responsible for IT governance, systems stability, and IT ops process refinement for Financial Services clients",
-          "Designed 3-tier backup architecture improving success rate from 40–68% → 99%",
-          "Led ISO 27001 and SFC EDSP (External Electronic Data Storage) compliance efforts",
-          "Successfully identified backup failures and deployed solutions bringing revenue to the firm",
-          "Reduced daily problem tickets by 70% through capacity management and proactive identification",
+          "Redesigned the backup architecture into 3 tiers, lifting success rate from 40-68% to 99%; identified backup failures and deployed fixes that brought new revenue to the firm.",
+          "Reduced daily problem tickets by **70%** through capacity management and proactive identification, and worked closely with stakeholders on incident handling to shorten the resolution time of long-aging tickets.",
           "Proposed mitigation plans and Opex/risk assessment options for clients",
           "Chaired Change Advisory Board (CAB), reducing change-related incidents by 20%",
           "Implemented monitoring and observability tools, reducing MTTR by ~20%",
           "Engaged with vendors on technical roadmaps for Veeam, CommVault, LoginVSI, and Citrix Workspace",
-          "Built vendor governance cadence with SLA scorecards and quarterly reviews",
+          "Built a vendor governance cadence of regular product reviews, monthly and ad hoc sessions with vendors and MSPs, SLA scorecards and quarterly reviews, and helped define SLA, SOW and SOP terms and review RFPs.",
           "Empowered subordinates through delegations, documentations, and training; improved work-life balance by 33%",
           "Facilitated local teams to align with global 24x7 support model",
           "Improved internal and external communications through RACI model and interactive meetings",
-          "Successfully presented team goals and deliverables to COO and CEO; achieved 80% Q1 2020 targets",
+          "Successfully presented team goals and deliverables to the COO and CEO, achieving 80% of Q1 2020 targets, and produced executive presentations and technical write-ups for audiences at all levels.",
+          "Built a project delivery framework in Excel and MS Project and coached staff to run it: workflows with internal and external dependencies, risks, resource availability and delegation, with timelines tracked and adjusted; helped the team build an interactive dashboard.",
+          "Coached junior project managers to build a one-page executive dashboard giving a holistic view of each project: overview, RAG status, risks and next steps.",
           "Directly engaged with client **CTOs** and technical teams to spearhead the quality of IT infrastructure service delivery for Financial Services clients",
           "Mitigated risk exposure through IT audits and **infrastructure penetration testing** engagements",
           "Drove measurable improvement of **overall KPIs** for the Centralized Services team",
-          "Managed end-to-end IT operations via **ticketing systems**, overseeing incident and problem management workflows across teams",
-          "Led migration of critical trading systems from unsupported CentOS to enterprise-grade RedHat, eliminating compliance and stability risks",
-          "Implemented syslog-NG high availability logging architecture to close audit gaps and strengthen observability"
+          "Managed end-to-end IT operations via **ticketing systems**, overseeing incident and problem management workflows across teams, and built an alert triage and escalation framework based on incident and problem severity and business importance, with proactive alerts to senior management.",
+          "Alerted VIP clients to unsupported CentOS, presented a clear plan to migrate to enterprise-grade RedHat Linux and flagged the risk to senior management, then led the migration of critical trading systems, eliminating compliance and stability risks.",
+          "Alerted VIP clients to potential delays in migrating end-of-life Windows servers and proposed a plan and timeline to the client's CTO, avoiding penalties and further delays.",
+          "Flagged capacity risk in the VDI plant and proposed corrective actions to mitigate it with senior management.",
+          "Found that several clients had no SIEM coverage for their network devices. Completed the gap analysis, agreed the SOW and security requirements with each client, ran the PoC, and took a resilient syslog-ng solution live as an enterprise SIEM, closing audit gaps and strengthening observability; the pipeline feeds Elastic and Splunk and supports ISO 27001 logging controls.",
+          "Managed major infrastructure outages with a blameless approach, including a weekend change failure and a Cisco ISE outage on a trading floor segment: coordinated internal engineers, drove Cisco bug and patch verification, and kept the client informed at set checkpoints through to the RCA."
+        ],
+        "jd_keywords": [
+          "project delivery and governance",
+          "risk and issue management",
+          "vendor management",
+          "executive and steering reporting",
+          "compliance and audit"
         ]
       },
       {
@@ -929,14 +1076,18 @@
         "scope": "APAC escalation lead for VDI across APAC/EMEA/NA | 120,000 desktops, global team",
         "highlights": [
           "APAC escalation lead for VDI and Virtual App issues (APAC/EMEA/NA coverage)",
+          "Worked with Citrix under NDA to refine Citrix Command Center for the firm's business use, improving its resiliency as an enterprise-supported product.",
+          "Worked with stakeholders across engineering, application and support teams to shorten the resolution time of long-aging tickets.",
           "Managed global virtual team of 8 people with 2 directs in region",
           "Authored 8 global white papers on AppSense, Citrix policy, load testing, HDX technology, user density, trading performance, and Storefront capacity analysis (became firm-wide VDI blueprints)",
+          "Collaborated regularly with regional and global teams on goals, roadmap and issue fixing, presenting analysis and write-ups to global committees and bringing innovation ideas with transparent communication.",
           "Avoided US$12.7M TCO through Center of excellence by identifying 9,800 unassigned/spare/reclaimed virtual desktops for reuse",
           "Avoided US$640K in vendor costs on consultancy analysis",
           "Generated US$1M additional monthly trade volume in China by improving stability (low latency) for Citrix XenApp trading apps",
-          "Core architect for India ODC 10K contractor VDI remediation, identifying VM bottlenecks through SPLUNK-driven analysis, live demo interrogations with app owners and users, and multi-team collaboration",
+          "Core architect for India ODC 10K contractor VDI remediation: analysed the problem, interrogated users and witnessed the performance issues first-hand, used SPLUNK-driven analysis to identify VM bottlenecks, and coordinated IT, vendors, application owners, business units and senior management.",
           "Presented full remediation plan, root cause analysis, and mitigation strategy to lead engineers, product managers, and MD-level senior management",
           "Served as global SME and lead architect for Citrix, Virtual Desktop, and cloud environments, authoring onboarding guidelines and workload-analysis standards for migrating traditional desktops and fat-client applications to VDI/Virtual Apps and driving the global get-well program",
+          "Addressed application slowness for Asia research users in the VDI get-well programme, coordinating business units, users, IT teams and vendors to reproduce and capture the issue and drive the fixes.",
           "Performed scientific load testing and user density validation using LoginVSI and SPLUNK data analysis; authored white papers and presented findings to senior managers",
           "Revamped Morgan Stanley's **No.1 global trading application** (US$ multi-billions in daily trading volume) using Citrix XenApp technology",
           "Led global engineering team supporting 120,000 desktops with blueprint adoption globally",
@@ -948,7 +1099,7 @@
           "Identified and resolved VDI stability issues for 8,000 vendor users through deep workload analysis and stakeholder engagement",
           "Implemented 24/7 End User Experience monitoring tool (separate from system monitoring) to reduce support man-hours and improve customer satisfaction",
           "Explored hyper-convergence computing technology to move away from costly traditional NAS/SAN storage",
-          "Improved operational stability reducing user calls by 40% through proactive monitoring integration (SCOM, ServiceNow APIs, SPLUNK dashboards)",
+          "Improved operational stability, reducing user calls by **40%** through proactive monitoring integration (SCOM, ServiceNow APIs, SPLUNK dashboards), with a severity-based alert triage and escalation process and proactive alerts to senior management.",
           "Introduced capacity management load test tool adopted globally across operations teams",
           "Led the architecture and pioneered the deployment AppSense Performance Manager to 50% of Citrix XenApp farm, reducing server hardware footprint by 15%",
           "Deployed Japan External Citrix XenApp Trading plant (complete build: OS, apps, configuration, coordination)",
@@ -959,9 +1110,9 @@
           "Wrote PowerShell scripts for business report checkout automation and Virtual Desktop availability monitoring",
           "Managed reclaim programs and lifecycle operations across global infrastructure",
           "Built global runbooks, RCA frameworks, and lifecycle processes",
-          "Ensured 100% compliance as IT Risk Officer for virtualization domain",
-          "Engaged vendors on product roadmaps and arranged workshops for organization-wide technology awareness",
-          "Engineered secure cloud desktop solutions for **10,000 offshore vendor users**, replacing traditional local desktops in branch offices and saving multi-millions of dollars year-over-year",
+          "Ensured **100%** compliance as IT Risk Officer for the virtualization domain, working with the Security, Audit and Compliance teams to close security findings and with IBM on low-severity items from IT penetration tests, setting remediation priorities and delegating the work.",
+          "Engaged vendors on product roadmaps, ran regular product reviews and monthly and ad hoc meetings with vendors and MSPs, and helped define SLA, SOW and SOP terms and review RFPs; arranged workshops for organization-wide technology awareness.",
+          "Engineered secure cloud desktop solutions for **10,000 offshore vendor users**, replacing traditional local desktops in branch offices and saving multi-millions of dollars year-over-year. Enforced Microsoft and Citrix DLP policies as Citrix SME: USB blocking, remote print restrictions and clipboard disablement",
           "Managed Asia datacenter power-down and BCP testing events across **5 countries** (Hong Kong, Japan, Korea, Australia, India)",
           "Served as member of Morgan Stanley's virtual management committee, mentoring and coaching team members through the promotion process",
           "Extended offloading of virtualization problem cases to Asia Winops Server team, enabling support of **30,000 desktops** and 400+ published apps globally through training and documentation",
@@ -971,10 +1122,16 @@
           "Resolved a memory leakage issue in the SQL reporting tool running on Citrix XenApp by leveraging **AppSense Performance Manager**",
           "Diagnosed and resolved multiple VDI outages across **Hong Kong, Australia, and North America**, tracing root causes to network switch failures, NetApp filer hardware failures, and improper XenDesktop patching",
           "Successfully migrated Citrix XenApp and Softgrid infrastructure to a **new datacenter**",
-          "Drove deployment of the **first-generation ESX 3.5 farms** in Asia and stood up vCenter infrastructure for the region",
+          "Initiated and led deployment of the first-generation ESX 3.5 farms and Citrix XenDesktop 3 and 4 farms across Asia, standing up vCenter infrastructure and training Winops team members to build out the remaining farm infrastructure.",
           "Trained the Asia Floor Support team to support Virtual Desktops and collaborated with service managers to develop a new support model",
-          "Led POC and pilot testing initiatives for Virtual Desktops across **FX IT remote trading workstations**, China Application Developers, and branch offices in India, Singapore, Taiwan, and Australia",
-          "Initiated and led deployment of **Citrix XenDesktop 3 and 4 farms** across Asia, training Winops team members to build out the remaining farm infrastructure"
+          "Led POC and pilot testing initiatives for Virtual Desktops across **FX IT remote trading workstations**, China Application Developers, and branch offices in India, Singapore, Taiwan, and Australia"
+        ],
+        "jd_keywords": [
+          "cross-functional coordination",
+          "vendor management",
+          "global committee collaboration",
+          "executive and steering reporting",
+          "compliance and audit"
         ]
       },
       {
