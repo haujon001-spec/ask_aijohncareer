@@ -1,85 +1,113 @@
+/* Full-screen document reader (28 Oct 2026). Previous modal version:
+   archive/DocViewer.css.20261028_V1.bak */
 .doc-viewer-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(2, 4, 9, 0.75);
-  backdrop-filter: blur(4px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
+  height: 100vh;
+  height: 100dvh;
+  background: var(--portal-bg-base);
+  color: var(--portal-text-primary);
   z-index: 100;
+  display: flex;
 }
 
 .doc-viewer-modal {
   width: 100%;
-  max-width: 90vw;
-  max-height: 88vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  background: var(--portal-bg-layer-1, #0a0e1a);
-  border: 1px solid var(--portal-glass-border);
-  border-radius: var(--portal-radius, 14px);
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
-  overflow: hidden;
+  background:
+    radial-gradient(circle at 20% -10%, var(--portal-glow-1), transparent 40%),
+    var(--portal-bg-base);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
 }
 
 .doc-viewer-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 16px 20px;
+  gap: 12px;
+  padding: calc(10px + env(safe-area-inset-top, 0px)) max(14px, env(safe-area-inset-right, 0px)) 10px max(14px, env(safe-area-inset-left, 0px));
   border-bottom: 1px solid var(--portal-border);
+  background: var(--portal-bg-layer-1);
   flex-shrink: 0;
 }
 
 .doc-viewer-title {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
   font-weight: 700;
+  font-size: 15px;
+  color: var(--portal-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.doc-viewer-back,
+.doc-viewer-copy {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0 16px;
+  border-radius: 12px;
   font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.doc-viewer-back {
+  background: var(--portal-metallic-gradient);
+  border: 0;
+  color: #04201C;
+}
+
+.doc-viewer-copy {
+  background: transparent;
+  border: 1px solid var(--portal-border-strong);
   color: var(--portal-text-primary);
 }
 
-.doc-viewer-close {
-  background: transparent;
-  border: 1px solid var(--portal-border-strong);
-  color: var(--portal-text-secondary);
-  border-radius: 6px;
-  width: 28px;
-  height: 28px;
-  cursor: pointer;
-  font-size: 13px;
-  line-height: 1;
-}
-
-.doc-viewer-close:hover {
-  color: var(--portal-danger);
-  border-color: var(--portal-danger);
+.doc-viewer-copy:disabled {
+  opacity: 0.45;
+  cursor: default;
 }
 
 .doc-viewer-body {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
-  padding: 24px 28px;
+  -webkit-overflow-scrolling: touch;
+  padding: 24px max(18px, env(safe-area-inset-right, 0px)) calc(48px + env(safe-area-inset-bottom, 0px)) max(18px, env(safe-area-inset-left, 0px));
 }
 
-/* Un-styled reset for mammoth's plain semantic HTML output */
+/* Readable column: wide enough to use the screen, capped for line length */
 .doc-viewer-content {
+  max-width: 820px;
+  margin: 0 auto;
   color: var(--portal-text-primary);
-  font-size: 14px;
-  line-height: 1.65;
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
 }
 
 .doc-viewer-content h1,
 .doc-viewer-content h2,
 .doc-viewer-content h3 {
   color: var(--portal-accent-cyan);
-  margin: 18px 0 8px;
-  font-size: 15px;
+  margin: 24px 0 8px;
+  font-size: 17px;
+  line-height: 1.3;
   letter-spacing: 0.3px;
 }
 
+.doc-viewer-content h1 {
+  font-size: 22px;
+  margin-top: 4px;
+}
+
 .doc-viewer-content p {
-  margin: 0 0 10px;
+  margin: 0 0 12px;
 }
 
 .doc-viewer-content strong {
@@ -89,7 +117,7 @@
 
 .doc-viewer-content ul,
 .doc-viewer-content ol {
-  margin: 0 0 12px 20px;
+  margin: 0 0 14px 22px;
 }
 
 .doc-viewer-content li {
@@ -100,35 +128,27 @@
   color: var(--portal-accent-blue);
 }
 
-@media (max-width: 768px) {
-  .doc-viewer-overlay {
-    padding: 6px;
-  }
+.doc-viewer-content table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+}
 
-  .doc-viewer-modal {
-    max-width: 98vw;
-  }
-
-  .doc-viewer-body {
-    padding: 18px;
-  }
+.doc-viewer-content th,
+.doc-viewer-content td {
+  border: 1px solid var(--portal-border);
+  padding: 6px 10px;
+  text-align: left;
 }
 
 @media (max-width: 480px) {
-  .doc-viewer-overlay {
-    padding: 4px;
+  .doc-viewer-title {
+    font-size: 14px;
   }
 
-  .doc-viewer-modal {
-    max-width: 99vw;
-    max-height: 92vh;
-  }
-
-  .doc-viewer-header {
-    padding: 12px 16px;
-  }
-
-  .doc-viewer-body {
-    padding: 14px;
+  .doc-viewer-back,
+  .doc-viewer-copy {
+    padding: 0 12px;
   }
 }

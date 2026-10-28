@@ -122,38 +122,38 @@ select {
    light/dark data-theme toggle above, in either direction.
    ========================================================================== */
 [data-portal-theme="fintech"] {
-  --portal-bg-base: #05070d;
-  --portal-bg-layer-1: #0a0e1a;
-  --portal-bg-layer-2: #10162a;
-  --portal-glass-bg: rgba(16, 22, 42, 0.55);
-  --portal-glass-border: rgba(120, 170, 255, 0.16);
+  --portal-bg-base: #0B1620;
+  --portal-bg-layer-1: #122431;
+  --portal-bg-layer-2: #183040;
+  --portal-glass-bg: rgba(18, 36, 49, 0.72);
+  --portal-glass-border: rgba(110, 200, 200, 0.16);
   --portal-glass-blur: 16px;
 
-  --portal-accent-blue: #3b82f6;
-  --portal-accent-cyan: #22d3ee;
-  --portal-metallic-gradient: linear-gradient(135deg, #1e3a8a 0%, #2563eb 45%, #38bdf8 100%);
-  --portal-metallic-gradient-hover: linear-gradient(135deg, #2547a0 0%, #3b82f6 45%, #5cd3ff 100%);
+  --portal-accent-blue: #35D0C0;
+  --portal-accent-cyan: #35D0C0;
+  --portal-metallic-gradient: linear-gradient(135deg, #0B7A70 0%, #14A89A 45%, #4FE0D0 100%);
+  --portal-metallic-gradient-hover: linear-gradient(135deg, #0E8C80 0%, #20BDAE 45%, #6BEBDC 100%);
 
-  --portal-text-primary: #eef2ff;
-  --portal-text-secondary: #93a4c3;
-  --portal-text-muted: #5b6a8a;
+  --portal-text-primary: #E8F1F4;
+  --portal-text-secondary: #8DA7B3;
+  --portal-text-muted: #5F7A87;
 
-  --portal-border: rgba(120, 170, 255, 0.14);
-  --portal-border-strong: rgba(120, 170, 255, 0.32);
+  --portal-border: rgba(110, 200, 200, 0.14);
+  --portal-border-strong: rgba(110, 200, 200, 0.34);
 
   --portal-success: #34d399;
-  --portal-warning: #fbbf24;
+  --portal-warning: #F5B454;
   --portal-danger: #f87171;
 
-  --portal-shadow-glow: 0 0 24px rgba(59, 130, 246, 0.25);
+  --portal-shadow-glow: 0 0 24px rgba(53, 208, 192, 0.22);
   --portal-radius: 14px;
 
   /* Shared "recessed surface" color (form inputs, command preview, history
      cards) — each usage keeps its own alpha via rgb(var(--portal-sunken-rgb) / X). */
-  --portal-sunken-rgb: 5 7 13;
+  --portal-sunken-rgb: 8 17 25;
   /* .portal-shell's decorative background glows */
-  --portal-glow-1: rgba(56, 189, 248, 0.12);
-  --portal-glow-2: rgba(37, 99, 235, 0.10);
+  --portal-glow-1: rgba(53, 208, 192, 0.10);
+  --portal-glow-2: rgba(30, 90, 120, 0.14);
 
   color-scheme: dark;
 }
@@ -166,35 +166,35 @@ select {
    fintech is isolated from the chat app's data-theme toggle.
    ========================================================================== */
 [data-portal-theme="daylight"] {
-  --portal-bg-base: #f4f7fc;
+  --portal-bg-base: #EEF4F6;
   --portal-bg-layer-1: #ffffff;
-  --portal-bg-layer-2: #eef2f9;
+  --portal-bg-layer-2: #E3EDF0;
   --portal-glass-bg: rgba(255, 255, 255, 0.65);
-  --portal-glass-border: rgba(37, 99, 235, 0.14);
+  --portal-glass-border: rgba(14, 140, 128, 0.18);
   --portal-glass-blur: 16px;
 
-  --portal-accent-blue: #2563eb;
-  --portal-accent-cyan: #0891b2;
-  --portal-metallic-gradient: linear-gradient(135deg, #1e3a8a 0%, #2563eb 45%, #38bdf8 100%);
-  --portal-metallic-gradient-hover: linear-gradient(135deg, #2547a0 0%, #3b82f6 45%, #5cd3ff 100%);
+  --portal-accent-blue: #0E8C80;
+  --portal-accent-cyan: #0E8C80;
+  --portal-metallic-gradient: linear-gradient(135deg, #0B7A70 0%, #14A89A 45%, #4FE0D0 100%);
+  --portal-metallic-gradient-hover: linear-gradient(135deg, #0E8C80 0%, #20BDAE 45%, #6BEBDC 100%);
 
-  --portal-text-primary: #0f172a;
-  --portal-text-secondary: #47597a;
-  --portal-text-muted: #8695b3;
+  --portal-text-primary: #0E2530;
+  --portal-text-secondary: #46626F;
+  --portal-text-muted: #7B939E;
 
-  --portal-border: rgba(37, 99, 235, 0.16);
-  --portal-border-strong: rgba(37, 99, 235, 0.32);
+  --portal-border: rgba(14, 140, 128, 0.18);
+  --portal-border-strong: rgba(14, 140, 128, 0.38);
 
   --portal-success: #059669;
-  --portal-warning: #d97706;
+  --portal-warning: #9A5B00;
   --portal-danger: #dc2626;
 
-  --portal-shadow-glow: 0 0 24px rgba(37, 99, 235, 0.15);
+  --portal-shadow-glow: 0 0 24px rgba(14, 140, 128, 0.16);
   --portal-radius: 14px;
 
-  --portal-sunken-rgb: 226 232 240;
-  --portal-glow-1: rgba(37, 99, 235, 0.05);
-  --portal-glow-2: rgba(8, 145, 178, 0.05);
+  --portal-sunken-rgb: 218 231 235;
+  --portal-glow-1: rgba(14, 140, 128, 0.07);
+  --portal-glow-2: rgba(30, 90, 120, 0.05);
 
   color-scheme: light;
 }

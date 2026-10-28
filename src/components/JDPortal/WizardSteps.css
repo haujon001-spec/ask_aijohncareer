@@ -47,7 +47,7 @@
 
 .wizard-step--active .wizard-step-num {
   background: var(--portal-metallic-gradient);
-  color: #04070f;
+  color: #04201C;
 }
 
 @media (max-width: 768px) {

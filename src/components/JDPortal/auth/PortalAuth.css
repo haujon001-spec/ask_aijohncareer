@@ -56,14 +56,14 @@
 .portal-field input:focus {
   outline: none;
   border-color: var(--portal-accent-blue);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.18);
+  box-shadow: 0 0 0 3px rgba(53, 208, 192, 0.18);
 }
 
 .portal-button {
   width: 100%;
   padding: 12px 20px;
   background: var(--portal-metallic-gradient);
-  color: #04070f;
+  color: #04201C;
   border: none;
   border-radius: 8px;
   font-weight: 700;
