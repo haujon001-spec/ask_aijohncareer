@@ -20,10 +20,10 @@ import path from 'path';
  * backups) can never match, so it can never be sent or fetched.
  */
 
-const SSH_TARGET = process.env.SYNC_SSH_TARGET || 'root@152.42.214.111';
-const REMOTE_ROOT = process.env.SYNC_REMOTE_ROOT || '/opt/john-career-copilot';
-const SSH_OPTS = ['-o', 'BatchMode=yes', '-o', 'ConnectTimeout=10', '-o', 'ServerAliveInterval=15'];
-const REMOTE_UID_GID = process.env.SYNC_REMOTE_OWNER || '1001:1001'; // the jd-api container's uid
+export const SSH_TARGET = process.env.SYNC_SSH_TARGET || 'root@152.42.214.111';
+export const REMOTE_ROOT = process.env.SYNC_REMOTE_ROOT || '/opt/john-career-copilot';
+export const SSH_OPTS = ['-o', 'BatchMode=yes', '-o', 'ConnectTimeout=10', '-o', 'ServerAliveInterval=15'];
+export const REMOTE_UID_GID = process.env.SYNC_REMOTE_OWNER || '1001:1001'; // the jd-api container's uid
 const SCAN_ROOTS = ['data_processed', 'data_raw/jd/txt', 'src/data/jd'];
 
 // Folders under data_processed/ that belong to someone else or are scratch —
@@ -100,7 +100,7 @@ export function buildLocalManifest(projectRoot) {
 }
 
 /** Run a shell script on the VPS by feeding it to `sh -s` on stdin (no quoting pitfalls). */
-function runRemoteScript(script, { timeoutMs = 120000 } = {}) {
+export function runRemoteScript(script, { timeoutMs = 120000 } = {}) {
   return new Promise((resolve) => {
     const child = spawn('ssh', [...SSH_OPTS, SSH_TARGET, 'sh -s'], { windowsHide: true });
     let stdout = '';
@@ -268,7 +268,7 @@ async function pullFiles(projectRoot, rels) {
   }
 }
 
-async function backupRemote(rels, stamp) {
+export async function backupRemote(rels, stamp) {
   const script = `
 cd '${REMOTE_ROOT}' || exit 3
 B="backup/sync_${stamp}"

@@ -1,6 +1,7 @@
 import express from 'express';
 import { getSyncInfo, isSyncEnabled, isSyncing, buildPlan, runSync } from '../lib/syncEngine.js';
 import { isPipelineBusy } from '../lib/pythonRunner.js';
+import { previewProfileSync, runProfileSync } from '../lib/profileSync.js';
 
 const VALID_DIRECTIONS = ['both', 'push', 'pull'];
 const VALID_RESOLUTIONS = ['local', 'remote', 'skip'];
@@ -57,6 +58,31 @@ export function createSyncRouter({ projectRoot }) {
       res.json({ success: summary.failed.length === 0 && summary.errors.length === 0, ...summary });
     } catch (err) {
       res.status(500).json({ error: err.message });
+    }
+  });
+
+  // ── john_profile.json (28 Oct 2026): one fixed file, its own preview + confirm ──
+  router.post('/profile/preview', async (req, res) => {
+    try {
+      res.json({ success: true, ...(await previewProfileSync(projectRoot)) });
+    } catch (err) {
+      res.status(err.message.includes('already running') ? 409 : 502).json({ error: err.message });
+    }
+  });
+
+  router.post('/profile/run', async (req, res) => {
+    const { direction, expectedLocalSha, expectedRemoteSha, confirm } = req.body || {};
+    if (confirm !== true) return res.status(400).json({ error: 'confirm:true is required (check the profile first)' });
+    if (!['push', 'pull'].includes(direction)) return res.status(400).json({ error: 'direction must be push or pull' });
+    if (!/^[0-9a-f]{64}$/.test(expectedLocalSha || '') || !/^[0-9a-f]{64}$/.test(expectedRemoteSha || '')) {
+      return res.status(400).json({ error: 'expectedLocalSha and expectedRemoteSha (from the preview) are required' });
+    }
+    if (isPipelineBusy()) return res.status(409).json({ error: 'A JD run is in progress — wait for it to finish, then sync.' });
+    try {
+      res.json(await runProfileSync({ projectRoot, direction, expectedLocalSha, expectedRemoteSha }));
+    } catch (err) {
+      const code = /already running/.test(err.message) ? 409 : /changed on one side/.test(err.message) ? 409 : 500;
+      res.status(code).json({ error: err.message });
     }
   });
 

@@ -91,6 +91,17 @@ export function runSync({ direction, companies, resolutions }) {
   })
 }
 
+export function previewProfileSync() {
+  return request('/api/sync/profile/preview', { method: 'POST', body: JSON.stringify({}) })
+}
+
+export function runProfileSync({ direction, expectedLocalSha, expectedRemoteSha }) {
+  return request('/api/sync/profile/run', {
+    method: 'POST',
+    body: JSON.stringify({ direction, expectedLocalSha, expectedRemoteSha, confirm: true })
+  })
+}
+
 // ---- PDF (added 27 Oct 2026) ----
 
 export function fetchPdfCapabilities() {
