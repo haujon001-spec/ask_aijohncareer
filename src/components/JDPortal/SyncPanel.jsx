@@ -195,6 +195,15 @@ function SyncPanel() {
   const visible = plan ? plan.companies.filter((g) => g.newLocal.length + g.newRemote.length + g.conflicts.length > 0) : []
   const selected = visible.filter((g) => included[g.company])
   const totalToCopy = selected.reduce((n, g) => n + changeCount(g), 0)
+  const allSelected = visible.length > 0 && selected.length === visible.length
+
+  const toggleAll = () => {
+    const next = {}
+    visible.forEach((g) => {
+      next[g.company] = !allSelected
+    })
+    setIncluded({ ...included, ...next })
+  }
 
   const handleRun = async () => {
     setRunning(true)
@@ -255,6 +264,17 @@ function SyncPanel() {
           </div>
 
           {visible.length === 0 && <p>Both sides are already in sync.</p>}
+
+          {visible.length > 0 && (
+            <div style={{ marginTop: 12, display: 'flex', alignItems: 'center', gap: 12 }}>
+              <button type="button" className="jd-button-secondary" onClick={toggleAll} disabled={running}>
+                {allSelected ? 'Unselect all' : 'Select all'}
+              </button>
+              <span className="jd-field-hint">
+                {selected.length} of {visible.length} selected
+              </span>
+            </div>
+          )}
 
           {visible.map((g) => (
             <div className="jd-sync-company" key={g.company}>
